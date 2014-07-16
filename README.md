@@ -21,6 +21,6 @@ Within the client folder, run `bundle install` from the cmd line. This will inst
 Running
 --
 
-After installation, within the `client` folder, run 'rerun --signal KILL -- rackup -p 5678'. This will startup the client application.
+After installation, within the `client` folder, run `rerun --signal KILL -- rackup -p 5678`. This will startup the client application.
 
 You can then point your browser to `localhost:5678`.
