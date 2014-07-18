@@ -3,7 +3,7 @@ Applyance Client
 
 Client component for Applyance that interfaces with the server.
 
-API blueprints for the server can be found on [Apiary](http://docs.applyance.apiary.io//).
+API blueprints for the server can be found on [Apiary](http://docs.applyance.apiary.io/).
 
 Prerequisites
 --
