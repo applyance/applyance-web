@@ -1,0 +1,45 @@
+<section class="site-content" style="padding-bottom: 202px;">
+
+  <section class="sector--space lead--clear trim">
+    <div class="gut trim">
+      <h1>Register</h1>
+    </div>
+  </section>
+
+  <section class="sector--space">
+    <div class="gut">
+      <form accept-charset="UTF-8" action="/accounts/register" class="new_account" id="new_account" method="post" novalidate="novalidate">
+
+        <div class="district-set--small clear">
+          <ul class="district-list list--layout">
+            <li>
+              <div class="district">
+                <div class="field first">
+                  <label for="account_name">Your Name</label>
+                  <input autofocus="autofocus" id="account_name" name="account[name]" parsley-minlength="2" parsley-required="true" type="text" class="parsley-validated">
+                </div>
+                <div class="field">
+                  <label for="entity">Your Institution</label>
+                  <input autofocus="autofocus" id="entity" name="entity[name]" parsley-minlength="2" parsley-required="true" type="text" class="parsley-validated">
+                </div>
+                <div class="field">
+                  <label for="account_email">Your Email</label>
+                  <input id="account_email" name="account[email]" parsley-required="true" parsley-type="email" type="email" class="parsley-validated">
+                </div>
+                <div class="field last">
+                  <label for="account_password_hash">Password</label>
+                  <input id="account_password_hash" name="account[password_hash]" parsley-maxlength="20" parsley-minlength="6" parsley-required="true" type="password" class="parsley-validated">
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <div class="align--center space--top--16">
+            <button class="btn--green" name="commit" type="submit">Create Account</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</section>

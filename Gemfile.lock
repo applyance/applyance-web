@@ -12,8 +12,8 @@ GEM
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
     multi_json (1.10.1)
+    netrc (0.7.7)
     oj (2.9.9)
-    pg (0.17.1)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -24,6 +24,8 @@ GEM
       ffi (>= 0.5.0)
     rerun (0.10.0)
       listen (~> 2.7, >= 2.7.3)
+    rest_client (1.7.3)
+      netrc (~> 0.7.7)
     sequel (4.12.0)
     sinatra (1.4.5)
       rack (~> 1.4)
@@ -48,8 +50,8 @@ PLATFORMS
 
 DEPENDENCIES
   oj
-  pg
   rerun
+  rest_client
   sequel
   sinatra
   sinatra-contrib
