@@ -1,13 +1,21 @@
-"use strict";
+'use strict';
 
 angular.module('ApplyanceApp')
-.factory('ApplyanceAPI', function (Restangular) {
+  .run(function(ApplyanceAPI) {})
+  .factory('ApplyanceAPI', ['$http', '$rootScope', 'Restangular',
+    function($http, $rootScope, Restangular) {
 
-  Restangular.setBaseUrl("https://applyance.apiary-mock.com/units/1");
+      Restangular.setBaseUrl("https://applyance.apiary-mock.com");
 
-  var baseApplications = Restangular.all("applications");
-  baseApplications.getList().then(function(applications) {
-    console.log(applications);
-  });
 
-});
+      this.getApplications = function() {
+        return Restangular.one("units", 1).all("applications").getList();
+      };
+
+      this.getApplication = function(id) {
+        return Restangular.one('applications', id).get();
+      };
+
+      return this;
+    }])
+;

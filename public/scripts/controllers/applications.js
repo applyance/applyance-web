@@ -6,7 +6,9 @@ angular.module('ApplyanceApp')
 
 
 
-    $scope.applications = ["easy", "cheesy", "peasy"];
+    ApplyanceAPI.getApplications().then(function(applications) {
+       $scope.applications = applications;
+    });
 
 
 
