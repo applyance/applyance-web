@@ -9,7 +9,7 @@ angular.module('ApplyanceApp')
 
 
       this.getApplications = function() {
-        return Restangular.one("units", 1).all("applications").getList();
+        return Restangular.one("spots", 1).all("applications").getList();
       };
 
       this.getApplication = function(id) {
