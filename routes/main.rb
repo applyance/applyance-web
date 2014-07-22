@@ -82,21 +82,17 @@ module Applyance
             :content_type => 'application/json'
           }
 
-          # RestClient.post('https://applyance.apiary-mock.com/accounts/auth', values, headers){ |response, request, result, &block|
-          #   case response.code
-          #   when 200
-          #     p "It worked!"
-          #     response
-          #     redirect to('/dashboard')
-          #   else
-          #     p "FAIL"
-          #     response.return!(request, result, &block)
-          #   end
-          # }
-
-          response = RestClient.post 'https://applyance.apiary-mock.com/accounts/auth', values, headers
-
-          return response
+          RestClient.post('https://applyance.apiary-mock.com/accounts/auth', values, headers){ |response, request, result, &block|
+            case response.code
+            when 200
+              p "It worked!"
+              response
+              redirect to('/home')
+            else
+              p "FAIL"
+              response.return!(request, result, &block)
+            end
+          }
 
         end
 
@@ -114,18 +110,16 @@ module Applyance
             :content_type => 'application/json'
           }
 
-          # RestClient.post('https://applyance.apiary-mock.com/accounts/reset-password', values, headers) { |response, request, result, &block|
-          #   case response.code
-          #   when 200
-          #     p "It worked!"
-          #     response
-          #   else
-          #     p "FAIL"
-          #     response.return!(request, result, &block)
-          #   end
-          # }
-
-          RestClient.post 'https://applyance.apiary-mock.com/accounts/reset-password', values, headers
+          RestClient.post('https://applyance.apiary-mock.com/accounts/password/reset', values, headers) { |response, request, result, &block|
+            case response.code
+            when 200
+              p "It worked!"
+              response
+            else
+              p "FAIL"
+              response.return!(request, result, &block)
+            end
+          }
 
         end
 
