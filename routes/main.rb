@@ -3,7 +3,11 @@ module Applyance
     module Main
       def self.registered(app)
 
+        require 'rubygems'
+        require 'json'
         require 'rest_client'
+
+        api_host = Applyance::Client.settings.api_host
 
         # Home page (marketing and app)
         app.get '/' do
@@ -11,7 +15,8 @@ module Applyance
           if session[:api_key] == nil
             erb :'main/index', :layout => :'layouts/base'
           else
-            erb :'app/home', :layout => :'layouts/app'
+            locals = { :api_host => api_host, :api_key => session[:api_key] }
+            erb :'app/home', :layout => :'layouts/app', :locals => locals
           end
 
         end
@@ -42,22 +47,100 @@ module Applyance
         end
         app.post '/register' do
 
+          # values = '{
+          #   "account": {
+          #     "name": ' + params[:account][:name].to_s + ',
+          #     "email": ' + params[:account][:email].to_s + ',
+          #     "password": ' + params[:account][:password].to_s + '
+          #   },
+          #   "entity": {
+          #     "name": ' + params[:entity][:name].to_s + '
+          #   }
+          # }'
+
+          person_name = params[:account][:name].to_s
+          person_email = params[:account][:email].to_s
+          person_password = params[:account][:password].to_s
+          entity_name = params[:entity][:name].to_s
+
           values = '{
-            "account": {
-              "name": ' + params[:account][:name].to_s + ',
-              "email": ' + params[:account][:email].to_s + ',
-              "password": ' + params[:account][:password].to_s + '
-            },
-            "entity": {
-              "name": ' + params[:entity][:name].to_s + '
-            }
+              "name": "' + entity_name + '"
           }'
 
           headers = {
             :content_type => 'application/json'
           }
 
-          RestClient.post 'https://applyance.apiary-mock.com/reviewers/register', values, headers
+          #create entity
+          RestClient.post(api_host + '/entities', values, headers){ |response, request, result, &block|
+            case response.code
+            when 201
+
+              #create admin for this entity
+              json_response = JSON.parse(response)
+              entity_id = json_response["id"].to_s
+
+              values = '{
+                "name": "' + person_name + '",
+                "email": "' + person_email + '",
+                "password": "' + person_password + '"
+              }'
+
+              RestClient.post(api_host + '/entities/' + entity_id + '/admins', values, headers){ |response, request, result, &block|
+                case response.code
+                when 201
+
+                  p "ADMIN created. creating UNIT......."
+
+                  values = '{
+                    "name": "' + entity_name + '"
+                  }'
+
+                  #create unit for this entity
+                  RestClient.post(api_host + '/entities/' + entity_id + '/units', values, headers){ |response, request, result, &block|
+                    case response.code
+                    when 201
+
+                      p "UNIT created. creating spot......."
+
+                      json_response = JSON.parse(response)
+                      unit_id = json_response["id"].to_s
+
+                      values = '{
+                        "name": "' + entity_name + '",
+                        "detail": "",
+                        "status": "open"
+                      }'
+
+                      #create spot for this unit
+                      RestClient.post(api_host + '/units/' + unit_id + '/spots', values, headers){ |response, request, result, &block|
+                        case response.code
+                        when 201
+
+                          p "SUCCESS"
+
+                          redirect to('/')
+
+                        else
+                          erb :'accounts/register', :layout => :'layouts/base'
+                        end
+                      }
+
+                    else
+                      p response
+                      # erb :'accounts/register', :layout => :'layouts/base'
+                    end
+                  }
+
+                else
+                  # erb :'accounts/register', :layout => :'layouts/base'
+                end
+              }
+
+            else
+              # erb :'accounts/register', :layout => :'layouts/base'
+            end
+          }
 
         end
 
@@ -73,7 +156,7 @@ module Applyance
             :authorization => 'ApplyanceLogin auth=YW55IGNhcm5hbCBwbGVhc3VyZS4='
           }
 
-          RestClient.post 'https://applyance.apiary-mock.com/accounts/verify', values, headers
+          RestClient.post api_host + '/accounts/verify', values, headers
 
           erb :'accounts/verify', :layout => :'layouts/base', :locals => {:id => params[:id]}
         end
@@ -93,14 +176,15 @@ module Applyance
             :content_type => 'application/json'
           }
 
-          RestClient.post('https://applyance.apiary-mock.com/accounts/auth', values, headers){ |response, request, result, &block|
+          RestClient.post(api_host + '/accounts/auth', values, headers){ |response, request, result, &block|
             case response.code
             when 200
               api_key = response.headers[:authorization].split('auth=')[1]
               session[:api_key] = api_key
+
               redirect to('/')
             else
-              response.return!(request, result, &block)
+              erb :'accounts/login', :layout => :'layouts/base'
             end
           }
 
@@ -120,7 +204,7 @@ module Applyance
             :content_type => 'application/json'
           }
 
-          RestClient.post('https://applyance.apiary-mock.com/accounts/password/reset', values, headers) { |response, request, result, &block|
+          RestClient.post(api_host + '/accounts/password/reset', values, headers) { |response, request, result, &block|
             case response.code
             when 201
               response
@@ -147,7 +231,7 @@ module Applyance
             :content_type => 'application/json'
           }
 
-          RestClient.post('https://applyance.apiary-mock.com/accounts/passwords/set', values, headers){ |response, request, result, &block|
+          RestClient.post(api_host + '/accounts/passwords/set', values, headers){ |response, request, result, &block|
             case response.code
             when 200
               # api_key = response.headers[:authorization].split('auth=')[1]
