@@ -1,6 +1,9 @@
 require 'sinatra/base'
 require 'sinatra/config_file'
 
+require 'sequel'
+require 'oj'
+
 require_relative 'routes/init'
 
 module Applyance
