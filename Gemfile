@@ -14,3 +14,4 @@ gem 'rerun'
 gem 'thin'
 
 gem 'rest_client'
+gem 'json'
