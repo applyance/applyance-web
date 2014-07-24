@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
-  .config(function ($routeProvider) {
+  .config(function($routeProvider) {
+
     $routeProvider
       .when('/dashboard', {
         templateUrl: 'views/dashboard.html',
@@ -18,4 +19,7 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
       .otherwise({
         redirectTo: '/applications'
       });
+
+    // $locationProvider.html5Mode(true);
+
   });

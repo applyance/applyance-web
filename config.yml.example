@@ -1,2 +1,3 @@
 development:
+  database_name: applyance_client
   api_host: http://api.dev.applyance.co

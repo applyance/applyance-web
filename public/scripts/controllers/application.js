@@ -1,12 +1,10 @@
 'use strict';
 
 angular.module('ApplyanceApp')
-  .controller('ApplicationCtrl', function ($scope, ApplyanceAPI) {
+  .controller('ApplicationCtrl', function ($scope, $routeParams, ApplyanceAPI) {
 
-
-    ApplyanceAPI.getApplication(1).then(function(application) {
+    ApplyanceAPI.getApplication($routeParams['applicationId']).then(function(application) {
        $scope.application = application;
     });
-
 
   });

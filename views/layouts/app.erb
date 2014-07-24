@@ -3,14 +3,15 @@
   <head>
     <title>Applyance (app part)</title>
   </head>
-  <body ng-app="ApplyanceApp">
-    <a href="/home">
-      <img alt="home" src="/img/chicken.png" width="100" />
-    </a>
+  <body ng-app="ApplyanceApp" ng-controller="RootCtrl">
     <a href="/accounts/logout">logout</a>
 
     <%= yield %>
 
+    <script type='text/javascript'>
+      var apiHost = "<%= @api_host %>";
+      var apiKey = "<%= @api_key %>";
+    </script>
 
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min.js"></script>
@@ -21,13 +22,9 @@
 
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/services.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/root.js"></script>
     <script type="text/javascript" src="/scripts/controllers/applications.js"></script>
     <script type="text/javascript" src="/scripts/controllers/application.js"></script>
-
-    <script type='text/javascript'>
-      var apiHost = <%= api_host %>;
-      var apiKey = <%= api_key %>;
-    </script>
 
   </body>
 </html>

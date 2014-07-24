@@ -8,8 +8,6 @@ gem 'sequel'
 
 gem 'oj'
 
-gem 'whenever', :require => false
-
 gem 'rerun'
 gem 'thin'
 

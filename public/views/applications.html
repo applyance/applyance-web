@@ -1,6 +1,5 @@
-
 <a ng-repeat="application in applications" href="#applications/{{ application.id }}">
-  <div style="background:pink; margin-bottom: 10px; text-decoration: none; padding: 10px;">
+  <div style="background: #eee; margin-bottom: 10px; text-decoration: none; padding: 10px;">
     <span>{{ application.submitter.name }}</span> -
     <span>{{ application.spots[0].name }}</span> -
     <span am-time-ago="application.submitted_at"></span>

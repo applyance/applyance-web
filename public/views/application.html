@@ -1,4 +1,13 @@
-
 <div>
-  {{ application }}
+  {{ application.submitter.name }}
+  {{ application.submitter.email }}
+
+  <div ng-repeat="field in application.fields">
+    <div style="font-weight:bold;">
+      {{ field.datum.definition.label }}
+    </div>
+    <div>
+      {{ field.datum.detail }}
+    </div>
+  </div>
 </div>

@@ -4,12 +4,9 @@
     <title>Applyance</title>
   </head>
   <body>
-    <a href="/">
-      <img alt="home" src="/img/chicken.png" width="100" />
-    </a>
 
     <% if session[:api_key] == nil %>
-      <a href="/register">Register</a>
+      <a href="/accounts/register">Register</a>
       <a href="/accounts/login">login</a>
     <% else %>
       <a href="/accounts/logout">logout</a>
@@ -18,6 +15,6 @@
     <div>
       <%= yield %>
     </div>
-    
+
   </body>
 </html>

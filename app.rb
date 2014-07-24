@@ -3,8 +3,12 @@ require 'sinatra/config_file'
 
 require 'sequel'
 require 'oj'
+require 'json'
+require 'rest_client'
 
-require_relative 'routes/init'
+require_relative 'helpers/_init'
+require_relative 'models/_init'
+require_relative 'routes/_init'
 
 module Applyance
   class Client < Sinatra::Base
@@ -22,7 +26,13 @@ module Applyance
       set :show_exceptions, :after_handler
     end
 
-    # Register app stuff
+    # Helpers
+    helpers Applyance::Helpers::Auth
+
+    # Models
+    register Applyance::Modeling::Init
+
+    # Routing
     register Applyance::Routing::Init
 
   end

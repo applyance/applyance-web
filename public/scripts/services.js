@@ -5,13 +5,21 @@ angular.module('ApplyanceApp')
   .factory('ApplyanceAPI', ['$http', '$rootScope', 'Restangular',
     function($http, $rootScope, Restangular) {
 
-      Restangular.setBaseUrl("https://applyance.apiary-mock.com");
+      Restangular.setBaseUrl(apiHost);
+      Restangular.setDefaultHeaders({'Authorization': "ApplyanceLogin auth=" + apiKey});
 
-
-      this.getApplications = function() {
-        return Restangular.one("spots", 1).all("applications").getList();
+      this.getMe = function() {
+        return $http.get(apiHost + "/accounts/me", {headers: {'Authorization': "ApplyanceLogin auth=" + apiKey}});
       };
-
+      this.getUnits = function(entityId) {
+        return Restangular.one('entities', entityId).all('units').getList();
+      };
+      this.getSpots = function(unitId) {
+        return Restangular.one("units", unitId).all("spots").getList();
+      };
+      this.getApplications = function(spotId) {
+        return Restangular.one("spots", spotId).all("applications").getList();
+      };
       this.getApplication = function(id) {
         return Restangular.one('applications', id).get();
       };
