@@ -5,7 +5,7 @@
   </head>
   <body>
 
-    <% if session[:api_key] == nil %>
+    <% if session[:api_key].nil? %>
       <a href="/accounts/register">Register</a>
       <a href="/accounts/login">login</a>
     <% else %>

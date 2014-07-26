@@ -26,6 +26,10 @@ module Applyance
             })
 
             unless auth['raw'].code == 200
+              @errors = []
+              if auth['data']['errors'] && auth['data']['errors'].first['status'] == 400
+                @errors << auth['data']['errors'].first['detail']
+              end
               return erb :'accounts/login', :layout => :'layouts/base'
             end
 

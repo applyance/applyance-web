@@ -25,7 +25,7 @@ module Applyance
 
             values = { "name" => entity_name }
             headers = { :content_type => 'application/json' }
-            response = RestClient.post(api_host + '/entities', JSON.dump(values), headers)
+            response = RestClient.post(api_host + '/entities', JSON.dump(values), headers) { |response, request, result| response }
             error 500 unless response.code == 201
 
             json_response = JSON.parse(response)
@@ -42,7 +42,7 @@ module Applyance
               "password" => person_password
             }
 
-            response = RestClient.post(api_host + "/entities/#{entity_id}/admins", JSON.dump(values), headers)
+            response = RestClient.post(api_host + "/entities/#{entity_id}/admins", JSON.dump(values), headers) { |response, request, result| response }
             error 500 unless response.code == 201
             json_response = JSON.parse(response)
 
@@ -62,28 +62,10 @@ module Applyance
             values = {
               "name" => entity_name
             }
-            response = RestClient.post(api_host + "/entities/#{entity_id}/units", JSON.dump(values), headers)
+            response = RestClient.post(api_host + "/entities/#{entity_id}/units", JSON.dump(values), headers) { |response, request, result| response }
             error 500 unless response.code == 201
 
-            json_response = JSON.parse(response)
-            unit_id = json_response["id"]
-
-            #
-            # Create Spot
-            #
-
-            headers = {
-              :content_type => 'application/json',
-              :authorization => 'ApplyanceLogin auth=' + auth['api_key']
-            }
-            values = {
-              "name" => entity_name,
-              "status" => "open"
-            }
-            response = RestClient.post(api_host + "/units/#{unit_id}/spots", JSON.dump(values), headers)
-            error 500 unless response.code == 201
-
-            session[:api_key] = api_key
+            session[:api_key] = auth['api_key']
             redirect to('/')
 
           end

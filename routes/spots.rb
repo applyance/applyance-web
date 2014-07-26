@@ -4,13 +4,13 @@ module Applyance
       def self.registered(app)
 
         # Spot
-        app.get '/spot/:id' do
+        app.get '/spots/:id' do
           @id = params[:id]
           erb :'spots/show', :layout => :'layouts/base'
         end
 
         # Spot Application
-        app.get '/apply/:id' do
+        app.get '/spots/:id/apply' do
           @id = params[:id]
           erb :'spots/apply', :layout => :'layouts/base'
         end

@@ -1,56 +1,30 @@
-<section class="site-content" style="padding-bottom: 202px;">
+<h1>Login</h1>
 
-  <section class="sector--space lead--clear trim">
-    <div class="gut trim">
-      <h1>Login</h1>
-    </div>
-  </section>
+<form action="/accounts/login" method="post">
 
-  <section class="sector--space">
-    <div class="gut">
+  <% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+    <li>
+      <%= error %>
+    </li>
+    <% end %>
+  </ul>
+  <% end %>
 
-      <form accept-charset="UTF-8" action="/accounts/login" id="new_login" method="post" novalidate="novalidate">
+  <ul>
+    <li>
+      <label for="email">Email</label>
+      <input id="email" name="account[email]" type="email">
+    </li>
+    <li>
+      <label for="password">Password</label>
+      <input id="password" name="account[password]" type="password">
+    </li>
+  </ul>
 
-        <div class="district-set--small clear">
+  <div>
+    <button type="submit">Login</button>
+  </div>
 
-          <ul class="district-list list--layout">
-            <li>
-              <div class="district trim">
-                <div class="field first">
-                  <label for="email">Email</label>
-                  <input id="email" name="account[email]" parsley-required="true" parsley-type="email" type="email" class="parsley-validated">
-                </div>
-                <div class="field">
-                  <label for="password">Password</label>
-                  <input id="password" name="account[password]" parsley-required="true" type="password" value="" class="parsley-validated">
-                </div>
-                <div class="field">
-                  <div class="remember-me-wrap">
-                    <div class="checkbox-wrap">
-                      <input checked="checked" id="remember_me" name="remember_me" type="checkbox" value="1">
-                    </div>
-                    <label for="remember_me">Stay logged in</label>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
-
-          <div class="group space--top--16">
-            <div class="float--right">
-              <button class="btn--green forward" name="button" type="submit">Log In</button>
-            </div>
-            <div class="float--left">
-              <a class="btn--gray" href="/accounts/passwords/reset">Reset password</a>
-            </div>
-          </div>
-
-        </div>
-
-      </form>
-
-    </div>
-
-  </section>
-
-</section>
+</form>
