@@ -28,3 +28,5 @@ build/
 
 ## Config files for server
 config.yml
+
+db/applyance_client.db

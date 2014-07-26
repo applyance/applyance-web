@@ -22,7 +22,7 @@ namespace :db do
     env = args[:env] || "development"
     Rake::Task['environment'].invoke(env)
     Applyance::Client.db.tables.each do |table|
-      Applyance::Client.db.run("TRUNCATE TABLE #{table} CASCADE")
+      Applyance::Client.db.run("TRUNCATE TABLE #{table}") if table != "schema_info"
     end
   end
 
