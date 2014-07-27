@@ -52,7 +52,7 @@
     margin-left: 48px; }
     .nav__item:first-child {
       margin-left: 0; }
-    .nav__item.is-active .nav__link {
+    .nav__item.active .nav__link {
       border-bottom: 1px solid #f2bc36; } }
 
 .nav__link {

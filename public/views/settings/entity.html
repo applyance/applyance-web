@@ -1,0 +1,10 @@
+<div>Manage Entity</div>
+
+<div>Entity Name</div>
+<input name="entityName" type="text" value="{{ entity.name }}" />
+
+<div>Entity Logo</div>
+<img width=100 ng-if="entity.logo.url" src="{{ entity.logo.url }}" alt="entity logo" />
+<input type="file" fileread="entity" accepts="image/*">
+
+<button ng-click="startUpdateEntity()">Update</button>
