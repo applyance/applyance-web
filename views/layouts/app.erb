@@ -21,11 +21,11 @@
       </a>
       <nav class="nav">
         <ul class="nav__list group">
-          <li class="nav__item" ng-class="{ active:isActive('/applications') }">
-            <a href="applications" class="nav__link">Applications</a>
+          <li class="nav__item" ng-class="{ active:isActive('/' + context + '/' + contextId + '/applications') }">
+            <a href="{{ context }}/{{ contextId }}/applications" class="nav__link">Applications</a>
           </li>
-          <li class="nav__item" ng-class="{ active:isActive('/settings/entity') }">
-            <a href="settings/entity" class="nav__link">Settings</a>
+          <li class="nav__item" ng-class="{ active:isActive('/' + context + '/' + contextId + '/settings') }">
+            <a href="{{ context }}/{{ contextId }}/settings" class="nav__link">Settings</a>
           </li>
         <ul>
       </nav>
@@ -33,12 +33,7 @@
         <img src="{{ getAvatarURL() }}" class="account__avatar" />
         <ul class="account__settings-list">
           <li class="account__settings-item">
-            <a href="#" class="account__settings-link">
-              <i class="icon-settings"></i>
-            </a>
-          </li>
-          <li class="account__settings-item">
-            <a href="/accounts/logout" target="_self" class="account__settings-link">
+            <a href="/accounts/logout" target="_self" class="account__settings-link" title="Sign Out">
               <i class="icon-logout"></i>
             </a>
           </li>

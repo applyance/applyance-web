@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('ApplyanceApp')
-  .controller('ApplicationsCtrl', function ($scope, ApplyanceAPI) {
-
-
+  .controller('ApplicationsCtrl', function ($scope, $routeParams, ApplyanceAPI) {
+    $scope.applications = [];
+    ApplyanceAPI.getApplications($routeParams['parent'], $routeParams['id']).then(function(applications) {
+       $scope.applications = applications;
+    });
   });

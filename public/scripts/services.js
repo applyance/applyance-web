@@ -27,8 +27,8 @@ angular.module('ApplyanceApp')
       this.getSpots = function(unitId) {
         return Restangular.one("units", unitId).all("spots").getList();
       };
-      this.getApplications = function(spotId) {
-        return Restangular.one("spots", spotId).all("applications").getList();
+      this.getApplications = function(parent, parentId) {
+        return Restangular.one(parent, parentId).all("applications").getList();
       };
       this.getApplication = function(id) {
         return Restangular.one('applications', id).get();

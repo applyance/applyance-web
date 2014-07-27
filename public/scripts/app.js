@@ -8,15 +8,15 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl'
       })
-      .when('/applications', {
-        templateUrl: 'views/applications.html',
-        controller: 'ApplicationsCtrl'
+      .when('/:parent/:id/applications', {
+        controller: 'ApplicationsCtrl',
+        templateUrl: 'views/applications.html'
       })
-      .when('/applications/:applicationId', {
+      .when('/applications/:id', {
         templateUrl: 'views/application.html',
         controller: 'ApplicationCtrl'
       })
-      .when('/settings/entity', {
+      .when('/entities/:id/settings', {
         templateUrl: 'views/settings/entity.html',
         controller: 'EntitySettingsCtrl'
       })
