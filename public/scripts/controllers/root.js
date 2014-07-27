@@ -16,6 +16,16 @@ angular.module('ApplyanceApp')
        $scope.getEverything();
     });
 
+    $scope.getAvatarURL = function() {
+      if (!$scope.me) { return; }
+
+      if ($scope.me.account.avatar) {
+        return $scope.me.account.avatar.url;
+      } else {
+        return 'https://www.gravatar.com/avatar/' + CryptoJS.MD5($scope.me.account.email);
+      }
+    }
+
     $scope.spots = [];
     $scope.getEverything = function() {
 

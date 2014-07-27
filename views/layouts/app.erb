@@ -21,22 +21,16 @@
       </a>
       <nav class="nav">
         <ul class="nav__list group">
-          <li class="nav__item" ng-class="{active:isActive('/applications')}">
+          <li class="nav__item" ng-class="{ active:isActive('/applications') }">
             <a href="applications" class="nav__link">Applications</a>
           </li>
-          <li class="nav__item">
-            <a href="#" class="nav__link">Inbox</a>
-          </li>
-          <li class="nav__item">
-            <a href="#" class="nav__link">Spots</a>
-          </li>
-          <li class="nav__item" ng-class="{active:isActive('/manage/entity')}">
-            <a href="manage/entity" class="nav__link">Manage</a>
+          <li class="nav__item" ng-class="{ active:isActive('/settings/entity') }">
+            <a href="settings/entity" class="nav__link">Settings</a>
           </li>
         <ul>
       </nav>
       <div class="account">
-        <img src="http://www.gravatar.com/avatar/c02a0b87f6684312a64c117d22deed3c.png" class="account__avatar" />
+        <img src="{{ getAvatarURL() }}" class="account__avatar" />
         <ul class="account__settings-list">
           <li class="account__settings-item">
             <a href="#" class="account__settings-link">
@@ -44,11 +38,7 @@
             </a>
           </li>
           <li class="account__settings-item">
-<<<<<<< HEAD
             <a href="/accounts/logout" target="_self" class="account__settings-link">
-=======
-            <a href="/accounts/logout" class="account__settings-link" target="_self">
->>>>>>> 73811203ecdafc90beddc191c83aade70a61ade7
               <i class="icon-logout"></i>
             </a>
           </li>
@@ -56,7 +46,9 @@
       </div>
     </header>
 
-    <%= yield %>
+    <main class="main">
+      <%= yield %>
+    </main>
 
     <script type='text/javascript'>
       var apiHost = "<%= @api_host %>";
@@ -70,6 +62,7 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.7.1/angular-moment.min.js"></script>
     <script type="text/javascript" src="/scripts/ext/angular-file-upload.min.js"></script>
+    <script type="text/javascript" src="/scripts/ext/md5.js"></script>
 
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/services.js"></script>

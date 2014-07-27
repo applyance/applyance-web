@@ -1,15 +1,9 @@
-<div> application list:</div>
+<h1>Applications</h1>
 
-<a href="applications/1">
-  <div style="background: #eee; margin-bottom: 10px; text-decoration: none; padding: 10px;">
-    example fake one
-  </div>
-</a>
-
-<a ng-repeat="application in applications" href="applications/{{ application.id }}">
-  <div style="background: #eee; margin-bottom: 10px; text-decoration: none; padding: 10px;">
-    <span>{{ application.submitter.name }}</span> -
-    <span>{{ application.spots[0].name }}</span> -
-    <span am-time-ago="application.submitted_at"></span>
-  </div>
-</a>
+<ul>
+  <li ng-repeat="application in applications">
+    <a href="applications/{{application.id}}">
+      {{ application.applicant.account.name }}
+    </a>
+  </li>
+</ul>

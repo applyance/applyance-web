@@ -11,24 +11,29 @@ angular.module('ApplyanceApp')
 
     $scope.startUpdateEntity = function() {
 
-      ApplyanceAPI.uploadAttachment($scope.entity.fileBinary,
-        $scope.entity.fileObj.type).then(
-        function(r) {
+      var updatedEntity = {
+        name: $scope.entity.name
+      };
 
-          var updatedEntity = {
-            name: $scope.entity.name,
-            "logo": {
-              "name": $scope.entity.fileObj.name,
-              "token": r.data.token // Attachment token
-            }
-          };
-          $scope.updateEntity($scope.entity.id, updatedEntity);
-        },
-        function(r) {
-          console.log("failed to upload logo");
-          console.log(r);
-        }
-      );
+      if ($scope.entity.fileObj) {
+        ApplyanceAPI.uploadAttachment($scope.entity.fileObj,
+          $scope.entity.fileObj.type).then(
+          function(r) {
+            updatedEntity['logo'] = {
+              name: $scope.entity.fileObj.name,
+              token: r.data.token
+            };
+            $scope.updateEntity($scope.entity.id, updatedEntity);
+          },
+          function(r) {
+            console.log("failed to upload logo");
+            console.log(r);
+          }
+        );
+      } else {
+        $scope.updateEntity($scope.entity.id, updatedEntity);
+      }
+
     };
 
     $scope.updateEntity = function(entityId, updatedEntityObj) {

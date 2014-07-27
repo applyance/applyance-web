@@ -16,7 +16,7 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
         templateUrl: 'views/application.html',
         controller: 'ApplicationCtrl'
       })
-      .when('/manage/entity', {
+      .when('/settings/entity', {
         templateUrl: 'views/settings/entity.html',
         controller: 'EntitySettingsCtrl'
       })

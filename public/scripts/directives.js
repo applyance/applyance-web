@@ -38,14 +38,6 @@ angular.module('ApplyanceApp')
               scope.fileread.fileObj = changeEvent.target.files[0];
             });
 
-            var binaryReader = new FileReader();
-            binaryReader.onload = function (loadEvent) {
-              scope.$apply(function () {
-                scope.fileread.fileBinary = loadEvent.target.result;
-              });
-            }
-            binaryReader.readAsBinaryString(changeEvent.target.files[0]);
-
             var dataUrlReader = new FileReader();
             dataUrlReader.onload = function (loadEvent) {
               scope.$apply(function () {

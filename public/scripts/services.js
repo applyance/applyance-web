@@ -16,8 +16,6 @@ angular.module('ApplyanceApp')
         apiKey = key;
         Restangular.setDefaultHeaders({'Authorization': "ApplyanceLogin auth=" + apiKey});
       };
-
-
       this.getMe = function() {
         return $http.get(apiHost + "/accounts/me", {
           headers: {'Authorization': "ApplyanceLogin auth=" + apiKey}
@@ -35,7 +33,6 @@ angular.module('ApplyanceApp')
       this.getApplication = function(id) {
         return Restangular.one('applications', id).get();
       };
-
       this.uploadAttachment = function(fileData, contentType) {
         return $http.post(apiHost + "/attachments", fileData, {
           headers: {

@@ -13,22 +13,13 @@ module Applyance
             erb :'app/home', :layout => :'layouts/app'
           end
         end
-        ["/applications/?*", "/manage/*"].each do |path|
-          app.get path do
-            if session[:api_key].nil?
-              redirect to "/"
-            else
-              @api_host = app.settings.api_host
-              @api_key = session[:api_key]
-              erb :'app/home', :layout => :'layouts/app'
-            end
-          end
-        end
 
         app.get //, :provides => 'html' do
           if session[:api_key].nil?
-            error 404
+            redirect to("/")
           end
+          @api_host = app.settings.api_host
+          @api_key = session[:api_key]
           erb :'app/home', :layout => :'layouts/app'
         end
 
