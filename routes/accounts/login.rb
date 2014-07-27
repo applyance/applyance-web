@@ -14,7 +14,7 @@ module Applyance
 
           # GET Login
           app.get '/accounts/login' do
-            erb :'accounts/login', :layout => :'layouts/public'
+            erb :'accounts/login', :layout => :'layouts/public/bare'
           end
 
           # POST Login
@@ -30,7 +30,7 @@ module Applyance
               if auth['data']['errors'] && auth['data']['errors'].first['status'] == 400
                 @errors << auth['data']['errors'].first['detail']
               end
-              return erb :'accounts/login', :layout => :'layouts/public'
+              return erb :'accounts/login', :layout => :'layouts/public/bare'
             end
 
             session[:api_key] = auth['api_key']

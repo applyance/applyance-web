@@ -1,6 +1,11 @@
 @import 'init';
 @import 'ui-font';
 
+html,
+body {
+  height: 100%;
+}
+
 html {
   box-sizing: border-box;
 
@@ -18,4 +23,28 @@ html {
   content: "";
   display: table;
   clear: both;
+}
+
+/* Buttons */
+
+.btn {
+  display: inline-block;
+  padding: 18px 42px;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1.2;
+  border: 0;
+  border-radius: 2px;
+}
+
+.btn--primary {
+  @extend .btn;
+  background-color: $color-base;
+  color: white;
+}
+
+.btn--secondary {
+  @extend .btn;
+  background-color: $color-gray;
 }

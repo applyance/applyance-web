@@ -988,6 +988,10 @@
 .icon-notepad:before {
   content: '\E588'; }
 
+html,
+body {
+  height: 100%; }
+
 html {
   box-sizing: border-box;
   font-size: 100%;
@@ -1002,3 +1006,21 @@ html {
   content: "";
   display: table;
   clear: both; }
+
+/* Buttons */
+.btn, .btn--primary, .btn--secondary {
+  display: inline-block;
+  padding: 18px 42px;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1.2;
+  border: 0;
+  border-radius: 2px; }
+
+.btn--primary {
+  background-color: #374249;
+  color: white; }
+
+.btn--secondary {
+  background-color: #eef0f2; }

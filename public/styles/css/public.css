@@ -5,6 +5,8 @@
  * MIT License */
 html {
   background-color: white; }
+  html.bare {
+    background-color: #eef0f2; }
 
 .container {
   max-width: 960px;
@@ -43,10 +45,12 @@ html {
     margin-left: 24px; }
     .nav__item:first-child {
       margin-left: 0; }
-    .nav__item.is-emphasized .nav__link {
-      padding: 12px;
-      margin-top: -12px;
-      border: 2px solid #eef0f2; } }
+    .nav__item.is-emphasized {
+      margin-left: 36px; }
+      .nav__item.is-emphasized .nav__link {
+        padding: 12px;
+        margin-top: -12px;
+        border: 2px solid #eef0f2; } }
 
 .nav__link {
   font-size: 14px;
@@ -58,3 +62,18 @@ html {
   padding: 48px 0; }
   .section.is-gray {
     background-color: #eef0f2; }
+
+.login {
+  display: inline-block; }
+
+.login__logo {
+  display: inline-block; }
+  .login__logo img {
+    display: block;
+    width: 167.55556px;
+    height: 26.66667px; }
+
+.login__fields {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }

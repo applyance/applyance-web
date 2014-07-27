@@ -3,15 +3,17 @@
  * http://bourbon.io
  * Copyright 2011–2014 thoughtbot, inc.
  * MIT License */
+.header,
+.mark {
+  height: 60px; }
+
 .header {
-  height: 60px;
   font-size: 0;
   background-color: #374249; }
 
 .mark {
   display: inline-block;
   vertical-align: middle;
-  height: 60px;
   width: 100px;
   text-align: center;
   background-color: #f2bc36;

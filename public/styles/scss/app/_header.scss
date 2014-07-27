@@ -1,5 +1,9 @@
+.header,
+.mark {
+  height: $app-header-height;
+}
+
 .header {
-  height: 60px;
   font-size: 0;
   background-color: $color-base;
 }
@@ -7,7 +11,6 @@
 .mark {
   display: inline-block;
   vertical-align: middle;
-  height: 60px;
   width: 100px;
   text-align: center;
   background-color: $color-brand;
@@ -71,7 +74,7 @@
 .account {
   display: inline-block;
   @media only screen and (min-width : 480px) {
-    margin-top: (60px - 32px) / 2;
+    margin-top: ($app-header-height - 32px) / 2;
     float: right;
   }
 }

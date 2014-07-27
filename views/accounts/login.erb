@@ -1,34 +1,30 @@
-<section class="section is-gray">
-  <div class="container">
-    <h1>Login</h1>
+<form action="/accounts/login" method="post" class="login">
 
-    <form action="/accounts/login" method="post">
+  <a href="/" class="login__logo">
+    <img src="/img/logo.png" class="login__logo__img" />
+  </a>
 
-      <% if @errors %>
-      <ul>
-        <% @errors.each do |error| %>
-        <li>
-          <%= error %>
-        </li>
-        <% end %>
-      </ul>
-      <% end %>
+  <% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+    <li>
+      <%= error %>
+    </li>
+    <% end %>
+  </ul>
+  <% end %>
 
-      <ul>
-        <li>
-          <label for="email">Email</label>
-          <input id="email" name="account[email]" type="email">
-        </li>
-        <li>
-          <label for="password">Password</label>
-          <input id="password" name="account[password]" type="password">
-        </li>
-      </ul>
+  <ul class="login__fields">
+    <li class="login__field">
+      <input id="email" name="account[email]" type="email" placeholder="Email">
+    </li>
+    <li class="login__field">
+      <input id="password" name="account[password]" type="password" placeholder="Password">
+    </li>
+  </ul>
 
-      <div>
-        <button type="submit">Login</button>
-      </div>
-
-    </form>
+  <div class="login__tray">
+    <button class="btn--primary" type="submit">Sign In</button>
   </div>
-</div>
+
+</form>

@@ -1,0 +1,18 @@
+.login {
+  display: inline-block;
+}
+
+.login__logo {
+  display: inline-block;
+  img {
+    display: block;
+    width: (377px / 2.25);
+    height: (60px / 2.25);
+  }
+}
+
+.login__fields {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

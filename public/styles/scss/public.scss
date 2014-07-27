@@ -2,6 +2,9 @@
 
 html {
   background-color: white;
+  &.bare {
+    background-color: $color-gray;
+  }
 }
 
 .container {
@@ -49,10 +52,13 @@ html {
     float: left;
     margin-left: 24px;
     &:first-child { margin-left: 0; }
-    &.is-emphasized .nav__link {
-      padding: 12px;
-      margin-top: -12px;
-      border: 2px solid $color-gray;
+    &.is-emphasized {
+      margin-left: 36px;
+      .nav__link {
+        padding: 12px;
+        margin-top: -12px;
+        border: 2px solid $color-gray;
+      }
     }
   }
 }
@@ -71,3 +77,5 @@ html {
     background-color: $color-gray;
   }
 }
+
+@import 'public/login';
