@@ -19,8 +19,8 @@
       </a>
       <nav class="nav">
         <ul class="nav__list group">
-          <li class="nav__item is-active">
-            <a href="#" class="nav__link">Applications</a>
+          <li class="nav__item" ng-class="{active:isActive('/applications')}">
+            <a href="applications" class="nav__link">Applications</a>
           </li>
           <li class="nav__item">
             <a href="#" class="nav__link">Inbox</a>
@@ -28,8 +28,8 @@
           <li class="nav__item">
             <a href="#" class="nav__link">Spots</a>
           </li>
-          <li class="nav__item">
-            <a href="#" class="nav__link">Manage</a>
+          <li class="nav__item" ng-class="{active:isActive('/manage/entity')}">
+            <a href="manage/entity" class="nav__link">Manage</a>
           </li>
         <ul>
       </nav>
@@ -42,7 +42,7 @@
             </a>
           </li>
           <li class="account__settings-item">
-            <a href="/accounts/logout" class="account__settings-link">
+            <a href="/accounts/logout" class="account__settings-link" target="_self">
               <i class="icon-logout"></i>
             </a>
           </li>
@@ -63,12 +63,15 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/restangular/1.3.1/restangular.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.7.1/angular-moment.min.js"></script>
+    <script type="text/javascript" src="/scripts/ext/angular-file-upload.min.js"></script>
 
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/services.js"></script>
+    <script type="text/javascript" src="/scripts/directives.js"></script>
     <script type="text/javascript" src="/scripts/controllers/root.js"></script>
     <script type="text/javascript" src="/scripts/controllers/applications.js"></script>
     <script type="text/javascript" src="/scripts/controllers/application.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/settings/entity.js"></script>
 
   </body>
 </html>

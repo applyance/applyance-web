@@ -1,10 +1,18 @@
 'use strict';
 
 angular.module('ApplyanceApp')
-  .controller('RootCtrl', function ($scope, ApplyanceAPI) {
+  .controller('RootCtrl', function ($scope, ApplyanceAPI, $location) {
+
+    ApplyanceAPI.setApiHost(apiHost);
+    ApplyanceAPI.setApiKey(apiKey);
+
+    $scope.isActive = function(route) {
+      return route === $location.path();
+    }
 
     ApplyanceAPI.getMe().then(function(me) {
-       $scope.me = me.data;
+       $scope.me = me.data;//
+       $scope.entity = $scope.me.admins[0].entity;
        $scope.getEverything();
     });
 

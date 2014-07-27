@@ -53,7 +53,7 @@
     float: left;
     margin-left: 48px;
     &:first-child { margin-left: 0; }
-    &.is-active .nav__link {
+    &.active .nav__link {
       border-bottom: 1px solid $color-brand;
     }
   }

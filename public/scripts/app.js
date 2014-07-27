@@ -16,6 +16,10 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
         templateUrl: 'views/application.html',
         controller: 'ApplicationCtrl'
       })
+      .when('/manage/entity', {
+        templateUrl: 'views/settings/entity.html',
+        controller: 'EntitySettingsCtrl'
+      })
       .otherwise({
         redirectTo: '/applications'
       });
