@@ -9,12 +9,12 @@ module Applyance
           # Logout
           app.get '/accounts/logout' do
             session.clear
-            redirect to ('/')
+            redirect to('/')
           end
 
           # GET Login
           app.get '/accounts/login' do
-            erb :'accounts/login', :layout => :'layouts/base'
+            erb :'accounts/login', :layout => :'layouts/public'
           end
 
           # POST Login
@@ -30,7 +30,7 @@ module Applyance
               if auth['data']['errors'] && auth['data']['errors'].first['status'] == 400
                 @errors << auth['data']['errors'].first['detail']
               end
-              return erb :'accounts/login', :layout => :'layouts/base'
+              return erb :'accounts/login', :layout => :'layouts/public'
             end
 
             session[:api_key] = auth['api_key']

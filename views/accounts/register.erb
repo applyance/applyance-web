@@ -1,38 +1,44 @@
-<h1>Register</h1>
+<section class="section is-gray">
+  <div class="container">
 
-<form action="/accounts/register" method="post">
+    <h1>Register</h1>
 
-  <% if @errors %>
-  <ul>
-    <% @errors.each do |error| %>
-    <li>
-      <%= error %>
-    </li>
-    <% end %>
-  </ul>
-  <% end %>
+    <form action="/accounts/register" method="post">
 
-  <ul>
-    <li>
-      <label for="name">Name</label>
-      <input id="name" name="account[name]" type="text">
-    </li>
-    <li>
-      <label for="entity-name">Entity Name</label>
-      <input id="entity-name" name="entity[name]" type="text">
-    </li>
-    <li>
-      <label for="email">Email</label>
-      <input id="email" name="account[email]" type="email">
-    </li>
-    <li>
-      <label for="password">Password</label>
-      <input id="password" name="account[password]" type="password">
-    </li>
-  </ul>
+      <% if @errors %>
+      <ul>
+        <% @errors.each do |error| %>
+        <li>
+          <%= error %>
+        </li>
+        <% end %>
+      </ul>
+      <% end %>
 
-  <div>
-    <button type="submit">Create Account</button>
+      <ul>
+        <li>
+          <label for="name">Name</label>
+          <input id="name" name="account[name]" type="text">
+        </li>
+        <li>
+          <label for="entity-name">Entity Name</label>
+          <input id="entity-name" name="entity[name]" type="text">
+        </li>
+        <li>
+          <label for="email">Email</label>
+          <input id="email" name="account[email]" type="email">
+        </li>
+        <li>
+          <label for="password">Password</label>
+          <input id="password" name="account[password]" type="password">
+        </li>
+      </ul>
+
+      <div>
+        <button type="submit">Create Account</button>
+      </div>
+
+    </form>
+
   </div>
-
-</form>
+</div>

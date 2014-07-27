@@ -8,7 +8,7 @@ module Applyance
 
           # GET Password Reset
           app.get '/accounts/passwords/reset' do
-            erb :'accounts/passwords/reset', :layout => :'layouts/base'
+            erb :'accounts/passwords/reset', :layout => :'layouts/public'
           end
 
           # POST Password Reset
@@ -28,7 +28,7 @@ module Applyance
           app.get '/accounts/passwords/set' do
             @token = params[:token]
             @id = params[:id]
-            erb :'accounts/passwords/set', :layout => :'layouts/base'
+            erb :'accounts/passwords/set', :layout => :'layouts/public'
           end
 
           # POST Password Set

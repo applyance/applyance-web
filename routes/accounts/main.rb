@@ -15,7 +15,7 @@ module Applyance
             response = RestClient.post(api_host + '/accounts/verify', JSON.dump(values), headers)
 
             @id = params[:id]
-            erb :'accounts/verify', :layout => :'layouts/base'
+            erb :'accounts/verify', :layout => :'layouts/public'
           end
 
         end

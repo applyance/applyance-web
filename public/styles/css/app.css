@@ -1,0 +1,99 @@
+@charset "UTF-8";
+/* Bourbon 4.0.2
+ * http://bourbon.io
+ * Copyright 2011–2014 thoughtbot, inc.
+ * MIT License */
+.header {
+  height: 60px;
+  font-size: 0;
+  background-color: #374249; }
+
+.mark {
+  display: inline-block;
+  vertical-align: middle;
+  height: 60px;
+  width: 100px;
+  text-align: center;
+  background-color: #f2bc36;
+  -webkit-transition: background-color 200ms ease-in-out;
+  -moz-transition: background-color 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out; }
+  .mark:hover {
+    background-color: #f0b41e; }
+
+.mark__img,
+.mark__helper {
+  display: inline-block;
+  vertical-align: middle; }
+
+.mark__helper {
+  height: 100%; }
+
+.mark__img {
+  width: 24px;
+  height: auto; }
+
+/* Nav */
+.nav {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 48px; }
+
+.nav__list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0; }
+
+@media only screen and (min-width: 480px) {
+  .nav__item {
+    float: left;
+    margin-left: 48px; }
+    .nav__item:first-child {
+      margin-left: 0; }
+    .nav__item.is-active .nav__link {
+      border-bottom: 1px solid #f2bc36; } }
+
+.nav__link {
+  padding: 4px 0;
+  font-size: 14px;
+  color: white;
+  text-decoration: none; }
+
+/* Account */
+.account {
+  display: inline-block; }
+  @media only screen and (min-width: 480px) {
+    .account {
+      margin-top: 14px;
+      float: right; } }
+
+.account__avatar,
+.account__settings-list {
+  display: inline-block;
+  vertical-align: middle; }
+
+.account__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 100%; }
+
+.account__settings-list {
+  padding: 0 12px;
+  list-style-type: none;
+  margin: 0; }
+
+@media only screen and (min-width: 480px) {
+  .account__settings-item {
+    float: left; } }
+
+.account__settings-link {
+  padding: 12px;
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+  opacity: .5;
+  -webkit-transition: opacity 200ms ease-in-out;
+  -moz-transition: opacity 200ms ease-in-out;
+  transition: opacity 200ms ease-in-out; }
+  .account__settings-link:hover {
+    opacity: 1; }

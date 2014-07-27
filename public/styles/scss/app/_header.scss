@@ -1,0 +1,116 @@
+.header {
+  height: 60px;
+  font-size: 0;
+  background-color: $color-base;
+}
+
+.mark {
+  display: inline-block;
+  vertical-align: middle;
+  height: 60px;
+  width: 100px;
+  text-align: center;
+  background-color: $color-brand;
+
+  @include transition(background-color 200ms ease-in-out);
+
+  &:hover {
+    background-color: darken($color-brand, 5%);
+  }
+}
+
+.mark__img,
+.mark__helper {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.mark__helper {
+  height: 100%;
+}
+
+.mark__img {
+  width: 24px;
+  height: auto;
+}
+
+/* Nav */
+
+.nav {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 48px;
+}
+
+.nav__list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav__item {
+  @media only screen and (min-width : 480px) {
+    float: left;
+    margin-left: 48px;
+    &:first-child { margin-left: 0; }
+    &.is-active .nav__link {
+      border-bottom: 1px solid $color-brand;
+    }
+  }
+}
+
+.nav__link {
+  padding: 4px 0;
+  font-size: 14px;
+  color: white;
+  text-decoration: none;
+}
+
+/* Account */
+
+.account {
+  display: inline-block;
+  @media only screen and (min-width : 480px) {
+    margin-top: (60px - 32px) / 2;
+    float: right;
+  }
+}
+
+.account__avatar,
+.account__settings-list {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.account__avatar {
+  width: 32px;
+  height: 32px;
+
+  border-radius: 100%;
+}
+
+.account__settings-list {
+  padding: 0 12px;
+  list-style-type: none;
+  margin: 0;
+}
+
+.account__settings-item {
+  @media only screen and (min-width : 480px) {
+    float: left;
+  }
+}
+
+.account__settings-link {
+  padding: 12px;
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+  opacity: .5;
+
+  @include transition(opacity 200ms ease-in-out);
+
+  &:hover {
+    opacity: 1;
+  }
+}

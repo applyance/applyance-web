@@ -8,7 +8,7 @@ module Applyance
 
           # GET Admin registration
           app.get '/accounts/register' do
-            erb :'accounts/register', :layout => :'layouts/base'
+            erb :'accounts/register', :layout => :'layouts/public'
           end
 
           # POST Admin registration

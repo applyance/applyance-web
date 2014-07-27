@@ -1,11 +1,54 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Applyance</title>
+
     <base href="/">
+    <link rel="stylesheet" type="text/css" href="//cloud.typography.com/7222252/709524/css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/css/app.css" />
   </head>
   <body ng-app="ApplyanceApp" ng-controller="RootCtrl">
-    <a href="/accounts/logout">logout</a>
+
+    <header class="header">
+      <a href="/" class="mark">
+        <span class="mark__helper"></span>
+        <img src="/img/mark.png" class="mark__img">
+      </a>
+      <nav class="nav">
+        <ul class="nav__list group">
+          <li class="nav__item is-active">
+            <a href="#" class="nav__link">Applications</a>
+          </li>
+          <li class="nav__item">
+            <a href="#" class="nav__link">Inbox</a>
+          </li>
+          <li class="nav__item">
+            <a href="#" class="nav__link">Spots</a>
+          </li>
+          <li class="nav__item">
+            <a href="#" class="nav__link">Manage</a>
+          </li>
+        <ul>
+      </nav>
+      <div class="account">
+        <img src="http://www.gravatar.com/avatar/c02a0b87f6684312a64c117d22deed3c.png" class="account__avatar" />
+        <ul class="account__settings-list">
+          <li class="account__settings-item">
+            <a href="#" class="account__settings-link">
+              <i class="icon-settings"></i>
+            </a>
+          </li>
+          <li class="account__settings-item">
+            <a href="/accounts/logout" class="account__settings-link">
+              <i class="icon-logout"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
 
     <%= yield %>
 

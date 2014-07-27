@@ -6,13 +6,13 @@ module Applyance
         # Spot
         app.get '/spots/:id' do
           @id = params[:id]
-          erb :'spots/show', :layout => :'layouts/base'
+          erb :'spots/show', :layout => :'layouts/public'
         end
 
         # Spot Application
         app.get '/spots/:id/apply' do
           @id = params[:id]
-          erb :'spots/apply', :layout => :'layouts/base'
+          erb :'spots/apply', :layout => :'layouts/public'
         end
 
       end

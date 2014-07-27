@@ -29,4 +29,8 @@ build/
 ## Config files for server
 config.yml
 
+.DS_Store
+.sass-cache
+
+## Client db
 db/applyance_client.db

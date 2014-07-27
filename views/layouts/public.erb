@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Applyance</title>
+    
+    <link rel="stylesheet" type="text/css" href="//cloud.typography.com/7222252/709524/css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/css/public.css" />
+  </head>
+  <body>
+
+    <header class="header">
+      <div class="container group">
+        <a href="/" class="logo__link">
+          <img src="/img/logo.png" class="logo" />
+        </a>
+        <nav class="nav">
+          <ul class="nav__list group">
+            <li class="nav__item">
+              <a href="#" class="nav__link">Tour</a>
+            </li>
+            <li class="nav__item">
+              <a href="#" class="nav__link">Pricing</a>
+            </li>
+            <li class="nav__item">
+              <a href="#" class="nav__link">Contact</a>
+            </li>
+            <li class="nav__item is-emphasized">
+              <a href="/accounts/register" class="nav__link">Register</a>
+            </li>
+            <li class="nav__item">
+              <a href="/accounts/login" class="nav__link">Log In</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer>
+
+    </footer>
+
+  </body>
+</html>

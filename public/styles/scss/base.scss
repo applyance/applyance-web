@@ -1,0 +1,21 @@
+@import 'init';
+@import 'ui-font';
+
+html {
+  box-sizing: border-box;
+
+  font-size: 100%;
+  font-family: 'Gotham Rounded SSm A', 'Gotham Rounded SSm B';
+  font-weight: 300;
+  font-style: normal;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
