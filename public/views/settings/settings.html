@@ -1,0 +1,71 @@
+<!-- Eneity Settings -->
+<div ng-if="currentContext == 'entities'">
+  <!-- Secondary Nav aka Sidebar -->
+  <div>
+    <div>
+      <a href="/entities/{{ entity.id }}/settings">Entity Settings</a>
+    </div>
+    <div>
+      <a href="/entities/{{ entity.id }}/units">Manage Units</a>
+    </div>
+    <div>
+      <a href="/entities/{{ entity.id }}/admins">Manage Admins</a>
+    </div>
+    <div>
+      <a href="/entities/{{ entity.id }}/blueprints">Manage Blueprints</a>
+    </div>
+  </div>
+
+  <!-- content area (right side stuff) -->
+  <div ng-switch="settingsView">
+    <div ng-switch-when="settings">
+      <div ng-include="'views/settings/entitySettings.html'"></div>
+    </div>
+    <div ng-switch-when="units">
+      <div ng-include="'views/settings/manageUnits.html'"></div>
+    </div>
+    <div ng-switch-when="admins">
+      <div ng-include="'views/settings/manageAdmins.html'"></div>
+    </div>
+    <div ng-switch-when="blueprints">
+      <div ng-include="'views/settings/manageBlueprints.html'"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Eneity Settings -->
+<div ng-if="currentContext == 'units'">
+  <!-- Secondary Nav aka Sidebar -->
+  <div>
+    <div>
+      <a href="/units/{{ unit.id }}/settings">Unit Settings</a>
+    </div>
+    <div>
+      <a href="/units/{{ unit.id }}/reviewers">Manage Reviewers</a>
+    </div>
+    <div>
+      <a href="/units/{{ unit.id }}/blueprints">Manage Blueprints</a>
+    </div>
+    <div>
+      <a href="/units/{{ unit.id }}/labels">Manage Labels</a>
+    </div>
+  </div>
+
+
+  <!-- content area (right side stuff) -->
+  <div ng-switch="settingsView">
+    <div ng-switch-when="settings">
+      <div ng-include="'views/settings/unitSettings.html'"></div>
+    </div>
+    <div ng-switch-when="reviewers">
+      <div ng-include="'views/settings/manageReviewers.html'"></div>
+    </div>
+    <div ng-switch-when="blueprints">
+      <div ng-include="'views/settings/manageBlueprints.html'"></div>
+    </div>
+    <div ng-switch-when="labels">
+      <div ng-include="'views/settings/manageLabels.html'"></div>
+    </div>
+  </div>
+</div>
