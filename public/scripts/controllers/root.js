@@ -54,7 +54,6 @@ angular.module('ApplyanceApp')
     };
 
     $scope.updateContext = function() {
-
       if ($scope.currentContextObj.type == "entities") {
         $scope.entity = $scope.getEntity($scope.currentContextObj.id);
         $location.path("/entities/" + $scope.entity.id + "/applications");

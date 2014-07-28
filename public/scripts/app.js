@@ -2,7 +2,6 @@
 
 angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
   .config(function($routeProvider, $locationProvider) {
-
     $routeProvider
       .when('/dashboard', {
         templateUrl: 'views/dashboard.html',
