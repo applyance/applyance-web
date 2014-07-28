@@ -1,1 +1,16 @@
-unit settings
+<h1>Unit Settings</h1>
+
+<ul>
+  <li>
+    <label>Name</label>
+    <input name="unitName" ng-model="unit.name" type="text" value="{{ unit.name }}" />
+  </li>
+  <li>
+    <label>Logo</label>
+    <img width="100" ng-if="unit.logo.url" src="{{ unit.logo.url }}" alt="Unit Logo" />
+    <input type="file" fileread="entity" accepts="image/*">
+  </li>
+  <li>
+    <button ng-click="startUpdateUnit()">Update</button>
+  </li>
+</ul>

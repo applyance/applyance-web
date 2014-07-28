@@ -47,7 +47,14 @@ angular.module('ApplyanceApp')
             'Authorization': "ApplyanceLogin auth=" + apiKey
           }
         });
-      }
+      };
+      this.updateUnit = function(unitId, updatedUnitObj) {
+        return $http.put(apiHost + "/units/" + unitId, updatedUnitObj, {
+          headers: {
+            'Authorization': "ApplyanceLogin auth=" + apiKey
+          }
+        });
+      };
 
       return this;
     }])

@@ -18,7 +18,7 @@
 
   <!-- content area (right side stuff) -->
   <div ng-switch="settingsView">
-    <div ng-switch-when="settings">
+    <div ng-switch-when="settings" ng-controller="EntitySettingsCtrl">
       <div ng-include="'views/settings/entitySettings.html'"></div>
     </div>
     <div ng-switch-when="units">
@@ -55,7 +55,7 @@
 
   <!-- content area (right side stuff) -->
   <div ng-switch="settingsView">
-    <div ng-switch-when="settings">
+    <div ng-switch-when="settings" ng-controller="UnitSettingsCtrl">
       <div ng-include="'views/settings/unitSettings.html'"></div>
     </div>
     <div ng-switch-when="reviewers">

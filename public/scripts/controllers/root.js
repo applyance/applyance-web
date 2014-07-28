@@ -6,10 +6,6 @@ angular.module('ApplyanceApp')
     ApplyanceAPI.setApiHost(apiHost);
     ApplyanceAPI.setApiKey(apiKey);
 
-    $scope.isActive = function(route) {
-      return route === $location.path();
-    }
-
     ApplyanceAPI.getMe().then(function(me) {
       $scope.me = me.data;
 
@@ -44,6 +40,10 @@ angular.module('ApplyanceApp')
       });
     });
 
+    $scope.isActive = function(route) {
+      return route === $location.path();
+    }
+
     $scope.getAvatarURL = function() {
       if (!$scope.me) { return; }
 
@@ -64,25 +64,15 @@ angular.module('ApplyanceApp')
     };
 
     $scope.getEntity = function(entityId) {
-
-      var entity;
-      angular.forEach($scope.me.admins, function(admin, index) {
-        if (entityId == admin.entity.id) {
-          entity = admin.entity;
-        }
+      return _.find($scope.me.admins, function(admin) {
+        return admin.entity.id == entityId;
       });
-      return entity;
     };
 
     $scope.getUnit = function(unitId) {
-
-      var unit;
-      angular.forEach($scope.me.reviewers, function(reviewer, index) {
-        if (unitId == reviewer.unit.id) {
-          unit = reviewer.unit;
-        }
+      return _.find($scope.me.reviewers, function(reviewer) {
+        return reviewer.unit.id == unitId;
       });
-      return unit;
     };
 
   });
