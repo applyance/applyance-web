@@ -21,7 +21,7 @@
     <div ng-switch-when="settings" ng-controller="EntitySettingsCtrl">
       <div ng-include="'views/settings/entitySettings.html'"></div>
     </div>
-    <div ng-switch-when="units">
+    <div ng-switch-when="units" ng-controller="EntityUnitsCtrl">
       <div ng-include="'views/settings/manageUnits.html'"></div>
     </div>
     <div ng-switch-when="admins">
@@ -60,7 +60,7 @@
     <div ng-switch-when="reviewers">
       <div ng-include="'views/settings/manageReviewers.html'"></div>
     </div>
-    <div ng-switch-when="blueprints">
+    <div ng-switch-when="blueprints" ng-controller="UnitBlueprintsCtrl">
       <div ng-include="'views/settings/manageBlueprints.html'"></div>
     </div>
     <div ng-switch-when="labels">

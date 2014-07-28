@@ -9,15 +9,13 @@ angular.module('ApplyanceApp')
       var apiHost = window.apiHost;
 
       Restangular.setBaseUrl(apiHost);
-      Restangular.setDefaultHeaders({'Authorization': "ApplyanceLogin auth=" + apiKey});
+      Restangular.setDefaultHeaders({ 'Authorization': "ApplyanceLogin auth=" + apiKey });
+
+      $http.defaults.headers.common['Authorization'] = "ApplyanceLogin auth=" + apiKey;
+      $http.defaults.headers.common['Content-Type'] = "application/json";
 
       this.getMe = function() {
-        return $http.get(apiHost + "/accounts/me", {
-          headers: {'Authorization': "ApplyanceLogin auth=" + apiKey}
-        });
-      };
-      this.getUnits = function(entityId) {
-        return Restangular.one('entities', entityId).all('units').getList();
+        return $http.get(apiHost + "/accounts/me");
       };
       this.getSpots = function(unitId) {
         return Restangular.one("units", unitId).all("spots").getList();
@@ -37,18 +35,43 @@ angular.module('ApplyanceApp')
         });
       };
       this.updateEntity = function(entityId, updatedEntityObj) {
-        return $http.put(apiHost + "/entities/" + entityId, updatedEntityObj, {
-          headers: {
-            'Authorization': "ApplyanceLogin auth=" + apiKey
-          }
-        });
+        return $http.put(apiHost + "/entities/" + entityId, updatedEntityObj);
       };
-      this.updateUnit = function(unitId, updatedUnitObj) {
-        return $http.put(apiHost + "/units/" + unitId, updatedUnitObj, {
-          headers: {
-            'Authorization': "ApplyanceLogin auth=" + apiKey
-          }
-        });
+
+      // Units
+      this.getUnits = function(id) {
+        return Restangular.one('entities', id).all('units').getList();
+      };
+      this.postUnit = function(id, unit) {
+        return Restangular.one('entities', id).all('units').post(unit);
+      };
+      this.deleteUnit = function(id) {
+        return Restangular.one('units', id).remove();
+      };
+      this.putUnit = function(unit) {
+        return $http.put(apiHost + "/units/" + unit.id, unit);
+      };
+
+      // Admins
+      this.getAdmins = function(id) {
+        return Restangular.one('entities', id).all('admins').getList();
+      };
+      this.deleteAdmin = function(id) {
+        return Restangular.one('admins', id).remove();
+      };
+      this.putAdmin = function(admin) {
+        return $http.put(apiHost + "/admins/" + admin.id, admin);
+      };
+
+      // Admin Invites
+      this.getAdminInvites = function(id) {
+        return Restangular.one('entities', id).all('admins').all('invites').getList();
+      };
+      this.postAdminInvite = function(id, invite) {
+        return Restangular.one('entities', id).all('admins').all('invites').post(invite);
+      };
+      this.claimAdminInvite = function(invite) {
+        return $http.post("/admins/invites/claim", invite);
       };
 
       // Definitions
@@ -61,10 +84,16 @@ angular.module('ApplyanceApp')
         return Restangular.one('blueprints', id).remove();
       };
       this.getEntityBlueprints = function(id) {
-        return Restangular.one('entities', id).all('blueprints');
+        return Restangular.one('entities', id).all('blueprints').getList();
       };
       this.postEntityBlueprint = function(id, blueprint) {
         return Restangular.one('entities', id).all('blueprints').post(blueprint);
+      };
+      this.getUnitBlueprints = function(id) {
+        return Restangular.one('units', id).all('blueprints').getList();
+      };
+      this.postUnitBlueprint = function(id, blueprint) {
+        return Restangular.one('units', id).all('blueprints').post(blueprint);
       };
 
       return this;

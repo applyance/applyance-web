@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('ApplyanceApp')
-  .controller('EntityBlueprintsCtrl', ['$scope', 'ApplyanceAPI', 'Me', 'Context',
+  .controller('UnitBlueprintsCtrl', ['$scope', 'ApplyanceAPI', 'Me', 'Context',
     function ($scope, ApplyanceAPI, Me, Context) {
 
-      $scope.entity = Me.getEntity(Context.getId());
+      $scope.unit = Me.getUnit(Context.getId());
 
       $scope.definitions = [];
       ApplyanceAPI.getDefinitions().then(function(definitions) {
@@ -12,7 +12,7 @@ angular.module('ApplyanceApp')
       });
 
       $scope.blueprints = [];
-      ApplyanceAPI.getEntityBlueprints($scope.entity.id).then(function(blueprints) {
+      ApplyanceAPI.getUnitBlueprints($scope.unit.id).then(function(blueprints) {
          $scope.blueprints = blueprints;
       });
 
@@ -33,7 +33,7 @@ angular.module('ApplyanceApp')
             $scope.blueprints.splice($scope.blueprints.indexOf(blueprint), 1);
           });
         } else {
-          ApplyanceAPI.postEntityBlueprint($scope.entity.id, {
+          ApplyanceAPI.postUnitBlueprint($scope.unit.id, {
             definition_id: definition.id,
             position: 1,
             is_required: true

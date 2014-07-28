@@ -26,3 +26,31 @@ angular.module('ApplyanceApp')
       }
     }
   }]);
+
+angular.module('ApplyanceApp')
+  .directive('focusOn', function() {
+   return function(scope, elem, attr) {
+      scope.$on(attr.focusOn, function(e) {
+          elem[0].focus();
+      });
+   };
+});
+
+angular.module('ApplyanceApp')
+  .directive('ngModelOnblur', function() {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        priority: 1, // needed for angular 1.2.x
+        link: function(scope, elm, attr, ngModelCtrl) {
+            if (attr.type === 'radio' || attr.type === 'checkbox') return;
+
+            elm.unbind('input').unbind('keydown').unbind('change');
+            elm.bind('blur', function() {
+                scope.$apply(function() {
+                    ngModelCtrl.$setViewValue(elm.val());
+                });
+            });
+        }
+    };
+});

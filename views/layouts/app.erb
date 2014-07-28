@@ -40,6 +40,11 @@
         <img src="{{ getAvatarURL() }}" class="account__avatar" />
         <ul class="account__settings-list">
           <li class="account__settings-item">
+            <a href="/accounts/{{ me.account.id }}/settings" target="_self" class="account__settings-link" title="Account Settings">
+              <i class="icon-settings"></i>
+            </a>
+          </li>
+          <li class="account__settings-item">
             <a href="/accounts/logout" target="_self" class="account__settings-link" title="Sign Out">
               <i class="icon-logout"></i>
             </a>
@@ -66,18 +71,27 @@
     <script type="text/javascript" src="/scripts/ext/cryptojslib/rollups/md5.js"></script>
 
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/directives.js"></script>
+
     <script type="text/javascript" src="/scripts/services/api.js"></script>
     <script type="text/javascript" src="/scripts/services/me.js"></script>
     <script type="text/javascript" src="/scripts/services/context.js"></script>
-    <script type="text/javascript" src="/scripts/directives.js"></script>
-    <script type="text/javascript" src="/scripts/controllers/nav.js"></script>
-    <script type="text/javascript" src="/scripts/controllers/account.js"></script>
+
+    <script type="text/javascript" src="/scripts/controllers/header/nav.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/header/account.js"></script>
+
     <script type="text/javascript" src="/scripts/controllers/applications.js"></script>
     <script type="text/javascript" src="/scripts/controllers/application.js"></script>
-    <script type="text/javascript" src="/scripts/controllers/settings/settings.js"></script>
-    <script type="text/javascript" src="/scripts/controllers/settings/entity.js"></script>
-    <script type="text/javascript" src="/scripts/controllers/settings/unit.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/settings.js"></script>
+
     <script type="text/javascript" src="/scripts/controllers/entities/blueprints.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/entities/units.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/entities/admins.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/entities/invites.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/entities/settings.js"></script>
+
+    <script type="text/javascript" src="/scripts/controllers/units/settings.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/units/blueprints.js"></script>
 
   </body>
 </html>

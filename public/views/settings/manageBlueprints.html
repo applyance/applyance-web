@@ -2,7 +2,7 @@
 
 <ul>
   <li ng-repeat="definition in definitions">
-    <a href="" ng-click="toggle(definition)">
+    <a href="" ng-class="{ set:isSet(definition) }" ng-click="toggle(definition)">
       {{ definition.label }}
     </a>
   </li>

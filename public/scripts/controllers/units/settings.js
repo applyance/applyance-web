@@ -8,6 +8,7 @@ angular.module('ApplyanceApp')
     $scope.startUpdateUnit = function() {
 
       var updatedUnit = {
+        id: $scope.unit.id,
         name: $scope.unit.name
       };
 
@@ -19,7 +20,7 @@ angular.module('ApplyanceApp')
               name: $scope.unit.fileObj.name,
               token: r.data.token
             };
-            $scope.updateUnit($scope.unit.id, updatedUnit);
+            ApplyanceAPI.putUnit(updatedUnit);
           },
           function(r) {
             console.log("failed to upload logo");
@@ -27,21 +28,9 @@ angular.module('ApplyanceApp')
           }
         );
       } else {
-        $scope.updateUnit($scope.unit.id, updatedUnit);
+        ApplyanceAPI.putUnit(updatedUnit);
       }
 
-    };
-
-    $scope.updateUnit = function(unitId, updatedUnitObj) {
-
-      ApplyanceAPI.updateUnit(unitId, updatedUnitObj).then(
-        function(r) {
-        },
-        function(r) {
-          console.log("failed to update unit");
-          console.log(r);
-        }
-      );
     };
 
   });

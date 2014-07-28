@@ -6,11 +6,32 @@
 h1 {
   margin: 0;
   padding: 0;
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 300;
   letter-spacing: -1px;
+  color: #3eccbe;
+  text-rendering: optimizeLegibility;
+  padding-bottom: 12px;
+  margin-bottom: 36px;
+  border-bottom: 4px solid #eef0f2; }
+
+h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+  font-weight: 300;
   color: #374249;
+  text-transform: none;
   text-rendering: optimizeLegibility; }
+
+.set {
+  border: 2px solid red; }
+
+.editing {
+  border: 2px solid blue; }
+
+.disabled {
+  opacity: .5; }
 
 .header,
 .mark {
