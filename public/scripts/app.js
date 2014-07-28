@@ -2,6 +2,7 @@
 
 angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
   .config(function($routeProvider, $locationProvider) {
+
     $routeProvider
       .when('/dashboard', {
         templateUrl: 'views/dashboard.html',
@@ -10,16 +11,31 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
 
       .when('/:parent/:id/applications', {
         controller: 'ApplicationsCtrl',
-        templateUrl: 'views/applications/applications.html'
+        templateUrl: 'views/applications/applications.html',
+        resolve: {
+          me: function(Me) {
+            return Me.init();
+          }
+        }
       })
       .when('/applications/:id', {
         templateUrl: 'views/applicaitons/application.html',
-        controller: 'ApplicationCtrl'
+        controller: 'ApplicationCtrl',
+        resolve: {
+          me: function(Me) {
+            return Me.init();
+          }
+        }
       })
 
       .when('/entities/:id/settings', {
         templateUrl: 'views/settings/settings.html',
-        controller: 'SettingsCtrl'
+        controller: 'SettingsCtrl',
+        resolve: {
+          me: function(Me) {
+            return Me.init();
+          }
+        }
       })
       .when('/entities/:id/units', {
         templateUrl: 'views/settings/settings.html',
@@ -31,12 +47,22 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
       })
       .when('/entities/:id/blueprints', {
         templateUrl: 'views/settings/settings.html',
-        controller: 'SettingsCtrl'
+        controller: 'SettingsCtrl',
+        resolve: {
+          Me: function(Me) {
+            return Me.init();
+          }
+        }
       })
 
       .when('/units/:id/settings', {
         templateUrl: 'views/settings/settings.html',
-        controller: 'SettingsCtrl'
+        controller: 'SettingsCtrl',
+        resolve: {
+          Me: function(Me) {
+            return Me.init();
+          }
+        }
       })
       .when('/units/:id/reviewers', {
         templateUrl: 'views/settings/settings.html',
@@ -52,7 +78,12 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
       })
 
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/',
+        resolve: {
+          me: function(Me) {
+            return Me.init();
+          }
+        }
       });
 
     $locationProvider.html5Mode(true);

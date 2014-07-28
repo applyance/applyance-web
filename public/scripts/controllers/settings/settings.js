@@ -1,14 +1,10 @@
 'use strict';
 
 angular.module('ApplyanceApp')
-  .controller('SettingsCtrl', function ($scope, $routeParams, $location) {
+  .controller('SettingsCtrl', ['$scope', '$routeParams', '$location', 'Me', 'Context',
+  function ($scope, $routeParams, $location, Me, Context) {
 
-    var splitPath = $location.path().split('/');
+    $scope.context = Context.getObject();
+    $scope.settings = Context.getPart(3);
 
-    // Get context: Entity or Unit?
-    $scope.currentContext = splitPath[1];
-
-    // Get settings subsection
-    $scope.settingsView = splitPath[3];
-
-  });
+  }]);

@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('ApplyanceApp')
-  .controller('UnitSettingsCtrl', function ($scope, $routeParams, ApplyanceAPI) {
+  .controller('UnitSettingsCtrl', function ($scope, $routeParams, ApplyanceAPI, Me, Context) {
+
+    $scope.unit = Me.getUnit(Context.getId());
 
     $scope.startUpdateUnit = function() {
 
@@ -34,8 +36,6 @@ angular.module('ApplyanceApp')
 
       ApplyanceAPI.updateUnit(unitId, updatedUnitObj).then(
         function(r) {
-          console.log("updated unit");
-          console.log(r);
         },
         function(r) {
           console.log("failed to update unit");

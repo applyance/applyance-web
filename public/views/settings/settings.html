@@ -1,23 +1,23 @@
-<!-- Eneity Settings -->
-<div ng-if="currentContext == 'entities'">
-  <!-- Secondary Nav aka Sidebar -->
+<!-- Entity Settings -->
+<div ng-if="context.group == 'entities'">
+  <!-- Secondary nav aka Sidebar -->
   <div>
     <div>
-      <a href="/entities/{{ entity.id }}/settings">Entity Settings</a>
+      <a href="/entities/{{ context.id }}/settings">Entity Settings</a>
     </div>
     <div>
-      <a href="/entities/{{ entity.id }}/units">Manage Units</a>
+      <a href="/entities/{{ context.id }}/units">Manage Units</a>
     </div>
     <div>
-      <a href="/entities/{{ entity.id }}/admins">Manage Admins</a>
+      <a href="/entities/{{ context.id }}/admins">Manage Admins</a>
     </div>
     <div>
-      <a href="/entities/{{ entity.id }}/blueprints">Manage Blueprints</a>
+      <a href="/entities/{{ context.id }}/blueprints">Manage Blueprints</a>
     </div>
   </div>
 
   <!-- content area (right side stuff) -->
-  <div ng-switch="settingsView">
+  <div ng-switch="settings">
     <div ng-switch-when="settings" ng-controller="EntitySettingsCtrl">
       <div ng-include="'views/settings/entitySettings.html'"></div>
     </div>
@@ -27,34 +27,33 @@
     <div ng-switch-when="admins">
       <div ng-include="'views/settings/manageAdmins.html'"></div>
     </div>
-    <div ng-switch-when="blueprints">
+    <div ng-switch-when="blueprints" ng-controller="EntityBlueprintsCtrl">
       <div ng-include="'views/settings/manageBlueprints.html'"></div>
     </div>
   </div>
 </div>
 
 
-<!-- Eneity Settings -->
-<div ng-if="currentContext == 'units'">
+<!-- Unit Settings -->
+<div ng-if="context.group == 'units'">
   <!-- Secondary Nav aka Sidebar -->
   <div>
     <div>
-      <a href="/units/{{ unit.id }}/settings">Unit Settings</a>
+      <a href="/units/{{ context.id }}/settings">Unit Settings</a>
     </div>
     <div>
-      <a href="/units/{{ unit.id }}/reviewers">Manage Reviewers</a>
+      <a href="/units/{{ context.id }}/reviewers">Manage Reviewers</a>
     </div>
     <div>
-      <a href="/units/{{ unit.id }}/blueprints">Manage Blueprints</a>
+      <a href="/units/{{ context.id }}/blueprints">Manage Blueprints</a>
     </div>
     <div>
-      <a href="/units/{{ unit.id }}/labels">Manage Labels</a>
+      <a href="/units/{{ context.id }}/labels">Manage Labels</a>
     </div>
   </div>
 
-
   <!-- content area (right side stuff) -->
-  <div ng-switch="settingsView">
+  <div ng-switch="settings">
     <div ng-switch-when="settings" ng-controller="UnitSettingsCtrl">
       <div ng-include="'views/settings/unitSettings.html'"></div>
     </div>

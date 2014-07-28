@@ -12,31 +12,31 @@
     <link rel="stylesheet" type="text/css" href="/styles/css/base.css" />
     <link rel="stylesheet" type="text/css" href="/styles/css/app.css" />
   </head>
-  <body ng-app="ApplyanceApp" ng-controller="RootCtrl">
+  <body ng-app="ApplyanceApp">
 
     <header class="header">
       <a href="/" class="mark">
         <span class="mark__helper"></span>
         <img src="/img/mark.png" class="mark__img">
       </a>
-      <nav class="nav">
+      <nav class="nav" ng-controller="NavCtrl">
         <ul class="nav__list group">
           <li class="nav__item"
-              ng-class="{ active:isActive('/' + currentContextObj.type + '/' + currentContextObj.id + '/applications') }">
-            <a href="{{ currentContextObj.type }}/{{ currentContextObj.id }}/applications"
+              ng-class="{ active:isActive('/' + context.group + '/' + context.id + '/applications') }">
+            <a href="{{ context.group }}/{{ context.id }}/applications"
                class="nav__link">Applications</a>
           </li>
           <li class="nav__item"
-              ng-class="{ active:isActive('/' + currentContextObj.type + '/' + currentContextObj.id + '/settings') }">
-            <a href="{{ currentContextObj.type }}/{{ currentContextObj.id }}/settings"
+              ng-class="{ active:isActive('/' + context.group + '/' + context.id + '/settings') }">
+            <a href="{{ context.group }}/{{ context.id }}/settings"
                class="nav__link">Settings</a>
           </li>
         <ul>
       </nav>
-      <div class="account">
-        <select ng-model="currentContextObj"
-                ng-options="context.name group by context.type for context in contexts"
-                ng-change="updateContext()"></select>
+      <div class="account" ng-controller="AccountCtrl">
+        <select ng-model="activeContextOption"
+                ng-options="contextOption.name for contextOption in contextOptions"
+                ng-change="updateContextSelect()"></select>
         <img src="{{ getAvatarURL() }}" class="account__avatar" />
         <ul class="account__settings-list">
           <li class="account__settings-item">
@@ -66,14 +66,18 @@
     <script type="text/javascript" src="/scripts/ext/cryptojslib/rollups/md5.js"></script>
 
     <script type="text/javascript" src="/scripts/app.js"></script>
-    <script type="text/javascript" src="/scripts/services.js"></script>
+    <script type="text/javascript" src="/scripts/services/api.js"></script>
+    <script type="text/javascript" src="/scripts/services/me.js"></script>
+    <script type="text/javascript" src="/scripts/services/context.js"></script>
     <script type="text/javascript" src="/scripts/directives.js"></script>
-    <script type="text/javascript" src="/scripts/controllers/root.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/nav.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/account.js"></script>
     <script type="text/javascript" src="/scripts/controllers/applications.js"></script>
     <script type="text/javascript" src="/scripts/controllers/application.js"></script>
     <script type="text/javascript" src="/scripts/controllers/settings/settings.js"></script>
     <script type="text/javascript" src="/scripts/controllers/settings/entity.js"></script>
     <script type="text/javascript" src="/scripts/controllers/settings/unit.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/entities/blueprints.js"></script>
 
   </body>
 </html>

@@ -1,13 +1,9 @@
 'use strict';
 
 angular.module('ApplyanceApp')
-  .controller('EntitySettingsCtrl', function ($scope, $routeParams, ApplyanceAPI) {
+  .controller('EntitySettingsCtrl', function ($scope, $routeParams, ApplyanceAPI, Me, Context) {
 
-    // ApplyanceAPI.getApplication($routeParams['applicationId']).then(function(application) {
-    //    $scope.application = application;
-    // });
-    //
-    // $scope.entity = $scope.me.admins[0].entity;
+    $scope.entity = Me.getEntity(Context.getId());
 
     $scope.startUpdateEntity = function() {
 

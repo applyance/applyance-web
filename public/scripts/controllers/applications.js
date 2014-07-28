@@ -1,9 +1,12 @@
 'use strict';
 
 angular.module('ApplyanceApp')
-  .controller('ApplicationsCtrl', function ($scope, $routeParams, ApplyanceAPI) {
-    $scope.applications = [];
-    ApplyanceAPI.getApplications($routeParams['parent'], parseInt($routeParams['id'])).then(function(applications) {
-       $scope.applications = applications;
-    });
-  });
+  .controller('ApplicationsCtrl', ['$scope', 'ApplyanceAPI', 'Context',
+    function ($scope, ApplyanceAPI, Context) {
+
+      $scope.applications = [];
+      ApplyanceAPI.getApplications(Context.getGroup(), Context.getId()).then(function(applications) {
+         $scope.applications = applications;
+      });
+
+    }]);

@@ -1,1 +1,9 @@
-manage blueprints
+<h1>Manage Blueprints</h1>
+
+<ul>
+  <li ng-repeat="definition in definitions">
+    <a href="" ng-click="toggle(definition)">
+      {{ definition.label }}
+    </a>
+  </li>
+</ul>

@@ -5,17 +5,12 @@ angular.module('ApplyanceApp')
   .factory('ApplyanceAPI', ['$http', '$rootScope', 'Restangular',
     function($http, $rootScope, Restangular) {
 
-      var apiKey = "";
-      var apiHost = "";
+      var apiKey = window.apiKey;
+      var apiHost = window.apiHost;
 
-      this.setApiHost = function(host) {
-        apiHost = host;
-        Restangular.setBaseUrl(apiHost);
-      };
-      this.setApiKey = function(key) {
-        apiKey = key;
-        Restangular.setDefaultHeaders({'Authorization': "ApplyanceLogin auth=" + apiKey});
-      };
+      Restangular.setBaseUrl(apiHost);
+      Restangular.setDefaultHeaders({'Authorization': "ApplyanceLogin auth=" + apiKey});
+
       this.getMe = function() {
         return $http.get(apiHost + "/accounts/me", {
           headers: {'Authorization': "ApplyanceLogin auth=" + apiKey}
@@ -54,6 +49,22 @@ angular.module('ApplyanceApp')
             'Authorization': "ApplyanceLogin auth=" + apiKey
           }
         });
+      };
+
+      // Definitions
+      this.getDefinitions = function() {
+        return Restangular.all("definitions").getList();
+      };
+
+      // Blueprints
+      this.deleteBlueprint = function(id) {
+        return Restangular.one('blueprints', id).remove();
+      };
+      this.getEntityBlueprints = function(id) {
+        return Restangular.one('entities', id).all('blueprints');
+      };
+      this.postEntityBlueprint = function(id, blueprint) {
+        return Restangular.one('entities', id).all('blueprints').post(blueprint);
       };
 
       return this;
