@@ -76,7 +76,12 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
       })
       .when('/units/:id/reviewers', {
         templateUrl: 'views/settings/settings.html',
-        controller: 'SettingsCtrl'
+        controller: 'SettingsCtrl',
+        resolve: {
+          me: function(Me) {
+            return Me.init();
+          }
+        }
       })
       .when('/units/:id/blueprints', {
         templateUrl: 'views/settings/settings.html',

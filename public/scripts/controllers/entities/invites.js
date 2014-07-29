@@ -11,17 +11,17 @@ angular.module('ApplyanceApp')
          $scope.invites = invites;
       });
 
-      $scope.newInvite = {}
+      $scope.newInvite = {};
 
       $scope.isInviteClaimed = function(invite) {
         return invite.status == "claimed";
-      }
+      };
 
       $scope.inviting = false;
 
       $scope.inviteAdmin = function() {
         $scope.inviting = true;
-      }
+      };
 
       $scope.commitInvite = function() {
         ApplyanceAPI.postAdminInvite($scope.entity.id, {
@@ -32,6 +32,6 @@ angular.module('ApplyanceApp')
           $scope.inviting = false;
           $scope.newInvite = {};
         });
-      }
+      };
 
     }]);

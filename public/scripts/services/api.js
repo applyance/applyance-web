@@ -29,7 +29,6 @@ angular.module('ApplyanceApp')
       this.uploadAttachment = function(fileData, contentType) {
         return $http.post(apiHost + "/attachments", fileData, {
           headers: {
-            'Authorization': "ApplyanceLogin auth=" + apiKey,
             'Content-Type': contentType
           }
         });
@@ -72,6 +71,28 @@ angular.module('ApplyanceApp')
       };
       this.claimAdminInvite = function(invite) {
         return $http.post("/admins/invites/claim", invite);
+      };
+
+      // Reviewers
+      this.getReviewers = function(id) {
+        return Restangular.one('units', id).all('reviewers').getList();
+      };
+      this.deleteReviewer = function(id) {
+        return Restangular.one('reviewers', id).remove();
+      };
+      this.putReviewer = function(reviewer) {
+        return $http.put(apiHost + "/reviewers/" + reviewer.id, reviewer);
+      };
+
+      // Reviewer Invites
+      this.getReviewerInvites = function(id) {
+        return Restangular.one('units', id).all('reviewers').all('invites').getList();
+      };
+      this.postReviewerInvite = function(id, invite) {
+        return Restangular.one('units', id).all('reviewers').all('invites').post(invite);
+      };
+      this.claimReviewerInvite = function(invite) {
+        return $http.post("/reviewers/invites/claim", invite);
       };
 
       // Definitions

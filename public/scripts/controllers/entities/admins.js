@@ -13,12 +13,12 @@ angular.module('ApplyanceApp')
 
       $scope.isRevokable = function(admin) {
         return admin.access_level != "owner";
-      }
+      };
 
       $scope.revokeAccess = function(admin) {
         if ($scope.isRevokable(admin)) {
-          ApplyanceAPI.deleteAdmin(admin.id)
+          ApplyanceAPI.deleteAdmin(admin.id);
         }
-      }
+      };
 
     }]);
