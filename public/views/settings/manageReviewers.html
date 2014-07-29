@@ -1,1 +1,30 @@
-manage reviewers
+<h1>Reviewers</h1>
+
+<div ng-controller="UnitReviewersCtrl">
+  <ul>
+    <li ng-repeat="reviewer in reviewers">
+      <span>{{ reviewer.account.name }}</span>
+      <span>{{ reviewer.account.email }}</span>
+      <a href="" ng-class="{ disabled: !isRevokable(reviewer) }" ng-disabled="!isRevokable(reviewer)" ng-click="revokeAccess(reviewer)">Revoke Access</a>
+    </li>
+  </ul>
+</div>
+
+<div ng-controller="UnitInvitesCtrl">
+  <h2>Invitations</h2>
+
+  <a href="" ng-click="inviteReviewer()">New Invite</a>
+
+  <div ng-if="inviting">
+    <input name="newInvite" ng-model="newInvite.email" value="{{ newInvite.email }}" type="text" placeholder="Email">
+    <select ng-model="selectedAccessLevel"
+            ng-options="accessLevel.name for accessLevel in accessLevels"></select>
+    <button ng-click="commitInvite()">Invite</button>
+  </div>
+
+  <ul>
+    <li ng-repeat="invite in invites" ng-class="{{ invite.status }}">
+      <span>{{ invite.email }}</span>
+    </li>
+  </ul>
+</div>

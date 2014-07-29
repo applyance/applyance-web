@@ -1,1 +1,12 @@
-manage labels
+<h1>Manage Labels</h1>
+
+<a href="" ng-click="addLabel()">New</a>
+<ul>
+  <li ng-repeat="label in labels" ng-class="{ editing:isEditing(label) }" style="background: #{{ label.color }};">
+    {{ label.name }}
+    <input type="text" ng-model="label.name" value="{{ label.name }}" focus-on="isEditingLabel-{{ label.id }}" ng-blur="updateLabel(label)">
+    <input type="text" ng-model="label.color" value="{{ label.color }}" focus-on="isEditingLabel-{{ label.id }}" ng-blur="updateLabel(label)">
+    <a href="" ng-click="triggerEdit(label)">Edit</a>
+    <a href="" ng-click="removeLabel(label)">Remove</a>
+  </li>
+</ul>

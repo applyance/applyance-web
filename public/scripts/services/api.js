@@ -29,7 +29,6 @@ angular.module('ApplyanceApp')
       this.uploadAttachment = function(fileData, contentType) {
         return $http.post(apiHost + "/attachments", fileData, {
           headers: {
-            'Authorization': "ApplyanceLogin auth=" + apiKey,
             'Content-Type': contentType
           }
         });
@@ -74,6 +73,28 @@ angular.module('ApplyanceApp')
         return $http.post("/admins/invites/claim", invite);
       };
 
+      // Reviewers
+      this.getReviewers = function(id) {
+        return Restangular.one('units', id).all('reviewers').getList();
+      };
+      this.deleteReviewer = function(id) {
+        return Restangular.one('reviewers', id).remove();
+      };
+      this.putReviewer = function(reviewer) {
+        return $http.put(apiHost + "/reviewers/" + reviewer.id, reviewer);
+      };
+
+      // Reviewer Invites
+      this.getReviewerInvites = function(id) {
+        return Restangular.one('units', id).all('reviewers').all('invites').getList();
+      };
+      this.postReviewerInvite = function(id, invite) {
+        return Restangular.one('units', id).all('reviewers').all('invites').post(invite);
+      };
+      this.claimReviewerInvite = function(invite) {
+        return $http.post("/reviewers/invites/claim", invite);
+      };
+
       // Definitions
       this.getDefinitions = function() {
         return Restangular.all("definitions").getList();
@@ -94,6 +115,20 @@ angular.module('ApplyanceApp')
       };
       this.postUnitBlueprint = function(id, blueprint) {
         return Restangular.one('units', id).all('blueprints').post(blueprint);
+      };
+
+      // Labels
+      this.getLabels = function(id) {
+        return Restangular.one('units', id).all('labels').getList();
+      };
+      this.postLabel = function(id, label) {
+        return Restangular.one('units', id).all('labels').post(label);
+      };
+      this.deleteLabel = function(id) {
+        return Restangular.one('labels', id).remove();
+      };
+      this.putLabel = function(label) {
+        return $http.put(apiHost + "/labels/" + label.id, label);
       };
 
       return this;
