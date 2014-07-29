@@ -117,6 +117,20 @@ angular.module('ApplyanceApp')
         return Restangular.one('units', id).all('blueprints').post(blueprint);
       };
 
+      // Labels
+      this.getLabels = function(id) {
+        return Restangular.one('units', id).all('labels').getList();
+      };
+      this.postLabel = function(id, label) {
+        return Restangular.one('units', id).all('labels').post(label);
+      };
+      this.deleteLabel = function(id) {
+        return Restangular.one('labels', id).remove();
+      };
+      this.putLabel = function(label) {
+        return $http.put(apiHost + "/labels/" + label.id, label);
+      };
+
       return this;
     }])
 ;

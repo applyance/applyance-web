@@ -94,7 +94,12 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
       })
       .when('/units/:id/labels', {
         templateUrl: 'views/settings/settings.html',
-        controller: 'SettingsCtrl'
+        controller: 'SettingsCtrl',
+        resolve: {
+          me: function(Me) {
+            return Me.init();
+          }
+        }
       })
 
       .otherwise({
