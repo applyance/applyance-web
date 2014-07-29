@@ -18,7 +18,7 @@ angular.module('ApplyanceApp')
 
       $scope.getBlueprintFromDefinition = function(definition) {
         return _.find($scope.blueprints, function(blueprint) {
-          return blueprint.definition_id == definition.id;
+          return blueprint.definition.id == definition.id;
         });
       }
 
@@ -38,7 +38,6 @@ angular.module('ApplyanceApp')
             position: 1,
             is_required: true
           }).then(function(blueprint) {
-            blueprint.definition_id = blueprint.definition.id;
             $scope.blueprints.push(blueprint);
           });
         }

@@ -19,7 +19,7 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
         }
       })
       .when('/applications/:id', {
-        templateUrl: 'views/applicaitons/application.html',
+        templateUrl: 'views/applications/application.html',
         controller: 'ApplicationCtrl',
         resolve: {
           me: function(Me) {
