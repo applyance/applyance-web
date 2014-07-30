@@ -1,14 +1,18 @@
+html {
+  background-color: $app-bg-color;
+}
+
 h1 {
   margin: 0;
   padding: 0;
   font-size: 32px;
   font-weight: 300;
   letter-spacing: -1px;
-  color: $color-base;
+  color: $h1-color;
   text-rendering: optimizeLegibility;
   padding-bottom: 12px;
   margin-bottom: 36px;
-  border-bottom: 4px solid $color-gray;
+  border-bottom: 4px solid $line-color;
 }
 
 h2 {
@@ -16,7 +20,7 @@ h2 {
   padding: 0;
   font-size: 24px;
   font-weight: 300;
-  color: $color-base;
+  color: $h2-color;
   text-transform: none;
   text-rendering: optimizeLegibility;
 }

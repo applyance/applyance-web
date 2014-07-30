@@ -2,7 +2,7 @@
 
 <a href="" ng-click="addLabel()">New</a>
 <ul>
-  <li ng-repeat="label in labels" ng-class="{ editing:isEditing(label) }" style="background: #{{ label.color }};">
+  <li ng-repeat="label in labels" ng-class="{ editing:isEditing(label) }">
     {{ label.name }}
     <input type="text" ng-model="label.name" value="{{ label.name }}" focus-on="isEditingLabel-{{ label.id }}" ng-blur="updateLabel(label)">
     <input type="text" ng-model="label.color" value="{{ label.color }}" focus-on="isEditingLabel-{{ label.id }}" ng-blur="updateLabel(label)">

@@ -1,0 +1,31 @@
+<form action="/reviewers/claim" method="post" class="login">
+
+  <a href="/" class="login__logo">
+    <img src="/img/logo.png" class="login__logo__img" />
+  </a>
+
+  <% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+    <li>
+      <%= error %>
+    </li>
+    <% end %>
+  </ul>
+  <% end %>
+
+  <ul class="login__fields">
+    <li class="login__field">
+      <input id="email" name="account[name]" type="text" placeholder="Name">
+    </li>
+    <li class="login__field">
+      <input id="password" name="account[password]" type="password" placeholder="Password">
+    </li>
+  </ul>
+
+  <div class="login__tray">
+    <input type="hidden" name="account[code]" value="<%= @code %>">
+    <button class="btn--primary" type="submit">Claim Account</button>
+  </div>
+
+</form>

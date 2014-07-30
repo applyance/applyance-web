@@ -3,6 +3,9 @@
  * http://bourbon.io
  * Copyright 2011–2014 thoughtbot, inc.
  * MIT License */
+html {
+  background-color: white; }
+
 h1 {
   margin: 0;
   padding: 0;
@@ -51,7 +54,7 @@ h2 {
   -moz-transition: background-color 200ms ease-in-out;
   transition: background-color 200ms ease-in-out; }
   .mark:hover {
-    background-color: #f0b41e; }
+    background-color: #f4c44e; }
 
 .mark__img,
 .mark__helper {

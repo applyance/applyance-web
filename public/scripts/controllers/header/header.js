@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ApplyanceApp')
-  .controller('NavCtrl', ['$scope', '$rootScope', '$location', 'Me', 'Context',
+  .controller('HeaderCtrl', ['$scope', '$rootScope', '$location', 'Me', 'Context',
     function ($scope, $rootScope, $location, Me, Context) {
 
       // Update the context on route change

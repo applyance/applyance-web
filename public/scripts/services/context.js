@@ -37,8 +37,8 @@ angular.module('ApplyanceApp')
 
       this.getObject = function(defaultGroup, defaultId) {
         return {
-          group: this.getGroup() || defaultGroup || null,
-          id: this.getId() || defaultId || null
+          group: this.exists() ? this.getGroup() : (defaultGroup || null),
+          id: this.exists() ? this.getId() : (defaultId || null)
         }
       };
 

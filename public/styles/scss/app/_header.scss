@@ -1,11 +1,11 @@
 .header,
 .mark {
-  height: $app-header-height;
+  height: $header-height;
 }
 
 .header {
   font-size: 0;
-  background-color: $color-base;
+  background-color: $header-bg-color;
 }
 
 .mark {
@@ -13,12 +13,12 @@
   vertical-align: middle;
   width: 36px + 20px + 36px;
   text-align: center;
-  background-color: $color-brand;
+  background-color: $mark-bg-color;
 
   @include transition(background-color 200ms ease-in-out);
 
   &:hover {
-    background-color: darken($color-brand, 5%);
+    background-color: lighten($mark-bg-color, 5%);
   }
 }
 
@@ -57,7 +57,7 @@
     margin-left: 48px;
     &:first-child { margin-left: 0; }
     &.active .nav__link {
-      border-bottom: 1px solid $color-brand;
+      border-bottom: 1px solid $header-link-underline-color;
     }
   }
 }
@@ -65,7 +65,7 @@
 .nav__link {
   padding: 4px 0;
   font-size: 14px;
-  color: white;
+  color: $header-link-color;
   text-decoration: none;
 }
 
@@ -74,7 +74,7 @@
 .account {
   display: inline-block;
   @media only screen and (min-width : 480px) {
-    margin-top: ($app-header-height - 32px) / 2;
+    margin-top: ($header-height - 32px) / 2;
     float: right;
   }
 }
@@ -108,7 +108,7 @@
   padding: 12px;
   font-size: 20px;
   text-decoration: none;
-  color: white;
+  color: $header-link-color;
   opacity: .5;
 
   @include transition(opacity 200ms ease-in-out);

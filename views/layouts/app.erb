@@ -14,12 +14,12 @@
   </head>
   <body ng-app="ApplyanceApp">
 
-    <header class="header">
-      <a href="/" class="mark">
+    <header class="header" ng-controller="HeaderCtrl">
+      <a href="{{ context.group }}/{{ context.id }}/applications" class="mark">
         <span class="mark__helper"></span>
-        <img src="/img/mark.png" class="mark__img">
+        <img src="/img/mark.blue.png" class="mark__img">
       </a>
-      <nav class="nav" ng-controller="NavCtrl">
+      <nav class="nav">
         <ul class="nav__list group">
           <li class="nav__item"
               ng-class="{ active:isActive('/' + context.group + '/' + context.id + '/applications') }">
@@ -39,11 +39,13 @@
                 ng-change="updateContextSelect()"></select>
         <img src="{{ getAvatarURL() }}" class="account__avatar" />
         <ul class="account__settings-list">
+          <!--
           <li class="account__settings-item">
             <a href="/accounts/{{ me.account.id }}/settings" target="_self" class="account__settings-link" title="Account Settings">
               <i class="icon-settings"></i>
             </a>
           </li>
+          -->
           <li class="account__settings-item">
             <a href="/accounts/logout" target="_self" class="account__settings-link" title="Sign Out">
               <i class="icon-logout"></i>
@@ -77,7 +79,7 @@
     <script type="text/javascript" src="/scripts/services/me.js"></script>
     <script type="text/javascript" src="/scripts/services/context.js"></script>
 
-    <script type="text/javascript" src="/scripts/controllers/header/nav.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/header/header.js"></script>
     <script type="text/javascript" src="/scripts/controllers/header/account.js"></script>
 
     <script type="text/javascript" src="/scripts/controllers/applications.js"></script>
