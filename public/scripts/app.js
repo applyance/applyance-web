@@ -47,7 +47,7 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
           }
         }
       })
-      .when('/entities/:id/units', {
+      .when('/entities/:id/entities', {
         templateUrl: 'views/settings/settings.html',
         controller: 'SettingsCtrl',
         resolve: {
@@ -56,7 +56,7 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
           }
         }
       })
-      .when('/entities/:id/admins', {
+      .when('/entities/:id/reviewers', {
         templateUrl: 'views/settings/settings.html',
         controller: 'SettingsCtrl',
         resolve: {
@@ -74,35 +74,7 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
           }
         }
       })
-
-      .when('/units/:id/settings', {
-        templateUrl: 'views/settings/settings.html',
-        controller: 'SettingsCtrl',
-        resolve: {
-          Me: function(Me) {
-            return Me.init();
-          }
-        }
-      })
-      .when('/units/:id/reviewers', {
-        templateUrl: 'views/settings/settings.html',
-        controller: 'SettingsCtrl',
-        resolve: {
-          me: function(Me) {
-            return Me.init();
-          }
-        }
-      })
-      .when('/units/:id/blueprints', {
-        templateUrl: 'views/settings/settings.html',
-        controller: 'SettingsCtrl',
-        resolve: {
-          me: function(Me) {
-            return Me.init();
-          }
-        }
-      })
-      .when('/units/:id/labels', {
+      .when('/entities/:id/labels', {
         templateUrl: 'views/settings/settings.html',
         controller: 'SettingsCtrl',
         resolve: {

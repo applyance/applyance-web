@@ -4,10 +4,13 @@ angular.module('ApplyanceApp')
   .controller('EntityInvitesCtrl', ['$scope', 'ApplyanceAPI', 'Me', 'Context',
     function ($scope, ApplyanceAPI, Me, Context) {
 
+      $scope.scopes = [{name: "admin"}, {name: "limited"}];
+      $scope.selectedScope =  $scope.scopes[1];
+
       $scope.entity = Me.getEntity(Context.getId());
 
       $scope.invites = [];
-      ApplyanceAPI.getAdminInvites($scope.entity.id).then(function(invites) {
+      ApplyanceAPI.getReviewerInvites($scope.entity.id).then(function(invites) {
          $scope.invites = invites;
       });
 
@@ -19,19 +22,21 @@ angular.module('ApplyanceApp')
 
       $scope.inviting = false;
 
-      $scope.inviteAdmin = function() {
+      $scope.inviteReviewer = function() {
         $scope.inviting = true;
       };
 
       $scope.commitInvite = function() {
-        ApplyanceAPI.postAdminInvite($scope.entity.id, {
-          email: $scope.newInvite.email,
-          access_level: "limited"
-        }).then(function(invite) {
-          $scope.invites.push(invite);
-          $scope.inviting = false;
-          $scope.newInvite = {};
-        });
+        if ($scope.newInvite.email && $scope.selectedScope.name) {
+          ApplyanceAPI.postReviewerInvite($scope.entity.id, {
+            email: $scope.newInvite.email,
+            scope: $scope.selectedScope.name
+          }).then(function(invite) {
+            $scope.invites.push(invite);
+            $scope.inviting = false;
+            $scope.newInvite = {};
+          });
+        }
       };
 
     }]);

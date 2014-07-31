@@ -41,26 +41,14 @@ angular.module('ApplyanceApp')
       }
 
       this.getEntities = function() {
-        return _.map(this.me.admins, function(admin) {
-          return admin.entity;
-        });
-      };
-
-      this.getUnits = function() {
         return _.map(this.me.reviewers, function(reviewer) {
-          return reviewer.unit;
+          return reviewer.entity;
         });
       };
 
       this.getEntity = function(entityId) {
         return _.find(this.getEntities(), function(entity) {
           return entity.id == entityId;
-        });
-      };
-
-      this.getUnit = function(unitId) {
-        return _.find(this.getUnits(), function(unit) {
-          return unit.id == unitId;
         });
       };
 

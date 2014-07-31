@@ -1,6 +1,6 @@
 <h1>Reviewers</h1>
 
-<div ng-controller="UnitReviewersCtrl">
+<div ng-controller="EntityReviewersCtrl">
   <ul>
     <li ng-repeat="reviewer in reviewers">
       <span>{{ reviewer.account.name }}</span>
@@ -10,15 +10,15 @@
   </ul>
 </div>
 
-<div ng-controller="UnitInvitesCtrl">
+<div ng-controller="EntityInvitesCtrl">
   <h2>Invitations</h2>
 
   <a href="" ng-click="inviteReviewer()">New Invite</a>
 
   <div ng-if="inviting">
     <input name="newInvite" ng-model="newInvite.email" value="{{ newInvite.email }}" type="text" placeholder="Email">
-    <select ng-model="selectedAccessLevel"
-            ng-options="accessLevel.name for accessLevel in accessLevels"></select>
+    <select ng-model="selectedScope"
+            ng-options="scope.name for scope in scopes"></select>
     <button ng-click="commitInvite()">Invite</button>
   </div>
 

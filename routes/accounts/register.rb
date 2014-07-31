@@ -32,7 +32,7 @@ module Applyance
             entity_id = json_response["id"].to_s
 
             #
-            # Create entity admin
+            # Create reviewer
             #
 
             headers = { :content_type => 'application/json' }
@@ -42,7 +42,7 @@ module Applyance
               "password" => person_password
             }
 
-            response = RestClient.post(api_host + "/entities/#{entity_id}/admins", JSON.dump(values), headers) { |response, request, result| response }
+            response = RestClient.post(api_host + "/entities/#{entity_id}/reviewers", JSON.dump(values), headers) { |response, request, result| response }
             error 500 unless response.code == 201
             json_response = JSON.parse(response)
 
@@ -50,20 +50,6 @@ module Applyance
               "email" => json_response["account"]["email"],
               "password" => person_password
             })
-
-            #
-            # Create Unit
-            #
-
-            headers = {
-              :content_type => 'application/json',
-              :authorization => 'ApplyanceLogin auth=' + auth['api_key']
-            }
-            values = {
-              "name" => entity_name
-            }
-            response = RestClient.post(api_host + "/entities/#{entity_id}/units", JSON.dump(values), headers) { |response, request, result| response }
-            error 500 unless response.code == 201
 
             session[:api_key] = auth['api_key']
             redirect to('/')

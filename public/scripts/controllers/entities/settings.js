@@ -8,6 +8,7 @@ angular.module('ApplyanceApp')
     $scope.startUpdateEntity = function() {
 
       var updatedEntity = {
+        id: $scope.entity.id,
         name: $scope.entity.name
       };
 
@@ -19,7 +20,7 @@ angular.module('ApplyanceApp')
               name: $scope.entity.fileObj.name,
               token: r.data.token
             };
-            $scope.updateEntity($scope.entity.id, updatedEntity);
+            $scope.updateEntity(updatedEntity);
           },
           function(r) {
             console.log("failed to upload logo");
@@ -27,14 +28,14 @@ angular.module('ApplyanceApp')
           }
         );
       } else {
-        $scope.updateEntity($scope.entity.id, updatedEntity);
+        $scope.updateEntity(updatedEntity);
       }
 
     };
 
-    $scope.updateEntity = function(entityId, updatedEntityObj) {
+    $scope.updateEntity = function(updatedEntityObj) {
 
-      ApplyanceAPI.updateEntity(entityId, updatedEntityObj).then(
+      ApplyanceAPI.putEntity(updatedEntityObj).then(
         function(r) {
           console.log("updated entity");
           console.log(r);

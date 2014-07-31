@@ -39,7 +39,7 @@
                 ng-change="updateContextSelect()"></select>
         <img src="{{ getAvatarURL() }}" class="account__avatar" />
         <ul class="account__settings-list">
-          
+
           <li class="account__settings-item">
             <a href="/accounts/{{ me.account.id }}/settings" target="_self" class="account__settings-link" title="Account Settings">
               <i class="icon-settings"></i>
@@ -88,16 +88,11 @@
     <script type="text/javascript" src="/scripts/controllers/account.js"></script>
 
     <script type="text/javascript" src="/scripts/controllers/entities/blueprints.js"></script>
-    <script type="text/javascript" src="/scripts/controllers/entities/units.js"></script>
-    <script type="text/javascript" src="/scripts/controllers/entities/admins.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/entities/entities.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/entities/reviewers.js"></script>
     <script type="text/javascript" src="/scripts/controllers/entities/invites.js"></script>
     <script type="text/javascript" src="/scripts/controllers/entities/settings.js"></script>
-
-    <script type="text/javascript" src="/scripts/controllers/units/settings.js"></script>
-    <script type="text/javascript" src="/scripts/controllers/units/blueprints.js"></script>
-    <script type="text/javascript" src="/scripts/controllers/units/invites.js"></script>
-    <script type="text/javascript" src="/scripts/controllers/units/reviewers.js"></script>
-    <script type="text/javascript" src="/scripts/controllers/units/labels.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/entities/labels.js"></script>
 
   </body>
 </html>

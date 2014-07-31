@@ -22,7 +22,7 @@ angular.module('ApplyanceApp')
 
       this.exists = function() {
         this.init();
-        return _.contains(["entities", "units"], this.getGroup()) && this.getId();
+        return _.contains(["entities"], this.getGroup()) && this.getId();
       }
 
       this.getGroup = function() {

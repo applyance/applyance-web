@@ -20,15 +20,16 @@ angular.module('ApplyanceApp')
       this.updateMe = function(accountId, accountInfo) {
         return $http.put(apiHost + "/accounts/" + accountId, accountInfo);
       };
-      this.getSpots = function(unitId) {
-        return Restangular.one("units", unitId).all("spots").getList();
-      };
+
+      // Applications
       this.getApplications = function(parent, parentId) {
         return Restangular.one(parent, parentId).all("applications").getList();
       };
       this.getApplication = function(id) {
         return Restangular.one('applications', id).get();
       };
+
+      // Attachments
       this.uploadAttachment = function(fileData, contentType) {
         return $http.post(apiHost + "/attachments", fileData, {
           headers: {
@@ -36,49 +37,24 @@ angular.module('ApplyanceApp')
           }
         });
       };
-      this.updateEntity = function(entityId, updatedEntityObj) {
-        return $http.put(apiHost + "/entities/" + entityId, updatedEntityObj);
-      };
 
-      // Units
-      this.getUnits = function(id) {
-        return Restangular.one('entities', id).all('units').getList();
+      // Entities
+      this.getEntities = function(id) {
+        return Restangular.one('entities', id).all('entities').getList();
       };
-      this.postUnit = function(id, unit) {
-        return Restangular.one('entities', id).all('units').post(unit);
+      this.postEntity = function(id, entity) {
+        return Restangular.one('entities', id).all('entities').post(entity);
       };
-      this.deleteUnit = function(id) {
-        return Restangular.one('units', id).remove();
+      this.deleteEntity = function(id) {
+        return Restangular.one('entities', id).remove();
       };
-      this.putUnit = function(unit) {
-        return $http.put(apiHost + "/units/" + unit.id, unit);
-      };
-
-      // Admins
-      this.getAdmins = function(id) {
-        return Restangular.one('entities', id).all('admins').getList();
-      };
-      this.deleteAdmin = function(id) {
-        return Restangular.one('admins', id).remove();
-      };
-      this.putAdmin = function(admin) {
-        return $http.put(apiHost + "/admins/" + admin.id, admin);
-      };
-
-      // Admin Invites
-      this.getAdminInvites = function(id) {
-        return Restangular.one('entities', id).all('admins').all('invites').getList();
-      };
-      this.postAdminInvite = function(id, invite) {
-        return Restangular.one('entities', id).all('admins').all('invites').post(invite);
-      };
-      this.claimAdminInvite = function(invite) {
-        return $http.post("/admins/invites/claim", invite);
+      this.putEntity = function(entity) {
+        return $http.put(apiHost + "/entities/" + entity.id, entity);
       };
 
       // Reviewers
       this.getReviewers = function(id) {
-        return Restangular.one('units', id).all('reviewers').getList();
+        return Restangular.one('entities', id).all('reviewers').getList();
       };
       this.deleteReviewer = function(id) {
         return Restangular.one('reviewers', id).remove();
@@ -89,10 +65,10 @@ angular.module('ApplyanceApp')
 
       // Reviewer Invites
       this.getReviewerInvites = function(id) {
-        return Restangular.one('units', id).all('reviewers').all('invites').getList();
+        return Restangular.one('entities', id).all('reviewers').all('invites').getList();
       };
       this.postReviewerInvite = function(id, invite) {
-        return Restangular.one('units', id).all('reviewers').all('invites').post(invite);
+        return Restangular.one('entities', id).all('reviewers').all('invites').post(invite);
       };
       this.claimReviewerInvite = function(invite) {
         return $http.post("/reviewers/invites/claim", invite);
@@ -113,19 +89,18 @@ angular.module('ApplyanceApp')
       this.postEntityBlueprint = function(id, blueprint) {
         return Restangular.one('entities', id).all('blueprints').post(blueprint);
       };
-      this.getUnitBlueprints = function(id) {
-        return Restangular.one('units', id).all('blueprints').getList();
-      };
-      this.postUnitBlueprint = function(id, blueprint) {
-        return Restangular.one('units', id).all('blueprints').post(blueprint);
+
+      // Spots
+      this.getSpots = function(id) {
+        return Restangular.one("entities", id).all("spots").getList();
       };
 
       // Labels
       this.getLabels = function(id) {
-        return Restangular.one('units', id).all('labels').getList();
+        return Restangular.one('entities', id).all('labels').getList();
       };
       this.postLabel = function(id, label) {
-        return Restangular.one('units', id).all('labels').post(label);
+        return Restangular.one('entities', id).all('labels').post(label);
       };
       this.deleteLabel = function(id) {
         return Restangular.one('labels', id).remove();

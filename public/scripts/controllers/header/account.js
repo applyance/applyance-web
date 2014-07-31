@@ -9,7 +9,7 @@ angular.module('ApplyanceApp')
         $scope.initContextOptions();
 
         if (Context.exists()) {
-          $scope.activeContextOption = _.findWhere($scope.contextOptions, { group: Context.getGroup(), id: Context.getId() });
+          $scope.activeContextOption = _.findWhere($scope.contextOptions, { id: Context.getId() });
         } else {
           $scope.activeContextOption = $scope.contextOptions[0];
         }
@@ -19,15 +19,12 @@ angular.module('ApplyanceApp')
 
       $scope.initContextOptions = function() {
         _.each(Me.getEntities(), function(entity) {
-          $scope.contextOptions.push({ id: entity.id, name: entity.name, group: 'entities' });
-        });
-        _.each(Me.getUnits(), function(unit) {
-          $scope.contextOptions.push({ id: unit.id, name: unit.name, group: 'units' });
+          $scope.contextOptions.push({ id: entity.id, name: entity.name });
         });
       };
 
       $scope.updateContextSelect = function() {
-        $location.path('/' + $scope.activeContextOption.group + '/' + $scope.activeContextOption.id + '/applications');
+        $location.path('/entities/' + $scope.activeContextOption.id + '/applications');
       };
 
       $scope.getAvatarURL = function() {

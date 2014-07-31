@@ -1,0 +1,14 @@
+<h1>Locations</h1>
+
+<a href="" ng-click="addEntity()">New</a>
+<ul>
+  <li ng-repeat="entity in entities" ng-class="{ editing:isEditing(entity) }">
+    <div ng-if="entity.logo.url">
+      <img src="{{ entity.logo.url }}" width="100">
+    </div>
+    {{ entity.name }}
+    <input type="text" ng-model="entity.name" value="{{ entity.name }}" focus-on="isEditingEntity-{{ entity.id }}" ng-blur="updateEntity(entity)">
+    <a href="" ng-click="triggerEdit(entity)">Edit</a>
+    <a href="" ng-click="removeEntity(entity)">Remove</a>
+  </li>
+</ul>
