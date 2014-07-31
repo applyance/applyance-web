@@ -5,7 +5,7 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
 
     $routeProvider
       .when('/accounts/:id/settings', {
-        templateUrl: 'views/settings/account.html',
+        templateUrl: 'views/review/settings/account.html',
         controller: 'AccountSettingsCtrl',
         resolve: {
           me: function(Me) {
@@ -15,13 +15,13 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
       })
 
       .when('/dashboard', {
-        templateUrl: 'views/dashboard.html',
+        templateUrl: 'views/review/dashboard.html',
         controller: 'DashboardCtrl'
       })
 
       .when('/:parent/:id/applications', {
         controller: 'ApplicationsCtrl',
-        templateUrl: 'views/applications/applications.html',
+        templateUrl: 'views/review/applications/applications.html',
         resolve: {
           me: function(Me) {
             return Me.init();
@@ -29,7 +29,7 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
         }
       })
       .when('/applications/:id', {
-        templateUrl: 'views/applications/application.html',
+        templateUrl: 'views/review/applications/application.html',
         controller: 'ApplicationCtrl',
         resolve: {
           me: function(Me) {
@@ -39,7 +39,7 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
       })
 
       .when('/entities/:id/settings', {
-        templateUrl: 'views/settings/settings.html',
+        templateUrl: 'views/review/settings/settings.html',
         controller: 'SettingsCtrl',
         resolve: {
           me: function(Me) {
@@ -48,7 +48,7 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
         }
       })
       .when('/entities/:id/entities', {
-        templateUrl: 'views/settings/settings.html',
+        templateUrl: 'views/review/settings/settings.html',
         controller: 'SettingsCtrl',
         resolve: {
           me: function(Me) {
@@ -57,7 +57,7 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
         }
       })
       .when('/entities/:id/reviewers', {
-        templateUrl: 'views/settings/settings.html',
+        templateUrl: 'views/review/settings/settings.html',
         controller: 'SettingsCtrl',
         resolve: {
           me: function(Me) {
@@ -66,7 +66,7 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
         }
       })
       .when('/entities/:id/blueprints', {
-        templateUrl: 'views/settings/settings.html',
+        templateUrl: 'views/review/settings/settings.html',
         controller: 'SettingsCtrl',
         resolve: {
           Me: function(Me) {
@@ -75,7 +75,7 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
         }
       })
       .when('/entities/:id/labels', {
-        templateUrl: 'views/settings/settings.html',
+        templateUrl: 'views/review/settings/settings.html',
         controller: 'SettingsCtrl',
         resolve: {
           me: function(Me) {

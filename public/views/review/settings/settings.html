@@ -20,18 +20,18 @@
 <!-- content area (right side stuff) -->
 <div ng-switch="settings">
   <div ng-switch-when="settings" ng-controller="EntitySettingsCtrl">
-    <div ng-include="'views/settings/entitySettings.html'"></div>
+    <div ng-include="'views/review/settings/entitySettings.html'"></div>
   </div>
   <div ng-switch-when="entities" ng-controller="EntityEntitiesCtrl">
-    <div ng-include="'views/settings/manageEntities.html'"></div>
+    <div ng-include="'views/review/settings/manageEntities.html'"></div>
   </div>
   <div ng-switch-when="reviewers">
-    <div ng-include="'views/settings/manageReviewers.html'"></div>
+    <div ng-include="'views/review/settings/manageReviewers.html'"></div>
   </div>
   <div ng-switch-when="blueprints" ng-controller="EntityBlueprintsCtrl">
-    <div ng-include="'views/settings/manageBlueprints.html'"></div>
+    <div ng-include="'views/review/settings/manageBlueprints.html'"></div>
   </div>
   <div ng-switch-when="labels" ng-controller="EntityLabelsCtrl">
-    <div ng-include="'views/settings/manageLabels.html'"></div>
+    <div ng-include="'views/review/settings/manageLabels.html'"></div>
   </div>
 </div>
