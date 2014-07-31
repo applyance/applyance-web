@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ApplyanceApp')
+angular.module('Review')
   .controller('DashboardCtrl', function ($scope) {
     $scope.test = "hello, Applyance";
   });

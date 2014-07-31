@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('ApplyanceApp')
+angular.module('Applyance', ['restangular'])
   .run(function(ApplyanceAPI) {})
-  .factory('ApplyanceAPI', ['$http', '$rootScope', 'Restangular',
-    function($http, $rootScope, Restangular) {
+  .factory('ApplyanceAPI', ['$http', 'Restangular',
+    function($http, Restangular) {
 
       var apiKey = window.apiKey;
       var apiHost = window.apiHost;
@@ -28,6 +28,9 @@ angular.module('ApplyanceApp')
       this.getApplication = function(id) {
         return Restangular.one('applications', id).get();
       };
+      this.postApplication = function(application) {
+        return Restangular.all('applications').post(application);
+      }
 
       // Attachments
       this.uploadAttachment = function(fileData, contentType) {
@@ -83,10 +86,10 @@ angular.module('ApplyanceApp')
       this.deleteBlueprint = function(id) {
         return Restangular.one('blueprints', id).remove();
       };
-      this.getEntityBlueprints = function(id) {
+      this.getBlueprints = function(id) {
         return Restangular.one('entities', id).all('blueprints').getList();
       };
-      this.postEntityBlueprint = function(id, blueprint) {
+      this.postBlueprint = function(id, blueprint) {
         return Restangular.one('entities', id).all('blueprints').post(blueprint);
       };
 

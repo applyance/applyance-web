@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ApplyanceApp')
+angular.module('Review')
   .controller('EntitySettingsCtrl', function ($scope, $routeParams, ApplyanceAPI, Me, Context) {
 
     $scope.entity = Me.getEntity(Context.getId());

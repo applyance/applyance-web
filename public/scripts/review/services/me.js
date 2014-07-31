@@ -1,4 +1,4 @@
-angular.module('ApplyanceApp')
+angular.module('Review')
   .run(function(Me) {})
   .service('Me', ['ApplyanceAPI',
     function(ApplyanceAPI) {

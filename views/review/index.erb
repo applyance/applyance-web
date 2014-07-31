@@ -10,9 +10,9 @@
     <link rel="stylesheet" type="text/css" href="//cloud.typography.com/7222252/709524/css/fonts.css" />
     <link rel="stylesheet" type="text/css" href="/styles/css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="/styles/css/base.css" />
-    <link rel="stylesheet" type="text/css" href="/styles/css/app.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/css/review.css" />
   </head>
-  <body ng-app="ApplyanceApp">
+  <body ng-app="Review">
 
     <header class="header" ng-controller="HeaderCtrl">
       <a href="{{ context.group }}/{{ context.id }}/applications" class="mark">
@@ -72,10 +72,11 @@
     <script type="text/javascript" src="/scripts/ext/angular-moment/angular-moment.min.js"></script>
     <script type="text/javascript" src="/scripts/ext/cryptojslib/rollups/md5.js"></script>
 
+    <script type="text/javascript" src="/scripts/services/api.js"></script>
+
     <script type="text/javascript" src="/scripts/review/app.js"></script>
     <script type="text/javascript" src="/scripts/review/directives.js"></script>
 
-    <script type="text/javascript" src="/scripts/review/services/api.js"></script>
     <script type="text/javascript" src="/scripts/review/services/me.js"></script>
     <script type="text/javascript" src="/scripts/review/services/context.js"></script>
 

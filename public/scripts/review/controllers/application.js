@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ApplyanceApp')
+angular.module('Review')
   .controller('ApplicationCtrl', ['$scope', '$routeParams', 'ApplyanceAPI',
     function ($scope, $routeParams, ApplyanceAPI) {
 

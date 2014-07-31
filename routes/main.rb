@@ -10,7 +10,7 @@ module Applyance
           else
             @api_host = app.settings.api_host
             @api_key = session[:api_key]
-            erb :'app/index'
+            erb :'review/index'
           end
         end
 
@@ -20,7 +20,7 @@ module Applyance
           end
           @api_host = app.settings.api_host
           @api_key = session[:api_key]
-          erb :'app/index'
+          erb :'review/index'
         end
 
       end

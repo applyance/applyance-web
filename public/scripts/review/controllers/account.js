@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ApplyanceApp')
+angular.module('Review')
   .controller('AccountSettingsCtrl', ['$scope', '$routeParams', '$location', 'Me', 'Context',
   function ($scope, $routeParams, $location, Me, Context) {
 

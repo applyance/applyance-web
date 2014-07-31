@@ -1,0 +1,17 @@
+<img src="{{ entity.logo.url }}" width="300" />
+<h1>Apply to {{ entity.name }}</h1>
+
+<form name="apply" ng-submit="onSubmit()">
+  <ul>
+    <li ng-repeat="blueprint in blueprints">
+      <div>
+        {{ blueprint.definition.label }}
+      </div>
+      <div>
+        <textarea ng-model="blueprint.detail"></textarea>
+      </div>
+    </li>
+  </ul>
+
+  <button type="submit">Apply</button>
+</form>

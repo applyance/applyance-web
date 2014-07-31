@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
+angular.module('Review', ['Applyance', 'ngRoute', 'angularMoment'])
   .config(function($routeProvider, $locationProvider) {
 
     $routeProvider

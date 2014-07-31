@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ApplyanceApp')
+angular.module('Review')
   .controller('ApplicationsCtrl', ['$scope', 'ApplyanceAPI', 'Context',
     function ($scope, ApplyanceAPI, Context) {
 

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ApplyanceApp')
+angular.module('Review')
   .controller('EntityInvitesCtrl', ['$scope', 'ApplyanceAPI', 'Me', 'Context',
     function ($scope, ApplyanceAPI, Me, Context) {
 

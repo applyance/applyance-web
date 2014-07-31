@@ -3,6 +3,8 @@ module Applyance
     module Entities
       def self.registered(app)
 
+        api_host = app.settings.api_host
+
         # Entity Application
         app.get '/entities/:id/apply' do
           @id = params[:id]
@@ -11,7 +13,7 @@ module Applyance
           entity = RestClient.get(api_host + "/entities/#{@id}", headers)
           @entity = JSON.parse(entity)
 
-          erb :'entities/apply', :layout => :'layouts/application'
+          erb :'entities/apply'
         end
 
       end
