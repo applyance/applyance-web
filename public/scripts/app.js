@@ -4,6 +4,16 @@ angular.module('ApplyanceApp', ['ngRoute', 'restangular', 'angularMoment'])
   .config(function($routeProvider, $locationProvider) {
 
     $routeProvider
+      .when('/accounts/:id/settings', {
+        templateUrl: 'views/settings/account.html',
+        controller: 'AccountSettingsCtrl',
+        resolve: {
+          me: function(Me) {
+            return Me.init();
+          }
+        }
+      })
+
       .when('/dashboard', {
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl'

@@ -17,6 +17,9 @@ angular.module('ApplyanceApp')
       this.getMe = function() {
         return $http.get(apiHost + "/accounts/me");
       };
+      this.updateMe = function(accountId, accountInfo) {
+        return $http.put(apiHost + "/accounts/" + accountId, accountInfo);
+      };
       this.getSpots = function(unitId) {
         return Restangular.one("units", unitId).all("spots").getList();
       };

@@ -36,6 +36,10 @@ angular.module('ApplyanceApp')
         return this.me;
       };
 
+      this.updateMe = function(accountInfo) {
+        return ApplyanceAPI.updateMe(accountInfo.id, accountInfo);
+      }
+
       this.getEntities = function() {
         return _.map(this.me.admins, function(admin) {
           return admin.entity;

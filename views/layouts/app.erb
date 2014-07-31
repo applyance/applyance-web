@@ -39,13 +39,13 @@
                 ng-change="updateContextSelect()"></select>
         <img src="{{ getAvatarURL() }}" class="account__avatar" />
         <ul class="account__settings-list">
-          <!--
+          
           <li class="account__settings-item">
             <a href="/accounts/{{ me.account.id }}/settings" target="_self" class="account__settings-link" title="Account Settings">
               <i class="icon-settings"></i>
             </a>
           </li>
-          -->
+
           <li class="account__settings-item">
             <a href="/accounts/logout" target="_self" class="account__settings-link" title="Sign Out">
               <i class="icon-logout"></i>
@@ -85,6 +85,7 @@
     <script type="text/javascript" src="/scripts/controllers/applications.js"></script>
     <script type="text/javascript" src="/scripts/controllers/application.js"></script>
     <script type="text/javascript" src="/scripts/controllers/settings.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/account.js"></script>
 
     <script type="text/javascript" src="/scripts/controllers/entities/blueprints.js"></script>
     <script type="text/javascript" src="/scripts/controllers/entities/units.js"></script>
