@@ -1,41 +1,31 @@
-<section class="site-content" style="padding-bottom: 202px;">
+<form action="/accounts/passwords/reset" method="post" class="login">
 
-  <section class="sector--space lead--clear trim">
-    <div class="gut trim">
-      <h1>Reset Password</h1>
-    </div>
-  </section>
+  <a href="/" class="login__logo">
+    <img src="/img/logo.png" class="login__logo__img" />
+  </a>
 
-  <section class="sector--space">
-    <div class="gut">
+  <% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+    <li>
+      <%= error %>
+    </li>
+    <% end %>
+  </ul>
+  <% end %>
 
-      <form accept-charset="UTF-8" action="/accounts/password/reset" id="new_reset" method="post" novalidate="novalidate">
-        
-        <div class="district-set--small clear">
+  <ul class="login__fields">
+    <li class="login__field">
+      <input id="email" name="account[email]" type="email" placeholder="Email">
+    </li>
+  </ul>
 
-          <ul class="district-list list--layout">
-            <li>
-              <div class="district trim">
-                <div class="field first last">
-                  <label for="email">Email</label>
-                  <input id="email" name="account[email]" parsley-required="true" parsley-type="email" type="email" class="parsley-validated">
-                </div>
-              </div>
-            </li>
-          </ul>
+  <div class="login__tray">
+    <button class="btn--primary" type="submit">Reset Password</button>
+  </div>
 
-          <div class="group">
-            <div class="float--right">
-              <button class="btn--green forward" name="button" type="submit">Reset Password</button>
-            </div>
-            <div class="float--left">
-              <a class="btn--gray back" href="/accounts/login">Login</a>
-            </div>
-          </div>
+  <div>
+    <a href="/accounts/login">Sign In</a>
+  </div>
 
-        </div>
-      </form>
-    </div>
-  </section>
-
-</section>
+</form>

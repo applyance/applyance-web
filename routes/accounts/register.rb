@@ -26,7 +26,11 @@ module Applyance
             values = { "name" => entity_name }
             headers = { :content_type => 'application/json' }
             response = RestClient.post(api_host + '/entities', JSON.dump(values), headers) { |response, request, result| response }
-            error 500 unless response.code == 201
+
+            @errors = collect_errors(response)
+            if @errors.length > 0
+              return erb :'accounts/register', :layout => :'layouts/public'
+            end
 
             json_response = JSON.parse(response)
             entity_id = json_response["id"].to_s
@@ -43,9 +47,13 @@ module Applyance
             }
 
             response = RestClient.post(api_host + "/entities/#{entity_id}/reviewers", JSON.dump(values), headers) { |response, request, result| response }
-            error 500 unless response.code == 201
-            json_response = JSON.parse(response)
 
+            @errors = collect_errors(response)
+            if @errors.length > 0
+              return erb :'accounts/register', :layout => :'layouts/public'
+            end
+
+            json_response = JSON.parse(response)
             auth = authenticate({
               "email" => json_response["account"]["email"],
               "password" => person_password

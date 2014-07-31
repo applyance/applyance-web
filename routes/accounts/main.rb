@@ -12,7 +12,7 @@ module Applyance
             values = { "verify_digest" => params[:code] }
             headers = { :content_type => 'application/json' }
 
-            response = RestClient.post(api_host + '/accounts/verify', JSON.dump(values), headers)
+            response = RestClient.post(api_host + '/accounts/verify', JSON.dump(values), headers) { |response, request, result| response }
             error 500 unless response.code == 200
 
             api_key = response.headers[:authorization].split('auth=')[1]
@@ -23,7 +23,7 @@ module Applyance
           # GET Reviewer Claim
           app.get '/reviewers/claim' do
             @code = params[:code]
-            erb :'reviewers/claim', :layout => :'layouts/public/bare'
+            erb :'reviewers/claim', :layout => :'layouts/bare'
           end
 
           # POST Reviewer Claim
@@ -37,7 +37,12 @@ module Applyance
             }
 
             response = RestClient.post(api_host + '/reviewers/invites/claim', JSON.dump(values), headers) { |response, request, result| response }
-            error 500 unless response.code == 200
+
+            @errors = collect_errors(response)
+            if @errors.length > 0
+              return erb :'reviewers/claim', :layout => :'layouts/bare'
+            end
+
             json_response = JSON.parse(response)
 
             auth = authenticate({

@@ -14,7 +14,7 @@ module Applyance
 
           # GET Login
           app.get '/accounts/login' do
-            erb :'accounts/login', :layout => :'layouts/public/bare'
+            erb :'accounts/login', :layout => :'layouts/bare'
           end
 
           # POST Login
@@ -25,12 +25,9 @@ module Applyance
               "password" => params[:account][:password]
             })
 
-            unless auth['raw'].code == 200
-              @errors = []
-              if auth['data']['errors'] && auth['data']['errors'].first['status'] == 400
-                @errors << auth['data']['errors'].first['detail']
-              end
-              return erb :'accounts/login', :layout => :'layouts/public/bare'
+            @errors = collect_errors(auth['raw'])
+            if @errors.length > 0
+              return erb :'accounts/login', :layout => :'layouts/bare'
             end
 
             session[:api_key] = auth['api_key']

@@ -1,6 +1,6 @@
 module Applyance
   module Helpers
-    module Auth
+    module API
 
       def authenticate(params)
         response = RestClient.post(Applyance::Client.settings.api_host + '/accounts/auth', JSON.dump(params), { :content_type => 'application/json'}) { |response, request, result| response }
@@ -13,6 +13,23 @@ module Applyance
           'data' => json_response,
           'raw' => response
         }
+      end
+
+      def collect_errors(response)
+        return [] unless response && (response.length > 0)
+
+        errors = []
+        json_response = JSON.parse(response)
+
+        unless [200, 201, 204].include?(response.code)
+          if json_response['errors'] && json_response['errors'].first['status'] == 400
+            errors << json_response['errors'].first['detail']
+          else
+            error 500
+          end
+        end
+
+        errors
       end
 
     end

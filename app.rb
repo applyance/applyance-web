@@ -27,7 +27,7 @@ module Applyance
     end
 
     # Helpers
-    helpers Applyance::Helpers::Auth
+    helpers Applyance::Helpers::API
 
     # Models
     register Applyance::Modeling::Init

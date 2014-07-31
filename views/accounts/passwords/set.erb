@@ -1,45 +1,32 @@
-<section class="site-content" style="padding-bottom: 202px;">
+<form action="/accounts/passwords/set" method="post" class="login">
 
-  <section class="sector--space lead--clear trim">
-    <div class="gut trim">
-      <h1>Set New Password</h1>
-    </div>
-  </section>
+  <a href="/" class="login__logo">
+    <img src="/img/logo.png" class="login__logo__img" />
+  </a>
 
-  <section class="sector--space">
-    <div class="gut">
+  <% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+    <li>
+      <%= error %>
+    </li>
+    <% end %>
+  </ul>
+  <% end %>
 
-      <form accept-charset="UTF-8" action="/accounts/password/set" id="new_reset" method="post" novalidate="novalidate">
+  <ul class="login__fields">
+    <li class="login__field">
+      <input id="password" name="account[password]" type="password" placeholder="New Password">
+    </li>
+  </ul>
 
-        <div class="district-set--small clear">
+  <div class="login__tray">
+    <input type="hidden" name="code" value="<%= @code %>">
+    <button class="btn--primary" type="submit">Set Password</button>
+  </div>
 
-          <input type="hidden" name="id" value=<%= id %> />
-          <input type="hidden" name="token" value=<%= token %> />
+  <div>
+    <a href="/accounts/login">Sign In</a>
+  </div>
 
-          <ul class="district-list list--layout">
-            <li>
-              <div class="district trim">
-                <div class="field first">
-                  <label for="password">New Password</label>
-                  <input id="password" name="password" parsley-required="true" type="password" value="" class="parsley-validated">
-                </div>
-                <div class="field last">
-                  <label for="password">Verify Password</label>
-                  <input id="password" name="password" parsley-required="true" type="password" value="" class="parsley-validated">
-                </div>
-              </div>
-            </li>
-          </ul>
-
-          <div class="group">
-            <div class="float--right">
-              <button class="btn--green forward" name="button" type="submit">Set New Password</button>
-            </div>
-          </div>
-
-        </div>
-      </form>
-    </div>
-  </section>
-
-</section>
+</form>

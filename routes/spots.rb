@@ -12,7 +12,12 @@ module Applyance
         # Spot Application
         app.get '/spots/:id/apply' do
           @id = params[:id]
-          erb :'spots/apply', :layout => :'layouts/public'
+          headers = { :content_type => 'application/json' }
+
+          spot = RestClient.get(api_host + "/spots/#{@id}", headers)
+          @spot = JSON.parse(spot)
+
+          erb :'spots/apply', :layout => :'layouts/application'
         end
 
       end
