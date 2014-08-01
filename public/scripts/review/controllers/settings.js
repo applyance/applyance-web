@@ -5,6 +5,11 @@ angular.module('Review')
   function ($scope, $routeParams, $location, Me, Context) {
 
     $scope.context = Context.getObject();
+    $scope.entity = Me.getEntity($scope.context.id);
     $scope.settings = Context.getPart(3);
+
+    $scope.isActive = function(settings) {
+      return $scope.settings == settings;
+    }
 
   }]);

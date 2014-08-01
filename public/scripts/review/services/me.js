@@ -1,32 +1,9 @@
 angular.module('Review')
   .run(function(Me) {})
-  .service('Me', ['ApplyanceAPI',
-    function(ApplyanceAPI) {
+  .service('Me', ['ApplyanceAPI', 'me',
+    function(ApplyanceAPI, me) {
 
-      this.me = null;
-      this.inited = false;
-      this.initFns = [];
-
-      this.onInit = function(fn) {
-        if (this.inited) {
-          fn.call();
-        } else {
-          this.initFns.push(fn);
-        }
-      };
-
-      this.init = function() {
-        if (this.inited) {
-          return;
-        }
-        var service = this;
-        return ApplyanceAPI.getMe().then(function(_me) {
-          service.inited = true;
-          service.me = _me.data;
-          _.each(service.initFns, function(fn) { fn.call(); });
-          return service;
-        });
-      };
+      this.me = me;
 
       this.setMe = function(_me) {
         this.me = _me;

@@ -2,11 +2,8 @@
 
 angular.module('Applyance', ['restangular'])
   .run(function(ApplyanceAPI) {})
-  .factory('ApplyanceAPI', ['$http', 'Restangular',
-    function($http, Restangular) {
-
-      var apiKey = window.apiKey;
-      var apiHost = window.apiHost;
+  .factory('ApplyanceAPI', ['$http', 'Restangular', 'apiHost', 'apiKey',
+    function($http, Restangular, apiHost, apiKey) {
 
       Restangular.setBaseUrl(apiHost);
       Restangular.setDefaultHeaders({ 'Authorization': "ApplyanceLogin auth=" + apiKey });
@@ -19,6 +16,14 @@ angular.module('Applyance', ['restangular'])
       };
       this.updateMe = function(accountId, accountInfo) {
         return $http.put(apiHost + "/accounts/" + accountId, accountInfo);
+      };
+
+      // Accounts
+      this.checkForEmail = function(email) {
+        return $http.get(apiHost + '/emails?email=' + email);
+      };
+      this.authenticate = function(auth) {
+        return $http.post(apiHost + '/accounts/auth', auth);
       };
 
       // Applications
@@ -35,13 +40,14 @@ angular.module('Applyance', ['restangular'])
       // Attachments
       this.uploadAttachment = function(fileData, contentType) {
         return $http.post(apiHost + "/attachments", fileData, {
-          headers: {
-            'Content-Type': contentType
-          }
+          headers: { 'Content-Type': contentType }
         });
       };
 
       // Entities
+      this.getEntity = function(id) {
+        return Restangular.one('entities', id).get();
+      };
       this.getEntities = function(id) {
         return Restangular.one('entities', id).all('entities').getList();
       };
@@ -91,6 +97,11 @@ angular.module('Applyance', ['restangular'])
       };
       this.postBlueprint = function(id, blueprint) {
         return Restangular.one('entities', id).all('blueprints').post(blueprint);
+      };
+
+      // Datums
+      this.getDatums = function(id) {
+        return Restangular.one('applicants', id).all('datums').getList();
       };
 
       // Spots

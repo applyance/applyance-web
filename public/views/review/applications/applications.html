@@ -1,16 +1,18 @@
-<h1>Applications</h1>
+<div class="main-container">
+  <h1 class="top-header">Applications</h1>
 
-<div ng-switch on="applications.length">
-  <div ng-switch-default>
-    <ul>
-      <li ng-repeat="application in applications">
-        <a href="applications/{{ application.id }}">
-          {{ application.applicant.account.name }}
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div ng-switch-when="0">
-    No applications just yet!
+  <div ng-switch on="applications.length">
+    <div ng-switch-default>
+      <ul>
+        <li ng-repeat="application in applications">
+          <a href="applications/{{ application.id }}">
+            {{ application.applicant.account.name }}
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div ng-switch-when="0">
+      No applications just yet!
+    </div>
   </div>
 </div>

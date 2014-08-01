@@ -1,15 +1,17 @@
-<h1>Application</h1>
+<div class="main-container">
+  <h1>Application</h1>
 
-<div>
-  {{ application.submitter.name }}
-  {{ application.submitter.email }}
+  <div>
+    {{ application.submitter.name }}
+    {{ application.submitter.email }}
 
-  <div ng-repeat="field in application.fields">
-    <div>
-      {{ field.datum.definition.label }}
-    </div>
-    <div>
-      {{ field.datum.detail.value }}
+    <div ng-repeat="field in application.fields">
+      <div>
+        {{ field.datum.definition.label }}
+      </div>
+      <div>
+        {{ field.datum.detail.value }}
+      </div>
     </div>
   </div>
 </div>

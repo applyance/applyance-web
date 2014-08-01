@@ -1,6 +1,8 @@
 .header,
 .mark {
-  height: $header-height;
+  @media only screen and (min-width : 480px) {
+    height: $header-height;
+  }
 }
 
 .header {
@@ -74,9 +76,27 @@
 .account {
   display: inline-block;
   @media only screen and (min-width : 480px) {
-    margin-top: ($header-height - 32px) / 2;
+    margin-top: ($header-height - 35px) / 2;
     float: right;
   }
+}
+
+.account__context {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  margin-right: 24px;
+  padding: 8px 12px;
+  padding-right: 12px + 8px + 12px;
+
+  font-size: 14px;
+
+  color: white;
+  border: 0;
+  border-radius: 3px;
+  background-color: rgba(white, .125);
+
+  @include appearance(none);
 }
 
 .account__avatar,

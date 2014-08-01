@@ -1,3 +1,138 @@
 .main {
-  padding: 60px;
+  position: absolute;
+  top: $header-height;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.top-header {
+  margin-top: 0;
+}
+
+.header-action {
+  margin-top: -5px;
+  @media only screen and (min-width : 480px) {
+    float: right;
+  }
+}
+
+/* Slats */
+
+.slats {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+}
+
+.slats__item {
+  border-bottom: 2px solid $color-gray;
+  padding: 36px 0;
+  &:first-child {
+    border-top: 2px solid $color-gray;
+  }
+}
+
+.slats__main {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 16px;
+  width: percentage(2 / 3);
+}
+
+.slats__item__header {
+  margin-bottom: 6px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.slats__actions {
+  display: inline-block;
+  text-align: right;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: percentage(1 / 3);
+  font-size: 0;
+}
+
+.slats__actions__item {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 6px;
+  &:first-child { margin-left: 0; }
+}
+
+/* Edit Box */
+
+.edit-box {
+  position: relative;
+  &.is-editing .edit-box__label {
+    display: none;
+  }
+  &.is-editing .edit-box__input {
+    display: inline-block;
+  }
+}
+
+.edit-box__label,
+.edit-box__input {
+  padding: 8px;
+
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.edit-box__label {
+  display: inline-block;
+  position: relative;
+  border: 4px solid transparent;
+}
+
+.edit-box__input {
+  display: none;
+  position: relative;
+}
+
+.edit-box__edit {
+  margin-left: 12px;
+}
+
+/* Color Swatch */
+
+.color-swatch {
+  display: inline-block;
+}
+
+.color-swatch__color {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0;
+  width: 44px;
+  height: 44px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.color-swatch__input {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 7px 18px;
+  border-left: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+/* Box Grid */
+
+.box-grid {
+
+}
+
+/* New Prompt */
+
+.new-prompt {
+  margin: 48px 0;
 }

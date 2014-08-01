@@ -1,16 +1,27 @@
-<h1>Entity Settings</h1>
+<h1 class="top-header">Settings</h1>
 
-<ul>
-  <li>
-    <label>Name</label>
-    <input name="entityName" ng-model="entity.name" type="text" value="{{ entity.name }}" />
-  </li>
-  <li>
-    <label>Logo</label>
-    <img width="100" ng-if="entity.logo.url" src="{{ entity.logo.url }}" alt="entity logo" />
-    <input type="file" fileread="entity" accepts="image/*">
-  </li>
-  <li>
-    <button ng-click="startUpdateEntity()">Update</button>
-  </li>
-</ul>
+<div class="settings-inputs">
+  <ul class="settings-inputs__list">
+    <li class="settings-inputs__item">
+      <label class="settings-inputs__label">Name</label>
+      <input name="entityName" ng-model="entity.name" type="text" value="{{ entity.name }}" placeholder="Enter your company name here" size="30" />
+    </li>
+    <li class="settings-inputs__item">
+      <label class="settings-inputs__label">Logo</label>
+      <div class="attachment">
+        <div class="attachment__box">
+          <img ng-if="entity.logo.url" src="{{ entity.logo.url }}" alt="entity logo" />
+        </div>
+        <button class="btn--secondary attachment__choose" ng-click="clickChoose()">Choose</button>
+        <input class="attachment__file" id="logo" type="file" fileread="entity" accepts="image/*">
+      </div>
+    </li>
+    <li class="settings-inputs__item">
+      <label class="settings-inputs__label">Location</label>
+      <textarea name="entityLocation" ng-model="address" ng-change="addressChange()" placeholder="Enter your address here" cols="30">{{ address }}</textarea>
+    </li>
+  </ul>
+  <div class="settings-inputs__tray">
+    <button class="btn--primary" ng-click="startUpdateEntity()">Update</button>
+  </div>
+</div>

@@ -1,27 +1,37 @@
-<h1>Account Settings</h1>
+<div class="main-container">
+  <h1 class="top-header">Account Settings</h1>
 
-<ul>
-  <li>
-    <label>Name</label>
-    <input type="text" ng-model="updatedAccountInfo.name">
-  </li>
-  <li>
-    <label>Avatar</label>
-    <img width="100" ng-if="updatedAccountInfo.avatar" src="{{ updatedAccountInfo.avatar.url }}" alt="avatar" />
-    <input type="file" avatarread="updatedAccountInfo" accepts="image/*">
-  </li>
-  <li>
-    <label>Email</label>
-    <input type="email" ng-model="updatedAccountInfo.email">
-  </li>
-  <li>
-    <label>Verify password</label>
-    <input type="password" ng-model="updatedAccountInfo.currentPassword">
-  </li>
-  <li>
-    <label>New password</label>
-    <input type="password" ng-model="updatedAccountInfo.newPassword">
-  </li>
-</ul>
-
-<button ng-click="updateAccount()">Update</button>
+  <div class="settings-inputs">
+    <ul class="settings-inputs__list">
+      <li class="settings-inputs__item">
+        <label class="settings-inputs__label">Name</label>
+        <input type="text" ng-model="updatedAccountInfo.name" size="30">
+      </li>
+      <li class="settings-inputs__item">
+        <label class="settings-inputs__label">Avatar</label>
+        <div class="attachment">
+          <div class="attachment__box">
+            <img ng-if="updatedAccountInfo.avatar" src="{{ updatedAccountInfo.avatar.url }}" alt="avatar" />
+          </div>
+          <button class="btn--secondary attachment__choose" ng-click="clickChoose()">Choose</button>
+          <input class="attachment__file" id="avatar" type="file" avatarread="updatedAccountInfo" accepts="image/*">
+        </div>
+      </li>
+      <li class="settings-inputs__item">
+        <label class="settings-inputs__label">Email</label>
+        <input type="email" ng-model="updatedAccountInfo.email" size="30">
+      </li>
+      <li class="settings-inputs__item">
+        <label class="settings-inputs__label">Verify password</label>
+        <input type="password" ng-model="updatedAccountInfo.currentPassword" size="30">
+      </li>
+      <li class="settings-inputs__item">
+        <label class="settings-inputs__label">New password</label>
+        <input type="password" ng-model="updatedAccountInfo.newPassword" size="30">
+      </li>
+    </ul>
+    <div class="settings-inputs__tray">
+      <button class="btn--primary" ng-click="updateAccount()">Update</button>
+    </div>
+  </div>
+</div>

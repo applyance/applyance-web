@@ -1,14 +1,16 @@
 'use strict';
 
 angular.module('Review')
-  .controller('EntityLabelsCtrl', ['$scope', 'ApplyanceAPI', 'Me', 'Context',
-    function ($scope, ApplyanceAPI, Me, Context) {
+  .controller('EntityLabelsCtrl', ['$scope', 'ApplyanceAPI', '$timeout', 'Me', 'Context',
+    function ($scope, ApplyanceAPI, $timeout, Me, Context) {
 
-      $scope.entity = Me.getEntity(Context.getId());
+      ApplyanceAPI.getEntity(Context.getId()).then(function(entity) {
+        $scope.entity = entity.plain();
 
-      $scope.labels = [];
-      ApplyanceAPI.getLabels($scope.entity.id).then(function(labels) {
-         $scope.labels = labels;
+        $scope.labels = [];
+        ApplyanceAPI.getLabels($scope.entity.id).then(function(labels) {
+           $scope.labels = labels;
+        });
       });
 
       $scope.isEditing = function(label) {
@@ -23,7 +25,9 @@ angular.module('Review')
 
       $scope.triggerEdit = function(label) {
         label.isEditing = true;
-        $scope.$broadcast('isEditingLabel-' + label.id);
+        $timeout(function() {
+          $scope.$broadcast('isEditingLabel-' + label.id);
+        }, 100);
       }
 
       $scope.updateLabel = function(label) {

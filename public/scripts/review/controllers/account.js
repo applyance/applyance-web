@@ -1,11 +1,23 @@
 'use strict';
 
 angular.module('Review')
-  .controller('AccountSettingsCtrl', ['$scope', '$routeParams', '$location', 'Me', 'Context',
-  function ($scope, $routeParams, $location, Me, Context) {
+  .controller('AccountSettingsCtrl', ['$scope', '$routeParams', '$location', 'Me', 'Context', '$timeout',
+  function ($scope, $routeParams, $location, Me, Context, $timeout) {
 
     var currentInfo = Me.getMe().account;
     $scope.updatedAccountInfo = angular.copy(currentInfo);
+
+    $scope.clickChoose = function() {
+      $timeout(function() {
+        var logo = document.querySelectorAll('#avatar');
+        var event = new MouseEvent('click', {
+          'view': window,
+          'bubbles': true,
+          'cancelable': true
+        });
+        logo[0].dispatchEvent(event);
+      }, 100);
+    }
 
     $scope.updateAccount = function() {
 

@@ -997,7 +997,8 @@ html {
   font-size: 100%;
   font-family: 'Gotham Rounded SSm A', 'Gotham Rounded SSm B';
   font-weight: 300;
-  font-style: normal; }
+  font-style: normal;
+  color: #333333; }
 
 *, *:before, *:after {
   box-sizing: inherit; }
@@ -1008,19 +1009,39 @@ html {
   clear: both; }
 
 /* Buttons */
-.btn, .btn--primary, .btn--secondary {
+.btn, .btn--primary, .btn--secondary, .btn--tertiary {
   display: inline-block;
-  padding: 18px 42px;
-  font-size: 14px;
+  padding: 14px 42px;
+  font-size: 16px;
   font-weight: 400;
-  text-transform: uppercase;
   line-height: 1.2;
+  text-decoration: none;
   border: 0;
-  border-radius: 2px; }
+  border-radius: 4px;
+  -webkit-transition: background-color 200ms ease-in-out;
+  -moz-transition: background-color 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out; }
+  .btn.is-small, .is-small.btn--primary, .is-small.btn--secondary, .is-small.btn--tertiary {
+    font-size: 14px;
+    padding: 12px 24px; }
+  .btn.is-disabled, .is-disabled.btn--primary, .is-disabled.btn--secondary, .is-disabled.btn--tertiary {
+    cursor: default;
+    opacity: .3; }
 
 .btn--primary {
-  background-color: #374249;
+  background-color: #f2bc36;
   color: white; }
+  .btn--primary:not(.is-disabled):hover {
+    background-color: #f5cc66; }
 
 .btn--secondary {
-  background-color: #eef0f2; }
+  background-color: #eef0f2;
+  color: #333333; }
+  .btn--secondary:not(.is-disabled):hover {
+    background-color: #e0e3e7; }
+
+.btn--tertiary {
+  background-color: #777;
+  color: white; }
+  .btn--tertiary:not(.is-disabled):hover {
+    background-color: #5e5e5e; }

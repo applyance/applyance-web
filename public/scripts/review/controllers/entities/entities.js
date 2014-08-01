@@ -1,21 +1,26 @@
 'use strict';
 
 angular.module('Review')
-  .controller('EntityEntitiesCtrl', ['$scope', 'ApplyanceAPI', 'Me', 'Context',
-    function ($scope, ApplyanceAPI, Me, Context) {
+  .controller('EntityEntitiesCtrl', ['$scope', 'ApplyanceAPI', '$timeout', 'Me', 'Context',
+    function ($scope, ApplyanceAPI, $timeout, Me, Context) {
 
       $scope.entity = Me.getEntity(Context.getId());
+      
+      ApplyanceAPI.getEntity(Context.getId()).then(function(entity) {
+        $scope.entity = entity.plain();
 
-      $scope.units = [];
-      ApplyanceAPI.getEntities($scope.entity.id).then(function(entities) {
-         $scope.entities = entities;
+        $scope.units = [];
+        ApplyanceAPI.getEntities($scope.entity.id).then(function(entities) {
+           $scope.entities = entities;
+           $scope.entities.reverse();
+        });
       });
 
       $scope.isEditing = function(entity) {
         return !!entity.isEditing;
       }
 
-      $scope.removeUnit = function(entity) {
+      $scope.removeEntity = function(entity) {
         ApplyanceAPI.deleteEntity(entity.id).then(function() {
           $scope.entities.splice($scope.entities.indexOf(entity), 1);
         });
@@ -23,7 +28,9 @@ angular.module('Review')
 
       $scope.triggerEdit = function(entity) {
         entity.isEditing = true;
-        $scope.$broadcast('isEditingEntity-' + entity.id);
+        $timeout(function() {
+          $scope.$broadcast('isEditingEntity-' + entity.id);
+        }, 100);
       }
 
       $scope.updateEntity = function(entity) {
@@ -39,7 +46,7 @@ angular.module('Review')
           name: "New Entity"
         }).then(function(entity) {
           entity.isEditing = true;
-          $scope.entities.push(entity);
+          $scope.entities.unshift(entity);
           _.defer(function() {
             $scope.$broadcast('isEditingEntity-' + entity.id);
           });

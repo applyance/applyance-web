@@ -1,30 +1,40 @@
-<h1>Reviewers</h1>
+<h1 class="top-header">
+  Reviewers
+  <a href="" class="header-action btn--primary" ng-click="inviteReviewer()">Invite Reviewer</a>
+</h1>
 
-<div ng-controller="EntityReviewersCtrl">
-  <ul>
-    <li ng-repeat="reviewer in reviewers">
-      <span>{{ reviewer.account.name }}</span>
-      <span>{{ reviewer.account.email }}</span>
-      <a href="" ng-class="{ disabled: !isRevokable(reviewer) }" ng-disabled="!isRevokable(reviewer)" ng-click="revokeAccess(reviewer)">Revoke Access</a>
+<div class="new-prompt" ng-if="inviting">
+  <input name="newInvite" ng-model="newInvite.email" value="{{ newInvite.email }}" type="text" placeholder="Email">
+  <select ng-model="selectedScope"
+          ng-options="scope.name for scope in scopes"></select>
+  <button ng-click="commitInvite()">Invite</button>
+</div>
+
+<div>
+  <ul class="slats">
+    <li class="slats__item" ng-repeat="reviewer in reviewers">
+      <div class="slats__main">
+        <div class="slats__item__header">{{ reviewer.account.name }}</div>
+        <div>{{ reviewer.account.email }}</div>
+      </div>
+      <ul class="slats__actions">
+        <li class="slats__actions__item">
+          <a href="" class="btn--tertiary is-small" ng-class="{ 'is-disabled': !isRevokable(reviewer) }" ng-disabled="!isRevokable(reviewer)" ng-click="revokeAccess(reviewer)">Revoke Access</a>
+        </li>
+      </ul>
     </li>
   </ul>
 </div>
 
-<div ng-controller="EntityInvitesCtrl">
-  <h2>Invitations</h2>
-
-  <a href="" ng-click="inviteReviewer()">New Invite</a>
-
-  <div ng-if="inviting">
-    <input name="newInvite" ng-model="newInvite.email" value="{{ newInvite.email }}" type="text" placeholder="Email">
-    <select ng-model="selectedScope"
-            ng-options="scope.name for scope in scopes"></select>
-    <button ng-click="commitInvite()">Invite</button>
-  </div>
-
-  <ul>
-    <li ng-repeat="invite in invites" ng-class="{{ invite.status }}">
-      <span>{{ invite.email }}</span>
+<div>
+  <h2>
+    Invitations Sent
+  </h2>
+  <ul class="slats">
+    <li class="slats__item invite--{{ invite.status }}" ng-repeat="invite in invites">
+      <div class="slats__main">
+        <span>{{ invite.email }}</span>
+      </div>
     </li>
   </ul>
 </div>

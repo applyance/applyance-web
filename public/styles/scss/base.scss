@@ -13,6 +13,8 @@ html {
   font-family: 'Gotham Rounded SSm A', 'Gotham Rounded SSm B';
   font-weight: 300;
   font-style: normal;
+
+  color: $color-text;
 }
 
 *, *:before, *:after {
@@ -29,22 +31,49 @@ html {
 
 .btn {
   display: inline-block;
-  padding: 18px 42px;
-  font-size: 14px;
+  padding: 14px 42px;
+  font-size: 16px;
   font-weight: 400;
-  text-transform: uppercase;
   line-height: 1.2;
+  text-decoration: none;
   border: 0;
-  border-radius: 2px;
+  border-radius: 4px;
+
+  @include transition(background-color 200ms ease-in-out);
+
+  &.is-small {
+    font-size: 14px;
+    padding: 12px 24px;
+  }
+  &.is-disabled {
+    cursor: default;
+    opacity: .3;
+  }
 }
 
 .btn--primary {
   @extend .btn;
-  background-color: $color-base;
+  background-color: $color-brand;
   color: white;
+  &:not(.is-disabled):hover {
+    background-color: lighten($color-brand, 10%);
+  }
 }
 
 .btn--secondary {
   @extend .btn;
   background-color: $color-gray;
+  color: $color-text;
+  &:not(.is-disabled):hover {
+    background-color: darken($color-gray, 5%);
+  }
+}
+
+.btn--tertiary {
+  @extend .btn;
+  background-color: #777;
+  color: white;
+  &:not(.is-disabled):hover {
+    background-color: darken(#777, 10%);
+  }
 }

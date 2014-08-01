@@ -3,12 +3,26 @@
 
 <form name="apply" ng-submit="onSubmit()">
   <ul>
+    <li>
+      <label>Email</label>
+      <input type="email" ng-model="applicant.email" value="{{ applicant.email }}" ng-debounce="350" ng-change="checkEmail()">
+    </li>
+    <li ng-if="promptPassword">
+      <label>Password</label>
+      <input type="password" ng-model="applicant.password" ng-change="authenticate()" ng-debounce="1000">
+    </li>
+    <li ng-if="promptName">
+      <label>Name</label>
+      <input type="text" ng-model="applicant.name" value="{{ applicant.name }}">
+    </li>
+  </ul>
+  <ul>
     <li ng-repeat="blueprint in blueprints">
-      <div>
+      <label for="blueprint[{{ blueprint.id }}]">
         {{ blueprint.definition.label }}
-      </div>
+      </label>
       <div>
-        <textarea ng-model="blueprint.detail"></textarea>
+        <textarea id="blueprint[{{ blueprint.id }}]" ng-model="blueprint.detail.value">{{ blueprint.detail.value }}</textarea>
       </div>
     </li>
   </ul>

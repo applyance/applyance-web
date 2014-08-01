@@ -1,12 +1,29 @@
-<h1>Manage Labels</h1>
+<h1 class="top-header">
+  Labels
+  <a href="" class="header-action btn--primary" ng-click="addLabel()">Create Label</a>
+</h1>
 
-<a href="" ng-click="addLabel()">New</a>
-<ul>
-  <li ng-repeat="label in labels" ng-class="{ editing:isEditing(label) }">
-    {{ label.name }}
-    <input type="text" ng-model="label.name" value="{{ label.name }}" focus-on="isEditingLabel-{{ label.id }}" ng-blur="updateLabel(label)">
-    <input type="text" ng-model="label.color" value="{{ label.color }}" focus-on="isEditingLabel-{{ label.id }}" ng-blur="updateLabel(label)">
-    <a href="" ng-click="triggerEdit(label)">Edit</a>
-    <a href="" ng-click="removeLabel(label)">Remove</a>
+<ul class="slats">
+  <li class="slats__item" ng-repeat="label in labels">
+    <div class="slats__main">
+      <div class="edit-box" ng-class="{ 'is-editing':isEditing(label) }">
+        <div class="edit-box__label">{{ label.name }}</div>
+        <input class="edit-box__input" type="text" ng-model="label.name" value="{{ label.name }}" size="{{ label.name.length }}" focus-on="isEditingLabel-{{ label.id }}" ng-blur="updateLabel(label)">
+        <a href="" class="edit-box__edit btn--secondary is-small" ng-click="triggerEdit(label)">
+          <i class="icon-pencil"></i>
+        </a>
+      </div>
+    </div>
+    <ul class="slats__actions">
+      <li class="slats__actions__item">
+        <div class="color-swatch">
+          <span class="color-swatch__color" style="background-color: #{{ label.color }};"></span>
+          <input class="color-swatch__input" type="text" ng-model="label.color" size="6" value="{{ label.color }}" ng-blur="updateLabel(label)">
+        </div>
+      </li>
+      <li class="slats__actions__item">
+        <a href="" class="btn--tertiary is-small" ng-click="removeLabel(label)">Remove</a>
+      </li>
+    </ul>
   </li>
 </ul>

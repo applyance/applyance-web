@@ -1,31 +1,31 @@
 <!-- Secondary nav aka Sidebar -->
-<div>
-  <div>
-    <a href="/entities/{{ context.id }}/settings">Company Settings</a>
-  </div>
-  <div>
-    <a href="/entities/{{ context.id }}/entities">Locations</a>
-  </div>
-  <div>
-    <a href="/entities/{{ context.id }}/reviewers">Team</a>
-  </div>
-  <div>
-    <a href="/entities/{{ context.id }}/blueprints">Questions</a>
-  </div>
-  <div>
-    <a href="/entities/{{ context.id }}/labels">Labels</a>
-  </div>
-</div>
+<ul class="sidebar-menu">
+  <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('settings') }">
+    <a class="sidebar-menu__link" href="/entities/{{ context.id }}/settings">Settings</a>
+  </li>
+  <li ng-if="entity.parent_id == null" class="sidebar-menu__item" ng-class="{ 'is-active': isActive('entities') }">
+    <a class="sidebar-menu__link" href="/entities/{{ context.id }}/entities">Units</a>
+  </li>
+  <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('reviewers') }">
+    <a class="sidebar-menu__link" href="/entities/{{ context.id }}/reviewers">Team</a>
+  </li>
+  <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('blueprints') }">
+    <a class="sidebar-menu__link" href="/entities/{{ context.id }}/blueprints">Questions</a>
+  </li>
+  <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('labels') }">
+    <a class="sidebar-menu__link" href="/entities/{{ context.id }}/labels">Labels</a>
+  </li>
+</ul>
 
 <!-- content area (right side stuff) -->
-<div ng-switch="settings">
+<div class="sidebar-content main-container" ng-switch="settings">
   <div ng-switch-when="settings" ng-controller="EntitySettingsCtrl">
     <div ng-include="'views/review/settings/entitySettings.html'"></div>
   </div>
   <div ng-switch-when="entities" ng-controller="EntityEntitiesCtrl">
     <div ng-include="'views/review/settings/manageEntities.html'"></div>
   </div>
-  <div ng-switch-when="reviewers">
+  <div ng-switch-when="reviewers" ng-controller="EntityReviewersCtrl">
     <div ng-include="'views/review/settings/manageReviewers.html'"></div>
   </div>
   <div ng-switch-when="blueprints" ng-controller="EntityBlueprintsCtrl">

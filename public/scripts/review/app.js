@@ -1,98 +1,54 @@
 'use strict';
 
 angular.module('Review', ['Applyance', 'ngRoute', 'angularMoment'])
-  .config(function($routeProvider, $locationProvider) {
+  .config(['$routeProvider', '$locationProvider', 'me',
+    function($routeProvider, $locationProvider, me) {
 
-    $routeProvider
-      .when('/accounts/:id/settings', {
-        templateUrl: 'views/review/settings/account.html',
-        controller: 'AccountSettingsCtrl',
-        resolve: {
-          me: function(Me) {
-            return Me.init();
-          }
-        }
-      })
+      $routeProvider
+        .when('/accounts/:id/settings', {
+          templateUrl: 'views/review/settings/account.html',
+          controller: 'AccountSettingsCtrl'
+        })
 
-      .when('/dashboard', {
-        templateUrl: 'views/review/dashboard.html',
-        controller: 'DashboardCtrl'
-      })
+        .when('/dashboard', {
+          templateUrl: 'views/review/dashboard.html',
+          controller: 'DashboardCtrl'
+        })
 
-      .when('/:parent/:id/applications', {
-        controller: 'ApplicationsCtrl',
-        templateUrl: 'views/review/applications/applications.html',
-        resolve: {
-          me: function(Me) {
-            return Me.init();
-          }
-        }
-      })
-      .when('/applications/:id', {
-        templateUrl: 'views/review/applications/application.html',
-        controller: 'ApplicationCtrl',
-        resolve: {
-          me: function(Me) {
-            return Me.init();
-          }
-        }
-      })
+        .when('/:parent/:id/applications', {
+          controller: 'ApplicationsCtrl',
+          templateUrl: 'views/review/applications/applications.html'
+        })
+        .when('/applications/:id', {
+          templateUrl: 'views/review/applications/application.html',
+          controller: 'ApplicationCtrl'
+        })
 
-      .when('/entities/:id/settings', {
-        templateUrl: 'views/review/settings/settings.html',
-        controller: 'SettingsCtrl',
-        resolve: {
-          me: function(Me) {
-            return Me.init();
-          }
-        }
-      })
-      .when('/entities/:id/entities', {
-        templateUrl: 'views/review/settings/settings.html',
-        controller: 'SettingsCtrl',
-        resolve: {
-          me: function(Me) {
-            return Me.init();
-          }
-        }
-      })
-      .when('/entities/:id/reviewers', {
-        templateUrl: 'views/review/settings/settings.html',
-        controller: 'SettingsCtrl',
-        resolve: {
-          me: function(Me) {
-            return Me.init();
-          }
-        }
-      })
-      .when('/entities/:id/blueprints', {
-        templateUrl: 'views/review/settings/settings.html',
-        controller: 'SettingsCtrl',
-        resolve: {
-          Me: function(Me) {
-            return Me.init();
-          }
-        }
-      })
-      .when('/entities/:id/labels', {
-        templateUrl: 'views/review/settings/settings.html',
-        controller: 'SettingsCtrl',
-        resolve: {
-          me: function(Me) {
-            return Me.init();
-          }
-        }
-      })
+        .when('/entities/:id/settings', {
+          templateUrl: 'views/review/settings/settings.html',
+          controller: 'SettingsCtrl'
+        })
+        .when('/entities/:id/entities', {
+          templateUrl: 'views/review/settings/settings.html',
+          controller: 'SettingsCtrl'
+        })
+        .when('/entities/:id/reviewers', {
+          templateUrl: 'views/review/settings/settings.html',
+          controller: 'SettingsCtrl'
+        })
+        .when('/entities/:id/blueprints', {
+          templateUrl: 'views/review/settings/settings.html',
+          controller: 'SettingsCtrl'
+        })
+        .when('/entities/:id/labels', {
+          templateUrl: 'views/review/settings/settings.html',
+          controller: 'SettingsCtrl'
+        })
 
-      .otherwise({
-        redirectTo: '/',
-        resolve: {
-          me: function(Me) {
-            return Me.init();
-          }
-        }
-      });
+        .otherwise({
+          redirectTo: '/entities/' + me.reviewers[0].entity.id + '/applications'
+        });
 
-    $locationProvider.html5Mode(true);
+      $locationProvider.html5Mode(true);
 
-  });
+    }]);

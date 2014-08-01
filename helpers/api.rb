@@ -2,6 +2,15 @@ module Applyance
   module Helpers
     module API
 
+      def me(api_key)
+        headers = {
+          :content_type => 'application/json',
+          :authorization => "ApplyanceLogin auth=#{api_key}"
+        }
+        response = RestClient.get(Applyance::Client.settings.api_host + '/accounts/me', headers) { |response, request, result| response }
+        JSON.parse(response)
+      end
+
       def authenticate(params)
         response = RestClient.post(Applyance::Client.settings.api_host + '/accounts/auth', JSON.dump(params), { :content_type => 'application/json'}) { |response, request, result| response }
         json_response = JSON.parse(response)
