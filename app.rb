@@ -19,10 +19,9 @@ module Applyance
 
     # Config
     set :root, File.dirname(__FILE__)
-    enable :sessions, :logging
+    enable :sessions, :logging, :static
 
     configure :development do
-      enable :static
       set :show_exceptions, :after_handler
     end
 
