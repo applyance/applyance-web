@@ -12,7 +12,7 @@
         <div class="attachment__box">
           <img ng-if="entity.logo.url" src="{{ entity.logo.url }}" alt="entity logo" />
         </div>
-        <button class="btn--secondary attachment__choose" ng-click="clickChoose()">Choose</button>
+        <button class="btn attachment__choose" ng-click="clickChoose()">Choose</button>
         <input class="attachment__file" id="logo" type="file" fileread="entity" accepts="image/*">
       </div>
     </li>

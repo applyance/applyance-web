@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('Review')
-  .controller('SettingsCtrl', ['$scope', '$routeParams', '$location', 'Me', 'Context',
-  function ($scope, $routeParams, $location, Me, Context) {
+  .controller('SettingsCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'Me', 'Context',
+  function ($scope, $rootScope, $routeParams, $location, Me, Context) {
 
+    $rootScope.inSettings = true;
     $scope.context = Context.getObject();
     $scope.entity = Me.getEntity($scope.context.id);
     $scope.settings = Context.getPart(3);

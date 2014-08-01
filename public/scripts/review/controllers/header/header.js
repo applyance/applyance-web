@@ -8,6 +8,7 @@ angular.module('Review')
       $rootScope.$on("$routeChangeSuccess", function(args) {
         Context.reload();
         $scope.context = Context.getObject("entities", Me.getEntities()[0].id)
+        $rootScope.inSettings = false;
       });
 
       $scope.isActive = function(route) {

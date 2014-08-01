@@ -37,51 +37,29 @@ h1, h2, h3, h4 {
   left: 0;
   padding: 60px;
   overflow: auto;
-}
 
-/* Sidebar Menu */
-
-.sidebar-menu {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  background-color: $color-gray;
-  @media only screen and (min-width : 480px) {
-    float: left;
-    width: $sidebar-width;
+  &.with-sidebar {
+    @media only screen and (min-width : 480px) {
+      margin-left: $sidebar-width;
+    }
   }
 }
 
-.sidebar-content {
-  @media only screen and (min-width : 480px) {
-    margin-left: $sidebar-width;
-  }
-}
+/* Tags */
 
-.sidebar-menu__link {
-  display: block;
-  padding: 24px;
+.tag {
+  display: inline-block;
+  padding: 12px 24px;
 
   font-size: 16px;
-  font-weight: 400;
-  text-decoration: none;
 
-  color: $color-base;
-
-  @include transition(background-color 200ms ease-in-out);
+  border-radius: 24px;
+  border: 2px solid $color-gray-rgba;
 }
 
-.sidebar-menu__item.is-active .sidebar-menu__link,
-.sidebar-menu__link:hover {
-  background-color: darken($color-gray, 5%);
-}
-
-.action-bar {
-  margin-bottom: 24px;
+.tag--success {
+  @extend .tag;
+  border-color: $color-accent;
 }
 
 /* Lists */

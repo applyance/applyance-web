@@ -1,13 +1,32 @@
 <h1 class="top-header">
-  Reviewers
-  <a href="" class="header-action btn--primary" ng-click="inviteReviewer()">Invite Reviewer</a>
+  Team
+  <a href="" class="header-action btn--primary" ng-click="inviteReviewer()">Invite Member</a>
 </h1>
 
 <div class="new-prompt" ng-if="inviting">
-  <input name="newInvite" ng-model="newInvite.email" value="{{ newInvite.email }}" type="text" placeholder="Email">
-  <select ng-model="selectedScope"
-          ng-options="scope.name for scope in scopes"></select>
-  <button ng-click="commitInvite()">Invite</button>
+  <div class="new-prompt__header">
+    <div class="new-prompt__title">
+      Invite a team member to {{ entity.name }}
+    </div>
+    <div class="new-prompt__description text-trim">
+      <p>
+        Allow other team members to administer {{ entity.name }} or simply review applications. Type in the new member's email address and select their permission level below.
+      </p>
+    </div>
+  </div>
+  <div class="new-prompt__main">
+    <input name="newInvite" ng-model="newInvite.email" value="{{ newInvite.email }}" type="text" placeholder="Email of new member" size="24">
+    <select ng-model="selectedScope"
+        ng-options="scope.name | capitalize for scope in scopes"></select>
+  </div>
+  <ul class="new-prompt__actions">
+    <li class="new-prompt__actions__item">
+      <button class="btn--primary" ng-click="commitInvite()">Send Invite</button>
+    </li>
+    <li class="new-prompt__actions__item">
+      <button class="btn" ng-click="closeNewPrompt()">Cancel</button>
+    </li>
+  </ul>
 </div>
 
 <div>
@@ -19,7 +38,7 @@
       </div>
       <ul class="slats__actions">
         <li class="slats__actions__item">
-          <a href="" class="btn--tertiary is-small" ng-class="{ 'is-disabled': !isRevokable(reviewer) }" ng-disabled="!isRevokable(reviewer)" ng-click="revokeAccess(reviewer)">Revoke Access</a>
+          <a href="" class="btn--secondary is-small" ng-class="{ 'is-disabled': !isRevokable(reviewer) }" ng-disabled="!isRevokable(reviewer)" ng-click="revokeAccess(reviewer)">Revoke Access</a>
         </li>
       </ul>
     </li>
@@ -31,10 +50,18 @@
     Invitations Sent
   </h2>
   <ul class="slats">
-    <li class="slats__item invite--{{ invite.status }}" ng-repeat="invite in invites">
+    <li class="slats__item" ng-repeat="invite in invites">
       <div class="slats__main">
-        <span>{{ invite.email }}</span>
+        <div class="slats__item__header">{{ invite.email }}</div>
+        <div>Sent on {{ invite.created_at | amDateFormat: 'MMMM Do YYYY, h:mm a' }}</div>
       </div>
+      <ul class="slats__actions">
+        <li class="slats__actions__item">
+          <span ng-class="invite.status == 'claimed' ? 'tag--success' : 'tag'">
+            {{ invite.status | capitalize }}
+          </span>
+        </li>
+      </ul>
     </li>
   </ul>
 </div>

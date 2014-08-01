@@ -1,24 +1,34 @@
 <!-- Secondary nav aka Sidebar -->
 <ul class="sidebar-menu">
   <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('settings') }">
-    <a class="sidebar-menu__link" href="/entities/{{ context.id }}/settings">Settings</a>
+    <a class="sidebar-menu__link" href="/entities/{{ context.id }}/settings">
+      <i class="icon icon-settings"></i>Settings
+    </a>
   </li>
   <li ng-if="entity.parent_id == null" class="sidebar-menu__item" ng-class="{ 'is-active': isActive('entities') }">
-    <a class="sidebar-menu__link" href="/entities/{{ context.id }}/entities">Units</a>
+    <a class="sidebar-menu__link" href="/entities/{{ context.id }}/entities">
+      <i class="icon icon-location"></i>Units
+    </a>
   </li>
   <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('reviewers') }">
-    <a class="sidebar-menu__link" href="/entities/{{ context.id }}/reviewers">Team</a>
+    <a class="sidebar-menu__link" href="/entities/{{ context.id }}/reviewers">
+      <i class="icon icon-group"></i>Team
+    </a>
   </li>
   <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('blueprints') }">
-    <a class="sidebar-menu__link" href="/entities/{{ context.id }}/blueprints">Questions</a>
+    <a class="sidebar-menu__link" href="/entities/{{ context.id }}/blueprints">
+      <i class="icon icon-notepad"></i>Questions
+    </a>
   </li>
   <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('labels') }">
-    <a class="sidebar-menu__link" href="/entities/{{ context.id }}/labels">Labels</a>
+    <a class="sidebar-menu__link" href="/entities/{{ context.id }}/labels">
+      <i class="icon icon-tag"></i>Labels
+    </a>
   </li>
 </ul>
 
 <!-- content area (right side stuff) -->
-<div class="sidebar-content main-container" ng-switch="settings">
+<div class="main-container with-sidebar" ng-switch="settings">
   <div ng-switch-when="settings" ng-controller="EntitySettingsCtrl">
     <div ng-include="'views/review/settings/entitySettings.html'"></div>
   </div>

@@ -9,7 +9,7 @@
       <div class="edit-box" ng-class="{ 'is-editing':isEditing(label) }">
         <div class="edit-box__label">{{ label.name }}</div>
         <input class="edit-box__input" type="text" ng-model="label.name" value="{{ label.name }}" size="{{ label.name.length }}" focus-on="isEditingLabel-{{ label.id }}" ng-blur="updateLabel(label)">
-        <a href="" class="edit-box__edit btn--secondary is-small" ng-click="triggerEdit(label)">
+        <a href="" class="edit-box__edit btn is-small" ng-click="triggerEdit(label)">
           <i class="icon-pencil"></i>
         </a>
       </div>
@@ -22,7 +22,7 @@
         </div>
       </li>
       <li class="slats__actions__item">
-        <a href="" class="btn--tertiary is-small" ng-click="removeLabel(label)">Remove</a>
+        <a href="" class="btn--secondary is-small" ng-click="removeLabel(label)">Remove</a>
       </li>
     </ul>
   </li>

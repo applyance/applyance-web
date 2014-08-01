@@ -18,7 +18,7 @@ angular.module('Review')
         });
       });
 
-      $scope.scopes = [{name: "admin"}, {name: "limited"}];
+      $scope.scopes = [{ scope: "admin", name: "Administrator" }, { scope: "limited", name: "Reviewer" }];
       $scope.selectedScope =  $scope.scopes[1];
 
       $scope.newInvite = {};
@@ -37,6 +37,10 @@ angular.module('Review')
         return invite.status == "claimed";
       };
 
+      $scope.closeNewPrompt = function() {
+        $scope.inviting = false;
+      }
+
       $scope.inviting = false;
 
       $scope.inviteReviewer = function() {
@@ -47,7 +51,7 @@ angular.module('Review')
         if ($scope.newInvite.email && $scope.selectedScope.name) {
           ApplyanceAPI.postReviewerInvite($scope.entity.id, {
             email: $scope.newInvite.email,
-            scope: $scope.selectedScope.name
+            scope: $scope.selectedScope.slug
           }).then(function(invite) {
             $scope.invites.push(invite);
             $scope.inviting = false;

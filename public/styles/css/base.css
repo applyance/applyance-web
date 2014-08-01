@@ -998,10 +998,19 @@ html {
   font-family: 'Gotham Rounded SSm A', 'Gotham Rounded SSm B';
   font-weight: 300;
   font-style: normal;
+  line-height: 1.2;
   color: #333333; }
+
+p {
+  line-height: 1.5; }
 
 *, *:before, *:after {
   box-sizing: inherit; }
+
+.text-trim > p:first-child {
+  margin-top: 0; }
+.text-trim > p:last-child {
+  margin-bottom: 0; }
 
 .group:after {
   content: "";
@@ -1009,7 +1018,7 @@ html {
   clear: both; }
 
 /* Buttons */
-.btn, .btn--primary, .btn--secondary, .btn--tertiary {
+.btn, .btn--primary, .btn--secondary {
   display: inline-block;
   padding: 14px 42px;
   font-size: 16px;
@@ -1018,13 +1027,17 @@ html {
   text-decoration: none;
   border: 0;
   border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.075);
+  color: #333333;
   -webkit-transition: background-color 200ms ease-in-out;
   -moz-transition: background-color 200ms ease-in-out;
   transition: background-color 200ms ease-in-out; }
-  .btn.is-small, .is-small.btn--primary, .is-small.btn--secondary, .is-small.btn--tertiary {
+  .btn:not(.is-disabled):hover, .btn--primary:not(.is-disabled):hover, .btn--secondary:not(.is-disabled):hover {
+    background-color: rgba(0, 0, 0, 0.15); }
+  .btn.is-small, .is-small.btn--primary, .is-small.btn--secondary {
     font-size: 14px;
     padding: 12px 24px; }
-  .btn.is-disabled, .is-disabled.btn--primary, .is-disabled.btn--secondary, .is-disabled.btn--tertiary {
+  .btn.is-disabled, .is-disabled.btn--primary, .is-disabled.btn--secondary {
     cursor: default;
     opacity: .3; }
 
@@ -1035,13 +1048,7 @@ html {
     background-color: #f5cc66; }
 
 .btn--secondary {
-  background-color: #eef0f2;
-  color: #333333; }
-  .btn--secondary:not(.is-disabled):hover {
-    background-color: #e0e3e7; }
-
-.btn--tertiary {
   background-color: #777;
   color: white; }
-  .btn--tertiary:not(.is-disabled):hover {
+  .btn--secondary:not(.is-disabled):hover {
     background-color: #5e5e5e; }

@@ -1,9 +1,15 @@
 <h1 class="top-header">Questions</h1>
 
-<ul>
-  <li ng-repeat="definition in definitions">
-    <a href="" ng-class="{ set:isSet(definition) }" ng-click="toggle(definition)">
-      {{ definition.label }}
+<div class="toaster">
+  Select all questions you would like to see on an application to {{ entity.name }}.
+</div>
+
+<ul class="selection-grid">
+  <li class="selection-grid__item" ng-class="{ 'is-set':isSet(definition) }" ng-repeat="definition in definitions">
+    <a class="selection-grid__link" href="" ng-click="toggle(definition)">
+      <div class="selection-grid__box">
+        {{ definition.label | blueprint:entity }}
+      </div>
     </a>
   </li>
 </ul>

@@ -9,17 +9,17 @@
       <div class="edit-box" ng-class="{ 'is-editing':isEditing(entity) }">
         <div class="edit-box__label">{{ entity.name }}</div>
         <input class="edit-box__input" type="text" ng-model="entity.name" value="{{ entity.name }}" size="{{ entity.name.length }}" focus-on="isEditingEntity-{{ entity.id }}" ng-blur="updateEntity(entity)">
-        <a href="" class="edit-box__edit btn--secondary is-small" ng-click="triggerEdit(entity)">
+        <a href="" class="edit-box__edit btn is-small" ng-click="triggerEdit(entity)">
           <i class="icon-pencil"></i>
         </a>
       </div>
     </div>
     <ul class="slats__actions">
       <li class="slats__actions__item">
-        <a href="entities/{{ entity.id }}/settings" class="btn--secondary is-small">Edit</a>
+        <a href="entities/{{ entity.id }}/settings" class="btn is-small">Edit</a>
       </li>
       <li class="slats__actions__item">
-        <a href="" class="btn--tertiary is-small" ng-click="removeEntity(entity)">Remove</a>
+        <a href="" class="btn--secondary is-small" ng-click="removeEntity(entity)">Remove</a>
       </li>
     </ul>
   </li>

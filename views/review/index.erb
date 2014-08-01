@@ -22,12 +22,12 @@
       <nav class="nav">
         <ul class="nav__list group">
           <li class="nav__item"
-              ng-class="{ active:isActive('/' + context.group + '/' + context.id + '/applications') }">
+              ng-class="{ 'is-active':isActive('/' + context.group + '/' + context.id + '/applications') }">
             <a href="{{ context.group }}/{{ context.id }}/applications"
                class="nav__link">Applications</a>
           </li>
           <li class="nav__item"
-              ng-class="{ active:isActive('/' + context.group + '/' + context.id + '/settings') }">
+              ng-class="{ 'is-active':inSettings }">
             <a href="{{ context.group }}/{{ context.id }}/settings"
                class="nav__link">Settings</a>
           </li>
@@ -71,6 +71,7 @@
 
     <script type="text/javascript" src="/scripts/review/app.js"></script>
     <script type="text/javascript" src="/scripts/review/directives.js"></script>
+    <script type="text/javascript" src="/scripts/review/filters.js"></script>
 
     <script type="text/javascript" src="/scripts/review/services/me.js"></script>
     <script type="text/javascript" src="/scripts/review/services/context.js"></script>
@@ -86,7 +87,6 @@
     <script type="text/javascript" src="/scripts/review/controllers/entities/blueprints.js"></script>
     <script type="text/javascript" src="/scripts/review/controllers/entities/entities.js"></script>
     <script type="text/javascript" src="/scripts/review/controllers/entities/reviewers.js"></script>
-    <script type="text/javascript" src="/scripts/review/controllers/entities/invites.js"></script>
     <script type="text/javascript" src="/scripts/review/controllers/entities/settings.js"></script>
     <script type="text/javascript" src="/scripts/review/controllers/entities/labels.js"></script>
 

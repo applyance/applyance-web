@@ -58,7 +58,7 @@
     float: left;
     margin-left: 48px;
     &:first-child { margin-left: 0; }
-    &.active .nav__link {
+    &.is-active .nav__link {
       border-bottom: 1px solid $header-link-underline-color;
     }
   }

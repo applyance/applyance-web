@@ -10,6 +10,7 @@ angular.module('Review')
         $scope.labels = [];
         ApplyanceAPI.getLabels($scope.entity.id).then(function(labels) {
            $scope.labels = labels;
+           $scope.labels.reverse();
         });
       });
 
@@ -45,7 +46,7 @@ angular.module('Review')
           color: "000000"
         }).then(function(label) {
           label.isEditing = true;
-          $scope.labels.push(label);
+          $scope.labels.unshift(label);
           _.defer(function() {
             $scope.$broadcast('isEditingLabel-' + label.id);
           });
