@@ -29,22 +29,6 @@ h1, h2, h3, h4 {
   margin-bottom: 1.5em;
 }
 
-.main-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 60px;
-  overflow: auto;
-
-  &.with-sidebar {
-    @media only screen and (min-width : 480px) {
-      margin-left: $sidebar-width;
-    }
-  }
-}
-
 /* Tags */
 
 .tag {
