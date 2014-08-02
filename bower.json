@@ -6,12 +6,6 @@
     "**/*.txt"
   ],
   "dependencies": {
-    "angular": "~1.2.21",
-    "angular-route": "https://github.com/angular/bower-angular-route.git#~1.2.21",
-    "angular-moment": "https://github.com/urish/angular-moment.git#~0.8.0",
-    "moment": "https://github.com/moment/moment.git#~2.7.0",
-    "restangular": "https://github.com/mgonto/restangular.git#~1.4.0",
-    "underscore": "~1.6.0",
-    "cryptojslib": "https://github.com/sytelus/CryptoJS.git#~3.1.2"
+    "underscore": "~1.6.0"
   }
 }

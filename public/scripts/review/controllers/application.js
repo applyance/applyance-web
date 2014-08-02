@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Review')
+module.exports = angular.module('Review')
   .controller('ApplicationCtrl', ['$scope', '$routeParams', 'ApplyanceAPI',
     function ($scope, $routeParams, ApplyanceAPI) {
 

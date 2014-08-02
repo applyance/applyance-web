@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Review')
+module.exports = angular.module('Review')
   .directive("fileread", function () {
     return {
       scope: {

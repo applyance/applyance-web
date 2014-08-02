@@ -1,4 +1,4 @@
-angular.module('Review')
+module.exports = angular.module('Review')
   .run(function(Context) {})
   .service('Context', ['$location', 'Me',
     function($location, Me) {

@@ -1,6 +1,9 @@
 'use strict';
 
-angular.module('Applyance', ['restangular'])
+// require('underscore');
+require('restangular');
+
+module.exports = angular.module('Applyance', ['restangular'])
   .run(function(ApplyanceAPI) {})
   .factory('ApplyanceAPI', ['$http', 'Restangular', 'apiHost', 'apiKey',
     function($http, Restangular, apiHost, apiKey) {

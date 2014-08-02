@@ -1,4 +1,4 @@
-angular.module('Review')
+module.exports = angular.module('Review')
   .factory("flash", function($rootScope, $timeout) {
     var queue = [];
     $rootScope.flashMessage = "";

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Review')
+module.exports = angular.module('Review')
   .controller('SettingsCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'Me', 'Context',
   function ($scope, $rootScope, $routeParams, $location, Me, Context) {
 

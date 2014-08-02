@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Review')
+module.exports = angular.module('Review')
   .controller('EntityEntitiesCtrl', ['$scope', 'ApplyanceAPI', '$timeout', 'Me', 'Context',
     function ($scope, ApplyanceAPI, $timeout, Me, Context) {
 

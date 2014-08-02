@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Review')
+module.exports = angular.module('Review')
   .controller('HeaderCtrl', ['$scope', '$rootScope', '$location', 'Me', 'Context',
     function ($scope, $rootScope, $location, Me, Context) {
 

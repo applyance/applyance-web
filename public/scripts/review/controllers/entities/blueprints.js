@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Review')
+module.exports = angular.module('Review')
   .controller('EntityBlueprintsCtrl', ['$scope', 'ApplyanceAPI', 'Me', 'Context',
     function ($scope, ApplyanceAPI, Me, Context) {
 
