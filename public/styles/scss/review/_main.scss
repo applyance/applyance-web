@@ -92,10 +92,14 @@
 }
 
 .slats__units {
+  display: inline-block;
   list-style-type: none;
   margin: 0;
   padding: 0;
   font-size: 0;
+  &.is-right {
+    text-align: right;
+  }
 }
 
 .slats__units__item {

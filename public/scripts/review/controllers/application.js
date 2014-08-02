@@ -9,17 +9,14 @@ module.exports = angular.module('Review')
       $scope.me = me;
 
       $scope.ratings = null;
-      ApplyanceAPI.getApplicationRatings($routeParams['id']).then(function(ratings) {
-        $scope.ratings = ratings.plain();
+      ApplyanceAPI.getApplication($routeParams['id']).then(function(application) {
+        $scope.application = application.plain();
+        $scope.ratings = $scope.application.ratings;
         var meRating = $scope.getMeRating();
         if (meRating) {
           $scope._setRatingOption(meRating.rating);
         }
         $scope.$broadcast('ratingChange');
-      })
-
-      ApplyanceAPI.getApplication($routeParams['id']).then(function(application) {
-        $scope.application = application.plain();
       });
 
       $scope.cumulativeRating = 0.0;
@@ -33,7 +30,7 @@ module.exports = angular.module('Review')
           $scope.cumulativeRating += rating.rating;
         });
         $scope.cumulativeRating = $scope.cumulativeRating / $scope.ratings.length;
-        $scope.cumulativeRating = (Math.round($scope.cumulativeRating * 10) / 10).toFixed(1);
+        $scope.cumulativeRating = Math.round($scope.cumulativeRating * 10) / 10;
       });
 
       $scope.getEntity = function() {

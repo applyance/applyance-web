@@ -26,6 +26,11 @@ strong {
   font-weight: 500;
 }
 
+a {
+  color: $color-accent;
+  @include transition(color 200ms ease-in-out);
+}
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -63,6 +68,7 @@ strong {
 
   @include transition(background-color 200ms ease-in-out);
 
+  &:not(.is-disabled):focus,
   &:not(.is-disabled):hover {
     background-color: rgba($color-gray-rgba, .15);
   }
@@ -80,8 +86,19 @@ strong {
   @extend .btn;
   background-color: $color-brand;
   color: white;
+  &:not(.is-disabled):focus,
   &:not(.is-disabled):hover {
     background-color: lighten($color-brand, 10%);
+  }
+}
+
+.btn--base {
+  @extend .btn;
+  background-color: $color-base;
+  color: white;
+  &:not(.is-disabled):focus,
+  &:not(.is-disabled):hover {
+    background-color: lighten($color-base, 10%);
   }
 }
 
@@ -89,6 +106,7 @@ strong {
   @extend .btn;
   background-color: #777;
   color: white;
+  &:not(.is-disabled):focus,
   &:not(.is-disabled):hover {
     background-color: darken(#777, 10%);
   }

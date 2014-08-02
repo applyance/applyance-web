@@ -4,16 +4,10 @@ module.exports = angular.module('Review')
   .controller('EntityEntitiesCtrl', ['$scope', 'ApplyanceAPI', '$timeout', 'Me', 'Context',
     function ($scope, ApplyanceAPI, $timeout, Me, Context) {
 
-      $scope.entity = Me.getEntity(Context.getId());
-      
-      ApplyanceAPI.getEntity(Context.getId()).then(function(entity) {
-        $scope.entity = entity.plain();
-
-        $scope.units = [];
-        ApplyanceAPI.getEntities($scope.entity.id).then(function(entities) {
-           $scope.entities = entities;
-           $scope.entities.reverse();
-        });
+      $scope.units = [];
+      ApplyanceAPI.getEntities($scope.entity.id).then(function(entities) {
+         $scope.entities = entities;
+         $scope.entities.reverse();
       });
 
       $scope.isEditing = function(entity) {

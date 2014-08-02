@@ -4,14 +4,10 @@ module.exports = angular.module('Review')
   .controller('EntityLabelsCtrl', ['$scope', 'ApplyanceAPI', '$timeout', 'Me', 'Context',
     function ($scope, ApplyanceAPI, $timeout, Me, Context) {
 
-      ApplyanceAPI.getEntity(Context.getId()).then(function(entity) {
-        $scope.entity = entity.plain();
-
-        $scope.labels = [];
-        ApplyanceAPI.getLabels($scope.entity.id).then(function(labels) {
-           $scope.labels = labels;
-           $scope.labels.reverse();
-        });
+      $scope.labels = [];
+      ApplyanceAPI.getLabels($scope.entity.id).then(function(labels) {
+         $scope.labels = labels;
+         $scope.labels.reverse();
       });
 
       $scope.isEditing = function(label) {

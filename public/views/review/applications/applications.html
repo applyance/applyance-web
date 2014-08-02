@@ -13,17 +13,29 @@
       <ul class="slats">
         <li class="slats__item" ng-repeat="application in applications">
 
-          <ul class="slats__units">
-            <li class="slats__units__item unit--1of14">
+          <ul class="slats__units unit--2of3">
+            <li class="slats__units__item unit--1of10">
               <img class="avatar" src="{{ getAvatarUrl(application) }}" />
             </li>
-            <li class="slats__units__item unit--3of5">
+            <li class="slats__units__item">
               <a class="slats__item__header" href="applications/{{ application.id }}">
                 {{ application.applicant.account.name }}
               </a>
               <div>
                 Applied on {{ application.submitted_at | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
               </div>
+            </li>
+          </ul>
+
+          <ul class="slats__units is-right unit--1of3">
+            <li class="slats__units__item">
+              <ul class="application__actions__rating">
+                <li class="application__actions__rating__item"
+                    ng-repeat="i in [1,2,3,4,5]"
+                    ng-class="{ 'is-set':isRatingSet(i, application) }">
+                  <i class="icon-star-5"></i>
+                </li>
+              </ul>
             </li>
           </ul>
 

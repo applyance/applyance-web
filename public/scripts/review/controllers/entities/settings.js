@@ -6,20 +6,16 @@ module.exports = angular.module('Review')
 
       $scope.flash = flash;
 
-      ApplyanceAPI.getEntity(Context.getId()).then(function(entity) {
-        $scope.entity = entity.plain();
+      if ($scope.entity.location) {
+        var a = $scope.entity.location.address;
+        $scope.address = a.address_1 + "\n" + a.city + ", " + a.state + " " + a.postal_code;
+      }
 
-        if ($scope.entity.location) {
-          var a = $scope.entity.location.address;
-          $scope.address = a.address_1 + "\n" + a.city + ", " + a.state + " " + a.postal_code;
-        }
-
-        if ($scope.entity.logo) {
-          $scope.entity.attachment = {
-            url: $scope.entity.logo.url
-          };
-        }
-      });
+      if ($scope.entity.logo) {
+        $scope.entity.attachment = {
+          url: $scope.entity.logo.url
+        };
+      }
 
       $scope.hasAddressChanged = false;
       $scope.addressChange = function() {

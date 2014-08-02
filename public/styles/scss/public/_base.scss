@@ -1,0 +1,89 @@
+html {
+  background-color: white;
+  &.bare {
+    background-color: $color-gray;
+  }
+}
+
+.container {
+  max-width: 960px;
+  width: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header {
+  padding: 24px 0;
+}
+
+.header--base {
+  @extend .header;
+  background-color: $color-base;
+  .nav__link {
+    color: white;
+  }
+}
+
+/* Logo */
+
+.logo__link {
+  float: left;
+}
+
+.logo {
+  display: block;
+  width: (377px / 2.25);
+  height: (60px / 2.25);
+}
+
+/* Nav */
+
+.nav {
+  @media only screen and (min-width : 480px) {
+    margin-top: 4px;
+    float: right;
+  }
+}
+
+.nav__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__item {
+  @media only screen and (min-width : 480px) {
+    float: left;
+    margin-left: 24px;
+    &:first-child { margin-left: 0; }
+    &.is-emphasized {
+      margin-left: 36px;
+      .nav__link {
+        padding: 12px;
+        margin-top: -12px;
+        border: 2px solid $color-gray;
+      }
+    }
+  }
+}
+
+.nav__link {
+  font-size: 14px;
+  color: $color-text;
+  text-decoration: none;
+}
+
+/* Sections */
+
+.section {
+  padding: 48px 0;
+  &.is-gray {
+    background-color: $color-gray;
+  }
+  &.is-base {
+    background-color: $color-base;
+    color: white;
+  }
+}

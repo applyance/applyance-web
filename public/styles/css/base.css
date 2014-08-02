@@ -1007,6 +1007,12 @@ p {
 strong {
   font-weight: 500; }
 
+a {
+  color: #3eccbe;
+  -webkit-transition: color 200ms ease-in-out;
+  -moz-transition: color 200ms ease-in-out;
+  transition: color 200ms ease-in-out; }
+
 *, *:before, *:after {
   box-sizing: inherit; }
 
@@ -1021,7 +1027,7 @@ strong {
   clear: both; }
 
 /* Buttons */
-.btn, .btn--primary, .btn--secondary {
+.btn, .btn--primary, .btn--base, .btn--secondary {
   display: inline-block;
   padding: 14px 42px;
   font-size: 16px;
@@ -1036,23 +1042,29 @@ strong {
   -webkit-transition: background-color 200ms ease-in-out;
   -moz-transition: background-color 200ms ease-in-out;
   transition: background-color 200ms ease-in-out; }
-  .btn:not(.is-disabled):hover, .btn--primary:not(.is-disabled):hover, .btn--secondary:not(.is-disabled):hover {
+  .btn:not(.is-disabled):focus, .btn--primary:not(.is-disabled):focus, .btn--base:not(.is-disabled):focus, .btn--secondary:not(.is-disabled):focus, .btn:not(.is-disabled):hover, .btn--primary:not(.is-disabled):hover, .btn--base:not(.is-disabled):hover, .btn--secondary:not(.is-disabled):hover {
     background-color: rgba(0, 0, 0, 0.15); }
-  .btn.is-small, .is-small.btn--primary, .is-small.btn--secondary {
+  .btn.is-small, .is-small.btn--primary, .is-small.btn--base, .is-small.btn--secondary {
     font-size: 14px;
     padding: 12px 24px; }
-  .btn.is-disabled, .is-disabled.btn--primary, .is-disabled.btn--secondary {
+  .btn.is-disabled, .is-disabled.btn--primary, .is-disabled.btn--base, .is-disabled.btn--secondary {
     cursor: default;
     opacity: .3; }
 
 .btn--primary {
   background-color: #f2bc36;
   color: white; }
-  .btn--primary:not(.is-disabled):hover {
+  .btn--primary:not(.is-disabled):focus, .btn--primary:not(.is-disabled):hover {
     background-color: #f5cc66; }
+
+.btn--base {
+  background-color: #374249;
+  color: white; }
+  .btn--base:not(.is-disabled):focus, .btn--base:not(.is-disabled):hover {
+    background-color: #4d5c66; }
 
 .btn--secondary {
   background-color: #777;
   color: white; }
-  .btn--secondary:not(.is-disabled):hover {
+  .btn--secondary:not(.is-disabled):focus, .btn--secondary:not(.is-disabled):hover {
     background-color: #5e5e5e; }
