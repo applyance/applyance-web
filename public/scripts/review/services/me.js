@@ -1,7 +1,7 @@
 angular.module('Review')
   .run(function(Me) {})
-  .service('Me', ['ApplyanceAPI', 'me',
-    function(ApplyanceAPI, me) {
+  .service('Me', ['ApplyanceAPI', '$q', 'me',
+    function(ApplyanceAPI, $q, me) {
 
       this.me = me;
 
@@ -14,7 +14,14 @@ angular.module('Review')
       };
 
       this.updateMe = function(accountInfo) {
-        return ApplyanceAPI.updateMe(accountInfo.id, accountInfo);
+        var that = this;
+        return ApplyanceAPI.updateMe(accountInfo.id, accountInfo).then(function(me) {
+          var dfr = $q.defer();
+          that.me.name = me.name;
+          that.me.email = me.email;
+          dfr.resolve(me);
+          return dfr.promise;
+        });
       }
 
       this.getEntities = function() {

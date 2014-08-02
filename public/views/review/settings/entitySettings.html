@@ -10,7 +10,8 @@
       <label class="settings-inputs__label">Logo</label>
       <div class="attachment">
         <div class="attachment__box">
-          <img ng-if="entity.logo.url" src="{{ entity.logo.url }}" alt="entity logo" />
+          <i class="attachment__empty icon-photo"></i>
+          <img ng-if="entity.attachment.url" src="{{ entity.attachment.url }}" alt="Entity logo" />
         </div>
         <button class="btn attachment__choose" ng-click="clickChoose()">Choose</button>
         <input class="attachment__file" id="logo" type="file" fileread="entity" accepts="image/*">
@@ -22,6 +23,6 @@
     </li>
   </ul>
   <div class="settings-inputs__tray">
-    <button class="btn--primary" ng-click="startUpdateEntity()">Update</button>
+    <button class="btn--primary" ng-class="{ 'is-disabled':isUpdating }" ng-disabled="isUpdating" ng-click="startUpdateEntity()">{{ isUpdating ? 'Updating' : 'Update' }}</button>
   </div>
 </div>

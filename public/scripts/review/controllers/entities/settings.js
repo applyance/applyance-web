@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('Review')
-  .controller('EntitySettingsCtrl', ['$scope', '$routeParams', 'ApplyanceAPI', 'Me', 'Context', '$timeout',
-    function ($scope, $routeParams, ApplyanceAPI, Me, Context, $timeout) {
+  .controller('EntitySettingsCtrl', ['$scope', '$rootScope', 'flash', 'ApplyanceAPI', 'Me', 'Context', '$timeout',
+    function ($scope, $rootScope, flash, ApplyanceAPI, Me, Context, $timeout) {
+
+      $scope.flash = flash;
 
       ApplyanceAPI.getEntity(Context.getId()).then(function(entity) {
         $scope.entity = entity.plain();
@@ -30,7 +32,10 @@ angular.module('Review')
         }, 100);
       }
 
+      $scope.isUpdating = false;
       $scope.startUpdateEntity = function() {
+
+        $scope.isUpdating = true;
 
         if (!$scope.entity.fileObj) {
           $scope.updateEntity();
@@ -70,16 +75,16 @@ angular.module('Review')
           };
         }
 
-        ApplyanceAPI.putEntity(entity).then(
-          function(r) {
-            console.log("updated entity");
-            console.log(r);
-          },
-          function(r) {
-            console.log("failed to update entity");
-            console.log(r);
-          }
-        );
+        ApplyanceAPI.putEntity(entity).then(function(r) {
+          $scope.isUpdating = false;
+
+          $scope.flash.setMessage("Settings updated successfully.");
+          $rootScope.$broadcast('flash');
+        },
+        function(r) {
+          console.log("failed to update entity");
+          console.log(r);
+        });
       };
 
     }]);

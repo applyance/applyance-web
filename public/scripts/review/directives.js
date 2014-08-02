@@ -15,35 +15,10 @@ angular.module('Review')
           var dataUrlReader = new FileReader();
           dataUrlReader.onload = function (loadEvent) {
             scope.$apply(function () {
-              if (!scope.fileread.logo) {
-                scope.fileread.logo = {};
+              if (!scope.fileread.attachment) {
+                scope.fileread.attachment = {};
               }
-              scope.fileread.logo.url = loadEvent.target.result;
-            });
-          }
-          dataUrlReader.readAsDataURL(changeEvent.target.files[0]);
-        });
-      }
-    }
-  })
-  .directive("avatarread", function () {
-    return {
-      scope: {
-          avatarread: "="
-      },
-      link: function (scope, element, attributes) {
-        element.bind("change", function (changeEvent) {
-          scope.$apply(function () {
-            scope.avatarread.fileObj = changeEvent.target.files[0];
-          });
-
-          var dataUrlReader = new FileReader();
-          dataUrlReader.onload = function (loadEvent) {
-            scope.$apply(function () {
-              if (!scope.avatarread.avatar) {
-                scope.avatarread.avatar = {};
-              }
-              scope.avatarread.avatar.url = loadEvent.target.result;
+              scope.fileread.attachment.url = loadEvent.target.result;
             });
           }
           dataUrlReader.readAsDataURL(changeEvent.target.files[0]);

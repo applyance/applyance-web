@@ -30,6 +30,17 @@ h1, h2, h3, h4 {
   margin-top: 3em;
   margin-bottom: 1.5em; }
 
+/* Flash */
+.flash {
+  position: fixed;
+  top: 78px;
+  right: 24px;
+  display: inline-block;
+  max-width: 420px;
+  padding: 18px 24px;
+  background-color: rgba(62, 204, 190, 0.125);
+  border-radius: 5px; }
+
 /* Tags */
 .tag, .tag--success {
   display: inline-block;
@@ -56,14 +67,14 @@ h1, h2, h3, h4 {
 
 .settings-inputs__tray {
   margin-top: 48px;
-  padding-left: 180px; }
+  padding-left: 200px; }
 
 .settings-inputs__label {
   display: inline-block;
   vertical-align: top;
   padding: 15px 0;
   font-size: 16px;
-  width: 180px; }
+  width: 200px; }
 
 input,
 select,
@@ -92,16 +103,36 @@ textarea {
 select {
   padding-right: 48px; }
 
+.selector {
+  display: inline-block;
+  position: relative;
+  background-color: white; }
+  .selector:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    margin-top: -6px;
+    right: 22px;
+    width: 12px;
+    height: 12px;
+    opacity: .25;
+    background-image: url("/img/select.arrow.black.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat; }
+
 /* Attachment */
 .attachment {
   display: inline-block; }
 
 .attachment__box {
+  position: relative;
   display: inline-block;
   vertical-align: middle;
   width: 140px;
   height: 140px;
-  padding: 12px;
+  padding: 6px;
+  text-align: center;
   background-color: #fcfdfd;
   border: 4px dashed #eef0f2;
   border-radius: 5px; }
@@ -109,9 +140,28 @@ select {
     display: block;
     position: relative;
     top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
     transform: translateY(-50%);
     width: 100%;
-    height: auto; }
+    height: auto;
+    border-radius: 3px; }
+
+.attachment__empty {
+  display: inline-block;
+  margin-top: -4px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 96px;
+  opacity: .1; }
 
 .attachment__choose {
   margin-left: 24px; }
@@ -191,19 +241,32 @@ select {
   display: inline-block;
   vertical-align: middle;
   margin: 0;
-  margin-right: 24px;
   padding: 8px 12px;
-  padding-right: 32px;
+  padding-right: 34px;
   font-size: 14px;
   color: white;
   border: 0;
   border-radius: 3px;
-  background-color: rgba(255, 255, 255, 0.125);
+  background-color: transparent;
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
   -o-appearance: none;
   appearance: none; }
+
+.account .selector {
+  background-color: rgba(255, 255, 255, 0.125);
+  margin-right: 24px; }
+  .account .selector:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    margin-top: -5px;
+    right: 12px;
+    width: 10px;
+    height: 10px;
+    opacity: .4;
+    background-image: url("/img/select.arrow.white.png"); }
 
 .account__avatar,
 .account__settings-list {

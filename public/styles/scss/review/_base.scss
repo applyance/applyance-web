@@ -29,6 +29,18 @@ h1, h2, h3, h4 {
   margin-bottom: 1.5em;
 }
 
+/* Flash */
+.flash {
+  position: fixed;
+  top: $header-height + 24px;
+  right: 24px;
+  display: inline-block;
+  max-width: 420px;
+  padding: 18px 24px;
+  background-color: rgba($color-accent, .125);
+  border-radius: 5px;
+}
+
 /* Tags */
 
 .tag {

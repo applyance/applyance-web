@@ -16,8 +16,10 @@
   </div>
   <div class="new-prompt__main">
     <input name="newInvite" ng-model="newInvite.email" value="{{ newInvite.email }}" type="text" placeholder="Email of new member" size="24">
-    <select ng-model="selectedScope"
-        ng-options="scope.name | capitalize for scope in scopes"></select>
+    <div class="selector">
+      <select ng-model="selectedScope"
+          ng-options="scope.name | capitalize for scope in scopes"></select>
+    </div>
   </div>
   <ul class="new-prompt__actions">
     <li class="new-prompt__actions__item">

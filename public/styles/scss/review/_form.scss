@@ -15,7 +15,7 @@
 
 .settings-inputs__tray {
   margin-top: 48px;
-  padding-left: 180px;
+  padding-left: $settings-inputs-label-width;
 }
 
 .settings-inputs__label {
@@ -23,7 +23,7 @@
   vertical-align: top;
   padding: 15px 0;
   font-size: 16px;
-  width: 180px;
+  width: $settings-inputs-label-width;
 }
 
 input,
@@ -52,6 +52,27 @@ select {
   padding-right: 18px + 12px + 18px;
 }
 
+.selector {
+  display: inline-block;
+  position: relative;
+  background-color: white;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    margin-top: -6px;
+    right: 18px + 4px;
+    width: 12px;
+    height: 12px;
+    opacity: .25;
+
+    background-image: url('/img/select.arrow.black.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
 /* Attachment */
 
 .attachment {
@@ -59,11 +80,14 @@ select {
 }
 
 .attachment__box {
+  position: relative;
   display: inline-block;
   vertical-align: middle;
   width: 140px;
   height: 140px;
-  padding: 12px;
+  padding: 6px;
+
+  text-align: center;
 
   background-color: lighten($color-gray, 5%);
   border: 4px dashed $color-gray;
@@ -73,10 +97,23 @@ select {
     display: block;
     position: relative;
     top: 50%;
-    transform: translateY(-50%);
+    @include transform(translateY(-50%));
     width: 100%;
     height: auto;
+
+    border-radius: 3px;
   }
+}
+
+.attachment__empty {
+  display: inline-block;
+  margin-top: -4px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  @include transform(translate(-50%, -50%));
+  font-size: 96px;
+  opacity: .1;
 }
 
 .attachment__choose {

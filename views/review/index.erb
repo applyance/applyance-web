@@ -34,9 +34,12 @@
         <ul>
       </nav>
       <div class="account" ng-controller="AccountCtrl">
-        <select class="account__context" ng-model="activeContextOption"
-                ng-options="contextOption.name for contextOption in contextOptions"
-                ng-change="updateContextSelect()"></select>
+
+        <div class="selector">
+          <select class="account__context" ng-model="activeContextOption"
+                  ng-options="contextOption.name for contextOption in contextOptions"
+                  ng-change="updateContextSelect()"></select>
+        </div>
 
         <img src="{{ getAvatarURL() }}" class="account__avatar" />
 
@@ -57,6 +60,10 @@
       </div>
     </header>
 
+    <div class="flash text-trim" ng-show="flashMessage">
+      <p>{{ flashMessage }}</p>
+    </div>
+
     <main class="main" ng-view></main>
 
     <script type="text/javascript" src="/scripts/ext/angular/angular.min.js"></script>
@@ -75,6 +82,7 @@
 
     <script type="text/javascript" src="/scripts/review/services/me.js"></script>
     <script type="text/javascript" src="/scripts/review/services/context.js"></script>
+    <script type="text/javascript" src="/scripts/review/services/flash.js"></script>
 
     <script type="text/javascript" src="/scripts/review/controllers/header/header.js"></script>
     <script type="text/javascript" src="/scripts/review/controllers/header/account.js"></script>
