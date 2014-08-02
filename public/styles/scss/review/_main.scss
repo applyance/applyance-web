@@ -115,7 +115,7 @@
 
 .slats__item__header {
   display: inline-block;
-  
+
   margin-bottom: 6px;
   font-size: 18px;
   font-weight: 500;
@@ -182,7 +182,29 @@ a.slats__item__header {
 }
 
 .edit-box__edit {
-  margin-left: 12px;
+  display: inline-block;
+  margin-left: 6px;
+  width: 32px;
+  height: 32px;
+
+  font-size: 18px;
+  text-align: center;
+  line-height: 32px;
+  text-decoration: none;
+
+  color: $color-text;
+  border-radius: 100%;
+  background-color: transparent;
+  opacity: .5;
+
+  @include transition(
+    background-color 200ms ease-in-out,
+    opacity 200ms ease-in-out);
+
+  &:hover {
+    opacity: 1;
+    background-color: $color-gray-rgba;
+  }
 }
 
 /* Color Swatch */

@@ -14,4 +14,10 @@ module.exports = angular.module('Review')
       return input.replace("{{ entity.name }}", entity.name);
     }
   })
+  .filter('nl2p', function () {
+    return function(text){
+      text = String(text).trim();
+      return (text.length > 0 ? '<p>' + text.replace(/[\r\n]+/, '</p><p>') + '</p>' : null);
+    }
+  })
 ;

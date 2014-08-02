@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('Apply')
-  .controller('FormCtrl', ['$scope', '$http', 'ApplyanceAPI',
-    function ($scope, $http, ApplyanceAPI) {
+module.exports = angular.module('Apply')
+  .controller('FormCtrl', ['$scope', '$http', 'entity', 'ApplyanceAPI',
+    function ($scope, $http, entity, ApplyanceAPI) {
 
-      $scope.entity = Applyance.Apply.entity;
+      $scope.entity = entity;
 
       $scope.applicant = {
         name: null,
@@ -43,7 +43,7 @@ angular.module('Apply')
           if (me.applicant) {
             $scope.applicant.name = me.account.name;
             var api_key = headers('authorization').split('auth=')[1];
-            $http.get(window.apiHost + "/applicants/" + me.applicant.id + "/datums", {
+            $http.get(ApplyanceAPI.getApiHost() + "/applicants/" + me.applicant.id + "/datums", {
               headers: { 'Authorization': 'ApplyanceLogin auth=' + api_key }
             }).then(function(datums) {
               _.each($scope.blueprints, function(blueprint) {

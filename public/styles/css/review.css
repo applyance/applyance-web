@@ -30,6 +30,9 @@ h1, h2, h3, h4 {
   margin-top: 3em;
   margin-bottom: 1.5em; }
 
+a {
+  color: #3eccbe; }
+
 /* Basic Grid */
 .unit, .unit--1of2, .unit--1of3, .unit--2of3, .unit--1of4, .unit--3of4, .unit--1of5, .unit--2of5, .unit--3of5, .unit--4of5, .unit--1of6, .unit--5of6, .unit--1of7, .unit--2of7, .unit--3of7, .unit--4of7, .unit--5of7, .unit--6of7, .unit--1of8, .unit--3of8, .unit--5of8, .unit--7of8, .unit--1of12, .unit--3of12, .unit--5of12, .unit--7of12, .unit--11of12, .unit--1of14, .unit--3of14, .unit--5of14, .unit--9of14, .unit--11of14, .unit--13of14 {
   content: ''; }
@@ -191,6 +194,15 @@ a.tag, a.tag--success {
   font-size: 16px;
   width: 200px; }
 
+.settings-inputs__field {
+  display: inline-block; }
+
+.settings-inputs__note {
+  font-size: 14px;
+  padding: 12px 22px;
+  max-width: 353px;
+  line-height: 1.4; }
+
 input,
 select,
 textarea {
@@ -297,7 +309,7 @@ select {
 .mark {
   display: inline-block;
   vertical-align: middle;
-  width: 92px;
+  width: 94px;
   text-align: center;
   background-color: #f2bc36;
   -webkit-transition: background-color 200ms ease-in-out;
@@ -315,7 +327,7 @@ select {
   height: 100%; }
 
 .mark__img {
-  width: 20px;
+  width: 22px;
   height: auto; }
 
 /* Nav */
@@ -574,7 +586,24 @@ a.slats__item__header {
   position: relative; }
 
 .edit-box__edit {
-  margin-left: 12px; }
+  display: inline-block;
+  margin-left: 6px;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  text-align: center;
+  line-height: 32px;
+  text-decoration: none;
+  color: #333333;
+  border-radius: 100%;
+  background-color: transparent;
+  opacity: .5;
+  -webkit-transition: background-color 200ms ease-in-out, opacity 200ms ease-in-out;
+  -moz-transition: background-color 200ms ease-in-out, opacity 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out, opacity 200ms ease-in-out; }
+  .edit-box__edit:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.075); }
 
 /* Color Swatch */
 .color-swatch {
@@ -698,3 +727,114 @@ a.slats__item__header {
 .application-header-link {
   margin-top: -5px;
   float: right; }
+
+.application {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 4px solid #eef0f2; }
+
+/* Applicant Section */
+.application__applicant {
+  position: relative;
+  padding: 48px;
+  font-size: 0; }
+
+.application__applicant__avatar {
+  display: inline-block;
+  vertical-align: middle;
+  width: 160px;
+  height: 160px; }
+
+.application__applicant__info {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 24px;
+  font-size: 16px; }
+
+.application__applicant__name {
+  margin: 0;
+  margin-bottom: 18px;
+  font-size: 22px;
+  font-weight: 500; }
+
+.application__applicant__location {
+  margin-bottom: 12px; }
+  .application__applicant__location .icon {
+    margin-right: 4px;
+    font-size: 20px;
+    opacity: .5; }
+
+.application__applicant__contact {
+  list-style-type: none;
+  padding: 0;
+  margin: 0; }
+
+.application__applicant__contact__item {
+  margin-bottom: 6px; }
+  .application__applicant__contact__item:last-child {
+    margin-bottom: 0; }
+
+.application__applicant__rating {
+  display: block;
+  position: absolute;
+  top: 50%;
+  margin-top: -48px;
+  right: 48px;
+  width: 96px;
+  height: 96px;
+  line-height: 84px;
+  font-size: 28px;
+  font-weight: 500;
+  text-align: center;
+  color: #3eccbe;
+  border: 6px solid #eef0f2;
+  border-radius: 100%; }
+
+/* Actions Section */
+.application__actions {
+  padding: 24px 48px;
+  background-color: #eef0f2; }
+
+.application__actions__entity {
+  display: inline-block;
+  float: left;
+  height: 38px;
+  line-height: 38px; }
+
+.application__actions__rating {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0;
+  float: right; }
+
+.application__actions__rating__item {
+  display: inline-block;
+  font-size: 32px;
+  color: #a6b0bb;
+  cursor: pointer;
+  -webkit-transition: color 200ms ease-in-out;
+  -moz-transition: color 200ms ease-in-out;
+  transition: color 200ms ease-in-out; }
+  .application__actions__rating__item.is-active {
+    color: #62707f; }
+  .application__actions__rating__item.is-set {
+    color: #3eccbe; }
+
+/* Fields Section */
+.application__fields {
+  padding: 48px;
+  margin: 0;
+  list-style-type: none; }
+
+.application__fields__item {
+  display: block;
+  margin-bottom: 48px; }
+  .application__fields__item:last-child {
+    margin-bottom: 0; }
+
+.application__fields__label {
+  margin-bottom: 24px;
+  font-size: 18px;
+  font-weight: 500; }

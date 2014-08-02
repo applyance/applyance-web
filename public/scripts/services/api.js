@@ -14,6 +14,10 @@ module.exports = angular.module('Applyance', ['restangular'])
       $http.defaults.headers.common['Authorization'] = "ApplyanceLogin auth=" + apiKey;
       $http.defaults.headers.common['Content-Type'] = "application/json";
 
+      this.getApiHost = function() {
+        return apiHost;
+      };
+
       this.getMe = function() {
         return $http.get(apiHost + "/accounts/me");
       };
@@ -39,6 +43,17 @@ module.exports = angular.module('Applyance', ['restangular'])
       this.postApplication = function(application) {
         return Restangular.all('applications').post(application);
       }
+
+      // Ratings
+      this.getApplicationRatings = function(id) {
+        return Restangular.one('applications', id).all("ratings").getList();
+      };
+      this.postRating = function(id, rating) {
+        return Restangular.one('accounts', id).all('ratings').post(rating);
+      };
+      this.putRating = function(rating) {
+        return $http.put(apiHost + "/ratings/" + rating.id, rating);
+      };
 
       // Attachments
       this.uploadAttachment = function(fileData, contentType) {

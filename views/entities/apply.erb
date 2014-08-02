@@ -18,29 +18,15 @@
       <div ng-view></div>
     </main>
 
-    <script type='text/javascript'>
-      var apiHost = "<%= Applyance::Client.settings.api_host %>";
-      <% if session[:api_key] %>
-      var apiKey = "<%= @api_key %>";
-      <% end %>
-      var Applyance = {
-        Apply: {
-          entity: <%= JSON.dump(@entity) %>
-        }
-      };
-    </script>
-
-    <script type="text/javascript" src="/scripts/ext/angular/angular.min.js"></script>
-    <script type="text/javascript" src="/scripts/ext/angular-route/angular-route.min.js"></script>
-    <script type="text/javascript" src="/scripts/ext/restangular/dist/restangular.min.js"></script>
     <script type="text/javascript" src="/scripts/ext/underscore/underscore.js"></script>
-    <script type="text/javascript" src="/scripts/ext/cryptojslib/rollups/md5.js"></script>
+    <script type="text/javascript" src="/scripts/apply/bundle.js"></script>
 
-    <script type="text/javascript" src="/scripts/services/api.js"></script>
-
-    <script type="text/javascript" src="/scripts/apply/app.js"></script>
-    <script type="text/javascript" src="/scripts/apply/directives.js"></script>
-    <script type="text/javascript" src="/scripts/apply/controllers/form.js"></script>
+    <script>
+      var app = angular.module('Applyance');
+      app.constant('entity', <%= JSON.dump(@entity) %>);
+      app.constant('apiHost', '<%= @api_host %>');
+      app.constant('apiKey', '<%= @api_key %>');
+    </script>
 
   </body>
 </html>

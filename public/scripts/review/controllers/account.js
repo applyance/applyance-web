@@ -28,7 +28,7 @@ module.exports = angular.module('Review')
 
     $scope.passwordNeeded = false;
     $scope.checkForPasswordNeeded = function() {
-      $scope.passwordNeeded = (($scope.account.newPassword.length > 0) || ($scope.account.email != currentInfo.email));
+      $scope.passwordNeeded = (($scope.account.newPassword.length > 0) || ($scope.account.email != $scope.currentInfo.email));
     }
 
     $scope.isUpdating = false;

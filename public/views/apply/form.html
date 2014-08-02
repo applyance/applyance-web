@@ -1,4 +1,4 @@
-<img src="{{ entity.logo.url }}" width="300" />
+<img ng-if="entity.logo" src="{{ entity.logo.url }}" width="300" />
 <h1>Apply to {{ entity.name }}</h1>
 
 <form name="apply" ng-submit="onSubmit()">

@@ -7,6 +7,9 @@ module Applyance
 
         # Entity Application
         app.get '/entities/:id/apply' do
+          @api_host = app.settings.api_host
+          @api_key = session[:api_key]
+          
           @id = params[:id]
           headers = { :content_type => 'application/json' }
 
