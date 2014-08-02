@@ -249,6 +249,11 @@ a.slats__item__header {
   vertical-align: top;
   padding: 12px;
   width: percentage(1 / 3);
+
+  &.is-disabled .selection-grid__link {
+    opacity: .4;
+    cursor: default;
+  }
 }
 
 .selection-grid__link {
@@ -288,7 +293,7 @@ a.slats__item__header {
   border-color: $color-accent;
 }
 
-.selection-grid__item .selection-grid__link:active .selection-grid__box {
+.selection-grid__item:not(.is-disabled) .selection-grid__link:active .selection-grid__box {
   background-color: $color-accent;
   color: white;
 }
