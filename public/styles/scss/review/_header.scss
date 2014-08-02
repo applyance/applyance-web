@@ -76,7 +76,7 @@
 .account {
   display: inline-block;
   @media only screen and (min-width : 480px) {
-    margin-top: ($header-height - 35px) / 2;
+    margin-top: ($header-height - 40px) / 2;
     float: right;
   }
 }
@@ -84,8 +84,9 @@
 .account__context {
   display: inline-block;
   vertical-align: middle;
+  cursor: pointer;
   margin: 0;
-  padding: 8px 12px;
+  padding: 10px 12px;
   padding-right: 12px + 10px + 12px;
 
   font-size: 14px;
@@ -96,11 +97,19 @@
   background-color: transparent;
 
   @include appearance(none);
+
 }
 
 .account .selector {
   background-color: rgba(white, .125);
   margin-right: 24px;
+  border-radius: 3px;
+
+  @include transition(background-color 200ms ease-in-out);
+
+  &:hover {
+    background-color: rgba(white, .2);
+  }
   &:after {
     content: '';
     position: absolute;

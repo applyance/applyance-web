@@ -13,6 +13,12 @@ angular.module('Review')
           var a = $scope.entity.location.address;
           $scope.address = a.address_1 + "\n" + a.city + ", " + a.state + " " + a.postal_code;
         }
+
+        if ($scope.entity.logo) {
+          $scope.entity.attachment = {
+            url: $scope.entity.logo.url
+          };
+        }
       });
 
       $scope.hasAddressChanged = false;

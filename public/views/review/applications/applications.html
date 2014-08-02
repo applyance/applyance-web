@@ -1,18 +1,45 @@
 <div class="main-container">
-  <h1 class="top-header">Applications</h1>
+
+  <h1 class="top-header">
+    Applications
+    <a ng-if="applications.length > 0" href="/entities/{{ entity.id }}/apply" target="_blank" class="tag application-header-link">
+      View Your Application Form
+    </a>
+  </h1>
 
   <div ng-switch on="applications.length">
     <div ng-switch-default>
-      <ul>
-        <li ng-repeat="application in applications">
-          <a href="applications/{{ application.id }}">
-            {{ application.applicant.account.name }}
-          </a>
+
+      <ul class="slats">
+        <li class="slats__item" ng-repeat="application in applications">
+
+          <ul class="slats__units">
+            <li class="slats__units__item unit--1of14">
+              <img class="avatar" src="{{ getAvatarUrl(application) }}" />
+            </li>
+            <li class="slats__units__item unit--3of5">
+              <a class="slats__item__header" href="applications/{{ application.id }}">
+                {{ application.applicant.account.name }}
+              </a>
+              <div>
+                Applied on {{ application.submitted_at | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+              </div>
+            </li>
+          </ul>
+
         </li>
       </ul>
+
     </div>
     <div ng-switch-when="0">
-      No applications just yet!
+      <div class="toaster text-trim">
+        <p>
+          It looks like you haven't had any applications for {{ entity.name }} just yet.<br />Have you shared the link to your application form with anyone?
+        </p>
+        <p>
+          <a class="btn--primary" href="/entities/{{ entity.id }}/apply" target="_blank">Application Form for {{ entity.name }}</a>
+        </p>
+      </div>
     </div>
   </div>
 </div>
