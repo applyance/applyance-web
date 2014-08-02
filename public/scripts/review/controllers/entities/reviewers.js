@@ -4,18 +4,14 @@ module.exports = angular.module('Review')
   .controller('EntityReviewersCtrl', ['$scope', 'ApplyanceAPI', 'Me', 'Context',
     function ($scope, ApplyanceAPI, Me, Context) {
 
-      ApplyanceAPI.getEntity(Context.getId()).then(function(entity) {
-        $scope.entity = entity.plain();
+      $scope.reviewers = [];
+      ApplyanceAPI.getReviewers($scope.entity.id).then(function(reviewers) {
+         $scope.reviewers = reviewers;
+      });
 
-        $scope.reviewers = [];
-        ApplyanceAPI.getReviewers($scope.entity.id).then(function(reviewers) {
-           $scope.reviewers = reviewers;
-        });
-
-        $scope.invites = [];
-        ApplyanceAPI.getReviewerInvites($scope.entity.id).then(function(invites) {
-           $scope.invites = invites;
-        });
+      $scope.invites = [];
+      ApplyanceAPI.getReviewerInvites($scope.entity.id).then(function(invites) {
+         $scope.invites = invites;
       });
 
       $scope.scopes = [{ scope: "admin", name: "Administrator" }, { scope: "limited", name: "Reviewer" }];

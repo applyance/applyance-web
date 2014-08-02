@@ -3,24 +3,35 @@
   <a href="" class="header-action btn--primary" ng-click="addEntity()">Create Unit</a>
 </h1>
 
-<ul class="slats">
-  <li class="slats__item" ng-repeat="entity in entities">
-    <div class="slats__main">
-      <div class="edit-box" ng-class="{ 'is-editing':isEditing(entity) }">
-        <div class="edit-box__label">{{ entity.name }}</div>
-        <input class="edit-box__input" type="text" ng-model="entity.name" value="{{ entity.name }}" size="{{ entity.name.length }}" focus-on="isEditingEntity-{{ entity.id }}" ng-blur="updateEntity(entity)">
-        <a href="" class="edit-box__edit" ng-click="triggerEdit(entity)">
-          <i class="icon-pencil"></i>
-        </a>
-      </div>
-    </div>
-    <ul class="slats__actions">
-      <li class="slats__actions__item">
-        <a href="entities/{{ entity.id }}/settings" class="btn is-small">Edit</a>
-      </li>
-      <li class="slats__actions__item">
-        <a href="" class="btn--secondary is-small" ng-click="removeEntity(entity)">Remove</a>
+<div ng-switch on="entities.length">
+  <div ng-switch-default>
+    <ul class="slats">
+      <li class="slats__item" ng-repeat="entity in entities">
+        <div class="slats__main">
+          <div class="edit-box" ng-class="{ 'is-editing':isEditing(entity) }">
+            <div class="edit-box__label">{{ entity.name }}</div>
+            <input class="edit-box__input" type="text" ng-model="entity.name" value="{{ entity.name }}" size="{{ entity.name.length }}" focus-on="isEditingEntity-{{ entity.id }}" ng-blur="updateEntity(entity)">
+            <a href="" class="edit-box__edit" ng-click="triggerEdit(entity)">
+              <i class="icon-pencil"></i>
+            </a>
+          </div>
+        </div>
+        <ul class="slats__actions">
+          <li class="slats__actions__item">
+            <a href="entities/{{ entity.id }}/settings" class="btn is-small">Edit</a>
+          </li>
+          <li class="slats__actions__item">
+            <a href="" class="btn--secondary is-small" ng-click="removeEntity(entity)">Remove</a>
+          </li>
+        </ul>
       </li>
     </ul>
-  </li>
-</ul>
+  </div>
+  <div ng-switch-when="0">
+    <div class="toaster text-trim">
+      <p>
+        Are you a multi-unit company? Use this page to add units.
+      </p>
+    </div>
+  </div>
+</div>

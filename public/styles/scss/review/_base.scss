@@ -29,10 +29,6 @@ h1, h2, h3, h4 {
   margin-bottom: 1.5em;
 }
 
-a {
-  color: $color-accent;
-}
-
 /* Basic Grid */
 
 .unit { content: ''; }
@@ -62,6 +58,11 @@ a {
 .unit--3of8 { @extend .unit; width: percentage(3 / 8); }
 .unit--5of8 { @extend .unit; width: percentage(5 / 8); }
 .unit--7of8 { @extend .unit; width: percentage(7 / 8); }
+
+.unit--1of10 { @extend .unit; width: percentage(1 / 10); }
+.unit--3of10 { @extend .unit; width: percentage(3 / 10); }
+.unit--7of10 { @extend .unit; width: percentage(7 / 10); }
+.unit--9of10 { @extend .unit; width: percentage(9 / 10); }
 
 .unit--1of12 { @extend .unit; width: percentage(1 / 12); }
 .unit--3of12 { @extend .unit; width: percentage(3 / 12); }

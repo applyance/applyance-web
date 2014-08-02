@@ -1,4 +1,4 @@
-module.exports = function($routeProvider, $locationProvider, me) {
+module.exports = function($routeProvider, $locationProvider, me, $routeParams) {
 
   $routeProvider
     .when('/accounts/:id/settings', {
@@ -24,23 +24,58 @@ module.exports = function($routeProvider, $locationProvider, me) {
     // settings
     .when('/entities/:id/settings', {
       templateUrl: 'views/review/settings/settings.html',
-      controller: 'SettingsCtrl'
+      controller: 'SettingsCtrl',
+      resolve: {
+        entity: function(ApplyanceAPI, $route) {
+          return ApplyanceAPI.getEntity($route.current.params.id).then(function(entity) {
+            return entity.plain();
+          })
+        }
+      }
     })
     .when('/entities/:id/entities', {
       templateUrl: 'views/review/settings/settings.html',
-      controller: 'SettingsCtrl'
+      controller: 'SettingsCtrl',
+      resolve: {
+        entity: function(ApplyanceAPI, $route) {
+          return ApplyanceAPI.getEntity($route.current.params.id).then(function(entity) {
+            return entity.plain();
+          })
+        }
+      }
     })
     .when('/entities/:id/reviewers', {
       templateUrl: 'views/review/settings/settings.html',
-      controller: 'SettingsCtrl'
+      controller: 'SettingsCtrl',
+      resolve: {
+        entity: function(ApplyanceAPI, $route) {
+          return ApplyanceAPI.getEntity($route.current.params.id).then(function(entity) {
+            return entity.plain();
+          })
+        }
+      }
     })
     .when('/entities/:id/blueprints', {
       templateUrl: 'views/review/settings/settings.html',
-      controller: 'SettingsCtrl'
+      controller: 'SettingsCtrl',
+      resolve: {
+        entity: function(ApplyanceAPI, $route) {
+          return ApplyanceAPI.getEntity($route.current.params.id).then(function(entity) {
+            return entity.plain();
+          })
+        }
+      }
     })
     .when('/entities/:id/labels', {
       templateUrl: 'views/review/settings/settings.html',
-      controller: 'SettingsCtrl'
+      controller: 'SettingsCtrl',
+      resolve: {
+        entity: function(ApplyanceAPI, $route) {
+          return ApplyanceAPI.getEntity($route.current.params.id).then(function(entity) {
+            return entity.plain();
+          })
+        }
+      }
     })
 
     .otherwise({

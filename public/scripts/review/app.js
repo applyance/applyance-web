@@ -18,7 +18,6 @@ angular.module('Review', [ApplyanceApi.name, 'ngRoute', 'angularMoment'])
 require("./directives");
 require("./filters");
 
-
 require("./services/me");
 require("./services/context");
 require("./services/flash");

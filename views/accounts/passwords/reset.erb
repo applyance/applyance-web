@@ -1,13 +1,13 @@
 <form action="/accounts/passwords/reset" method="post" class="login">
 
   <a href="/" class="login__logo">
-    <img src="/img/logo.png" class="login__logo__img" />
+    <img src="/img/logo.blue.png" class="login__logo__img" />
   </a>
 
   <% if @errors %>
-  <ul>
+  <ul class="login__errors">
     <% @errors.each do |error| %>
-    <li>
+    <li class="login__errors__item">
       <%= error %>
     </li>
     <% end %>
@@ -16,16 +16,17 @@
 
   <ul class="login__fields">
     <li class="login__field">
-      <input id="email" name="account[email]" type="email" placeholder="Email">
+      <input id="email" name="account[email]" type="email" placeholder="Email" autofocus>
     </li>
   </ul>
 
-  <div class="login__tray">
-    <button class="btn--primary" type="submit">Reset Password</button>
-  </div>
-
-  <div>
-    <a href="/accounts/login">Sign In</a>
-  </div>
+  <ul class="login__tray">
+    <li class="login__tray__item">
+      <button class="btn--base login__submit" type="submit">Reset Password</button>
+    </li>
+    <li class="login__tray__item">
+      <a href="/accounts/login">I remember! Sign me in.</a>
+    </li>
+  </ul>
 
 </form>

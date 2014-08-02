@@ -30,11 +30,8 @@ h1, h2, h3, h4 {
   margin-top: 3em;
   margin-bottom: 1.5em; }
 
-a {
-  color: #3eccbe; }
-
 /* Basic Grid */
-.unit, .unit--1of2, .unit--1of3, .unit--2of3, .unit--1of4, .unit--3of4, .unit--1of5, .unit--2of5, .unit--3of5, .unit--4of5, .unit--1of6, .unit--5of6, .unit--1of7, .unit--2of7, .unit--3of7, .unit--4of7, .unit--5of7, .unit--6of7, .unit--1of8, .unit--3of8, .unit--5of8, .unit--7of8, .unit--1of12, .unit--3of12, .unit--5of12, .unit--7of12, .unit--11of12, .unit--1of14, .unit--3of14, .unit--5of14, .unit--9of14, .unit--11of14, .unit--13of14 {
+.unit, .unit--1of2, .unit--1of3, .unit--2of3, .unit--1of4, .unit--3of4, .unit--1of5, .unit--2of5, .unit--3of5, .unit--4of5, .unit--1of6, .unit--5of6, .unit--1of7, .unit--2of7, .unit--3of7, .unit--4of7, .unit--5of7, .unit--6of7, .unit--1of8, .unit--3of8, .unit--5of8, .unit--7of8, .unit--1of10, .unit--3of10, .unit--7of10, .unit--9of10, .unit--1of12, .unit--3of12, .unit--5of12, .unit--7of12, .unit--11of12, .unit--1of14, .unit--3of14, .unit--5of14, .unit--9of14, .unit--11of14, .unit--13of14 {
   content: ''; }
 
 .unit--1of2 {
@@ -99,6 +96,18 @@ a {
 
 .unit--7of8 {
   width: 87.5%; }
+
+.unit--1of10 {
+  width: 10%; }
+
+.unit--3of10 {
+  width: 30%; }
+
+.unit--7of10 {
+  width: 70%; }
+
+.unit--9of10 {
+  width: 90%; }
 
 .unit--1of12 {
   width: 8.33333%; }
@@ -367,10 +376,10 @@ select {
 .account__context {
   display: inline-block;
   vertical-align: middle;
-  cursor: pointer;
   margin: 0;
   padding: 10px 12px;
   padding-right: 34px;
+  cursor: pointer;
   font-size: 14px;
   color: white;
   border: 0;
@@ -383,9 +392,10 @@ select {
   appearance: none; }
 
 .account .selector {
-  background-color: rgba(255, 255, 255, 0.125);
+  background-color: rgba(255, 255, 255, 0.1);
   margin-right: 24px;
   border-radius: 3px;
+  cursor: pointer;
   -webkit-transition: background-color 200ms ease-in-out;
   -moz-transition: background-color 200ms ease-in-out;
   transition: background-color 200ms ease-in-out; }
@@ -399,7 +409,7 @@ select {
     right: 12px;
     width: 10px;
     height: 10px;
-    opacity: .4;
+    opacity: .3;
     background-image: url("/img/select.arrow.white.png"); }
 
 .account__avatar,
@@ -510,10 +520,13 @@ select {
     border-top-width: 2px; }
 
 .slats__units {
+  display: inline-block;
   list-style-type: none;
   margin: 0;
   padding: 0;
   font-size: 0; }
+  .slats__units.is-right {
+    text-align: right; }
 
 .slats__units__item {
   display: inline-block;

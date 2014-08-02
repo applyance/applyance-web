@@ -1,13 +1,13 @@
 <form action="/accounts/passwords/set" method="post" class="login">
 
   <a href="/" class="login__logo">
-    <img src="/img/logo.png" class="login__logo__img" />
+    <img src="/img/logo.blue.png" class="login__logo__img" />
   </a>
 
   <% if @errors %>
-  <ul>
+  <ul class="login__errors">
     <% @errors.each do |error| %>
-    <li>
+    <li class="login__errors__item">
       <%= error %>
     </li>
     <% end %>
@@ -16,17 +16,15 @@
 
   <ul class="login__fields">
     <li class="login__field">
-      <input id="password" name="account[password]" type="password" placeholder="New Password">
+      <input id="password" name="account[password]" type="password" placeholder="New Password" autofocus>
     </li>
   </ul>
 
-  <div class="login__tray">
-    <input type="hidden" name="code" value="<%= @code %>">
-    <button class="btn--primary" type="submit">Set Password</button>
-  </div>
-
-  <div>
-    <a href="/accounts/login">Sign In</a>
-  </div>
+  <ul class="login__tray">
+    <li class="login__tray__item">
+      <input type="hidden" name="code" value="<%= @code %>">
+      <button class="btn--base login__submit" type="submit">Set Password</button>
+    </li>
+  </ul>
 
 </form>

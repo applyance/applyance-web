@@ -5,7 +5,7 @@
       <i class="icon icon-settings"></i>Settings
     </a>
   </li>
-  <li ng-if="entity.parent_id == null" class="sidebar-menu__item" ng-class="{ 'is-active': isActive('entities') }">
+  <li ng-if="entity.parent == null" class="sidebar-menu__item" ng-class="{ 'is-active': isActive('entities') }">
     <a class="sidebar-menu__link" href="/entities/{{ context.id }}/entities">
       <i class="icon icon-location"></i>Units
     </a>
@@ -20,7 +20,7 @@
       <i class="icon icon-notepad"></i>Questions
     </a>
   </li>
-  <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('labels') }">
+  <li ng-hide="true" class="sidebar-menu__item" ng-class="{ 'is-active': isActive('labels') }">
     <a class="sidebar-menu__link" href="/entities/{{ context.id }}/labels">
       <i class="icon icon-tag"></i>Labels
     </a>
