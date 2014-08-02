@@ -1,19 +1,15 @@
 'use strict';
 
+// Vendor Libs
 var angular = require("angular");
-require("angular-route");
+window.CryptoJS = require("crypto-js");
 window.moment = require("moment");
 require("angular-moment");
+require("angular-route");
 
-window.CryptoJS = require("crypto-js");
-
-var ApplyanceApi = require("../services/api");
-
-var Routes = require("./routes");
-
-angular.module('Review', [ApplyanceApi.name, 'ngRoute', 'angularMoment'])
-  .config(['$routeProvider', '$locationProvider', 'me', Routes]);
-
+// Define Review Module
+angular.module('Review', [require("../services/api").name, 'ngRoute', 'angularMoment'])
+  .config(['$routeProvider', '$locationProvider', 'me', require("./routes")]);
 
 require("./directives");
 require("./filters");
