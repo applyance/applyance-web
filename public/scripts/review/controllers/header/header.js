@@ -13,6 +13,19 @@ module.exports = angular.module('Review')
 
       $scope.isActive = function(route) {
         return route === $location.path();
-      }
+      };
+
+      $scope.isAdmin = function() {
+
+        var isAdmin = false;
+        var currentEntityId = Context.getId();
+        var reviewerPositions = Me.getMe().reviewers;
+        angular.forEach(reviewerPositions, function(position, index) {
+          if (position.entity.id == currentEntityId) {
+            isAdmin = position.scope == "admin";
+          }
+        });
+        return isAdmin;
+      };
 
   }]);

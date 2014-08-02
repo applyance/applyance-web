@@ -27,7 +27,8 @@
                class="nav__link">Applications</a>
           </li>
           <li class="nav__item"
-              ng-class="{ 'is-active':inSettings }">
+              ng-class="{ 'is-active':inSettings }"
+              ng-if="isAdmin()">
             <a href="{{ context.group }}/{{ context.id }}/settings"
                class="nav__link">Settings</a>
           </li>
