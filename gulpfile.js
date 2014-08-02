@@ -5,6 +5,7 @@ var browserify = require('browserify');
 var watchify = require('watchify');
 var streamify = require('gulp-streamify');
 var uglify = require("gulp-uglify");
+var moment = require("moment");
 
 gulp.task('watchify', function() {
   var bundler = watchify(browserify('./public/scripts/review/app.js', { cache: {}, packageCache: {}, fullPaths: true, debug: true }));
@@ -13,13 +14,18 @@ gulp.task('watchify', function() {
   var applyBundler = watchify(browserify('./public/scripts/apply/app.js', { cache: {}, packageCache: {}, fullPaths: true, debug: true }));
   applyBundler.on('update', rebundleApply)
 
-  function rebundle() {
+  function rebundle () {
+
+    gutil.log('---------BUNDLING REVIEW.JS---------');
+    gutil.log(moment().format("M/D/YY - h:mm:ss a"));
+    gutil.log('------------------------------------');
+
     return bundler.bundle()
       // log errors if they happen
       .on('error', function(e) {
         gutil.log('Browserify Error', e);
       })
-      .pipe(source('bundle.js'))
+      .pipe(source('review.js'))
       //.pipe(streamify(uglify()))
       .pipe(gulp.dest('./public/scripts/review'));
   }

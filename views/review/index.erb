@@ -66,10 +66,7 @@
 
     <main class="main" ng-view></main>
 
-
-    <script type="text/javascript" src="/scripts/ext/underscore/underscore.js"></script>
-    <script type="text/javascript" src="/scripts/review/bundle.js"></script>
-
+    <script type="text/javascript" src="/scripts/review/review.js"></script>
     <script>
       var app = angular.module('Applyance');
       app.constant('me', <%= JSON.dump(@me) %>);
