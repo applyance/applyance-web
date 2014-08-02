@@ -1,54 +1,36 @@
 'use strict';
 
-angular.module('Review', ['Applyance', 'ngRoute', 'angularMoment'])
-  .config(['$routeProvider', '$locationProvider', 'me',
-    function($routeProvider, $locationProvider, me) {
+var angular = require("angular");
+require("angular-route");
+window.moment = require("moment");
+require("angular-moment");
 
-      $routeProvider
-        .when('/accounts/:id/settings', {
-          templateUrl: 'views/review/settings/account.html',
-          controller: 'AccountSettingsCtrl'
-        })
+var ApplyanceApi = require("../services/api");
 
-        .when('/dashboard', {
-          templateUrl: 'views/review/dashboard.html',
-          controller: 'DashboardCtrl'
-        })
+var Routes = require("./routes");
 
-        .when('/:parent/:id/applications', {
-          controller: 'ApplicationsCtrl',
-          templateUrl: 'views/review/applications/applications.html'
-        })
-        .when('/applications/:id', {
-          templateUrl: 'views/review/applications/application.html',
-          controller: 'ApplicationCtrl'
-        })
+angular.module('Review', [ApplyanceApi.name, 'ngRoute', 'angularMoment'])
+  .config(['$routeProvider', '$locationProvider', 'me', Routes]);
 
-        .when('/entities/:id/settings', {
-          templateUrl: 'views/review/settings/settings.html',
-          controller: 'SettingsCtrl'
-        })
-        .when('/entities/:id/entities', {
-          templateUrl: 'views/review/settings/settings.html',
-          controller: 'SettingsCtrl'
-        })
-        .when('/entities/:id/reviewers', {
-          templateUrl: 'views/review/settings/settings.html',
-          controller: 'SettingsCtrl'
-        })
-        .when('/entities/:id/blueprints', {
-          templateUrl: 'views/review/settings/settings.html',
-          controller: 'SettingsCtrl'
-        })
-        .when('/entities/:id/labels', {
-          templateUrl: 'views/review/settings/settings.html',
-          controller: 'SettingsCtrl'
-        })
 
-        .otherwise({
-          redirectTo: '/entities/' + me.reviewers[0].entity.id + '/applications'
-        });
+require("./directives");
+require("./filters");
 
-      $locationProvider.html5Mode(true);
 
-    }]);
+require("./services/me");
+require("./services/context");
+require("./services/flash");
+
+require("./controllers/header/header");
+require("./controllers/header/account");
+
+require("./controllers/applications");
+require("./controllers/application");
+require("./controllers/settings");
+require("./controllers/account");
+
+require("./controllers/entities/blueprints");
+require("./controllers/entities/entities");
+require("./controllers/entities/reviewers");
+require("./controllers/entities/settings");
+require("./controllers/entities/labels");

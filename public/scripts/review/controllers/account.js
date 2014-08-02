@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Review')
+module.exports = angular.module('Review')
   .controller('AccountSettingsCtrl', ['$scope', '$rootScope', 'ApplyanceAPI', 'Me', 'Context', '$timeout', 'flash',
   function ($scope, $rootScope, ApplyanceAPI, Me, Context, $timeout, flash) {
 

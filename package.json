@@ -7,9 +7,30 @@
     "url": "https://github.com/applyance/client.git"
   },
   "devDependencies": {
+    "angular": "^1.2.19",
+    "angular-moment": "^0.8.0",
+    "angular-route": "^1.2.17-build.163.1",
+    "browserify": "^5.9.1",
+    "crypto-js": "^3.1.2-5",
+    "debowerify": "^0.8.1",
     "gulp": "^3.8.6",
-    "gulp-concat": "^2.3.4",
+    "gulp-angular-htmlify": "^0.2.2",
+    "gulp-imagemin": "^0.6.2",
+    "gulp-minify-css": "^0.3.7",
+    "gulp-minify-html": "^0.1.4",
+    "gulp-ngmin": "^0.3.0",
+    "gulp-notify": "^1.4.1",
+    "gulp-rename": "^1.2.0",
     "gulp-rimraf": "^0.1.0",
-    "gulp-uglify": "^0.3.1"
+    "gulp-ruby-sass": "^0.7.1",
+    "gulp-streamify": "0.0.5",
+    "gulp-uglify": "^0.3.1",
+    "gulp-util": "^3.0.0",
+    "lodash": "^2.4.1",
+    "moment": "^2.8.1",
+    "restangular": "^1.4.0",
+    "underscore": "^1.6.0",
+    "vinyl-source-stream": "^0.1.1",
+    "watchify": "^1.0.1"
   }
 }

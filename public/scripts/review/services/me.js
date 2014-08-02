@@ -1,4 +1,4 @@
-angular.module('Review')
+module.exports = angular.module('Review')
   .run(function(Me) {})
   .service('Me', ['ApplyanceAPI', '$q', 'me',
     function(ApplyanceAPI, $q, me) {
