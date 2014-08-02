@@ -5,6 +5,8 @@ require("angular-route");
 window.moment = require("moment");
 require("angular-moment");
 
+window.CryptoJS = require("crypto-js");
+
 var ApplyanceApi = require("../services/api");
 
 var Routes = require("./routes");

@@ -1,6 +1,6 @@
 'use strict';
 
-// var _ = require('underscore');
+window._ = require('underscore');
 require('restangular');
 
 module.exports = angular.module('Applyance', ['restangular'])

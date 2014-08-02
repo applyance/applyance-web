@@ -1,7 +1,5 @@
 'use strict';
 
-var CryptoJS = require("crypto-js");
-
 module.exports = angular.module('Review')
   .controller('ApplicationsCtrl', ['$scope', 'ApplyanceAPI', 'Me', 'Context',
     function ($scope, ApplyanceAPI, Me, Context) {
