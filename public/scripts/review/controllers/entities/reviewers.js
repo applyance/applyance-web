@@ -51,7 +51,7 @@ module.exports = angular.module('Review')
         if ($scope.newInvite.email && $scope.selectedScope.name) {
           ApplyanceAPI.postReviewerInvite($scope.entity.id, {
             email: $scope.newInvite.email,
-            scope: $scope.selectedScope.slug
+            scope: $scope.selectedScope.scope
           }).then(function(invite) {
             $scope.invites.push(invite);
             $scope.inviting = false;

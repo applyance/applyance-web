@@ -13,7 +13,7 @@
 .mark {
   display: inline-block;
   vertical-align: middle;
-  width: 36px + 20px + 36px;
+  width: 36px + $mark-width + 36px;
   text-align: center;
   background-color: $mark-bg-color;
 
@@ -35,7 +35,7 @@
 }
 
 .mark__img {
-  width: 20px;
+  width: $mark-width;
   height: auto;
 }
 

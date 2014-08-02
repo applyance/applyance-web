@@ -1,17 +1,56 @@
 <div class="main-container">
-  <h1 class="top-header">Application</h1>
 
-  <div>
-    {{ application.submitter.name }}
-    {{ application.submitter.email }}
+  <div class="application">
 
-    <div ng-repeat="field in application.fields">
-      <div>
-        {{ field.datum.definition.label }}
+    <div class="application__applicant">
+      <div class="application__applicant__avatar">
+        <img class="avatar" src="{{ getAvatarUrl() }}">
       </div>
-      <div>
-        {{ field.datum.detail.value }}
+      <div class="application__applicant__info">
+        <h2 class="application__applicant__name">
+          {{ application.applicant.account.name }}
+        </h2>
+        <div ng-if="application.applicant.location" class="application__applicant__location">
+          <i class="icon icon-location"></i>{{ application.applicant.location.address.city }}, {{ application.applicant.location.address.state }}
+        </div>
+        <ul class="application__applicant__contact">
+          <li class="application__applicant__contact__item">
+            {{ application.applicant.account.email }}
+          </li>
+          <li ng-if="application.applicant.phone_number" class="application__applicant__contact__item">
+            {{ application.applicant.phone_number }}
+          </li>
+        </ul>
+      </div>
+      <div class="application__applicant__rating">
+        {{ cumulativeRating }}
       </div>
     </div>
+
+    <div class="application__actions group">
+      <div class="application__actions__entity">
+        Application to {{ getEntity().name }}
+      </div>
+      <ul class="application__actions__rating">
+        <li class="application__actions__rating__item"
+            ng-repeat="ratingOption in ratingOptions"
+            ng-class="{ 'is-active':ratingOption.active, 'is-set':ratingOption.set }"
+            ng-click="setRatingOption(ratingOption)"
+            ng-mouseover="mouseoverRatingOption(ratingOption)"
+            ng-mouseleave="mouseleaveRatingOption(ratingOption)">
+          <i class="icon-star-5"></i>
+        </li>
+      </ul>
+    </div>
+
+    <ol class="application__fields">
+      <li class="application__fields__item" ng-repeat="field in application.fields">
+        <div class="application__fields__label">
+          {{ field.datum.definition.label }}
+        </div>
+        <div class="application__fields__detail text-trim" ng-bind-html="renderDetail(field.datum.detail.value)">
+        </div>
+      </li>
+    </ol>
   </div>
 </div>

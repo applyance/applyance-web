@@ -9,14 +9,17 @@ var moment = require("moment");
 
 gulp.task('watchify', function() {
   var bundler = watchify(browserify('./public/scripts/review/app.js', { cache: {}, packageCache: {}, fullPaths: true, debug: true }));
-
   bundler.on('update', rebundle)
-  
+
+  var applyBundler = watchify(browserify('./public/scripts/apply/app.js', { cache: {}, packageCache: {}, fullPaths: true, debug: true }));
+  applyBundler.on('update', rebundleApply)
+
   function rebundle () {
 
     gutil.log('---------BUNDLING REVIEW.JS---------');
     gutil.log(moment().format("M/D/YY - h:mm:ss a"));
     gutil.log('------------------------------------');
+
     return bundler.bundle()
       // log errors if they happen
       .on('error', function(e) {
@@ -27,8 +30,17 @@ gulp.task('watchify', function() {
       .pipe(gulp.dest('./public/scripts/review'));
   }
 
-  return rebundle()
-})
+  function rebundleApply() {
+    return applyBundler.bundle()
+      // log errors if they happen
+      .on('error', function(e) {
+        gutil.log('Browserify Error', e);
+      })
+      .pipe(source('bundle.js'))
+      //.pipe(streamify(uglify()))
+      .pipe(gulp.dest('./public/scripts/apply'));
+  }
+});
 
 gulp.task('watch', ['watchify'])
 

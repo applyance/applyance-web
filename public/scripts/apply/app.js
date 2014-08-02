@@ -1,6 +1,11 @@
 'use strict';
 
-angular.module('Apply', ['Applyance', 'ngRoute'])
+var angular = require("angular");
+require("angular-route");
+
+var ApplyanceApi = require("../services/api");
+
+angular.module('Apply', [ApplyanceApi.name, 'ngRoute'])
   .config(function($routeProvider, $locationProvider) {
 
     $routeProvider
@@ -15,3 +20,6 @@ angular.module('Apply', ['Applyance', 'ngRoute'])
     $locationProvider.html5Mode(true);
 
   });
+
+require("./directives");
+require("./controllers/form");

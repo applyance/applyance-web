@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Apply')
+module.exports = angular.module('Apply')
   .directive('ngDebounce', function ($timeout) {
     return {
         restrict: 'A',

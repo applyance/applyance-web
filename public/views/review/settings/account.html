@@ -28,8 +28,12 @@
       </li>
       <li ng-if="passwordNeeded" class="settings-inputs__item">
         <label class="settings-inputs__label">Verify Password</label>
-        <div class="settings-inputs__"
-        <input type="password" ng-model="account.currentPassword" size="30">
+        <div class="settings-inputs__field">
+          <input type="password" ng-model="account.currentPassword" size="30">
+          <div class="settings-inputs__note">
+            With changes to sensitive data, we need you to verify your password.
+          </div>
+        </div>
       </li>
     </ul>
     <div class="settings-inputs__tray">
