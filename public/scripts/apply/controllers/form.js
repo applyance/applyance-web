@@ -9,7 +9,7 @@ module.exports = angular.module('Apply')
       $scope.applicant = {
         name: "",
         email: "",
-        password: null,
+        password: "",
         phone_number: "",
         location: {
           address: ""
@@ -36,12 +36,15 @@ module.exports = angular.module('Apply')
         $scope.checkForReadyToSubmit();
       }, true);
 
+      $scope.submitting = false;
+      $scope.submitted = false;
+
       $scope.resetEmail = function() {
         $scope.emailNote = 'check';
         $scope.passwordNote = 'check';
-        $scope.readyForBlueprints = false;
+        $scope.step = 'email';
+        $scope.showPassword = false;
         $scope.readyToSubmit = false;
-        $scope.promptPassword = false;
       }
       $scope.resetEmail();
 
@@ -58,29 +61,33 @@ module.exports = angular.module('Apply')
       };
 
       $scope.emailFound = function() {
-        $scope.promptPassword = true;
-        $scope.readyForBlueprints = false;
+        $scope.step = 'password';
         $scope.emailNote = 'found';
+        $scope.showPassword = true;
       };
 
       $scope.emailNotFound = function() {
-        $scope.promptPassword = false;
-        $scope.readyForBlueprints = true;
+        $scope.step = 'blueprints';
         $scope.checkForReadyToSubmit();
         $scope.emailNote = 'notFound';
+        $scope.showPassword = false;
       };
 
       $scope.skipPassword = function() {
-        $scope.readyForBlueprints = true;
+        $scope.step = 'blueprints';
+        $scope.showPassword = false;
         $scope.checkForReadyToSubmit();
-        $scope.promptPassword = false;
         $timeout(function() {
           $scope.$broadcast('nameFocus');
         });
       }
 
       $scope.authenticate = function() {
-        $scope.readyForBlueprints = false;
+        if (!$scope.applicant.password) {
+          $scope.step = 'password';
+          $scope.passwordNote = 'check';
+          return;
+        }
         $scope.passwordNote = 'loading';
 
         ApplyanceAPI.authenticate({
@@ -113,7 +120,8 @@ module.exports = angular.module('Apply')
         }
         if (me.applicant && me.applicant.location) {
           var a = me.applicant.location.address;
-          $scope.applicant.location.address = a.address_1 + "\n" + a.city + ", " + a.state + " " + a.postal_code;
+          $scope.applicant.location.address =
+            a.address_1 + "\n" + a.city + ", " + a.state + " " + a.postal_code;
         }
       }
 
@@ -127,13 +135,13 @@ module.exports = angular.module('Apply')
           }
         });
         $scope.passwordNote = 'found';
-        $scope.readyForBlueprints = true;
+        $scope.step = 'blueprints';
         $scope.checkForReadyToSubmit();
       }
 
       $scope.passwordNotFound = function() {
         $scope.passwordNote = 'notFound';
-        $scope.readyForBlueprints = true;
+        $scope.step = 'blueprints';
         $scope.checkForReadyToSubmit();
       }
 
@@ -180,9 +188,13 @@ module.exports = angular.module('Apply')
           fields: fields
         };
 
-        ApplyanceAPI.postApplication(application).then(function(application) {
-          console.dir(application);
-        });
+        $scope.submitting = true;
+        $timeout(function() {
+          $scope.submitted = true;
+        }, 1000);
+
+        // ApplyanceAPI.postApplication(application).then(function(application) {
+        // });
 
       }
 

@@ -2,7 +2,7 @@
 
   <h1 class="top-header">
     Applications
-    <a ng-if="applications.length > 0" href="/entities/{{ activeEntity.id }}/apply" target="_blank" class="tag application-header-link">
+    <a ng-if="applications.length > 0" href="/{{ activeEntity.slug }}" target="_blank" class="tag application-header-link">
       View Your Application Form
     </a>
   </h1>
@@ -15,7 +15,7 @@
 
           <ul class="slats__units unit--2of3">
             <li class="slats__units__item unit--1of10">
-              <img class="avatar" src="{{ getAvatarUrl(application) }}" />
+              <img class="avatar" ng-src="{{ getAvatarUrl(application) }}" />
             </li>
             <li class="slats__units__item">
               <a class="slats__item__header" href="applications/{{ application.id }}">
@@ -49,7 +49,7 @@
           It looks like you haven't had any applications for {{ activeEntity.name }} just yet.<br />Have you shared the link to your application form with anyone?
         </p>
         <p>
-          <a class="btn--primary" href="/entities/{{ activeEntity.id }}/apply" target="_blank">Application Form for {{ activeEntity.name }}</a>
+          <a class="btn--primary" href="/{{ activeEntity.slug }}" target="_blank">Application Form for {{ activeEntity.name }}</a>
         </p>
       </div>
     </div>

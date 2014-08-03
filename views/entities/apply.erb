@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Applyance</title>
+    <title>Application to <%= @entity['name'] %></title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="/img/favicon.png">
+    <link rel="icon" type="image/png" href="<%= @entity['logo']['url'] %>">
 
     <base href="/">
     <link rel="stylesheet" type="text/css" href="//cloud.typography.com/7222252/709524/css/fonts.css" />
@@ -16,15 +16,13 @@
 
     <main class="app-form" ng-view></main>
 
-    <script type="text/javascript" src="/scripts/ext/underscore/underscore.js"></script>
     <script type="text/javascript" src="/scripts/apply/bundle.js"></script>
-
     <script>
       var app = angular.module('Applyance');
       app.constant('entity', <%= JSON.dump(@entity) %>);
       app.constant('apiHost', '<%= @api_host %>');
       app.constant('apiKey', '<%= @api_key %>');
     </script>
-    
+
   </body>
 </html>

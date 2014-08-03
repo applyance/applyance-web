@@ -38,7 +38,7 @@ module.exports = angular.module('Review')
         if (Store.getAccount().avatar) {
           return Store.getAccount().avatar.url;
         }
-        return 'https://www.gravatar.com/avatar/' + CryptoJS.MD5($scope.me.account.email) + '?d=mm';
+        return 'https://www.gravatar.com/avatar/' + CryptoJS.MD5(Store.getAccount().email) + '?d=mm';
       };
 
     }]);

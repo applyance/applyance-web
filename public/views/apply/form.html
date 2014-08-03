@@ -1,4 +1,4 @@
-<img class="app-form__logo" ng-if="entity.logo.url" src="{{ entity.logo.url }}" />
+<img class="app-form__logo" ng-if="entity.logo.url" ng-src="{{ entity.logo ? entity.logo.url : null }}" />
 <h1 class="app-form__title">
   <div class="app-form__title__headline">
     Application To
@@ -8,76 +8,94 @@
   </div>
 </h1>
 
-<form class="app-form__form" name="apply" ng-submit="onSubmit()">
-  <ul class="app-form__blueprints">
+<div ng-if="submitted">
+  <div class="app-form__submitted">
+    <div class="app-form__submitted__title">Success!</div>
+    <div class="text-trim">
+      <p>
+        You've just submitted an application to {{ entity.name }}. Now you can sit tight and await a response.
+      </p>
+    </div>
+  </div>
+</div>
 
-    <li class="app-form__blueprints__item is-tight">
-      <label class="app-form__label" for="applicant-email">Email</label>
-      <input autofocus class="app-form__input" id="applicant-email" type="text" ng-model="applicant.email" value="{{ applicant.email }}" ng-debounce="750" ng-change="checkEmail()">
-      <div class="app-form__note in-progress" ng-if="emailNote == 'loading'">
-        Searching for your account...
-      </div>
-      <div class="app-form__note" ng-if="emailNote == 'check'">
-        Let's get started with your email address. We'll try to save you some time by checking if you're in our system.
-      </div>
-      <div class="app-form__note with-icon" ng-if="emailNote == 'found'">
-        <i class="icon icon-check-o-circle"></i>Good news! We found that email. Let's try to save you some time by logging in and retrieving previous answers.
-      </div>
-      <div class="app-form__note with-icon" ng-if="emailNote == 'notFound'">
-        <i class="icon icon-delete-o-circle"></i>We didn't find that email in our system. That's OK! You can still fill out the rest of the form to apply.
-      </div>
-    </li>
+<div ng-if="!submitted">
+  <form class="app-form__form" name="apply" ng-submit="onSubmit()">
+    <ul class="app-form__blueprints">
 
-    <li class="app-form__blueprints__item" ng-if="step == 'password' || step == 'blueprints'">
-      <label class="app-form__label" for="applicant-password">Password</label>
-      <input class="app-form__input" id="applicant-password" type="password" ng-model="applicant.password" focus-on="passwordFocus" ng-change="authenticate()" ng-debounce="750">
-      <div class="app-form__note in-progress" ng-if="passwordNote == 'loading'">
-        Trying to log you in...
-      </div>
-      <div class="app-form__note" ng-if="passwordNote == 'check'">
-        Enter your password here and we'll try to log you in.<br />
-        <a href="" ng-click="skipPassword()">Skip this step.</a>
-      </div>
-      <div class="app-form__note with-icon" ng-if="passwordNote == 'found'">
-        <i class="icon icon-check-o-circle"></i>Great! We found your account and are filling in this application with previous answers.
-      </div>
-      <div class="app-form__note with-icon" ng-if="passwordNote == 'notFound'">
-        <i class="icon icon-delete-o-circle"></i>We didn't find that account in our system. That's OK! You can still fill out the rest of the form to apply.
-      </div>
-    </li>
-
-    <li ng-if="step == 'blueprints'" class="app-form__blueprints__item">
-      <label class="app-form__label" for="applicant-name">Name</label>
-      <input class="app-form__input" id="applicant-name" type="text" ng-model="applicant.name" focus-on="nameFocus" value="{{ applicant.name }}">
-    </li>
-
-    <li ng-if="step == 'blueprints'" class="app-form__blueprints__item">
-      <label class="app-form__label" for="applicant-phone_number">Phone Number</label>
-      <input type="text" id="applicant-phone_number" class="app-form__input" ng-model="applicant.phone_number" value="{{ applicant.phone_number }}">
-    </li>
-
-    <li ng-if="step == 'blueprints'" class="app-form__blueprints__item">
-      <label class="app-form__label" for="applicant-phone_number">Address</label>
-      <textarea class="app-form__input" ng-model="applicant.location.address">{{ applicant.location.address }}</textarea>
-    </li>
-
-    <li ng-if="step == 'blueprints'" class="app-form__blueprints__item" ng-repeat="blueprint in blueprints">
-      <label class="app-form__label" for="blueprint[{{ blueprint.id }}]">
-        {{ blueprint.definition.label }}
-      </label>
-      <div ng-if="blueprint.definition.description" class="app-form__description">
-        {{ blueprint.definition.description }}
-      </div>
-      <div ng-switch="blueprint.definition.type">
-        <input ng-switch-when="text" class="app-form__input" type="text" id="blueprint[{{ blueprint.id }}]" ng-model="blueprint.detail.value" value="{{ blueprint.detail.value }}">
-        <div ng-switch-when="choice" class="selector">
-          <select class="app-form__input" id="blueprint[{{ blueprint.id }}]" ng-model="blueprint.detail.value" ng-options="choice for choice in blueprint.definition.helper.choices"></select>
+      <li class="app-form__blueprints__item is-tight">
+        <label class="app-form__label" for="applicant-email">Email</label>
+        <input autofocus class="app-form__input" id="applicant-email" type="text" ng-model="applicant.email" value="{{ applicant.email }}" ng-debounce="750" ng-change="checkEmail()">
+        <div class="app-form__note in-progress" ng-if="emailNote == 'loading'">
+          Searching for your account...
         </div>
-        <textarea ng-switch-default class="app-form__input" id="blueprint[{{ blueprint.id }}]" ng-model="blueprint.detail.value">{{ blueprint.detail.value }}</textarea>
-      </div>
-    </li>
+        <div class="app-form__note" ng-if="emailNote == 'check'">
+          Let's get started with your email address. We'll try to save you some time by checking if you're in our system.
+        </div>
+        <div class="app-form__note with-icon" ng-if="emailNote == 'found'">
+          <i class="icon icon-check-o-circle"></i>Good news! We found that email. Let's try to save you some time by logging in and retrieving previous answers.
+        </div>
+        <div class="app-form__note with-icon" ng-if="emailNote == 'notFound'">
+          <i class="icon icon-delete-o-circle"></i>We didn't find that email in our system. That's OK! You can still fill out the rest of the form to apply.
+        </div>
+      </li>
 
-  </ul>
+      <li class="app-form__blueprints__item" ng-if="showPassword">
+        <label class="app-form__label" for="applicant-password">Password</label>
+        <input class="app-form__input" id="applicant-password" type="password" ng-model="applicant.password" focus-on="passwordFocus" ng-change="authenticate()" ng-debounce="750">
+        <div class="app-form__note in-progress" ng-if="passwordNote == 'loading'">
+          Trying to log you in...
+        </div>
+        <div class="app-form__note" ng-if="passwordNote == 'check'">
+          Enter your password here and we'll try to log you in.<br />
+          <a href="" ng-click="skipPassword()">Skip this step.</a>
+        </div>
+        <div class="app-form__note with-icon" ng-if="passwordNote == 'found'">
+          <i class="icon icon-check-o-circle"></i>Great! We found your account and are filling in this application with previous answers.
+        </div>
+        <div class="app-form__note with-icon" ng-if="passwordNote == 'notFound'">
+          <i class="icon icon-delete-o-circle"></i>We didn't find that account in our system. That's OK! You can still fill out the rest of the form to apply.
+        </div>
+        <div class="app-form__note with-icon" ng-if="passwordNote == 'skipped'">
+          <i class="icon icon-check-o-circle"></i>Skipped!
+        </div>
+      </li>
 
-  <button ng-class="{ 'is-disabled':!readyToSubmit }" ng-disabled="!readyToSubmit" class="btn--secondary app-form__submit" type="submit">Submit Application</button>
-</form>
+      <li ng-if="step == 'blueprints'" class="app-form__blueprints__item">
+        <label class="app-form__label" for="applicant-name">Name</label>
+        <input class="app-form__input" id="applicant-name" type="text" ng-model="applicant.name" focus-on="nameFocus" value="{{ applicant.name }}">
+      </li>
+
+      <li ng-if="step == 'blueprints'" class="app-form__blueprints__item">
+        <label class="app-form__label" for="applicant-phone_number">Phone Number</label>
+        <input type="text" id="applicant-phone_number" class="app-form__input" ng-model="applicant.phone_number" value="{{ applicant.phone_number }}">
+      </li>
+
+      <li ng-if="step == 'blueprints'" class="app-form__blueprints__item">
+        <label class="app-form__label" for="applicant-phone_number">Address</label>
+        <textarea class="app-form__input" ng-model="applicant.location.address">{{ applicant.location.address }}</textarea>
+      </li>
+
+      <li ng-if="step == 'blueprints'" class="app-form__blueprints__item" ng-repeat="blueprint in blueprints">
+        <label class="app-form__label" for="blueprint[{{ blueprint.id }}]">
+          {{ blueprint.definition.label }}
+        </label>
+        <div ng-if="blueprint.definition.description" class="app-form__description">
+          {{ blueprint.definition.description }}
+        </div>
+        <div ng-switch="blueprint.definition.type">
+          <input ng-switch-when="text" class="app-form__input" type="text" id="blueprint[{{ blueprint.id }}]" ng-model="blueprint.detail.value" value="{{ blueprint.detail.value }}">
+          <div ng-switch-when="choice" class="selector">
+            <select class="app-form__input" id="blueprint[{{ blueprint.id }}]" ng-model="blueprint.detail.value" ng-options="choice for choice in blueprint.definition.helper.choices"></select>
+          </div>
+          <textarea ng-switch-default class="app-form__input" id="blueprint[{{ blueprint.id }}]" ng-model="blueprint.detail.value">{{ blueprint.detail.value }}</textarea>
+        </div>
+      </li>
+
+    </ul>
+
+    <button ng-class="{ 'is-disabled':(!readyToSubmit || submitting) }" ng-disabled="!readyToSubmit || submitting" class="btn--secondary app-form__submit" type="submit">{{ submitting ? 'Submitting' : 'Submit Application' }}</button>
+
+  </form>
+
+</div>
