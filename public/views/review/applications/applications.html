@@ -2,7 +2,7 @@
 
   <h1 class="top-header">
     Applications
-    <a ng-if="applications.length > 0" href="/entities/{{ entity.id }}/apply" target="_blank" class="tag application-header-link">
+    <a ng-if="applications.length > 0" href="/entities/{{ activeEntity.id }}/apply" target="_blank" class="tag application-header-link">
       View Your Application Form
     </a>
   </h1>
@@ -46,10 +46,10 @@
     <div ng-switch-when="0">
       <div class="toaster text-trim">
         <p>
-          It looks like you haven't had any applications for {{ entity.name }} just yet.<br />Have you shared the link to your application form with anyone?
+          It looks like you haven't had any applications for {{ activeEntity.name }} just yet.<br />Have you shared the link to your application form with anyone?
         </p>
         <p>
-          <a class="btn--primary" href="/entities/{{ entity.id }}/apply" target="_blank">Application Form for {{ entity.name }}</a>
+          <a class="btn--primary" href="/entities/{{ activeEntity.id }}/apply" target="_blank">Application Form for {{ activeEntity.name }}</a>
         </p>
       </div>
     </div>

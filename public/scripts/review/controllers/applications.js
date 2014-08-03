@@ -1,14 +1,14 @@
 'use strict';
 
 module.exports = angular.module('Review')
-  .controller('ApplicationsCtrl', ['$scope', 'ApplyanceAPI', 'Me', 'Context',
-    function ($scope, ApplyanceAPI, Me, Context) {
+  .controller('ApplicationsCtrl', ['$scope', 'ApplyanceAPI', 'Store',
+    function ($scope, ApplyanceAPI, Store) {
 
-      $scope.entity = Me.getEntity(Context.getId());
-
-      ApplyanceAPI.getApplications(Context.getGroup(), Context.getId()).then(function(applications) {
+      ApplyanceAPI.getApplications(Store.activeEntityId).then(function(applications) {
          $scope.applications = applications;
       });
+
+      $scope.activeEntity = Store.getActiveEntity();
 
       $scope.getAvatarUrl = function(application) {
         if (application.applicant.account.avatar) {

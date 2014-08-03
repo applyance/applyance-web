@@ -1,11 +1,11 @@
 'use strict';
 
 module.exports = angular.module('Review')
-  .controller('EntityEntitiesCtrl', ['$scope', 'ApplyanceAPI', '$timeout', 'Me', 'Context',
-    function ($scope, ApplyanceAPI, $timeout, Me, Context) {
+  .controller('EntityEntitiesCtrl', ['$scope', 'ApplyanceAPI', '$timeout', 'Store',
+    function ($scope, ApplyanceAPI, $timeout, Store) {
 
       $scope.units = [];
-      ApplyanceAPI.getEntities($scope.entity.id).then(function(entities) {
+      ApplyanceAPI.getEntities(Store.activeEntityId).then(function(entities) {
          $scope.entities = entities;
          $scope.entities.reverse();
       });
@@ -17,6 +17,7 @@ module.exports = angular.module('Review')
       $scope.removeEntity = function(entity) {
         ApplyanceAPI.deleteEntity(entity.id).then(function() {
           $scope.entities.splice($scope.entities.indexOf(entity), 1);
+          Store.removeEntity(entity);
         });
       }
 
@@ -29,14 +30,13 @@ module.exports = angular.module('Review')
 
       $scope.updateEntity = function(entity) {
         entity.isEditing = false;
-        ApplyanceAPI.putEntity({
-          id: entity.id,
-          name: entity.name
+        ApplyanceAPI.putEntity({ id: entity.id, name: entity.name }).then(function(r) {
+          Store.setEntity(r.data);
         });
       }
 
       $scope.addEntity = function() {
-        ApplyanceAPI.postEntity($scope.entity.id, {
+        ApplyanceAPI.postEntity(Store.activeEntityId, {
           name: "New Entity"
         }).then(function(entity) {
           entity.isEditing = true;

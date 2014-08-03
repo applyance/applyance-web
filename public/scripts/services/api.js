@@ -21,7 +21,7 @@ module.exports = angular.module('Applyance', ['restangular'])
       this.getMe = function() {
         return $http.get(apiHost + "/accounts/me");
       };
-      this.updateMe = function(accountId, accountInfo) {
+      this.updateAccount = function(accountId, accountInfo) {
         return $http.put(apiHost + "/accounts/" + accountId, accountInfo);
       };
 
@@ -34,8 +34,8 @@ module.exports = angular.module('Applyance', ['restangular'])
       };
 
       // Applications
-      this.getApplications = function(parent, parentId) {
-        return Restangular.one(parent, parentId).all("applications").getList();
+      this.getApplications = function(entityId) {
+        return Restangular.one("entities", entityId).all("applications").getList();
       };
       this.getApplication = function(id) {
         return Restangular.one('applications', id).get();

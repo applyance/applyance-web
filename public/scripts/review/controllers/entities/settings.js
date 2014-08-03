@@ -1,19 +1,21 @@
 'use strict';
 
 module.exports = angular.module('Review')
-  .controller('EntitySettingsCtrl', ['$scope', '$rootScope', 'flash', 'ApplyanceAPI', 'Me', 'Context', '$timeout',
-    function ($scope, $rootScope, flash, ApplyanceAPI, Me, Context, $timeout) {
+  .controller('EntitySettingsCtrl', ['$scope', '$rootScope', 'flash', 'ApplyanceAPI', 'Store', '$timeout',
+    function ($scope, $rootScope, flash, ApplyanceAPI, Store, $timeout) {
 
       $scope.flash = flash;
 
-      if ($scope.entity.location) {
-        var a = $scope.entity.location.address;
+      $scope.e = Store.getActiveEntity();
+
+      if ($scope.e.location) {
+        var a = $scope.e.address;
         $scope.address = a.address_1 + "\n" + a.city + ", " + a.state + " " + a.postal_code;
       }
 
-      if ($scope.entity.logo) {
-        $scope.entity.attachment = {
-          url: $scope.entity.logo.url
+      if ($scope.e.logo) {
+        $scope.e.attachment = {
+          url: $scope.e.logo.url
         };
       }
 
@@ -39,16 +41,16 @@ module.exports = angular.module('Review')
 
         $scope.isUpdating = true;
 
-        if (!$scope.entity.fileObj) {
+        if (!$scope.e.fileObj) {
           $scope.updateEntity();
           return;
         }
 
-        ApplyanceAPI.uploadAttachment($scope.entity.fileObj,
-          $scope.entity.fileObj.type).then(
+        ApplyanceAPI.uploadAttachment($scope.e.fileObj,
+          $scope.e.fileObj.type).then(
           function(r) {
             $scope.updateEntity({
-              name: $scope.entity.fileObj.name,
+              name: $scope.e.fileObj.name,
               token: r.data.token
             });
           },
@@ -63,8 +65,8 @@ module.exports = angular.module('Review')
       $scope.updateEntity = function(logo) {
 
         var entity = {
-          id: $scope.entity.id,
-          name: $scope.entity.name
+          id: $scope.e.id,
+          name: $scope.e.name
         };
 
         if (logo) {
@@ -79,6 +81,8 @@ module.exports = angular.module('Review')
 
         ApplyanceAPI.putEntity(entity).then(function(r) {
           $scope.isUpdating = false;
+
+          Store.setEntity(r.data);
 
           $scope.flash.setMessage("Settings updated successfully.");
           $rootScope.$broadcast('flash');
