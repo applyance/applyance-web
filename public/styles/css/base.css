@@ -1089,3 +1089,52 @@ select {
   color: white; }
   .btn--secondary:not(.is-disabled):focus, .btn--secondary:not(.is-disabled):hover {
     background-color: #5e5e5e; }
+
+/* Attachment */
+.attachment {
+  display: inline-block; }
+
+.attachment__box {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 140px;
+  height: 140px;
+  padding: 6px;
+  text-align: center;
+  background-color: #fcfdfd;
+  border: 4px dashed #eef0f2;
+  border-radius: 5px; }
+  .attachment__box img {
+    display: block;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 100%;
+    height: auto;
+    border-radius: 3px; }
+
+.attachment__empty {
+  display: inline-block;
+  margin-top: -4px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 96px;
+  opacity: .1; }
+
+.attachment__choose {
+  margin-left: 24px; }
+
+.attachment__file {
+  opacity: 0;
+  width: 1px; }

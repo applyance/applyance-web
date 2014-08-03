@@ -1,44 +1,29 @@
-<section class="section is-gray">
-  <div class="container">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Applyance - Register</title>
 
-    <h1>Register</h1>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/img/favicon.png">
 
-    <form action="/accounts/register" method="post">
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="//cloud.typography.com/7222252/709524/css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/css/public.css" />
+  </head>
+  <body ng-app="Register">
 
-      <% if @errors %>
-      <ul>
-        <% @errors.each do |error| %>
-        <li>
-          <%= error %>
-        </li>
-        <% end %>
-      </ul>
-      <% end %>
+    <%= erb :'shared/_header' %>
 
-      <ul>
-        <li>
-          <label for="name">Name</label>
-          <input id="name" name="account[name]" type="text">
-        </li>
-        <li>
-          <label for="entity-name">Entity Name</label>
-          <input id="entity-name" name="entity[name]" type="text">
-        </li>
-        <li>
-          <label for="email">Email</label>
-          <input id="email" name="account[email]" type="email">
-        </li>
-        <li>
-          <label for="password">Password</label>
-          <input id="password" name="account[password]" type="password">
-        </li>
-      </ul>
+    <main class="register" ng-view></main>
 
-      <div>
-        <button type="submit">Create Account</button>
-      </div>
+    <script type="text/javascript" src="/scripts/register/register.js"></script>
+    <script>
+      var app = angular.module('Register');
+      app.constant('apiHost', '<%= @api_host %>');
+      app.constant('apiKey', '');
+    </script>
 
-    </form>
-
-  </div>
-</div>
+  </body>
+</html>

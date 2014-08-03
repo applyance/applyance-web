@@ -14,6 +14,9 @@ gulp.task('watchify', function() {
   var applyBundler = watchify(browserify('./public/scripts/apply/app.js', { cache: {}, packageCache: {}, fullPaths: true, debug: true }));
   applyBundler.on('update', rebundleApply)
 
+  var registerBundler = watchify(browserify('./public/scripts/register/app.js', { cache: {}, packageCache: {}, fullPaths: true, debug: true }));
+  registerBundler.on('update', rebundleRegister)
+
   function rebundle () {
 
     gutil.log('---------BUNDLING REVIEW.JS---------');
@@ -44,6 +47,22 @@ gulp.task('watchify', function() {
       .pipe(source('apply.js'))
       //.pipe(streamify(uglify()))
       .pipe(gulp.dest('./public/scripts/apply'));
+  }
+
+  function rebundleRegister() {
+
+    gutil.log('---------BUNDLING REGISTER.JS---------');
+    gutil.log(moment().format("M/D/YY - h:mm:ss a"));
+    gutil.log('------------------------------------');
+
+    return registerBundler.bundle()
+      // log errors if they happen
+      .on('error', function(e) {
+        gutil.log('Browserify Error', e);
+      })
+      .pipe(source('register.js'))
+      //.pipe(streamify(uglify()))
+      .pipe(gulp.dest('./public/scripts/register'));
   }
 });
 

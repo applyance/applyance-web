@@ -86,4 +86,30 @@ html {
     background-color: $color-base;
     color: white;
   }
+  &.is-big {
+    padding: 96px 0;
+  }
+}
+
+/* Leads (big text) */
+
+.lead {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.2;
+  text-align: center;
+  text-rendering: optimizeLegibility;
+}
+
+.lead--big {
+  @extend .lead;
+  font-size: 42px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+/* Highlights */
+
+.text-highlight {
+  border-bottom: 4px solid rgba(white, .125);
 }

@@ -1,0 +1,101 @@
+<section class="section is-base">
+  <div class="container">
+    <h1 class="lead--big">
+      Start hiring in <span class="text-highlight">5 minutes</span>
+    </h1>
+  </div>
+</section>
+
+<section class="section is-gray is-big">
+  <div class="container">
+
+    <div class="lead register-lead">
+      First, tell us a little about yourself.
+    </div>
+
+    <div class="register__fields-wrap">
+      <ul class="register__fields">
+        <li class="register__fields__item">
+          <input class="register__fields__input" id="reviewer-name" name="reviewerName" type="text" placeholder="Name" ng-model="form.reviewer.name">
+        </li>
+        <li class="register__fields__item">
+          <input class="register__fields__input" id="reviewer-email" name="reviewerEmail" type="text" placeholder="Email" ng-model="form.reviewer.email">
+        </li>
+        <li class="register__fields__item">
+          <input class="register__fields__input" id="reviewer-password" name="reviewerPassword" type="password" placeholder="Password" ng-model="form.reviewer.password">
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <button class="btn--primary register-btn" type="submit" ng-click="form.step = 2">Continue</button>
+    </div>
+
+  </div>
+</section>
+
+<section ng-if="form.step >= 2" class="section is-big">
+  <div class="container">
+
+    <div class="lead register-lead">
+      Next, we need a name and logo for your company.
+    </div>
+
+    <div class="register__fields-wrap">
+      <ul class="register__fields">
+        <li class="register__fields__item">
+          <input class="register__fields__input" id="entity-name" name="entityName" type="text" placeholder="Company Name" ng-model="form.entity.name">
+        </li>
+        <li class="register__fields__item">
+          <div class="register__fields__logo-label">
+            Logo
+          </div>
+          <div class="register__fields__logo-input">
+            <div class="attachment">
+              <div class="attachment__box">
+                <i class="attachment__empty icon-photo"></i>
+                <img ng-if="form.entity.attachment" ng-src="{{ form.entity.attachment.url }}" alt="avatar" />
+              </div>
+              <button class="btn attachment__choose" ng-click="clickChoose()">Choose</button>
+              <input class="attachment__file" id="logo" type="file" fileread="form.entity" accepts="image/*">
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <button class="btn--primary register-btn" type="submit" ng-click="form.step = 3">Continue</button>
+    </div>
+  </div>
+
+</section>
+
+<section ng-if="form.step >= 3" class="section is-gray is-big">
+  <div class="container">
+
+    <div class="lead register-lead">
+      Finally, what questions do you want on your application?
+    </div>
+
+    <div class="register__fields-wrap">
+      <ul class="selection__grid">
+      </ul>
+    </div>
+
+    <div>
+      <button class="btn--primary register-btn" type="submit" ng-click="submit()">Start Hiring!</button>
+    </div>
+
+  </div>
+</section>
+
+<section ng-if="form.submitted" class="section is-gray is-big">
+  <div class="container">
+
+    <h1 class="lead--big">
+      Start hiring in <span class="text-highlight">5 minutes</span>
+    </h1>
+
+  </div>
+</section>

@@ -70,6 +70,25 @@ html {
   .section.is-base {
     background-color: #374249;
     color: white; }
+  .section.is-big {
+    padding: 96px 0; }
+
+/* Leads (big text) */
+.lead, .lead--big {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.2;
+  text-align: center;
+  text-rendering: optimizeLegibility; }
+
+.lead--big {
+  font-size: 42px;
+  letter-spacing: 5px;
+  text-transform: uppercase; }
+
+/* Highlights */
+.text-highlight {
+  border-bottom: 4px solid rgba(255, 255, 255, 0.125); }
 
 .login {
   display: inline-block;
@@ -147,3 +166,61 @@ html {
   text-align: left;
   border-radius: 0;
   width: 100%; }
+
+.register-lead {
+  margin-bottom: 96px; }
+
+.register-btn {
+  display: block;
+  margin-top: 96px;
+  padding-left: 48px;
+  padding-right: 48px;
+  margin-left: auto;
+  margin-right: auto; }
+
+.register__fields-wrap {
+  text-align: center; }
+
+.register__fields {
+  text-align: left;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto; }
+
+.register__fields__item {
+  margin-bottom: 48px; }
+  .register__fields__item:last-child {
+    margin-bottom: 0; }
+
+.register__fields__input {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  padding: 12px 18px;
+  font-size: 22px;
+  font-weight: 300;
+  outline: none;
+  border: 0;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  -webkit-transition: border-color 200ms ease-in-out;
+  -moz-transition: border-color 200ms ease-in-out;
+  transition: border-color 200ms ease-in-out; }
+  .register__fields__input:focus {
+    border-bottom-color: rgba(242, 188, 54, 0.5); }
+
+.register__fields__logo-label {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 18px;
+  font-size: 22px;
+  font-weight: 300;
+  color: #aaa;
+  width: 170px; }
+
+.register__fields__logo-input {
+  display: inline-block;
+  vertical-align: middle; }

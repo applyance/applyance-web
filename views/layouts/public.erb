@@ -13,23 +13,7 @@
   </head>
   <body>
 
-    <header class="header">
-      <div class="container group">
-        <a href="/" class="logo__link">
-          <img src="/img/logo.blue.png" class="logo" />
-        </a>
-        <nav class="nav">
-          <ul class="nav__list group">
-            <li class="nav__item is-emphasized">
-              <a href="/accounts/register" class="nav__link">Register</a>
-            </li>
-            <li class="nav__item">
-              <a href="/accounts/login" class="nav__link">Sign In</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <%= erb :'shared/_header' %>
 
     <main>
       <%= yield %>

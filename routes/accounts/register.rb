@@ -8,7 +8,8 @@ module Applyance
 
           # GET Admin registration
           app.get '/accounts/register' do
-            erb :'accounts/register', :layout => :'layouts/public'
+            @api_host = api_host
+            erb :'accounts/register'
           end
 
           # POST Admin registration

@@ -1,0 +1,26 @@
+'use strict';
+
+var angular = require("angular");
+require("angular-route");
+
+var ApplyanceApi = require("../services/api");
+
+angular.module('Register', [ApplyanceApi.name, 'ngRoute'])
+  .config(function($routeProvider, $locationProvider) {
+
+    $routeProvider
+      .when('/accounts/register', {
+        templateUrl: '/views/register/form.html',
+        controller: 'FormCtrl'
+      })
+      .otherwise({
+        redirectTo: '/accounts/register'
+      });
+
+    $locationProvider.html5Mode(true);
+
+  });
+
+require("../directives");
+require("../filters");
+require("./controllers/form");
