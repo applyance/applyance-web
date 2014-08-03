@@ -97,12 +97,16 @@ module.exports = angular.module('Review')
 
       $scope.getMeRating = function() {
         return _.find($scope.ratings, function(rating) {
-          return rating.account_id == Store.getAccount().id;
+          return rating.account.id == Store.getAccount().id;
         });
       };
 
       $scope.renderDetail = function(detail) {
         return $sce.trustAsHtml($filter('nl2p')(detail));
+      };
+
+      $scope.renderAddress = function(address) {
+        return $sce.trustAsHtml($filter('friendlyAddress')(address));
       };
 
     }]);

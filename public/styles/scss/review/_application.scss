@@ -89,27 +89,7 @@
 }
 
 .application__actions__rating {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  font-size: 0;
   float: right;
-}
-
-.application__actions__rating__item {
-  display: inline-block;
-  font-size: 32px;
-  color: darken($color-gray, 25%);
-  cursor: pointer;
-
-  @include transition(color 200ms ease-in-out);
-
-  &.is-active {
-    color: darken($color-gray, 50%);
-  }
-  &.is-set {
-    color: $color-accent;
-  }
 }
 
 /* Fields Section */

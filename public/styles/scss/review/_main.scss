@@ -50,6 +50,10 @@
   }
 }
 
+.sidebar-menu__item {
+  border-bottom: 1px solid rgba(black, .05);
+}
+
 .sidebar-menu__link {
   display: block;
   padding: 24px;
@@ -356,4 +360,31 @@ a.slats__item__header {
 .application-header-link {
   margin-top: -5px;
   float: right;
+}
+
+/* Applicant Rating */
+
+.applicant-rating {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0;
+}
+
+.applicant-rating__item {
+  display: inline-block;
+  font-size: 32px;
+  color: darken($color-gray, 25%);
+
+  @include transition(color 200ms ease-in-out);
+
+  &.is-active {
+    color: darken($color-gray, 50%);
+  }
+  &.is-set {
+    color: $color-accent;
+  }
+  &.is-settable {
+    cursor: pointer;
+  }
 }

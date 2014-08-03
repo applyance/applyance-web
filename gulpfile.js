@@ -31,12 +31,17 @@ gulp.task('watchify', function() {
   }
 
   function rebundleApply() {
+
+    gutil.log('---------BUNDLING APPLY.JS---------');
+    gutil.log(moment().format("M/D/YY - h:mm:ss a"));
+    gutil.log('------------------------------------');
+
     return applyBundler.bundle()
       // log errors if they happen
       .on('error', function(e) {
         gutil.log('Browserify Error', e);
       })
-      .pipe(source('bundle.js'))
+      .pipe(source('apply.js'))
       //.pipe(streamify(uglify()))
       .pipe(gulp.dest('./public/scripts/apply'));
   }

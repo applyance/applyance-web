@@ -22,5 +22,6 @@ angular.module('Apply', [ApplyanceApi.name, 'ngRoute'])
   });
 
 require("../directives");
+require("../filters");
 require("./directives");
 require("./controllers/form");

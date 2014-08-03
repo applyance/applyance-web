@@ -12,8 +12,8 @@ angular.module('Review', [require("../services/api").name, 'ngRoute', 'angularMo
   .config(['$routeProvider', '$locationProvider', 'me', require("./routes")]);
 
 require("../directives");
+require("../filters");
 require("./directives");
-require("./filters");
 
 require("./services/store");
 require("./services/flash");

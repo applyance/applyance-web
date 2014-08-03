@@ -7,4 +7,4 @@ module.exports = angular.module('Applyance')
           elem[0].focus();
         });
      };
-  })
+  });

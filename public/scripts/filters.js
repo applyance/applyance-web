@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = angular.module('Review')
+module.exports = angular.module('Applyance')
   .filter('capitalize', function() {
     return function(input, scope) {
       if (input != null) {
@@ -18,6 +18,11 @@ module.exports = angular.module('Review')
     return function(text){
       text = String(text).trim();
       return (text.length > 0 ? '<p>' + text.replace(/[\r\n]+/, '</p><p>') + '</p>' : null);
+    }
+  })
+  .filter('friendlyAddress', function () {
+    return function(obj) {
+      return obj.address_1 + "<br />" + obj.city + ", " + obj.state + " " + obj.postal_code;
     }
   })
 ;

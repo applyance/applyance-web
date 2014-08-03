@@ -101,8 +101,8 @@ module.exports = angular.module('Apply')
       };
 
       $scope.onAuthenticateSuccess = function(me, status, headers, config) {
-        $scope.mapMeToApplicant(me);
         if (me.applicant) {
+          $scope.mapMeToApplicant(me);
           var api_key = headers('authorization').split('auth=')[1];
           $http.get(ApplyanceAPI.getApiHost() + "/applicants/" + $scope.applicant.id + "/datums", {
             headers: { 'Authorization': 'ApplyanceLogin auth=' + api_key }
@@ -115,10 +115,10 @@ module.exports = angular.module('Apply')
       $scope.mapMeToApplicant = function(me) {
         $scope.applicant.id = me.applicant.id;
         $scope.applicant.name = me.account.name;
-        if (me.applicant && me.applicant.phone_number) {
+        if (me.applicant.phone_number) {
           $scope.applicant.phone_number = me.applicant.phone_number;
         }
-        if (me.applicant && me.applicant.location) {
+        if (me.applicant.location) {
           var a = me.applicant.location.address;
           $scope.applicant.location.address =
             a.address_1 + "\n" + a.city + ", " + a.state + " " + a.postal_code;
@@ -127,6 +127,9 @@ module.exports = angular.module('Apply')
 
       $scope.onDatumsLoad = function(datums) {
         _.each($scope.blueprints, function(blueprint) {
+          if (blueprint.definition.is_contextual) {
+            return;
+          }
           var thisDatum = _.find(datums.data, function(datum) {
             return datum.definition.id == blueprint.definition.id;
           });
@@ -190,11 +193,11 @@ module.exports = angular.module('Apply')
 
         $scope.submitting = true;
         $timeout(function() {
-          $scope.submitted = true;
-        }, 1000);
-
-        // ApplyanceAPI.postApplication(application).then(function(application) {
-        // });
+          ApplyanceAPI.postApplication(application).then(function(application) {
+            $scope.submitting = false;
+            $scope.submitted = true;
+          });
+        }, 750);
 
       }
 

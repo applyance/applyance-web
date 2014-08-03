@@ -54,7 +54,7 @@
           <i class="icon icon-check-o-circle"></i>Great! We found your account and are filling in this application with previous answers.
         </div>
         <div class="app-form__note with-icon" ng-if="passwordNote == 'notFound'">
-          <i class="icon icon-delete-o-circle"></i>We didn't find that account in our system. That's OK! You can still fill out the rest of the form to apply.
+          <i class="icon icon-delete-o-circle"></i>We didn't find an applicant in our system with those credentials. That's OK! You can still fill out the rest of the form to apply.
         </div>
         <div class="app-form__note with-icon" ng-if="passwordNote == 'skipped'">
           <i class="icon icon-check-o-circle"></i>Skipped!
@@ -78,10 +78,10 @@
 
       <li ng-if="step == 'blueprints'" class="app-form__blueprints__item" ng-repeat="blueprint in blueprints">
         <label class="app-form__label" for="blueprint[{{ blueprint.id }}]">
-          {{ blueprint.definition.label }}
+          {{ blueprint.definition.label | blueprint:entity }}
         </label>
         <div ng-if="blueprint.definition.description" class="app-form__description">
-          {{ blueprint.definition.description }}
+          {{ blueprint.definition.description | blueprint:entity }}
         </div>
         <div ng-switch="blueprint.definition.type">
           <input ng-switch-when="text" class="app-form__input" type="text" id="blueprint[{{ blueprint.id }}]" ng-model="blueprint.detail.value" value="{{ blueprint.detail.value }}">

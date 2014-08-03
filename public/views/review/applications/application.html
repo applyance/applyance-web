@@ -4,7 +4,7 @@
 
     <div class="application__applicant">
       <div class="application__applicant__avatar">
-        <img class="avatar" src="{{ getAvatarUrl() }}">
+        <img class="avatar" ng-src="{{ getAvatarUrl() }}">
       </div>
       <div class="application__applicant__info">
         <h2 class="application__applicant__name">
@@ -31,8 +31,8 @@
       <div class="application__actions__entity">
         Application to {{ getEntity().name }}
       </div>
-      <ul class="application__actions__rating">
-        <li class="application__actions__rating__item"
+      <ul class="application__actions__rating applicant-rating">
+        <li class="applicant-rating__item is-settable"
             ng-repeat="ratingOption in ratingOptions"
             ng-class="{ 'is-active':ratingOption.active, 'is-set':ratingOption.set }"
             ng-click="setRatingOption(ratingOption)"
@@ -44,9 +44,15 @@
     </div>
 
     <ol class="application__fields">
+      <li ng-if="application.applicant.location" class="application__fields__item">
+        <div class="application__fields__label">
+          Address
+        </div>
+        <div class="application__fields__detail text-trim" ng-bind-html="renderAddress(application.applicant.location.address)"></div>
+      </li>
       <li class="application__fields__item" ng-repeat="field in application.fields">
         <div class="application__fields__label">
-          {{ field.datum.definition.label }}
+          {{ field.datum.definition.label | blueprint:getEntity() }}
         </div>
         <div class="application__fields__detail text-trim" ng-bind-html="renderDetail(field.datum.detail.value)">
         </div>
