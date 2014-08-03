@@ -11,8 +11,8 @@ module.exports = angular.module('Review')
       return $scope.settings == settings;
     };
 
-    $scope.getActiveEntityId = function() {
-    	return Store.activeEntityId;
+    $scope.getActiveEntity = function() {
+    	return Store.getActiveEntity();
     };
 
   }]);

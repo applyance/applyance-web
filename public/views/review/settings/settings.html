@@ -1,27 +1,27 @@
 <!-- Secondary nav aka Sidebar -->
 <ul class="sidebar-menu">
   <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('settings') }">
-    <a class="sidebar-menu__link" href="/entities/{{ getActiveEntityId() }}/settings">
+    <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/settings">
       <i class="icon icon-settings"></i>Settings
     </a>
   </li>
-  <li ng-if="entity.parent == null" class="sidebar-menu__item" ng-class="{ 'is-active': isActive('entities') }">
-    <a class="sidebar-menu__link" href="/entities/{{ getActiveEntityId() }}/entities">
+  <li ng-if="getActiveEntity().parent == null" class="sidebar-menu__item" ng-class="{ 'is-active': isActive('entities') }">
+    <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/entities">
       <i class="icon icon-location"></i>Units
     </a>
   </li>
   <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('reviewers') }">
-    <a class="sidebar-menu__link" href="/entities/{{ getActiveEntityId() }}/reviewers">
+    <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/reviewers">
       <i class="icon icon-group"></i>Team
     </a>
   </li>
   <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('blueprints') }">
-    <a class="sidebar-menu__link" href="/entities/{{ getActiveEntityId() }}/blueprints">
+    <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/blueprints">
       <i class="icon icon-notepad"></i>Questions
     </a>
   </li>
   <li ng-hide="true" class="sidebar-menu__item" ng-class="{ 'is-active': isActive('labels') }">
-    <a class="sidebar-menu__link" href="/entities/{{ getActiveEntityId() }}/labels">
+    <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/labels">
       <i class="icon icon-tag"></i>Labels
     </a>
   </li>

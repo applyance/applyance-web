@@ -16,7 +16,7 @@ module.exports = angular.module('Review')
          $scope.blueprints = $scope.blueprints.concat(blueprints);
       });
 
-      if ($scope.entity.parent) {
+      if ($scope.e.parent) {
         ApplyanceAPI.getBlueprints($scope.entity.parent.id).then(function(blueprints) {
           blueprints = _.map(blueprints, function(blueprint) {
             blueprint.is_parent = true;
