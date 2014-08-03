@@ -1,11 +1,11 @@
 'use strict';
 
 module.exports = angular.module('Review')
-  .controller('AccountSettingsCtrl', ['$scope', '$rootScope', 'ApplyanceAPI', 'Me', 'Context', '$timeout', 'flash',
-  function ($scope, $rootScope, ApplyanceAPI, Me, Context, $timeout, flash) {
+  .controller('AccountSettingsCtrl', ['$scope', '$rootScope', 'ApplyanceAPI', 'Store', '$timeout', 'flash',
+  function ($scope, $rootScope, ApplyanceAPI, Store, $timeout, flash) {
 
     $scope.flash = flash;
-    $scope.currentInfo = Me.getMe().account;
+    $scope.currentInfo = Store.getAccount();
     $scope.account = angular.copy($scope.currentInfo);
 
     if ($scope.account.avatar) {
@@ -70,21 +70,26 @@ module.exports = angular.module('Review')
               token: r.data.token
             };
             updatedAccount["id"] = $scope.currentInfo.id;
-            Me.updateMe(updatedAccount).then($scope.afterUpdate);
+            ApplyanceAPI.updateAccount(updatedAccount.id, updatedAccount).then(function(account) {
+              $scope.afterUpdate(account);
+            });
           }
         );
       } else if (!_.isEmpty(updatedAccount)) {
         updatedAccount["id"] = $scope.currentInfo.id;
-        Me.updateMe(updatedAccount).then($scope.afterUpdate);
+        ApplyanceAPI.updateAccount(updatedAccount.id, updatedAccount).then(function(account) {
+          $scope.afterUpdate(account);
+        });
+
       } else {
         $scope.isUpdating = false;
       }
 
     };
 
-    $scope.afterUpdate = function(me) {
-      $scope.currentInfo.name = me.data.name;
-      $scope.currentInfo.email = me.data.email;
+    $scope.afterUpdate = function(account) {
+      Store.setAccount(account);
+      $scope.currentInfo = account;
       $scope.isUpdating = false;
 
       $scope.flash.setMessage("Account settings updated successfully.");

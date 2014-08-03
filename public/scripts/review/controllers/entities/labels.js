@@ -1,11 +1,11 @@
 'use strict';
 
 module.exports = angular.module('Review')
-  .controller('EntityLabelsCtrl', ['$scope', 'ApplyanceAPI', '$timeout', 'Me', 'Context',
-    function ($scope, ApplyanceAPI, $timeout, Me, Context) {
+  .controller('EntityLabelsCtrl', ['$scope', 'ApplyanceAPI', '$timeout', 'Store',
+    function ($scope, ApplyanceAPI, $timeout, Store) {
 
       $scope.labels = [];
-      ApplyanceAPI.getLabels($scope.entity.id).then(function(labels) {
+      ApplyanceAPI.getLabels(Store.activeEntityId).then(function(labels) {
          $scope.labels = labels;
          $scope.labels.reverse();
       });

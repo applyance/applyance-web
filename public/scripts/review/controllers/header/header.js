@@ -1,18 +1,17 @@
 'use strict';
 
 module.exports = angular.module('Review')
-  .controller('HeaderCtrl', ['$scope', '$rootScope', '$location', 'Me', 'Context',
-    function ($scope, $rootScope, $location, Me, Context) {
+  .controller('HeaderCtrl', ['$scope', '$location', 'Store',
+    function ($scope, $location, Store) {
 
-      // Update the context on route change
-      $rootScope.$on("$routeChangeSuccess", function(args) {
-        Context.reload();
-        $scope.context = Context.getObject("entities", Me.getEntities()[0].id)
-        $rootScope.inSettings = false;
-      });
+    	$scope.activeEntityId = Store.activeEntityId;
 
       $scope.isActive = function(route) {
         return route === $location.path();
-      }
+      };
+
+      $scope.isAdmin = function() {
+        return Store.getCurrentScope() == "admin";
+      };
 
   }]);

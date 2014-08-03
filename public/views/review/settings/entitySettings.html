@@ -4,17 +4,17 @@
   <ul class="settings-inputs__list">
     <li class="settings-inputs__item">
       <label class="settings-inputs__label">Name</label>
-      <input name="entityName" ng-model="entity.name" type="text" value="{{ entity.name }}" placeholder="Enter your company name here" size="30" />
+      <input name="entityName" ng-model="e.name" type="text" value="{{ e.name }}" placeholder="Enter your company name here" size="30" />
     </li>
     <li class="settings-inputs__item">
       <label class="settings-inputs__label">Logo</label>
       <div class="attachment">
         <div class="attachment__box">
           <i class="attachment__empty icon-photo"></i>
-          <img ng-if="entity.attachment.url" src="{{ entity.attachment.url }}" alt="Entity logo" />
+          <img ng-if="e.attachment.url" src="{{ e.attachment.url }}" alt="Entity logo" />
         </div>
         <button class="btn attachment__choose" ng-click="clickChoose()">Choose</button>
-        <input class="attachment__file" id="logo" type="file" fileread="entity" accepts="image/*">
+        <input class="attachment__file" id="logo" type="file" fileread="e" accepts="image/*">
       </div>
     </li>
     <li class="settings-inputs__item">

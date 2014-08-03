@@ -1,16 +1,20 @@
 'use strict';
 
 module.exports = angular.module('Review')
-  .controller('EntityReviewersCtrl', ['$scope', 'ApplyanceAPI', 'Me', 'Context',
-    function ($scope, ApplyanceAPI, Me, Context) {
+  .controller('EntityReviewersCtrl', ['$scope', 'ApplyanceAPI', 'Store',
+    function ($scope, ApplyanceAPI, Store) {
+
+      $scope.getActiveEntityName = function() {
+        return Store.getActiveEntity().name;
+      };
 
       $scope.reviewers = [];
-      ApplyanceAPI.getReviewers($scope.entity.id).then(function(reviewers) {
+      ApplyanceAPI.getReviewers(Store.activeEntityId).then(function(reviewers) {
          $scope.reviewers = reviewers;
       });
 
       $scope.invites = [];
-      ApplyanceAPI.getReviewerInvites($scope.entity.id).then(function(invites) {
+      ApplyanceAPI.getReviewerInvites(Store.activeEntityId).then(function(invites) {
          $scope.invites = invites;
       });
 
@@ -20,7 +24,7 @@ module.exports = angular.module('Review')
       $scope.newInvite = {};
 
       $scope.isRevokable = function(reviewer) {
-        return reviewer.account.id != Me.getMe().account.id;
+        return reviewer.account.id != Store.getAccount().id;
       };
 
       $scope.revokeAccess = function(reviewer) {
@@ -45,7 +49,7 @@ module.exports = angular.module('Review')
 
       $scope.commitInvite = function() {
         if ($scope.newInvite.email && $scope.selectedScope.name) {
-          ApplyanceAPI.postReviewerInvite($scope.entity.id, {
+          ApplyanceAPI.postReviewerInvite(Store.activeEntityId, {
             email: $scope.newInvite.email,
             scope: $scope.selectedScope.scope
           }).then(function(invite) {

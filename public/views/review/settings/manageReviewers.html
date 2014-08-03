@@ -6,11 +6,11 @@
 <div class="new-prompt" ng-if="inviting">
   <div class="new-prompt__header">
     <div class="new-prompt__title">
-      Invite a team member to {{ entity.name }}
+      Invite a team member to {{ getActiveEntityName() }}
     </div>
     <div class="new-prompt__description text-trim">
       <p>
-        Allow other team members to administer {{ entity.name }} or simply review applications. Type in the new member's email address and select their permission level below.
+        Allow other team members to administer {{ getActiveEntityName() }} or simply review applications. Type in the new member's email address and select their permission level below.
       </p>
     </div>
   </div>

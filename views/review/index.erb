@@ -15,20 +15,21 @@
   <body ng-app="Review">
 
     <header class="header" ng-controller="HeaderCtrl">
-      <a href="{{ context.group }}/{{ context.id }}/applications" class="mark">
+      <a href="entities/{{ activeEntityId }}/applications" class="mark">
         <span class="mark__helper"></span>
         <img src="/img/mark.blue.png" class="mark__img">
       </a>
       <nav class="nav">
         <ul class="nav__list group">
           <li class="nav__item"
-              ng-class="{ 'is-active':isActive('/' + context.group + '/' + context.id + '/applications') }">
-            <a href="{{ context.group }}/{{ context.id }}/applications"
+              ng-class="{ 'is-active':isActive('/entities/' + activeEntityId + '/applications') }">
+            <a href="entities/{{ activeEntityId }}/applications"
                class="nav__link">Applications</a>
           </li>
           <li class="nav__item"
-              ng-class="{ 'is-active':inSettings }">
-            <a href="{{ context.group }}/{{ context.id }}/settings"
+              ng-class="{ 'is-active':inSettings }"
+              ng-if="isAdmin()">
+            <a href="entities/{{ activeEntityId }}/settings"
                class="nav__link">Settings</a>
           </li>
         <ul>
@@ -36,17 +37,19 @@
       <div class="account" ng-controller="AccountCtrl">
 
         <div class="selector">
-          <select class="account__context" ng-model="activeContextOption"
-                  ng-options="contextOption.name for contextOption in contextOptions"
-                  ng-change="updateContextSelect()"></select>
+          <select class="account__context" ng-model="selectedEntity"
+                  ng-options="entity.name for entity in entities()"
+                  ng-change="updateEntitySelect()"></select>
         </div>
 
-        <img src="{{ getAvatarURL() }}" class="account__avatar" />
+        <a href="/accounts/{{ accountId }}/settings" title="Account Avatar">
+          <img src="{{ getAvatarURL() }}" class="account__avatar" />
+        </a>
 
         <ul class="account__settings-list">
 
           <li class="account__settings-item">
-            <a href="/accounts/{{ me.account.id }}/settings" class="account__settings-link" title="Account Settings">
+            <a href="/accounts/{{ accountId }}/settings" class="account__settings-link" title="Account Settings">
               <i class="icon-settings"></i>
             </a>
           </li>

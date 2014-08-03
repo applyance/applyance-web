@@ -3,34 +3,40 @@
 var CryptoJS = require("crypto-js");
 
 module.exports = angular.module('Review')
-  .controller('AccountCtrl', ['$scope', '$location', 'Me', 'Context',
-    function ($scope, $location, Me, Context) {
+  .controller('AccountCtrl', ['$scope', 'Store', '$rootScope', '$location',
+    function ($scope, Store, $rootScope, $location) {
 
-      $scope.me = Me.getMe();
+      $scope.accountId = Store.getAccount().id;
 
-      $scope.contextOptions = [];
-      $scope.initContextOptions = function() {
-        _.each(Me.getEntities(), function(entity) {
-          $scope.contextOptions.push({ id: entity.id, name: entity.name });
-        });
+      $scope.entities = function() {
+        return Store.getEntities();
+      };
+      $scope.getActiveEntity = function() {
+        return Store.getActiveEntity();
+      };
+      $scope.selectedEntity = _.findWhere($scope.entities(), { id: Store.activeEntityId });
+
+      $scope.updateEntitySelect = function() {
+        Store.activeEntityId = $scope.selectedEntity.id;
+        $location.path('/entities/' + Store.activeEntityId + '/applications');
       };
 
-      $scope.initContextOptions();
-      if (Context.exists()) {
-        $scope.activeContextOption = _.findWhere($scope.contextOptions, { id: Context.getId() });
-      } else {
-        $scope.activeContextOption = $scope.contextOptions[0];
-      }
+      // Update the context on route change
+      $rootScope.$on("$routeChangeSuccess", function(args) {
 
-      $scope.updateContextSelect = function() {
-        $location.path('/entities/' + $scope.activeContextOption.id + '/applications');
-      };
+        var entityId = $location.path().split("/")[2];
+        if (entityId) {
+          Store.activeEntityId = entityId;
+        }
+
+        $rootScope.inSettings = false;
+      });
 
       $scope.getAvatarURL = function() {
-        if (!$scope.me) { return; }
+        if (!Store.getAccount()) { return; }
 
-        if ($scope.me.account.avatar) {
-          return $scope.me.account.avatar.url;
+        if (Store.getAccount().avatar) {
+          return Store.getAccount().avatar.url;
         }
         return 'https://www.gravatar.com/avatar/' + CryptoJS.MD5($scope.me.account.email) + '?d=mm';
       };

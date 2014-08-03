@@ -3,10 +3,8 @@
 var CryptoJS = require("crypto-js");
 
 module.exports = angular.module('Review')
-  .controller('ApplicationCtrl', ['$scope', '$routeParams', 'ApplyanceAPI', 'me', '$filter', '$sce',
-    function ($scope, $routeParams, ApplyanceAPI, me, $filter, $sce) {
-
-      $scope.me = me;
+  .controller('ApplicationCtrl', ['$scope', '$routeParams', 'ApplyanceAPI', 'Store', '$filter', '$sce',
+    function ($scope, $routeParams, ApplyanceAPI, Store, $filter, $sce) {
 
       $scope.ratings = null;
       ApplyanceAPI.getApplication($routeParams['id']).then(function(application) {
@@ -50,9 +48,9 @@ module.exports = angular.module('Review')
         }
         var gravatarEmail = CryptoJS.MD5($scope.application.applicant.account.email);
         return 'https://www.gravatar.com/avatar/' + gravatarEmail + '?d=mm';
-      }
+      };
 
-      $scope.ratingOptions = [{ value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }, { value: 5 }]
+      $scope.ratingOptions = [{ value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }, { value: 5 }];
 
       $scope.mouseoverRatingOption = function(targetRating) {
         _.each($scope.ratingOptions, function($rating) {
@@ -60,7 +58,7 @@ module.exports = angular.module('Review')
             $rating.active = true;
           }
         });
-      }
+      };
 
       $scope.mouseleaveRatingOption = function(targetRating) {
         _.each($scope.ratingOptions, function($rating) {
@@ -87,7 +85,7 @@ module.exports = angular.module('Review')
           });
           $scope.$broadcast('ratingChange')
         } else {
-          ApplyanceAPI.postRating($scope.me.account.id, {
+          ApplyanceAPI.postRating(Store.getAccount().id, {
             application_id: $scope.application.id,
             rating: targetRating.value
           }).then(function(rating) {
@@ -99,7 +97,7 @@ module.exports = angular.module('Review')
 
       $scope.getMeRating = function() {
         return _.find($scope.ratings, function(rating) {
-          return rating.account_id == $scope.me.account.id;
+          return rating.account_id == Store.getAccount().id;
         });
       };
 

@@ -1,7 +1,7 @@
 <h1 class="top-header">Questions</h1>
 
 <div class="toaster">
-  Select all questions you would like answered on an application to {{ entity.name }}.
+  Select all questions you would like answered on an application to {{ e.name }}.
 </div>
 
 <ul class="selection-grid">
@@ -9,7 +9,7 @@
     <a class="selection-grid__link" href="" ng-click="toggle(definition)">
       <div class="selection-grid__box">
         <span class="selection-grid__label">
-          {{ definition.label | blueprint:entity }}
+          {{ definition.label | blueprint:e }}
         </span>
       </div>
     </a>
