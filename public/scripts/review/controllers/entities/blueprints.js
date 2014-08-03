@@ -13,8 +13,18 @@ module.exports = angular.module('Review')
 
       $scope.blueprints = [];
       ApplyanceAPI.getBlueprints(Store.activeEntityId).then(function(blueprints) {
-         $scope.blueprints = blueprints;
+         $scope.blueprints = $scope.blueprints.concat(blueprints);
       });
+
+      if ($scope.entity.parent) {
+        ApplyanceAPI.getBlueprints($scope.entity.parent.id).then(function(blueprints) {
+          blueprints = _.map(blueprints, function(blueprint) {
+            blueprint.is_parent = true;
+            return blueprint
+          });
+          $scope.blueprints = $scope.blueprints.concat(blueprints);
+        });
+      }
 
       $scope.getBlueprintFromDefinition = function(definition) {
         return _.find($scope.blueprints, function(blueprint) {
@@ -22,11 +32,20 @@ module.exports = angular.module('Review')
         });
       };
 
+      $scope.isDefinitionDisabled = function(definition) {
+        var blueprint = $scope.getBlueprintFromDefinition(definition);
+        return blueprint && blueprint.is_parent;
+      }
+
       $scope.isSet = function(definition) {
         return !!$scope.getBlueprintFromDefinition(definition);
       };
 
       $scope.toggle = function(definition) {
+        if ($scope.isDefinitionDisabled(definition)) {
+          return;
+        }
+
         var blueprint = $scope.getBlueprintFromDefinition(definition);
         if (blueprint) {
           ApplyanceAPI.deleteBlueprint(blueprint.id).then(function() {

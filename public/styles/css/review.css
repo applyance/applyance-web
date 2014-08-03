@@ -650,6 +650,9 @@ a.slats__item__header {
   vertical-align: top;
   padding: 12px;
   width: 33.33333%; }
+  .selection-grid__item.is-disabled .selection-grid__link {
+    opacity: .4;
+    cursor: default; }
 
 .selection-grid__link {
   display: block;
@@ -690,7 +693,7 @@ a.slats__item__header {
 .selection-grid__item.is-set .selection-grid__box {
   border-color: #3eccbe; }
 
-.selection-grid__item .selection-grid__link:active .selection-grid__box {
+.selection-grid__item:not(.is-disabled) .selection-grid__link:active .selection-grid__box {
   background-color: #3eccbe;
   color: white; }
 

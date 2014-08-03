@@ -5,7 +5,7 @@
 </div>
 
 <ul class="selection-grid">
-  <li class="selection-grid__item" ng-class="{ 'is-set':isSet(definition) }" ng-repeat="definition in definitions">
+  <li class="selection-grid__item" ng-class="{ 'is-set':isSet(definition), 'is-disabled':isDefinitionDisabled(definition) }" ng-repeat="definition in definitions">
     <a class="selection-grid__link" href="" ng-click="toggle(definition)">
       <div class="selection-grid__box">
         <span class="selection-grid__label">
