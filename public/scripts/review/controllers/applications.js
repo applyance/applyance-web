@@ -14,7 +14,7 @@ module.exports = angular.module('Review')
         if (application.applicant.account.avatar) {
           return application.applicant.account.avatar.url;
         }
-        return 'https://www.gravatar.com/avatar/' + CryptoJS.MD5(application.applicant.account.email);
+        return 'https://www.gravatar.com/avatar/' + CryptoJS.MD5(application.applicant.account.email) + '?d=mm';
       };
 
       $scope.getRating = function(application) {

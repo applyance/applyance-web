@@ -15,6 +15,7 @@ angular.module('Review', [ApplyanceApi.name, 'ngRoute', 'angularMoment'])
   .config(['$routeProvider', '$locationProvider', 'me', Routes]);
 
 
+require("../directives");
 require("./directives");
 require("./filters");
 

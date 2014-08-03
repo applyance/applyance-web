@@ -32,7 +32,7 @@ module.exports = angular.module('Review')
         if ($scope.me.account.avatar) {
           return $scope.me.account.avatar.url;
         }
-        return 'https://www.gravatar.com/avatar/' + CryptoJS.MD5($scope.me.account.email);
+        return 'https://www.gravatar.com/avatar/' + CryptoJS.MD5($scope.me.account.email) + '?d=mm';
       };
 
     }]);

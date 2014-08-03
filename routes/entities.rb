@@ -6,14 +6,14 @@ module Applyance
         api_host = app.settings.api_host
 
         # Entity Application
-        app.get '/entities/:id/apply' do
+        app.get '/:slug' do
           @api_host = app.settings.api_host
           @api_key = session[:api_key]
-          
-          @id = params[:id]
+
+          @slug = params[:slug]
           headers = { :content_type => 'application/json' }
 
-          entity = RestClient.get(api_host + "/entities/#{@id}", headers)
+          entity = RestClient.get(api_host + "/entities/#{@slug}", headers)
           @entity = JSON.parse(entity)
 
           erb :'entities/apply'

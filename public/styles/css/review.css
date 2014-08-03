@@ -236,27 +236,6 @@ textarea {
   textarea:focus {
     border-color: rgba(0, 0, 0, 0.15); }
 
-select {
-  padding-right: 48px; }
-
-.selector {
-  display: inline-block;
-  position: relative;
-  background-color: white; }
-  .selector:after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    margin-top: -6px;
-    right: 22px;
-    width: 12px;
-    height: 12px;
-    opacity: .25;
-    background-image: url("/img/select.arrow.black.png");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat; }
-
 /* Attachment */
 .attachment {
   display: inline-block; }

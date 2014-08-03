@@ -49,7 +49,7 @@ module.exports = angular.module('Review')
           return $scope.application.applicant.account.avatar.url;
         }
         var gravatarEmail = CryptoJS.MD5($scope.application.applicant.account.email);
-        return 'https://www.gravatar.com/avatar/' + gravatarEmail;
+        return 'https://www.gravatar.com/avatar/' + gravatarEmail + '?d=mm';
       }
 
       $scope.ratingOptions = [{ value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }, { value: 5 }]

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="/img/favicon.png">
 
-    <base href="/entities/<%= @entity['id'] %>/">
+    <base href="/">
     <link rel="stylesheet" type="text/css" href="//cloud.typography.com/7222252/709524/css/fonts.css" />
     <link rel="stylesheet" type="text/css" href="/styles/css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="/styles/css/base.css" />
@@ -14,9 +14,7 @@
   </head>
   <body ng-app="Apply">
 
-    <main class="main">
-      <div ng-view></div>
-    </main>
+    <main class="app-form" ng-view></main>
 
     <script type="text/javascript" src="/scripts/ext/underscore/underscore.js"></script>
     <script type="text/javascript" src="/scripts/apply/bundle.js"></script>
@@ -27,6 +25,6 @@
       app.constant('apiHost', '<%= @api_host %>');
       app.constant('apiKey', '<%= @api_key %>');
     </script>
-
+    
   </body>
 </html>
