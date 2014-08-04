@@ -36,14 +36,32 @@ module.exports = angular.module('Review')
       };
 
       $scope.addEntity = function() {
+        // Update DB through API
         ApplyanceAPI.postEntity(Store.getActiveEntityId(), {
           name: "New Entity"
         }).then(function(entity) {
+
+          // Get this user's reviewer obj
+          var accountId = Store.getAccount().id;
+
+          var reviewerObj;
+          angular.forEach(entity.reviewers, function(r) {
+            if (r.account.id == accountId) {
+              reviewerObj = r;
+            }
+          });
+          reviewerObj.entity = entity;
+
+          // Update data Store
+          Store.addEntity(reviewerObj);
+
+          // Update scope and UI
           entity.isEditing = true;
           $scope.entities.unshift(entity);
           _.defer(function() {
             $scope.$broadcast('isEditingEntity-' + entity.id);
           });
+
         });
       };
 

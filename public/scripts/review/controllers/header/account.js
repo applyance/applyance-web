@@ -16,7 +16,7 @@ module.exports = angular.module('Review')
       };
 
       $scope.selectedEntity = Store.getActiveEntity();
-      $rootScope.$on('contextChanged', function(id) {
+      $rootScope.$on('contextChanged', function(e, args) {
         $scope.selectedEntity = Store.getActiveEntity();
       });
 

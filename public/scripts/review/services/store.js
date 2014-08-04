@@ -53,8 +53,8 @@ module.exports = angular.module('Review')
         });
         reviewerPosition.entity = entity;
       };
-      this.addEntity = function(entity) {
-
+      this.addEntity = function(reviewerPosition) {
+        reviewers.push(reviewerPosition);
       };
       this.removeEntity = function(entity) {
         var reviewerPosition;
@@ -80,7 +80,7 @@ module.exports = angular.module('Review')
       };
       this.setActiveEntityId = function(id) {
         activeEntityId = id;
-        $rootScope.$emit("contextChanged", activeEntityId);
+        $rootScope.$emit("contextChanged", {newEntityId: activeEntityId});
       };
 
     }])
