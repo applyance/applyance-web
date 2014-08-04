@@ -5,7 +5,7 @@ require("angular-route");
 
 var ApplyanceApi = require("../services/api");
 
-angular.module('Register', [ApplyanceApi.name, 'ngRoute'])
+angular.module('Register', [ApplyanceApi.name, 'ngRoute', 'duScroll'])
   .config(function($routeProvider, $locationProvider) {
 
     $routeProvider

@@ -6,7 +6,7 @@ module Applyance
         # Home
         app.get '/' do
           if session[:api_key].nil?
-            erb :'main/index', :layout => :'layouts/public'
+            erb :'main/index', :layout => :'layouts/home'
           else
             @api_host = app.settings.api_host
             @api_key = session[:api_key]

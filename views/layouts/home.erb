@@ -14,7 +14,23 @@
   <body>
 
     <div class="wrap">
-      <%= erb :'shared/_header' %>
+      <header class="header--base">
+        <div class="container group">
+          <a href="/" target="_self" class="logo__link">
+            <img src="/img/logo.white.png" class="logo" />
+          </a>
+          <nav class="nav">
+            <ul class="nav__list group">
+              <li class="nav__item is-emphasized">
+                <a href="/accounts/register" target="_self" class="nav__link">Register</a>
+              </li>
+              <li class="nav__item">
+                <a href="/accounts/login" target="_self" class="nav__link">Sign In</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
       <main class="main">
         <%= yield %>
       </main>

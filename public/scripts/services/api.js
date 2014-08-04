@@ -1,6 +1,7 @@
 'use strict';
 
 window._ = require('underscore');
+window.$ = require('jquery');
 require('restangular');
 
 module.exports = angular.module('Applyance', ['restangular'])

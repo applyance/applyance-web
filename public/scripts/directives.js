@@ -33,4 +33,22 @@ module.exports = angular.module('Applyance')
       }
     }
   })
+  // .directive('scrollOnClick', function($timeout) {
+  //   return {
+  //     link: function(scope, $elm, attrs) {
+  //       var idToScroll = $elm.attr('scroll-on-click');
+  //       $elm.on('click', function(e) {
+  //         $timeout(function() {
+  //           var $target;
+  //           if (idToScroll) {
+  //             $target = $(idToScroll);
+  //           } else {
+  //             $target = $elm;
+  //           }
+  //           $("html").animate({ scrollTop: $target.offset().top }, "slow");
+  //         }, 100);
+  //       });
+  //     }
+  //   }
+  // })
 ;

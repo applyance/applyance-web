@@ -29,8 +29,92 @@ html {
   @extend .header;
   background-color: $color-base;
   .nav__link {
-    color: white;
+    color: rgba(white, .7);
+    &:hover {
+      color: white;
+    }
   }
+  .nav__item {
+    @media only screen and (min-width : 480px) {
+      &.is-emphasized {
+        .nav__link {
+          border-color: rgba(white, .125);
+        }
+      }
+    }
+  }
+}
+
+/* Footer */
+
+.wrap {
+  min-height: 100%;
+  margin-bottom: -45px;
+}
+
+.wrap:after {
+  content: "";
+  display: block;
+}
+
+.footer,
+.wrap:after {
+  height: 45px;
+}
+
+/* Footer */
+
+.footer {
+  font-size: 12px;
+  line-height: 45px;
+  color: rgba(white, .5);
+}
+
+.footer__top {
+  background-color: lighten($color-base, 7%);
+}
+
+.footer__lead {
+  padding: 48px 0;
+  font-size: 22px;
+  font-weight: 300;
+  text-align: center;
+  line-height: 1.4;
+  color: rgba(white, .5);
+  a {
+    margin-left: 12px;
+    display: inline-block;
+    padding: 8px 18px;
+    border: 1px solid rgba(white, .125);
+    text-decoration: none;
+    color: rgba(white, .75);
+  }
+}
+
+.footer__bottom {
+  background-color: $color-base;
+}
+
+.footer__nav {
+  float: left;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__nav__item {
+  display: inline-block;
+  margin-left: 12px;
+  &:first-child { margin-left: 0; }
+}
+
+.footer__nav__link {
+  color: rgba(white, .5);
+  text-decoration: none;
+}
+
+.footer__copyright {
+  float: right;
 }
 
 /* Logo */
@@ -103,6 +187,7 @@ html {
 /* Leads (big text) */
 
 .lead {
+  margin: 0;
   font-size: 24px;
   font-weight: 300;
   line-height: 1.2;
@@ -115,6 +200,12 @@ html {
   font-size: 42px;
   letter-spacing: 5px;
   text-transform: uppercase;
+}
+
+.subline {
+  margin-top: 12px;
+  font-size: 18px;
+  text-align: center;
 }
 
 /* Highlights */

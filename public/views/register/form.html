@@ -1,6 +1,6 @@
 <section class="section is-base">
   <div class="container">
-    <h1 class="lead--big">
+    <h1 class="lead--big register-lead--big">
       Start hiring in <span class="text-highlight">5 minutes</span>
     </h1>
   </div>
@@ -28,13 +28,13 @@
     </div>
 
     <div>
-      <button class="btn--primary register-btn" type="submit" ng-click="form.step = 2">Continue to Your Company</button>
+      <button href="#step2" du-smooth-scroll class="btn--primary register-btn" type="submit" ng-click="form.step = 2">Continue to Your Company</button>
     </div>
 
   </div>
 </section>
 
-<section ng-if="form.step >= 2" class="section is-big">
+<section id="step2" ng-if="form.step >= 2" class="section is-big">
   <div class="container">
 
     <div class="lead register-lead">
@@ -65,13 +65,13 @@
     </div>
 
     <div>
-      <button class="btn--primary register-btn" type="submit" ng-click="form.step = 3">Continue to Your Application</button>
+      <button href="#step3" du-smooth-scroll class="btn--primary register-btn" type="button" ng-click="form.step = 3">Continue to Your Application</button>
     </div>
   </div>
 
 </section>
 
-<section ng-if="form.step >= 3" class="section is-gray is-big">
+<section id="step3" ng-if="form.step >= 3" class="section is-gray is-big">
   <div class="container is-full">
 
     <div class="lead register-lead">
@@ -92,8 +92,8 @@
 
     <div>
       <button
-          ng-class="{ 'is-disabled':form.submitting }"
-          ng-disabled="form.submitting"
+          ng-class="{ 'is-disabled':(!form.submittable || form.submitting) }"
+          ng-disabled="!form.submittable || form.submitting"
           ng-click="submit()"
           class="btn--primary register-btn" type="submit">
         {{ form.submitting ? 'Creating Application' : 'Start Hiring!' }}
@@ -105,14 +105,19 @@
 
 <section ng-if="form.submitted" class="register__submitted">
   <div class="container">
-    <h1 class="lead--big">
-      You're ready to hire!
-    </h1>
-    <div>
-      http://applyance.com/{{ entity.slug }}
-    </div>
-    <div>
-      <a class="btn--primary" href="/entities/{{ entity.id }}/applications" target="_self">Go to Your Dashboard</a>
+    <div class="register__submitted__wrapper">
+      <h1 class="lead--big">
+        You're ready to hire
+      </h1>
+      <div class="subline">
+        Pretty easy, huh? Just share the link below to start hiring.
+      </div>
+      <div class="register__submitted__app-link">
+        http://applyance.com/{{ entity.slug }}
+      </div>
+      <div>
+        <a class="btn--primary" href="/entities/{{ entity.id }}/applications" target="_self">Go to Your Reviewer Dashboard</a>
+      </div>
     </div>
   </div>
 </section>
