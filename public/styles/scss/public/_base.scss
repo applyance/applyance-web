@@ -12,6 +12,13 @@ html {
   padding-right: 24px;
   margin-left: auto;
   margin-right: auto;
+  &.is-full {
+    max-width: none;
+    @media only screen and (min-width : 480px) {
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+  }
 }
 
 .header {
@@ -79,9 +86,9 @@ html {
 
 .section {
   padding: 48px 0;
+  .lead { color: $color-base; }
   &.is-gray {
     background-color: $color-gray;
-    .lead { color: $color-base; }
   }
   &.is-base {
     background-color: $color-base;
@@ -89,7 +96,7 @@ html {
     .lead { color: white; }
   }
   &.is-big {
-    padding: 96px 0;
+    padding: 120px 0;
   }
 }
 

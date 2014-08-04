@@ -35,6 +35,16 @@ module Applyance
 
           end
 
+          # POST Login headless
+          app.post '/accounts/login/headless' do
+            params = JSON.parse(request.body.read)
+            auth = authenticate({
+              "email" => params['email'],
+              "password" => params['password']
+            })
+            session[:api_key] = auth['api_key']
+          end
+
         end
       end
     end

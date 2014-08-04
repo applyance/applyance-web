@@ -28,7 +28,7 @@
     </div>
 
     <div>
-      <button class="btn--primary register-btn" type="submit" ng-click="form.step = 2">Continue</button>
+      <button class="btn--primary register-btn" type="submit" ng-click="form.step = 2">Continue to Your Company</button>
     </div>
 
   </div>
@@ -65,23 +65,30 @@
     </div>
 
     <div>
-      <button class="btn--primary register-btn" type="submit" ng-click="form.step = 3">Continue</button>
+      <button class="btn--primary register-btn" type="submit" ng-click="form.step = 3">Continue to Your Application</button>
     </div>
   </div>
 
 </section>
 
 <section ng-if="form.step >= 3" class="section is-gray is-big">
-  <div class="container">
+  <div class="container is-full">
 
     <div class="lead register-lead">
       Finally, what questions do you want on your application?
     </div>
 
-    <div class="register__fields-wrap">
-      <ul class="selection__grid">
-      </ul>
-    </div>
+    <ul class="selection-grid is-4">
+      <li class="selection-grid__item" ng-class="{ 'is-set':isSet(definition) }" ng-repeat="definition in definitions">
+        <a class="selection-grid__link" href="" ng-click="toggle(definition)">
+          <div class="selection-grid__box">
+            <span class="selection-grid__label">
+              {{ definition.name }}
+            </span>
+          </div>
+        </a>
+      </li>
+    </ul>
 
     <div>
       <button class="btn--primary register-btn" type="submit" ng-click="submit()">Start Hiring!</button>
@@ -98,11 +105,11 @@
     </h1>
 
     <div>
-      http://applyance.com/{{ form.entity.slug }}
+      http://applyance.com/{{ entity.slug }}
     </div>
 
     <div>
-      <a class="btn--primary" href="/entities/{{ form.entity.id }}/applications" target="self">Go to Your Dashboard</a>
+      <a class="btn--primary" href="/entities/{{ entity.id }}/applications" target="_self">Go to Your Dashboard</a>
     </div>
 
   </div>
