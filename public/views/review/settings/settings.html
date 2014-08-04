@@ -5,7 +5,7 @@
       <i class="icon icon-settings"></i>Settings
     </a>
   </li>
-  <li ng-if="getActiveEntity().parent == null" class="sidebar-menu__item" ng-class="{ 'is-active': isActive('entities') }">
+  <li ng-if="getActiveEntity().parent_id == null" class="sidebar-menu__item" ng-class="{ 'is-active': isActive('entities') }">
     <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/entities">
       <i class="icon icon-location"></i>Units
     </a>

@@ -5,7 +5,7 @@ module.exports = angular.module('Review')
     function ($scope, ApplyanceAPI, $timeout, Store) {
 
       $scope.labels = [];
-      ApplyanceAPI.getLabels(Store.activeEntityId).then(function(labels) {
+      ApplyanceAPI.getLabels(Store.getActiveEntityId()).then(function(labels) {
          $scope.labels = labels;
          $scope.labels.reverse();
       });

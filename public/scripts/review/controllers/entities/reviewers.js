@@ -9,12 +9,12 @@ module.exports = angular.module('Review')
       };
 
       $scope.reviewers = [];
-      ApplyanceAPI.getReviewers(Store.activeEntityId).then(function(reviewers) {
+      ApplyanceAPI.getReviewers(Store.getActiveEntityId()).then(function(reviewers) {
          $scope.reviewers = reviewers;
       });
 
       $scope.invites = [];
-      ApplyanceAPI.getReviewerInvites(Store.activeEntityId).then(function(invites) {
+      ApplyanceAPI.getReviewerInvites(Store.getActiveEntityId()).then(function(invites) {
          $scope.invites = invites;
       });
 
@@ -49,7 +49,7 @@ module.exports = angular.module('Review')
 
       $scope.commitInvite = function() {
         if ($scope.newInvite.email && $scope.selectedScope.name) {
-          ApplyanceAPI.postReviewerInvite(Store.activeEntityId, {
+          ApplyanceAPI.postReviewerInvite(Store.getActiveEntityId(), {
             email: $scope.newInvite.email,
             scope: $scope.selectedScope.scope
           }).then(function(invite) {
