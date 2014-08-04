@@ -81,10 +81,12 @@ html {
   padding: 48px 0;
   &.is-gray {
     background-color: $color-gray;
+    .lead { color: $color-base; }
   }
   &.is-base {
     background-color: $color-base;
     color: white;
+    .lead { color: white; }
   }
   &.is-big {
     padding: 96px 0;

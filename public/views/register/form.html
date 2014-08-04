@@ -16,7 +16,7 @@
     <div class="register__fields-wrap">
       <ul class="register__fields">
         <li class="register__fields__item">
-          <input class="register__fields__input" id="reviewer-name" name="reviewerName" type="text" placeholder="Name" ng-model="form.reviewer.name">
+          <input class="register__fields__input" id="reviewer-name" name="reviewerName" type="text" autofocus placeholder="Name" ng-model="form.reviewer.name">
         </li>
         <li class="register__fields__item">
           <input class="register__fields__input" id="reviewer-email" name="reviewerEmail" type="text" placeholder="Email" ng-model="form.reviewer.email">
@@ -57,7 +57,7 @@
                 <img ng-if="form.entity.attachment" ng-src="{{ form.entity.attachment.url }}" alt="avatar" />
               </div>
               <button class="btn attachment__choose" ng-click="clickChoose()">Choose</button>
-              <input class="attachment__file" id="logo" type="file" fileread="form.entity" accepts="image/*">
+              <input class="attachment__file" id="logo" type="file" fileread="form.entity" accepts="image/*" tabindex="-1">
             </div>
           </div>
         </li>
@@ -90,12 +90,20 @@
   </div>
 </section>
 
-<section ng-if="form.submitted" class="section is-gray is-big">
+<section ng-if="form.submitted" class="register__submitted">
   <div class="container">
 
     <h1 class="lead--big">
-      Start hiring in <span class="text-highlight">5 minutes</span>
+      You're ready to hire!
     </h1>
+
+    <div>
+      http://applyance.com/{{ form.entity.slug }}
+    </div>
+
+    <div>
+      <a class="btn--primary" href="/entities/{{ form.entity.id }}/applications" target="self">Go to Your Dashboard</a>
+    </div>
 
   </div>
 </section>

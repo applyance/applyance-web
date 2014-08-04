@@ -67,9 +67,13 @@ html {
   padding: 48px 0; }
   .section.is-gray {
     background-color: #eef0f2; }
+    .section.is-gray .lead, .section.is-gray .lead--big {
+      color: #374249; }
   .section.is-base {
     background-color: #374249;
     color: white; }
+    .section.is-base .lead, .section.is-base .lead--big {
+      color: white; }
   .section.is-big {
     padding: 96px 0; }
 
@@ -200,8 +204,9 @@ html {
   width: 100%;
   max-width: 500px;
   padding: 12px 18px;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 300;
+  color: #333333;
   outline: none;
   border: 0;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
@@ -210,13 +215,13 @@ html {
   -moz-transition: border-color 200ms ease-in-out;
   transition: border-color 200ms ease-in-out; }
   .register__fields__input:focus {
-    border-bottom-color: rgba(242, 188, 54, 0.5); }
+    border-bottom-color: #f2bc36; }
 
 .register__fields__logo-label {
   display: inline-block;
   vertical-align: middle;
   padding: 18px;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 300;
   color: #aaa;
   width: 170px; }
@@ -224,3 +229,12 @@ html {
 .register__fields__logo-input {
   display: inline-block;
   vertical-align: middle; }
+
+.register__submitted {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.9); }

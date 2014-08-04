@@ -34,6 +34,9 @@ module.exports = angular.module('Applyance', ['restangular'])
       this.authenticate = function(auth) {
         return $http.post(apiHost + '/accounts/auth', auth);
       };
+      this.postReviewer = function(entityId, reviewer) {
+        return $http.post(apiHost + '/entities/' + entityId + '/reviewers', reviewer);
+      }
 
       // Applications
       this.getApplications = function(entityId) {
@@ -73,6 +76,9 @@ module.exports = angular.module('Applyance', ['restangular'])
       };
       this.postEntity = function(id, entity) {
         return Restangular.one('entities', id).all('entities').post(entity);
+      };
+      this.postNewEntity = function(entity) {
+        return Restangular.all('entities').post(entity);
       };
       this.deleteEntity = function(id) {
         return Restangular.one('entities', id).remove();

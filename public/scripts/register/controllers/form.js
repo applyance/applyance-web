@@ -21,24 +21,30 @@ module.exports = angular.module('Register')
           });
           logo[0].dispatchEvent(event);
         }, 100);
-
-        // ApplyanceAPI.uploadAttachment($scope.e.fileObj,
-        //   $scope.e.fileObj.type).then(
-        //   function(r) {
-        //     $scope.updateEntity({
-        //       name: $scope.e.fileObj.name,
-        //       token: r.data.token
-        //     });
-        //   },
-        //   function(r) {
-        //     console.log("failed to upload logo");
-        //     console.log(r);
-        //   }
-        // );
       }
 
       $scope.submit = function() {
-        alert('boom');
+
+        ApplyanceAPI.uploadAttachment(
+          $scope.form.entity.fileObj,
+          $scope.form.entity.fileObj.type).then(
+          function(r) {
+            $scope.form.entity.logo = {
+              name: $scope.form.entity.fileObj.name,
+              token: r.data.token
+            };
+            ApplyanceAPI.postNewEntity($scope.form.entity).then(function(entity) {
+              $scope.form.entity = entity;
+              ApplyanceAPI.postReviewer(entity.id, $scope.form.reviewer).then(function(reviewer) {
+                console.dir(reviewer);
+                $scope.form.reviewer = reviewer;
+                $scope.form.submitted = true;
+              });
+            });
+          }
+        );
+
+
       }
 
     }]);
