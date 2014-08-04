@@ -15,21 +15,21 @@
   <body ng-app="Review">
 
     <header class="header" ng-controller="HeaderCtrl">
-      <a href="entities/{{ activeEntityId }}/applications" class="mark">
+      <a href="entities/{{ activeEntityId() }}/applications" class="mark">
         <span class="mark__helper"></span>
         <img src="/img/mark.blue.png" class="mark__img">
       </a>
       <nav class="nav">
         <ul class="nav__list group">
           <li class="nav__item"
-              ng-class="{ 'is-active':isActive('/entities/' + activeEntityId + '/applications') }">
-            <a href="entities/{{ activeEntityId }}/applications"
+              ng-class="{ 'is-active':isActive('/entities/' + activeEntityId() + '/applications') }">
+            <a href="entities/{{ activeEntityId() }}/applications"
                class="nav__link">Applications</a>
           </li>
           <li class="nav__item"
               ng-class="{ 'is-active':inSettings }"
               ng-if="isAdmin()">
-            <a href="entities/{{ activeEntityId }}/settings"
+            <a href="entities/{{ activeEntityId() }}/settings"
                class="nav__link">Settings</a>
           </li>
         <ul>
@@ -37,7 +37,8 @@
       <div class="account" ng-controller="AccountCtrl">
 
         <div class="selector">
-          <select class="account__context" ng-model="selectedEntity"
+          <select class="account__context"
+                  ng-model="selectedEntity"
                   ng-options="entity.name for entity in entities()"
                   ng-change="updateEntitySelect()"></select>
         </div>

@@ -5,7 +5,7 @@ module.exports = angular.module('Review')
     function ($scope, ApplyanceAPI, $timeout, Store, $location) {
 
       $scope.units = [];
-      ApplyanceAPI.getEntities(Store.activeEntityId).then(function(entities) {
+      ApplyanceAPI.getEntities(Store.getActiveEntityId()).then(function(entities) {
          $scope.entities = entities;
          $scope.entities.reverse();
       });
@@ -36,7 +36,7 @@ module.exports = angular.module('Review')
       };
 
       $scope.addEntity = function() {
-        ApplyanceAPI.postEntity(Store.activeEntityId, {
+        ApplyanceAPI.postEntity(Store.getActiveEntityId(), {
           name: "New Entity"
         }).then(function(entity) {
           entity.isEditing = true;
@@ -48,8 +48,8 @@ module.exports = angular.module('Review')
       };
 
       $scope.navToEntitySettings = function(entityId) {
-        Store.activeEntityId = entityId;
-        $location.path('/entities/' + Store.activeEntityId + '/settings');
+        Store.setActiveEntityId(entityId);
+        $location.path('/entities/' + Store.getActiveEntityId() + '/settings');
       };
 
     }]);

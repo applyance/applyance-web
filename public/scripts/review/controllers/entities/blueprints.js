@@ -12,7 +12,7 @@ module.exports = angular.module('Review')
       });
 
       $scope.blueprints = [];
-      ApplyanceAPI.getBlueprints(Store.activeEntityId).then(function(blueprints) {
+      ApplyanceAPI.getBlueprints(Store.getActiveEntityId()).then(function(blueprints) {
          $scope.blueprints = $scope.blueprints.concat(blueprints);
       });
 
@@ -52,7 +52,7 @@ module.exports = angular.module('Review')
             $scope.blueprints.splice($scope.blueprints.indexOf(blueprint), 1);
           });
         } else {
-          ApplyanceAPI.postBlueprint(Store.activeEntityId, {
+          ApplyanceAPI.postBlueprint(Store.getActiveEntityId(), {
             definition_id: definition.id,
             position: 1,
             is_required: true

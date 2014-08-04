@@ -14,23 +14,16 @@ module.exports = angular.module('Review')
       $scope.getActiveEntity = function() {
         return Store.getActiveEntity();
       };
-      $scope.selectedEntity = _.findWhere($scope.entities(), { id: Store.activeEntityId });
+
+      $scope.selectedEntity = Store.getActiveEntity();
+      $rootScope.$on('contextChanged', function(id) {
+        $scope.selectedEntity = Store.getActiveEntity();
+      });
 
       $scope.updateEntitySelect = function() {
-        Store.activeEntityId = $scope.selectedEntity.id;
-        $location.path('/entities/' + Store.activeEntityId + '/applications');
+        Store.setActiveEntityId($scope.selectedEntity.id);
+        $location.path('/entities/' + Store.getActiveEntityId() + '/applications');
       };
-
-      // Update the context on route change
-      $rootScope.$on("$routeChangeSuccess", function(args) {
-
-        var entityId = $location.path().split("/")[2];
-        if (entityId) {
-          Store.activeEntityId = entityId;
-        }
-
-        $rootScope.inSettings = false;
-      });
 
       $scope.getAvatarURL = function() {
         if (!Store.getAccount()) { return; }

@@ -4,7 +4,7 @@ module.exports = angular.module('Review')
   .controller('ApplicationsCtrl', ['$scope', 'ApplyanceAPI', 'Store',
     function ($scope, ApplyanceAPI, Store) {
 
-      ApplyanceAPI.getApplications(Store.activeEntityId).then(function(applications) {
+      ApplyanceAPI.getApplications(Store.getActiveEntityId()).then(function(applications) {
          $scope.applications = applications;
       });
 
