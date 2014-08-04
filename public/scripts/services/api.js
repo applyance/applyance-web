@@ -1,6 +1,6 @@
 'use strict';
 
-window._ = require('underscore');
+window._ = require('lodash');
 window.$ = require('jquery');
 require('restangular');
 

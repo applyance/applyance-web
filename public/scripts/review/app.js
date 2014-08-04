@@ -1,7 +1,7 @@
 'use strict';
 
 // Vendor Libs
-var angular = require("angular");
+require("angular");
 window.CryptoJS = require("crypto-js");
 window.moment = require("moment");
 require("angular-moment");

@@ -1,0 +1,19 @@
+{
+  "name": "applyance",
+  "version": "0.0.1",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies": {
+    "angular": "~1.2.21",
+    "moment": "~2.8.1",
+    "angular-moment": "~0.8.0",
+    "angular-route": "~1.2.21",
+    "cryptojs": "*",
+    "underscore": "~1.6.0",
+    "restangular": "~1.4.0",
+    "jquery": "~2.1.1",
+    "lodash": "~2.4.1"
+  }
+}
