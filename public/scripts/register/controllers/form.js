@@ -29,10 +29,11 @@ module.exports = angular.module('Register')
       }
 
       $scope.submit = function() {
-        $timeout(function() {
-          $scope.form.submitted = true;
-        },1500);
-        return;
+        $scope.form.submitting = true;
+        // $timeout(function() {
+        //   $scope.form.submitted = true;
+        // },1500);
+        // return;
 
         ApplyanceAPI.uploadAttachment(
           $scope.form.entity.fileObj,
@@ -44,17 +45,34 @@ module.exports = angular.module('Register')
             };
             ApplyanceAPI.postNewEntity($scope.form.entity).then(function(entity) {
               $scope.entity = entity;
+
               ApplyanceAPI.postReviewer(entity.id, $scope.form.reviewer).then(function(reviewer) {
                 $scope.reviewer = reviewer;
 
-                // Mass create blueprints
-
-                $http.post('/accounts/login/headless', {
+                // Authenticate
+                ApplyanceAPI.authenticate({
                   email: $scope.form.reviewer.email,
                   password: $scope.form.reviewer.password
-                }).then(function() {
-                  $scope.form.submitted = true;
-                })
+                }).success(function(data, status, headers, config) {
+
+                  var api_key = headers('authorization').split('auth=')[1];
+
+                  // Mass create blueprints
+                  $http.post(ApplyanceAPI.getApiHost() + "/entities/" + $scope.entity.id + "/blueprints", {
+                    blueprints: $scope.blueprints
+                  }, {
+                    headers: { 'Authorization': 'ApplyanceLogin auth=' + api_key }
+                  }).then(function(blueprints) {
+                    $http.post('/accounts/login/headless', {
+                      email: $scope.form.reviewer.email,
+                      password: $scope.form.reviewer.password
+                    }).then(function() {
+                      $scope.form.submitted = true;
+                    })
+                  });
+
+                });
+
               });
             });
           }
@@ -65,7 +83,7 @@ module.exports = angular.module('Register')
 
       $scope.getBlueprintFromDefinition = function(definition) {
         return _.find($scope.blueprints, function(blueprint) {
-          return blueprint.definition.id == definition.id;
+          return blueprint.definition_id == definition.id;
         });
       };
 
@@ -76,16 +94,12 @@ module.exports = angular.module('Register')
       $scope.toggle = function(definition) {
         var blueprint = $scope.getBlueprintFromDefinition(definition);
         if (blueprint) {
-          ApplyanceAPI.deleteBlueprint(blueprint.id).then(function() {
-            $scope.blueprints.splice($scope.blueprints.indexOf(blueprint), 1);
-          });
+          $scope.blueprints.splice($scope.blueprints.indexOf(blueprint), 1);
         } else {
-          ApplyanceAPI.postBlueprint($scope.entity.id, {
+          $scope.blueprints.push({
             definition_id: definition.id,
             position: 1,
             is_required: true
-          }).then(function(blueprint) {
-            $scope.blueprints.push(blueprint);
           });
         }
       };

@@ -91,7 +91,13 @@
     </ul>
 
     <div>
-      <button class="btn--primary register-btn" type="submit" ng-click="submit()">Start Hiring!</button>
+      <button
+          ng-class="{ 'is-disabled':form.submitting }"
+          ng-disabled="form.submitting"
+          ng-click="submit()"
+          class="btn--primary register-btn" type="submit">
+        {{ form.submitting ? 'Creating Application' : 'Start Hiring!' }}
+      </button>
     </div>
 
   </div>
@@ -99,18 +105,14 @@
 
 <section ng-if="form.submitted" class="register__submitted">
   <div class="container">
-
     <h1 class="lead--big">
       You're ready to hire!
     </h1>
-
     <div>
       http://applyance.com/{{ entity.slug }}
     </div>
-
     <div>
       <a class="btn--primary" href="/entities/{{ entity.id }}/applications" target="_self">Go to Your Dashboard</a>
     </div>
-
   </div>
 </section>
