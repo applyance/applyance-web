@@ -13,8 +13,10 @@ module Applyance
           @slug = params[:slug]
           headers = { :content_type => 'application/json' }
 
-          entity = RestClient.get(api_host + "/entities/#{@slug}", headers)
-          @entity = JSON.parse(entity)
+          response = RestClient.get(api_host + "/entities/#{@slug}", headers) { |response, request, result| response }
+          error 404 unless response.code == 200
+          
+          @entity = JSON.parse(response)
 
           erb :'entities/apply'
         end
