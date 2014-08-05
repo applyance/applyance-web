@@ -1,18 +1,29 @@
 .register-lead {
-  margin-bottom: 96px;
+  margin-bottom: 48px;
+  @media only screen and (min-width : 480px) {
+    margin-bottom: 96px;
+  }
 }
 
 .register-lead--big {
-  margin: 48px 0;
+  margin: 24px 0;
+  @media only screen and (min-width : 480px) {
+    margin: 48px 0;
+  }
 }
 
 .register-btn {
   display: block;
-  margin-top: 96px;
-  padding-left: 48px;
-  padding-right: 48px;
+  margin-top: 48px;
+  padding-left: 24px;
+  padding-right: 24px;
   margin-left: auto;
   margin-right: auto;
+  @media only screen and (min-width : 480px) {
+    margin-top: 96px;
+    padding-left: 48px;
+    padding-right: 48px;
+  }
 }
 
 .register__fields-wrap {
@@ -30,16 +41,19 @@
 }
 
 .register__fields__item {
-  margin-bottom: 48px;
+  margin-bottom: 36px;
   &:last-child { margin-bottom: 0; }
+  @media only screen and (min-width : 480px) {
+    margin-bottom: 48px;
+  }
 }
 
 .register__fields__input {
   display: block;
   width: 100%;
   max-width: 500px;
-  padding: 12px 18px;
-  font-size: 20px;
+  padding: 8px 12px;
+  font-size: 18px;
   font-weight: 300;
 
   color: $color-text;
@@ -53,21 +67,42 @@
   &:focus {
     border-bottom-color: rgba($color-brand, 1);
   }
+
+  @media only screen and (min-width : 480px) {
+    padding: 12px 18px;
+    font-size: 20px;
+  }
 }
 
 .register__fields__logo-label {
   display: inline-block;
   vertical-align: middle;
-  padding: 18px;
-  font-size: 20px;
+  padding: 12px;
+  font-size: 18px;
   font-weight: 300;
+  text-align: center;
   color: #aaa;
-  width: 170px;
+  width: 100%;
+  @media only screen and (min-width : 480px) {
+    font-size: 20px;
+    width: 170px;
+    text-align: left;
+  }
 }
 
 .register__fields__logo-input {
   display: inline-block;
   vertical-align: middle;
+  text-align: center;
+  .attachment__choose {
+    margin-left: 0;
+  }
+  @media only screen and (min-width : 480px) {
+    text-align: left;
+    .attachment__choose {
+      margin-left: 12px;
+    }
+  }
 }
 
 .register__submitted {

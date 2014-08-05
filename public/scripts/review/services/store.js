@@ -51,7 +51,7 @@ module.exports = angular.module('Review')
             reviewerPosition = position;
           }
         });
-        reviewerPosition.entity = entity;
+        reviewerPosition.entity = _.extend(reviewerPosition.entity, entity);
       };
       this.addEntity = function(reviewerPosition) {
         reviewers.push(reviewerPosition);

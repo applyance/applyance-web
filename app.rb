@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/config_file'
+require "sinatra/content_for"
 
 require 'sequel'
 require 'oj'
@@ -12,6 +13,8 @@ require_relative 'routes/_init'
 
 module Applyance
   class Client < Sinatra::Base
+
+    helpers Sinatra::ContentFor
 
     # Load config file
     register Sinatra::ConfigFile

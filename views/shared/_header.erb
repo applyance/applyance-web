@@ -1,8 +1,9 @@
-<header class="header">
+<header class="header<%= (defined?(modifier) ? "--#{modifier}" : "") %> <%= (defined?(is_flush) ? "is-flush" : "") %>">
   <div class="container group">
     <a href="/" target="_self" class="logo__link">
-      <img src="/img/logo.blue.png" class="logo" />
+      <img src="/img/logo.<%= (defined?(logo) ? logo : "blue") %>.png" class="logo" />
     </a>
+    <a href="#" class="hamburger" onclick="toggleClass(document.querySelectorAll('html')[0], 'nav--is-open'); return false;"><i class="icon icon-bars"></i></a>
     <nav class="nav">
       <ul class="nav__list group">
         <li class="nav__item is-emphasized">
@@ -15,3 +16,23 @@
     </nav>
   </div>
 </header>
+
+<% content_for :scripts do %>
+<script>
+function toggleClass(el, className) {
+  if (el.classList) {
+    el.classList.toggle(className);
+  } else {
+    var classes = el.className.split(' ');
+    var existingIndex = classes.indexOf(className);
+
+    if (existingIndex >= 0)
+      classes.splice(existingIndex, 1);
+    else
+      classes.push(className);
+
+    el.className = classes.join(' ');
+  }
+}
+</script>
+<% end %>
