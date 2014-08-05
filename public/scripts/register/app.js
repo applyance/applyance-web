@@ -1,6 +1,6 @@
 'use strict';
 
-var angular = require("angular");
+require("angular");
 require("angular-route");
 
 var ApplyanceApi = require("../services/api");

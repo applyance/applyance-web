@@ -1,11 +1,12 @@
 'use strict';
 
 // Vendor Libs
-require("angular");
 window.CryptoJS = require("crypto-js");
 window.moment = require("moment");
-require("angular-moment");
+
+require("angular");
 require("angular-route");
+require("angular-moment");
 
 // Define Review Module
 angular.module('Review', [require("../services/api").name, 'ngRoute', 'angularMoment'])
