@@ -1,0 +1,20 @@
+.errors__links-wrap {
+  max-width: 400px;
+}
+
+.errors__links {
+  display: inline-block;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.errors__links__item {
+  margin-bottom: 6px;
+  &:last-child { margin-bottom: 0; }
+}
+
+.errors__lead {
+  margin-bottom: 48px;
+}
