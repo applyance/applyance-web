@@ -7,15 +7,15 @@
 </section>
 
 <div ng-if="form.step >= 1">
-  <div ng-include="'/views/register/steps/personal.html'"></div>
+  <div ng-include="'/views/register/steps/personal.html'" ng-controller="ReviewerCtrl"></div>
 </div>
 
 <div ng-if="form.step >= 2">
-  <div ng-include="'/views/register/steps/company.html'"></div>
+  <div ng-include="'/views/register/steps/company.html'" ng-controller="EntityCtrl"></div>
 </div>
 
 <div ng-if="form.step >= 3">
-  <div ng-include="'/views/register/steps/blueprints.html'"></div>
+  <div ng-include="'/views/register/steps/blueprints.html'" ng-controller="BlueprintsCtrl"></div>
 </div>
 
 <section ng-if="form.submitted" class="register__submitted">

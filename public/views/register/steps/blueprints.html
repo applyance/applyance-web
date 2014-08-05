@@ -6,8 +6,8 @@
     </div>
 
     <ul class="selection-grid is-4">
-      <li class="selection-grid__item" ng-class="{ 'is-set':isSet(definition) }" ng-repeat="definition in definitions">
-        <a class="selection-grid__link" href="" ng-click="toggle(definition)">
+      <li class="selection-grid__item" ng-class="{ 'is-set':isDefinitionSet(definition) }" ng-repeat="definition in definitions">
+        <a class="selection-grid__link" href="" ng-click="toggleDefinition(definition)">
           <div class="selection-grid__box">
             <span class="selection-grid__label">
               {{ definition.name }}
@@ -19,8 +19,8 @@
 
     <div>
       <button
-          ng-class="{ 'is-disabled':(!form.submittable || form.submitting) }"
-          ng-disabled="!form.submittable || form.submitting"
+          ng-class="{ 'is-disabled':(!(form.reviewer.isValid && form.entity.isValid) || form.submitting) }"
+          ng-disabled="form.submitting || !(form.reviewer.isValid && form.entity.isValid)"
           ng-click="submit()"
           class="btn--primary register-btn" type="submit">
         {{ form.submitting ? 'Creating Application' : 'Start Hiring!' }}

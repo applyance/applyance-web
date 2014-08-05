@@ -7,74 +7,19 @@ module.exports = angular.module('Register')
       $scope.form = {
         step: 1,
         submitted: false,
-        submittable: false,
         reviewer: {
           name: "",
           email: "",
-          password: ""
+          password: "",
+          isValid: false
         },
         entity: {
-          name: ""
+          name: "",
+          isValid: false
         }
       };
-
-      $scope.isSubmittable = function() {
-        $scope.form.submittable = true;
-        if (
-          $scope.form.reviewer.name.length == 0
-          || $scope.form.reviewer.email.length == 0
-          || $scope.form.reviewer.password.length == 0) {
-            $scope.form.submittable = false;
-        }
-        if ($scope.form.entity.name.length == 0) {
-          $scope.form.submittable = false;
-        }
-      };
-
-      $scope.$watch('form.reviewer', $scope.isSubmittable, true);
-      $scope.$watch('form.entity', $scope.isSubmittable, true);
-
-      $scope.definitions = [];
-      ApplyanceAPI.getDefinitions().then(function(definitions) {
-        $scope.definitions = definitions;
-      });
 
       $scope.blueprints = [];
-
-      $scope.getBlueprintFromDefinition = function(definition) {
-        return _.find($scope.blueprints, function(blueprint) {
-          return blueprint.definition_id == definition.id;
-        });
-      };
-
-      $scope.isSet = function(definition) {
-        return !!$scope.getBlueprintFromDefinition(definition);
-      };
-
-      $scope.toggle = function(definition) {
-        var blueprint = $scope.getBlueprintFromDefinition(definition);
-        if (blueprint) {
-          $scope.blueprints.splice($scope.blueprints.indexOf(blueprint), 1);
-        } else {
-          $scope.blueprints.push({
-            definition_id: definition.id,
-            position: 1,
-            is_required: true
-          });
-        }
-      };
-
-      $scope.clickChoose = function() {
-        $timeout(function() {
-          var logo = $('#logo');
-          var event = new MouseEvent('click', {
-            'view': window,
-            'bubbles': true,
-            'cancelable': true
-          });
-          logo[0].dispatchEvent(event);
-        }, 100);
-      };
 
       $scope.submit = function() {
         $scope.form.submitting = true;

@@ -2,6 +2,7 @@
 
 require("angular");
 require("angular-route");
+require("angular-scroll");
 
 var ApplyanceApi = require("../services/api");
 
@@ -23,4 +24,9 @@ angular.module('Register', [ApplyanceApi.name, 'ngRoute', 'duScroll'])
 
 require("../directives");
 require("../filters");
+require("./directives");
+
 require("./controllers/form");
+require("./controllers/reviewer");
+require("./controllers/entity");
+require("./controllers/blueprints");
