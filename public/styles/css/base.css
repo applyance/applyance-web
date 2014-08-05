@@ -990,7 +990,8 @@
 
 html,
 body {
-  height: 100%; }
+  height: 100%;
+  width: 100%; }
 
 html {
   box-sizing: border-box;
@@ -1055,6 +1056,7 @@ select {
   font-weight: 400;
   line-height: 1.2;
   text-decoration: none;
+  text-align: center;
   outline: none;
   border: 0;
   border-radius: 4px;
@@ -1144,17 +1146,24 @@ select {
   list-style-type: none;
   margin: -12px;
   padding: 0; }
-  .selection-grid.is-4 .selection-grid__item {
-    width: 25%; }
+  @media only screen and (min-width: 1100px) {
+    .selection-grid.is-4 .selection-grid__item {
+      width: 25%; } }
 
 .selection-grid__item {
   display: inline-block;
   vertical-align: top;
   padding: 12px;
-  width: 33.33333%; }
+  width: 100%; }
   .selection-grid__item.is-disabled .selection-grid__link {
     opacity: .4;
     cursor: default; }
+  @media only screen and (min-width: 600px) {
+    .selection-grid__item {
+      width: 50%; } }
+  @media only screen and (min-width: 900px) {
+    .selection-grid__item {
+      width: 33.33333%; } }
 
 .selection-grid__link {
   display: block;

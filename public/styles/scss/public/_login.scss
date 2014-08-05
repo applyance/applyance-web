@@ -42,7 +42,8 @@
   input {
     margin: 0;
     padding: 16px 24px;
-    width: 456px;
+    max-width: 456px;
+    width: 260px;
 
     font-size: 16px;
     font-weight: 300;
@@ -56,6 +57,10 @@
 
     &:focus {
       border-left-color: $color-brand;
+    }
+
+    @media only screen and (min-width : 480px) {
+      width: 456px;
     }
   }
 }
