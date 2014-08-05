@@ -32,7 +32,9 @@ body {
 .header {
   padding: 24px 0;
   &.is-flush {
-    padding-bottom: 0;
+    @media only screen and (max-width : 480px) {
+      padding-bottom: 0;
+    }
   }
 }
 

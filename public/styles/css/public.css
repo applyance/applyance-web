@@ -32,8 +32,9 @@ body {
 /* Header */
 .header, .header--base {
   padding: 24px 0; }
-  .header.is-flush, .is-flush.header--base {
-    padding-bottom: 0; }
+  @media only screen and (max-width: 480px) {
+    .header.is-flush, .is-flush.header--base {
+      padding-bottom: 0; } }
 
 .header--base {
   background-color: #374249; }
@@ -312,7 +313,7 @@ body {
       border-left-color: #f2bc36; }
     @media only screen and (min-width: 480px) {
       .login__field input {
-        padding-top: 48px; } }
+        width: 456px; } }
 
 .login__tray {
   list-style-type: none;
@@ -501,8 +502,9 @@ body {
   width: 100%; }
   @media only screen and (min-width: 480px) {
     .home__btn--start {
-      padding-left: 24px;
-      padding-right: 24px; } }
+      padding-left: 42px;
+      padding-right: 42px;
+      width: auto; } }
 
 .home__screen {
   display: none;
