@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Applyance</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="/img/favicon.png">
-
-    <link rel="stylesheet" type="text/css" href="//cloud.typography.com/7222252/709524/css/fonts.css" />
-    <link rel="stylesheet" type="text/css" href="/styles/css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="/styles/css/base.css" />
-    <link rel="stylesheet" type="text/css" href="/styles/css/public.css" />
+    <%= erb :'shared/_meta' %>
   </head>
   <body>
 
@@ -20,6 +12,7 @@
       </main>
     </div>
     <%= erb :'shared/_footer' %>
+    <%= yield_content :scripts %>
 
   </body>
 </html>

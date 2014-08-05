@@ -19,6 +19,7 @@
       <main class="register" ng-view></main>
     </div>
     <%= erb :'shared/_footer' %>
+    <%= yield_content :scripts %>
 
     <script type="text/javascript" src="/scripts/register/register.js"></script>
     <script type="text/javascript" src="/scripts/ext/angular-scroll.min.js"></script>

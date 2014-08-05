@@ -8,6 +8,13 @@ html {
   html.bare {
     background-color: #eef0f2; }
 
+body {
+  position: relative;
+  left: 0;
+  -webkit-transition: left 250ms ease-in-out;
+  -moz-transition: left 250ms ease-in-out;
+  transition: left 250ms ease-in-out; }
+
 .container {
   max-width: 960px;
   width: auto;
@@ -22,8 +29,11 @@ html {
         padding-left: 48px;
         padding-right: 48px; } }
 
+/* Header */
 .header, .header--base {
   padding: 24px 0; }
+  .header.is-flush, .is-flush.header--base {
+    padding-bottom: 0; }
 
 .header--base {
   background-color: #374249; }
@@ -34,6 +44,80 @@ html {
   @media only screen and (min-width: 480px) {
     .header--base .nav__item.is-emphasized .nav__link {
       border-color: rgba(255, 255, 255, 0.125); } }
+
+/* Hamburger */
+.hamburger {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 24px;
+  margin-top: -5px;
+  font-size: 28px;
+  text-decoration: none;
+  color: #374249; }
+  @media only screen and (min-width: 480px) {
+    .hamburger {
+      display: none; } }
+
+.header--base .hamburger {
+  color: white; }
+
+.nav--is-open body {
+  left: -70%; }
+
+/* Nav */
+.nav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: 70%;
+  background-color: #374249;
+  box-shadow: inset 2px -2px 10px rgba(0, 0, 0, 0.2); }
+  @media only screen and (min-width: 480px) {
+    .nav {
+      box-shadow: none;
+      position: static;
+      top: auto;
+      bottom: auto;
+      left: auto;
+      width: auto;
+      margin-top: 4px;
+      float: right;
+      background-color: transparent; } }
+
+.nav__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+
+.nav__item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15); }
+  @media only screen and (min-width: 480px) {
+    .nav__item {
+      border-bottom: 0;
+      float: left;
+      margin-left: 24px; }
+      .nav__item:first-child {
+        margin-left: 0; }
+      .nav__item.is-emphasized {
+        margin-left: 36px; }
+        .nav__item.is-emphasized .nav__link {
+          padding: 12px;
+          margin-top: -12px;
+          border: 2px solid #eef0f2; } }
+
+.nav__link {
+  display: block;
+  padding: 24px;
+  font-size: 14px;
+  color: white;
+  text-decoration: none; }
+  @media only screen and (min-width: 480px) {
+    .nav__link {
+      display: inline;
+      color: #333333;
+      padding: 0; } }
 
 /* Footer */
 .wrap {
@@ -59,27 +143,41 @@ html {
 
 .footer__lead {
   padding: 48px 0;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 300;
   text-align: center;
   line-height: 1.4;
   color: rgba(255, 255, 255, 0.5); }
   .footer__lead a {
-    margin-left: 12px;
     display: inline-block;
     padding: 8px 18px;
     border: 1px solid rgba(255, 255, 255, 0.125);
     text-decoration: none;
     color: rgba(255, 255, 255, 0.75); }
+  @media only screen and (min-width: 480px) {
+    .footer__lead {
+      font-size: 22px; } }
+
+.footer__lead__contact {
+  margin-top: 12px; }
+  @media only screen and (min-width: 480px) {
+    .footer__lead__contact {
+      display: inline-block;
+      margin-top: 0;
+      margin-left: 12px; } }
 
 .footer__bottom {
   background-color: #374249; }
 
 .footer__nav {
-  float: left;
   list-style-type: none;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  text-align: center; }
+  @media only screen and (min-width: 480px) {
+    .footer__nav {
+      float: left;
+      text-align: left; } }
 
 .footer__nav__item {
   display: inline-block;
@@ -92,7 +190,10 @@ html {
   text-decoration: none; }
 
 .footer__copyright {
-  float: right; }
+  text-align: center; }
+  @media only screen and (min-width: 480px) {
+    .footer__copyright {
+      float: right; } }
 
 /* Logo */
 .logo__link {
@@ -100,37 +201,12 @@ html {
 
 .logo {
   display: block;
-  width: 167.55556px;
-  height: 26.66667px; }
-
-/* Nav */
-@media only screen and (min-width: 480px) {
-  .nav {
-    margin-top: 4px;
-    float: right; } }
-
-.nav__list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0; }
-
-@media only screen and (min-width: 480px) {
-  .nav__item {
-    float: left;
-    margin-left: 24px; }
-    .nav__item:first-child {
-      margin-left: 0; }
-    .nav__item.is-emphasized {
-      margin-left: 36px; }
-      .nav__item.is-emphasized .nav__link {
-        padding: 12px;
-        margin-top: -12px;
-        border: 2px solid #eef0f2; } }
-
-.nav__link {
-  font-size: 14px;
-  color: #333333;
-  text-decoration: none; }
+  width: 150.8px;
+  height: 24px; }
+  @media only screen and (min-width: 480px) {
+    .logo {
+      width: 167.55556px;
+      height: 26.66667px; } }
 
 /* Sections */
 .section {
@@ -145,21 +221,31 @@ html {
     .section.is-base .lead, .section.is-base .lead--big {
       color: white; }
   .section.is-big {
-    padding: 120px 0; }
+    padding: 72px 0; }
+    @media only screen and (min-width: 480px) {
+      .section.is-big {
+        padding: 120px 0; } }
 
 /* Leads (big text) */
 .lead, .lead--big {
   margin: 0;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 300;
-  line-height: 1.2;
+  line-height: 1.25;
   text-align: center;
   text-rendering: optimizeLegibility; }
+  @media only screen and (min-width: 480px) {
+    .lead, .lead--big {
+      font-size: 24px; } }
 
 .lead--big {
-  font-size: 42px;
-  letter-spacing: 5px;
+  font-size: 30px;
+  letter-spacing: 2px;
   text-transform: uppercase; }
+  @media only screen and (min-width: 480px) {
+    .lead--big {
+      font-size: 42px;
+      letter-spacing: 5px; } }
 
 .subline {
   margin-top: 12px;
@@ -212,7 +298,7 @@ html {
   .login__field input {
     margin: 0;
     padding: 16px 24px;
-    width: 456px;
+    max-width: 456px;
     font-size: 16px;
     font-weight: 300;
     color: #333333;
@@ -224,6 +310,9 @@ html {
     transition: border-color 200ms ease-in-out; }
     .login__field input:focus {
       border-left-color: #f2bc36; }
+    @media only screen and (min-width: 480px) {
+      .login__field input {
+        padding-top: 48px; } }
 
 .login__tray {
   list-style-type: none;
@@ -248,18 +337,29 @@ html {
   width: 100%; }
 
 .register-lead {
-  margin-bottom: 96px; }
+  margin-bottom: 48px; }
+  @media only screen and (min-width: 480px) {
+    .register-lead {
+      margin-bottom: 96px; } }
 
 .register-lead--big {
-  margin: 48px 0; }
+  margin: 24px 0; }
+  @media only screen and (min-width: 480px) {
+    .register-lead--big {
+      margin: 48px 0; } }
 
 .register-btn {
   display: block;
-  margin-top: 96px;
-  padding-left: 48px;
-  padding-right: 48px;
+  margin-top: 48px;
+  padding-left: 24px;
+  padding-right: 24px;
   margin-left: auto;
   margin-right: auto; }
+  @media only screen and (min-width: 480px) {
+    .register-btn {
+      margin-top: 96px;
+      padding-left: 48px;
+      padding-right: 48px; } }
 
 .register__fields-wrap {
   text-align: center; }
@@ -274,16 +374,19 @@ html {
   margin-right: auto; }
 
 .register__fields__item {
-  margin-bottom: 48px; }
+  margin-bottom: 36px; }
   .register__fields__item:last-child {
     margin-bottom: 0; }
+  @media only screen and (min-width: 480px) {
+    .register__fields__item {
+      margin-bottom: 48px; } }
 
 .register__fields__input {
   display: block;
   width: 100%;
   max-width: 500px;
-  padding: 12px 18px;
-  font-size: 20px;
+  padding: 8px 12px;
+  font-size: 18px;
   font-weight: 300;
   color: #333333;
   outline: none;
@@ -295,19 +398,37 @@ html {
   transition: border-color 200ms ease-in-out; }
   .register__fields__input:focus {
     border-bottom-color: #f2bc36; }
+  @media only screen and (min-width: 480px) {
+    .register__fields__input {
+      padding: 12px 18px;
+      font-size: 20px; } }
 
 .register__fields__logo-label {
   display: inline-block;
   vertical-align: middle;
-  padding: 18px;
-  font-size: 20px;
+  padding: 12px;
+  font-size: 18px;
   font-weight: 300;
+  text-align: center;
   color: #aaa;
-  width: 170px; }
+  width: 100%; }
+  @media only screen and (min-width: 480px) {
+    .register__fields__logo-label {
+      font-size: 20px;
+      width: 170px;
+      text-align: left; } }
 
 .register__fields__logo-input {
   display: inline-block;
-  vertical-align: middle; }
+  vertical-align: middle;
+  text-align: center; }
+  .register__fields__logo-input .attachment__choose {
+    margin-left: 0; }
+  @media only screen and (min-width: 480px) {
+    .register__fields__logo-input {
+      text-align: left; }
+      .register__fields__logo-input .attachment__choose {
+        margin-left: 12px; } }
 
 .register__submitted {
   position: fixed;
@@ -343,33 +464,62 @@ html {
 
 .home__pitch {
   max-width: 480px;
-  padding: 48px 0; }
+  padding: 24px 0; }
+  @media only screen and (min-width: 480px) {
+    .home__pitch {
+      padding: 48px 0; } }
 
 .home__headline {
   margin: 0;
   margin-bottom: 12px;
   font-size: 30px;
-  font-weight: 300; }
+  font-weight: 300;
+  text-align: center;
+  line-height: 1.25; }
+  @media only screen and (min-width: 480px) {
+    .home__headline {
+      font-size: 30px;
+      text-align: left; } }
 
 .home__subline {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 300;
   line-height: 1.5;
+  text-align: center;
   color: rgba(255, 255, 255, 0.5); }
+  @media only screen and (min-width: 480px) {
+    .home__subline {
+      font-size: 18px;
+      text-align: left; } }
 
 .home__actions {
   margin-top: 24px; }
 
+.home__btn--start {
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%; }
+  @media only screen and (min-width: 480px) {
+    .home__btn--start {
+      padding-left: 24px;
+      padding-right: 24px; } }
+
 .home__screen {
+  display: none;
   position: absolute;
   top: 36px;
   left: 50%;
   left: calc(50% + 48px);
-  width: 620px; }
+  width: 620px;
+  margin-left: 0;
+  margin-right: 0; }
   .home__screen img {
     display: block;
     width: 100%;
     height: auto; }
+  @media only screen and (min-width: 480px) {
+    .home__screen {
+      display: block; } }
 
 .home__features {
   list-style-type: none;
@@ -380,9 +530,12 @@ html {
 .home__features__item {
   display: inline-block;
   vertical-align: top;
-  width: 33.33333%;
   padding: 24px;
+  padding-top: 0;
   text-align: center; }
+  @media only screen and (min-width: 480px) {
+    .home__features__item {
+      width: 33.33333%; } }
 
 .home__features__icon {
   color: #f2bc36;

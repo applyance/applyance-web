@@ -5,6 +5,12 @@ html {
   }
 }
 
+body {
+  position: relative;
+  left: 0;
+  @include transition(left 250ms ease-in-out);
+}
+
 .container {
   max-width: 960px;
   width: auto;
@@ -21,8 +27,13 @@ html {
   }
 }
 
+/* Header */
+
 .header {
   padding: 24px 0;
+  &.is-flush {
+    padding-bottom: 0;
+  }
 }
 
 .header--base {
@@ -42,6 +53,90 @@ html {
         }
       }
     }
+  }
+}
+
+/* Hamburger */
+
+.hamburger {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 24px;
+  margin-top: -5px;
+  font-size: 28px;
+  text-decoration: none;
+  color: $color-base;
+  @media only screen and (min-width : 480px) {
+    display: none;
+  }
+}
+
+.header--base .hamburger {
+  color: white;
+}
+
+.nav--is-open body {
+  left: -70%;
+}
+
+/* Nav */
+
+.nav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: 70%;
+  background-color: $color-base;
+  box-shadow: inset 2px -2px 10px rgba(black, .2);
+  @media only screen and (min-width : 480px) {
+    box-shadow: none;
+    position: static;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    width: auto;
+    margin-top: 4px;
+    float: right;
+    background-color: transparent;
+  }
+}
+
+.nav__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__item {
+  border-bottom: 1px solid rgba(black, .15);
+  @media only screen and (min-width : 480px) {
+    border-bottom: 0;
+    float: left;
+    margin-left: 24px;
+    &:first-child { margin-left: 0; }
+    &.is-emphasized {
+      margin-left: 36px;
+      .nav__link {
+        padding: 12px;
+        margin-top: -12px;
+        border: 2px solid $color-gray;
+      }
+    }
+  }
+}
+
+.nav__link {
+  display: block;
+  padding: 24px;
+  font-size: 14px;
+  color: white;
+  text-decoration: none;
+  @media only screen and (min-width : 480px) {
+    display: inline;
+    color: $color-text;
+    padding: 0;
   }
 }
 
@@ -76,18 +171,29 @@ html {
 
 .footer__lead {
   padding: 48px 0;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 300;
   text-align: center;
   line-height: 1.4;
   color: rgba(white, .5);
   a {
-    margin-left: 12px;
     display: inline-block;
     padding: 8px 18px;
     border: 1px solid rgba(white, .125);
     text-decoration: none;
     color: rgba(white, .75);
+  }
+  @media only screen and (min-width : 480px) {
+    font-size: 22px;
+  }
+}
+
+.footer__lead__contact {
+  margin-top: 12px;
+  @media only screen and (min-width : 480px) {
+    display: inline-block;
+    margin-top: 0;
+    margin-left: 12px;
   }
 }
 
@@ -96,10 +202,14 @@ html {
 }
 
 .footer__nav {
-  float: left;
   list-style-type: none;
   padding: 0;
   margin: 0;
+  text-align: center;
+  @media only screen and (min-width : 480px) {
+    float: left;
+    text-align: left;
+  }
 }
 
 .footer__nav__item {
@@ -114,7 +224,10 @@ html {
 }
 
 .footer__copyright {
-  float: right;
+  text-align: center;
+  @media only screen and (min-width : 480px) {
+    float: right;
+  }
 }
 
 /* Logo */
@@ -125,45 +238,12 @@ html {
 
 .logo {
   display: block;
-  width: (377px / 2.25);
-  height: (60px / 2.25);
-}
-
-/* Nav */
-
-.nav {
+  width: (377px / 2.5);
+  height: (60px / 2.5);
   @media only screen and (min-width : 480px) {
-    margin-top: 4px;
-    float: right;
+    width: (377px / 2.25);
+    height: (60px / 2.25);
   }
-}
-
-.nav__list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav__item {
-  @media only screen and (min-width : 480px) {
-    float: left;
-    margin-left: 24px;
-    &:first-child { margin-left: 0; }
-    &.is-emphasized {
-      margin-left: 36px;
-      .nav__link {
-        padding: 12px;
-        margin-top: -12px;
-        border: 2px solid $color-gray;
-      }
-    }
-  }
-}
-
-.nav__link {
-  font-size: 14px;
-  color: $color-text;
-  text-decoration: none;
 }
 
 /* Sections */
@@ -180,7 +260,10 @@ html {
     .lead { color: white; }
   }
   &.is-big {
-    padding: 120px 0;
+    padding: 72px 0;
+    @media only screen and (min-width : 480px) {
+      padding: 120px 0;
+    }
   }
 }
 
@@ -188,18 +271,25 @@ html {
 
 .lead {
   margin: 0;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 300;
-  line-height: 1.2;
+  line-height: 1.25;
   text-align: center;
   text-rendering: optimizeLegibility;
+  @media only screen and (min-width : 480px) {
+    font-size: 24px;
+  }
 }
 
 .lead--big {
   @extend .lead;
-  font-size: 42px;
-  letter-spacing: 5px;
+  font-size: 30px;
+  letter-spacing: 2px;
   text-transform: uppercase;
+  @media only screen and (min-width : 480px) {
+    font-size: 42px;
+    letter-spacing: 5px;
+  }
 }
 
 .subline {
