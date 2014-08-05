@@ -1,0 +1,36 @@
+<section id="step2" class="section is-big">
+  <div class="container">
+
+    <div class="lead register-lead">
+      Next, we need a name and logo for your company.
+    </div>
+
+    <div class="register__fields-wrap">
+      <ul class="register__fields">
+        <li class="register__fields__item">
+          <input class="register__fields__input" id="entity-name" name="entityName" type="text" placeholder="Company Name" ng-model="form.entity.name">
+        </li>
+        <li class="register__fields__item">
+          <div class="register__fields__logo-label">
+            Logo
+          </div>
+          <div class="register__fields__logo-input">
+            <div class="attachment">
+              <div class="attachment__box">
+                <i class="attachment__empty icon-photo"></i>
+                <img ng-if="form.entity.attachment" ng-src="{{ form.entity.attachment.url }}" alt="avatar" />
+              </div>
+              <button class="btn attachment__choose" ng-click="clickChoose()">Choose</button>
+              <input class="attachment__file" id="logo" type="file" fileread="form.entity" accepts="image/*" tabindex="-1">
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <button href="#step3" du-smooth-scroll class="btn--primary register-btn" type="button" ng-click="form.step = 3">Continue to Your Application</button>
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,31 @@
+<section id="step3" class="section is-gray is-big">
+  <div class="container is-full">
+
+    <div class="lead register-lead">
+      Finally, what questions do you want on your application?
+    </div>
+
+    <ul class="selection-grid is-4">
+      <li class="selection-grid__item" ng-class="{ 'is-set':isSet(definition) }" ng-repeat="definition in definitions">
+        <a class="selection-grid__link" href="" ng-click="toggle(definition)">
+          <div class="selection-grid__box">
+            <span class="selection-grid__label">
+              {{ definition.name }}
+            </span>
+          </div>
+        </a>
+      </li>
+    </ul>
+
+    <div>
+      <button
+          ng-class="{ 'is-disabled':(!form.submittable || form.submitting) }"
+          ng-disabled="!form.submittable || form.submitting"
+          ng-click="submit()"
+          class="btn--primary register-btn" type="submit">
+        {{ form.submitting ? 'Creating Application' : 'Start Hiring!' }}
+      </button>
+    </div>
+
+  </div>
+</section>
