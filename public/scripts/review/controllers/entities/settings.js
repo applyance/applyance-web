@@ -38,59 +38,45 @@ module.exports = angular.module('Review')
 
       $scope.isUpdating = false;
       $scope.startUpdateEntity = function() {
-
         $scope.isUpdating = true;
-
         if (!$scope.e.fileObj) {
           $scope.updateEntity();
           return;
         }
+        ApplyanceAPI.uploadAttachment(
+          $scope.e.fileObj,
+          $scope.e.fileObj.type)
+          .then($scope.onUploadAttachment);
+      };
 
-        ApplyanceAPI.uploadAttachment($scope.e.fileObj,
-          $scope.e.fileObj.type).then(
-          function(r) {
-            $scope.updateEntity({
-              name: $scope.e.fileObj.name,
-              token: r.data.token
-            });
-          },
-          function(r) {
-            console.log("failed to upload logo");
-            console.log(r);
-          }
-        );
-
+      $scope.onUploadAttachment = function(attachment) {
+        $scope.updateEntity({
+          name: $scope.e.fileObj.name,
+          token: attachment.data.token
+        });
       };
 
       $scope.updateEntity = function(logo) {
-
         var entity = {
           id: $scope.e.id,
           name: $scope.e.name
         };
-
         if (logo) {
           entity.logo = logo;
         }
-
         if ($scope.hasAddressChanged) {
           entity.location = {
             address: $scope.address
           };
         }
+        ApplyanceAPI.putEntity(entity).then($scope.onUpdateEntity);
+      };
 
-        ApplyanceAPI.putEntity(entity).then(function(r) {
-          $scope.isUpdating = false;
-
-          Store.setEntity(r.data);
-
-          $scope.flash.setMessage("Settings updated successfully.");
-          $rootScope.$broadcast('flash');
-        },
-        function(r) {
-          console.log("failed to update entity");
-          console.log(r);
-        });
+      $scope.onUpdateEntity = function(entity) {
+        $scope.isUpdating = false;
+        Store.setEntity(entity.data);
+        $scope.flash.setMessage("Settings updated successfully.");
+        $rootScope.$broadcast('flash');
       };
 
     }]);

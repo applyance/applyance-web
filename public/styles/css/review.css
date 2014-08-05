@@ -154,10 +154,11 @@ h1, h2, h3, h4 {
   position: fixed;
   top: 78px;
   right: 24px;
+  z-index: 100;
   display: inline-block;
   max-width: 420px;
   padding: 18px 24px;
-  background-color: rgba(62, 204, 190, 0.25);
+  background-color: #cef2ee;
   border-radius: 5px; }
 
 /* Tags */

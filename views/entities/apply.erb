@@ -4,7 +4,9 @@
     <title>Application to <%= @entity['name'] %></title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <% if @entity['logo'] %>
     <link rel="icon" type="image/png" href="<%= @entity['logo']['url'] %>">
+    <% end %>
 
     <base href="/">
     <link rel="stylesheet" type="text/css" href="//cloud.typography.com/7222252/709524/css/fonts.css" />

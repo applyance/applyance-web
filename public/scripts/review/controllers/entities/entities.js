@@ -36,10 +36,18 @@ module.exports = angular.module('Review')
       };
 
       $scope.addEntity = function() {
+        var activeEntity = Store.getActiveEntity();
+        var entityToAdd = { name: "New Entity" };
+
+        if (activeEntity.logo) {
+          entityToAdd.logo = {
+            name: activeEntity.logo.name,
+            token: activeEntity.logo.token
+          };
+        }
+
         // Update DB through API
-        ApplyanceAPI.postEntity(Store.getActiveEntityId(), {
-          name: "New Entity"
-        }).then(function(entity) {
+        ApplyanceAPI.postEntity(Store.getActiveEntityId(), entityToAdd).then(function(entity) {
 
           // Get this user's reviewer obj
           var accountId = Store.getAccount().id;
