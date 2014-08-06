@@ -16,6 +16,16 @@ module.exports = function($routeProvider, $locationProvider, me, $routeParams) {
       controller: 'ApplicationCtrl'
     })
 
+    // spots
+    .when('/entities/:id/spots', {
+      controller: 'SpotsCtrl',
+      templateUrl: 'views/review/spots/spots.html'
+    })
+    .when('/spots/:id', {
+      templateUrl: 'views/review/spots/spot.html',
+      controller: 'SpotCtrl'
+    })
+
     // settings
     .when('/entities/:id/settings', {
       templateUrl: 'views/review/settings/settings.html',

@@ -1,1 +1,48 @@
-spots (list)
+<div class="main-container">
+
+  <h1 class="top-header">
+    Spots
+    <a ng-if="spots.length > 0" href="" class="tag application-header-link" ng-click="createSpot()">
+      Create new Spot
+    </a>
+  </h1>
+
+  <div ng-switch on="spots.length">
+    <div ng-switch-default>
+
+      <ul class="slats">
+        <li class="slats__item" ng-repeat="spot in spots">
+
+          <ul class="slats__units unit--2of3">
+            <li class="slats__units__item">
+              <a class="slats__item__header" href="spots/{{ spot.id }}">
+                {{ spot.name }}
+              </a>
+              <div>
+                {{ spot.detail }}
+              </div>
+            </li>
+          </ul>
+
+          <ul class="slats__units is-right unit--1of3">
+            <li class="slats__units__item">
+            	{{ spot.status }}
+            </li>
+          </ul>
+
+        </li>
+      </ul>
+
+    </div>
+    <div ng-switch-when="0">
+      <div class="toaster text-trim">
+        <p>
+          It looks like you haven't created any spots for {{ activeEntity.name }} just yet.
+        </p>
+        <p>
+          <a class="btn--primary" href="" ng-click="createSpot()">New Spot for {{ activeEntity.name }}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

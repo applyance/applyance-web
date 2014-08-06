@@ -50,6 +50,20 @@ module.exports = angular.module('Applyance', ['restangular'])
         return Restangular.all('applications').post(application);
       }
 
+      // Spots
+      this.getSpots = function(entityId) {
+        return Restangular.one("entities", entityId).all("spots").getList();
+      };
+      this.getSpot = function(id) {
+        return Restangular.one('spots', id).get();
+      };
+      this.putSpot = function(spot) {
+        return $http.put(apiHost + "/spots/" + spot.id, spot);
+      }
+      this.postSpot = function(entityId, spot) {
+        return Restangular.one("entities", entityId).all("spots").post(spot);
+      }
+
       // Ratings
       this.getApplicationRatings = function(id) {
         return Restangular.one('applications', id).all("ratings").getList();

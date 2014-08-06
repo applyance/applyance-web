@@ -1,1 +1,13 @@
-spot (single)
+<div>
+	<input type="text" name="spotName" ng-model="spot.name" />
+</div>
+<div>
+	<textarea name="spotDetail" ng-model="spot.detail">{{ spot.detail }}</textarea>
+</div>
+<div>
+	Applied on {{ spot.created_at | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+</div>
+<div>
+	{{ spot.status }}
+</div>
+<button class=​"btn--primary" ng-click="updateSpot()">Update</button>​

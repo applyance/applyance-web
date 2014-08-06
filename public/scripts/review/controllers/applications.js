@@ -28,6 +28,6 @@ module.exports = angular.module('Review')
 
       $scope.isRatingSet = function(i, application) {
         return (i <= $scope.getRating(application));
-      }
+      };
 
     }]);

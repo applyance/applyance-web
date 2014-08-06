@@ -27,6 +27,11 @@
                class="nav__link">Applications</a>
           </li>
           <li class="nav__item"
+              ng-class="{ 'is-active':isActive('/entities/' + activeEntityId() + '/spots') }">
+            <a href="entities/{{ activeEntityId() }}/spots"
+               class="nav__link">Spots</a>
+          </li>
+          <li class="nav__item"
               ng-class="{ 'is-active':inSettings }"
               ng-if="isAdmin()">
             <a href="entities/{{ activeEntityId() }}/settings"

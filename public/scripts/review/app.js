@@ -32,3 +32,6 @@ require("./controllers/entities/entities");
 require("./controllers/entities/reviewers");
 require("./controllers/entities/settings");
 require("./controllers/entities/labels");
+
+require("./controllers/spots");
+require("./controllers/spot");
