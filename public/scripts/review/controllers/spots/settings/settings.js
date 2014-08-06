@@ -21,7 +21,12 @@ module.exports = angular.module('Review')
       };
 
       $scope.isStatus = function(status) {
+        if (!$scope.spot) {
+          return false;
+        }
         return $scope.spot.status == status;
       };
 
-    }]);
+    }
+  ]
+);

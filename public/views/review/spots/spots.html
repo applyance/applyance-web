@@ -7,20 +7,27 @@
 
   <div ng-switch on="spots.length">
     <div ng-switch-default>
-      <ul class="slats">
-        <li class="slats__item" ng-repeat="spot in spots">
-          <ul class="slats__units unit--2of3">
-            <li class="slats__units__item">
-              <a class="slats__item__header" href="spots/{{ spot.id }}/settings">
-                {{ spot.name }}
-              </a>
-            </li>
-          </ul>
-          <ul class="slats__units is-right unit--1of3">
-            <li class="slats__units__item">
-            	{{ spot.status }}
-            </li>
-          </ul>
+      <ul class="display-grid">
+        <li class="display-grid__item" ng-repeat="spot in spots">
+          <a class="display-grid__box" href="spots/{{ spot.id }}/settings">
+            <div class="display-grid__title">{{ spot.name }}</div>
+            <div class="display-grid__content" style="display:none;">
+              <div class="display-grid__big-label">{{ spot.application_count }}</div>
+              <div class="display-grid__small-label">{{ (spot.application_count == 1) ? 'Application' : 'Applications' }}</div>
+            </div>
+            <div class="display-grid__tray group">
+              <ul class="display-grid__actions--primary">
+                <li>
+                  
+                </li>
+              </ul>
+              <ul class="display-grid__actions--secondary">
+                <li>
+
+                </li>
+              </ul>
+            </div>
+          </a>
         </li>
       </ul>
     </div>
