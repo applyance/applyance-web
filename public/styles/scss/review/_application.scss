@@ -1,7 +1,20 @@
+/* Sidebar */
+
+.application__sidebar-wrap {
+  float: right;
+  width: calc(100% - #{$application-width});
+  padding-left: 60px;
+}
+
+.application__sidebar {
+  border: 4px solid red;
+  height: 400px;
+}
+
 .application {
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  float: left;
+  max-width: $application-width;
+  width: 100%;
   border: 4px solid $color-gray;
 }
 

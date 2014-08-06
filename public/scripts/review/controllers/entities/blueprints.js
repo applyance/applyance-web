@@ -17,7 +17,7 @@ module.exports = angular.module('Review')
       });
 
       if ($scope.e.parent) {
-        ApplyanceAPI.getBlueprints($scope.entity.parent.id).then(function(blueprints) {
+        ApplyanceAPI.getBlueprints($scope.e.parent.id).then(function(blueprints) {
           blueprints = _.map(blueprints, function(blueprint) {
             blueprint.is_parent = true;
             return blueprint
