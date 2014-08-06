@@ -4,17 +4,21 @@
   <ul class="settings-inputs__list">
     <li class="settings-inputs__item">
       <label class="settings-inputs__label">Name</label>
-      <input type="text" name="spotName" ng-model="spot.name" value="{{ spot.name }}" placeholder="Enter your spot name here" size="30" />
-    </li>
-    <li class="settings-inputs__item">
-      <label class="settings-inputs__label">Description</label>
-      <textarea name="spotDetail" ng-model="spot.detail" placeholder="Enter a spot description here" cols="30">{{ spot.detail }}</textarea>
+      <input type="text" name="spotName" ng-model="spot.name" value="{{ spot.name }}" placeholder="Enter your spot name here" size="30" autofocus>
     </li>
     <li class="settings-inputs__item">
       <label class="settings-inputs__label">Status</label>
-      <div>
-        {{ spot.status }}
+      <div class="settings-inputs__field">
+        <div class="radio-group">
+          <button type="button" class="radio spot-status--open" ng-class="{ 'is-selected':isStatus('open') }" ng-click="updateStatus('open')">Open</button>
+          <button type="button" class="radio spot-status--paused" ng-class="{ 'is-selected':isStatus('paused') }" ng-click="updateStatus('paused')">Paused</button>
+          <button type="button" class="radio spot-status--closed" ng-class="{ 'is-selected':isStatus('closed') }" ng-click="updateStatus('closed')">Closed</button>
+        </div>
       </div>
+    </li>
+    <li class="settings-inputs__item">
+      <label class="settings-inputs__label">Description</label>
+      <div class="rich-editor text-trim" ng-model="spot.detail" medium-editor options='{ "placeholder": "Enter a spot description", "buttons": ["bold", "italic", "underline", "anchor", "header1", "header2", "quote", "orderedlist", "unorderedlist"]}'></div>
     </li>
   </ul>
   <div class="settings-inputs__tray">

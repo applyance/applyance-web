@@ -1,11 +1,11 @@
 'use strict';
 
 module.exports = angular.module('Review')
-  .controller('SpotsCtrl', ['$scope', 'ApplyanceAPI', 'Store',
-    function ($scope, ApplyanceAPI, Store) {
+  .controller('SpotsCtrl', ['$scope', '$location', 'ApplyanceAPI', 'Store',
+    function ($scope, $location, ApplyanceAPI, Store) {
 
       ApplyanceAPI.getSpots(Store.getActiveEntityId()).then(function(spots) {
-         $scope.spots = spots;
+         $scope.spots = spots.plain().reverse();
       });
 
       $scope.activeEntity = Store.getActiveEntity();
@@ -16,8 +16,10 @@ module.exports = angular.module('Review')
           "status": "open"
         };
         ApplyanceAPI.postSpot(Store.getActiveEntityId(), newSpot).then(function(createdSpot) {
-          $scope.spots.unshift(createdSpot);
+          $location.path('/spots/' + createdSpot.id + '/settings');
         });
       };
 
-    }]);
+    }
+  ]
+);

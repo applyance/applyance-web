@@ -3,13 +3,15 @@
 // Vendor Libs
 window.CryptoJS = require("crypto-js");
 window.moment = require("moment");
+window.MediumEditor = require("medium-editor");
 
 require("angular");
 require("angular-route");
 require("angular-moment");
+require("angular-medium-editor");
 
 // Define Review Module
-angular.module('Review', [require("../services/api").name, 'ngRoute', 'angularMoment'])
+angular.module('Review', [require("../services/api").name, 'ngRoute', 'angularMoment', 'angular-medium-editor'])
   .config(['$routeProvider', '$locationProvider', 'me', require("./routes")]);
 
 require("../directives");
@@ -34,6 +36,7 @@ require("./controllers/entities/settings");
 require("./controllers/entities/labels");
 
 require("./controllers/spots/spots");
+require("./controllers/spots/applications");
 require("./controllers/spots/settings");
 require("./controllers/spots/settings/settings");
 require("./controllers/spots/settings/blueprints");

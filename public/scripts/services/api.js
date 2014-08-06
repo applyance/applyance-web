@@ -48,7 +48,10 @@ module.exports = angular.module('Applyance', ['restangular'])
       };
       this.postApplication = function(application) {
         return Restangular.all('applications').post(application);
-      }
+      };
+      this.getSpotApplications = function(spotId) {
+        return Restangular.one("spots", spotId).all("applications").getList();
+      };
 
       // Spots
       this.getSpots = function(entityId) {

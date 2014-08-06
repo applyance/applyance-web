@@ -1020,6 +1020,11 @@ a {
 select {
   padding-right: 48px; }
 
+blockquote {
+  margin-left: 24px;
+  padding: 12px 24px;
+  border-left: 4px solid #3eccbe; }
+
 .selector {
   display: inline-block;
   position: relative;
@@ -1038,9 +1043,9 @@ select {
     background-position: center;
     background-repeat: no-repeat; }
 
-.text-trim > p:first-child {
+.text-trim > *:first-child {
   margin-top: 0; }
-.text-trim > p:last-child {
+.text-trim > *:last-child {
   margin-bottom: 0; }
 
 .group:after {

@@ -40,6 +40,12 @@ select {
   padding-right: 18px + 12px + 18px;
 }
 
+blockquote {
+  margin-left: 24px;
+  padding: 12px 24px;
+  border-left: 4px solid $color-accent;
+}
+
 .selector {
   display: inline-block;
   position: relative;
@@ -61,7 +67,7 @@ select {
   }
 }
 
-.text-trim > p {
+.text-trim > * {
   &:first-child {
     margin-top: 0;
   }
