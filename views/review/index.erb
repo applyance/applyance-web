@@ -35,7 +35,7 @@
               ng-class="{ 'is-active':inSettings }"
               ng-if="isAdmin()">
             <a href="entities/{{ activeEntityId() }}/settings"
-               class="nav__link">Settings</a>
+               class="nav__link">Manage {{ activeEntity().parent ? 'Location' : 'Company' }}</a>
           </li>
         <ul>
       </nav>

@@ -1,0 +1,23 @@
+<h1 class="top-header">Spot Settings</h1>
+
+<div class="settings-inputs">
+  <ul class="settings-inputs__list">
+    <li class="settings-inputs__item">
+      <label class="settings-inputs__label">Name</label>
+      <input type="text" name="spotName" ng-model="spot.name" value="{{ spot.name }}" placeholder="Enter your spot name here" size="30" />
+    </li>
+    <li class="settings-inputs__item">
+      <label class="settings-inputs__label">Description</label>
+      <textarea name="spotDetail" ng-model="spot.detail" placeholder="Enter a spot description here" cols="30">{{ spot.detail }}</textarea>
+    </li>
+    <li class="settings-inputs__item">
+      <label class="settings-inputs__label">Status</label>
+      <div>
+        {{ spot.status }}
+      </div>
+    </li>
+  </ul>
+  <div class="settings-inputs__tray">
+    <button class="btn--primary" ng-class="{ 'is-disabled':isUpdating }" ng-disabled="isUpdating" ng-click="updateSpot()">{{ isUpdating ? 'Updating' : 'Update' }}</button>
+  </div>
+</div>

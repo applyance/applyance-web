@@ -1,0 +1,22 @@
+<ul class="sidebar-menu">
+	<li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('settings') }">
+		<a class="sidebar-menu__link" href="/spots/{{ spot.id }}/settings">
+			<i class="icon icon-settings"></i>Spot Settings
+		</a>
+	</li>
+	<li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('blueprints') }">
+		<a class="sidebar-menu__link" href="/spots/{{ spot.id }}/blueprints">
+			<i class="icon icon-notepad"></i>Spot Questions
+		</a>
+	</li>
+</ul>
+
+<!-- content area (right side stuff) -->
+<div class="main-container with-sidebar" ng-switch="spotSettings">
+	<div ng-switch-when="settings" ng-controller="SpotSettingsSettingsCtrl">
+		<div ng-include="'views/review/spots/settings/settings.html'"></div>
+	</div>
+	<div ng-switch-when="blueprints" ng-controller="SpotSettingsBlueprintsCtrl">
+		<div ng-include="'views/review/spots/settings/blueprints.html'"></div>
+	</div>
+</div>

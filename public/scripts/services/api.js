@@ -141,7 +141,13 @@ module.exports = angular.module('Applyance', ['restangular'])
       };
       this.postBlueprints = function(id, blueprints) {
         return Restangular.one('entities', id).all('blueprints').post(blueprints);
-      }
+      };
+      this.getSpotBlueprints = function(id) {
+        return Restangular.one('spots', id).all('blueprints').getList();
+      };
+      this.postSpotBlueprint = function(id, blueprint) {
+        return Restangular.one('spots', id).all('blueprints').post(blueprint);
+      };
 
       // Datums
       this.getDatums = function(id) {

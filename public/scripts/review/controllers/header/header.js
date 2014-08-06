@@ -8,6 +8,10 @@ module.exports = angular.module('Review')
         return Store.getActiveEntityId();
       };
 
+      $scope.activeEntity = function() {
+        return Store.getActiveEntity();
+      };
+
       $scope.isActive = function(route) {
         return route === $location.path();
       };

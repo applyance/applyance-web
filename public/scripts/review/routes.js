@@ -21,9 +21,13 @@ module.exports = function($routeProvider, $locationProvider, me, $routeParams) {
       controller: 'SpotsCtrl',
       templateUrl: 'views/review/spots/spots.html'
     })
-    .when('/spots/:id', {
-      templateUrl: 'views/review/spots/spot.html',
-      controller: 'SpotCtrl'
+    .when('/spots/:id/settings', {
+      templateUrl: 'views/review/spots/settings.html',
+      controller: 'SpotSettingsCtrl'
+    })
+    .when('/spots/:id/blueprints', {
+      templateUrl: 'views/review/spots/settings.html',
+      controller: 'SpotSettingsCtrl'
     })
 
     // settings
