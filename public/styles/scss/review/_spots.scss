@@ -36,3 +36,28 @@
     background-color: $color-red;
   }
 }
+
+.display-grid--spot__content--applications {
+  display: block;
+  padding: 12px 24px;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-rendering: optimizeLegibility;
+
+  color: $color-text;
+  background-color: $color-gray;
+  text-align: center;
+  @include transition(background-color 200ms ease-in-out);
+  .count {
+    font-weight: 500;
+  }
+  .label {
+    margin-left: 12px;
+    letter-spacing: 2px;
+    color: rgba(black, .5);
+  }
+  &:hover {
+    background-color: darken($color-gray, 5%);
+  }
+}

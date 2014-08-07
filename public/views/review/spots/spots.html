@@ -9,24 +9,18 @@
     <div ng-switch-default>
       <ul class="display-grid">
         <li class="display-grid__item" ng-repeat="spot in spots">
-          <div class="display-grid__box" ng-class="{ 'is-clickable':currentScope == 'admin' }" apl-go="spots/{{ spot.id }}/settings" apl-can-go="{{ currentScope == 'admin' }}">
-            <div class="display-grid__title">{{ spot.name }}</div>
-            <div class="display-grid__content" style="display: none;">
-              <div class="display-grid__big-label">{{ spot.application_count }}</div>
-              <div class="display-grid__small-label">{{ (spot.application_count == 1) ? 'Application' : 'Applications' }}</div>
-            </div>
-            <div class="display-grid__tray group">
+          <div class="display-grid__box" ng-class="{ 'is-clickable':currentScope == 'admin' }">
+            <div class="display-grid__title" apl-go="spots/{{ spot.id }}/settings" apl-can-go="{{ currentScope == 'admin' }}">{{ spot.name }}</div>
+            <a href="spots/{{ spot.id }}/applications" ng-if="spot.application_count > 0" class="display-grid__content display-grid--spot__content--applications">
+              <span class="count">{{ spot.application_count }}</span><span class="label">{{ (spot.application_count == 1) ? 'Application' : 'Applications' }}</span>
+            </a>
+            <div class="display-grid__tray group" apl-go="spots/{{ spot.id }}/settings" apl-can-go="{{ currentScope == 'admin' }}">
               <ul class="display-grid__actions--primary">
                 <li class="display-grid__actions__item display-grid--spot__actions__item__status--{{ spot.status }}">
                   {{ spot.status | capitalize }}
                 </li>
               </ul>
               <ul class="display-grid__actions--secondary">
-                <!--
-                <li class="display-grid__actions__item">
-                  <a href="spots/{{ spot.id }}/settings" class="btn is-mini view">View</a>
-                </li>
-                -->
                 <li ng-if="currentScope == 'admin'" class="display-grid__actions__item">
                   <a href="" class="btn--secondary is-mini delete" confirmed-click="deleteSpot(spot)" ng-confirm-click="Are you sure you want to delete {{ spot.name }}?">Remove</a>
                 </li>

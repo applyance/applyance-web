@@ -728,7 +728,7 @@ textarea,
   display: inline-block; }
   @media only screen and (min-width: 480px) {
     .account {
-      margin-top: 7px;
+      margin-top: 11px;
       float: right; } }
 
 .account__context {
@@ -1068,6 +1068,123 @@ a.slats__item__header {
   .applicant-rating__item.is-settable {
     cursor: pointer; }
 
+/* Context Switcher */
+.context-switcher {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 24px;
+  font-size: 0;
+  z-index: 100; }
+
+.context-switcher__active-parent,
+.context-switcher__active-entity {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 24px;
+  font-size: 14px;
+  color: white;
+  text-decoration: none; }
+
+.context-switcher__active-entity {
+  padding-top: 19px;
+  padding-bottom: 19px;
+  margin: -19px 0;
+  cursor: default;
+  background-color: #2c353a;
+  -webkit-transition: background-color 200ms ease-in-out;
+  -moz-transition: background-color 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out; }
+  .context-switcher__active-entity .icon {
+    display: none; }
+
+.context-switcher__active-entity:not(.is-single) {
+  cursor: pointer;
+  padding-right: 44px;
+  max-width: 240px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
+  .context-switcher__active-entity:not(.is-single):hover {
+    background-color: #161b1d; }
+  .context-switcher__active-entity:not(.is-single) .icon {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    margin-top: -8px;
+    right: 20px;
+    color: white;
+    font-size: 16px;
+    opacity: .25;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg); }
+
+.context-switcher__active-parent {
+  position: relative;
+  margin-right: 24px;
+  padding-right: 36px; }
+  .context-switcher__active-parent .icon {
+    position: absolute;
+    top: 50%;
+    margin-top: -8px;
+    right: 0;
+    color: white;
+    font-size: 16px;
+    opacity: .25; }
+
+.context-switcher__entities-wrap {
+  display: block;
+  position: absolute;
+  top: 66px;
+  top: calc(100% + 19px + 12px);
+  right: 0; }
+  .context-switcher__entities-wrap:before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    right: 12px;
+    border-top: 6px solid transparent;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #374249; }
+
+.context-switcher__entities {
+  display: block;
+  list-style-type: none;
+  width: 260px;
+  max-height: 320px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  background-color: #2c353a;
+  border-radius: 5px; }
+
+.context-switcher__entity__item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+  .context-switcher__entity__item:last-child {
+    border-bottom: 0; }
+
+.context-switcher__entity__link {
+  display: block;
+  padding: 12px 24px;
+  font-size: 14px;
+  color: white;
+  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -webkit-transition: background-color 200ms ease-in-out;
+  -moz-transition: background-color 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out; }
+  .context-switcher__entity__link:hover {
+    background-color: #161b1d; }
+
+.context-switcher__entity__item.is-child .context-switcher__entity__link {
+  padding-left: 48px; }
+
 /* Sidebar */
 .application__sidebar-wrap {
   float: right;
@@ -1196,3 +1313,25 @@ a.slats__item__header {
 
 .display-grid--spot__actions__item__status--closed:before {
   background-color: #ef4d37; }
+
+.display-grid--spot__content--applications {
+  display: block;
+  padding: 12px 24px;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-rendering: optimizeLegibility;
+  color: #333333;
+  background-color: #eef0f2;
+  text-align: center;
+  -webkit-transition: background-color 200ms ease-in-out;
+  -moz-transition: background-color 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out; }
+  .display-grid--spot__content--applications .count {
+    font-weight: 500; }
+  .display-grid--spot__content--applications .label {
+    margin-left: 12px;
+    letter-spacing: 2px;
+    color: rgba(0, 0, 0, 0.5); }
+  .display-grid--spot__content--applications:hover {
+    background-color: #e0e3e7; }

@@ -76,7 +76,7 @@
 .account {
   display: inline-block;
   @media only screen and (min-width : 480px) {
-    margin-top: ($header-height - 40px) / 2;
+    margin-top: ($header-height - 32px) / 2;
     float: right;
   }
 }

@@ -18,24 +18,33 @@ module.exports = angular.module('Review')
       }
     };
   })
-  .directive('contextSwitcher', ['Store', '$location', function (Store, $location) {
+  .directive('contextSwitcher', ['Store', '$location', '$document', function (Store, $location, $document) {
     return {
       restrict: 'AE',
       replace: true,
       templateUrl: 'scripts/review/directives/contextSwitcher.html',
       link: function(scope, elem, attrs) {
         scope.showEntityList = false;
-        scope.activeEntity = function() {
-          return Store.getActiveEntity();
-        };
+
         scope.entities = function() {
           return Store.getEntities();
+        };
+        scope.activeEntity = function() {
+          return Store.getActiveEntity();
         };
         scope.updateEntitySelect = function(selectedEntity) {
           scope.showEntityList = false;
           Store.setActiveEntityId(selectedEntity.id);
           $location.path('/entities/' + Store.getActiveEntityId() + '/applications');
         };
+        elem.on('click', function(e) {
+          e.stopPropagation();
+        });
+        $document.on('click', function() {
+          scope.$apply(function() {
+            scope.showEntityList = false;
+          });
+        });
       }
     };
   }])

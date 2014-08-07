@@ -79,7 +79,13 @@ module.exports = angular.module('Register')
       };
 
       $scope.createEntity = function() {
-        ApplyanceAPI.postNewEntity($scope.form.entity).then($scope.onCreateEntity);
+        var entity = {
+          name: $scope.form.entity.name
+        };
+        if ($scope.form.entity.logo) {
+          entity.logo = $scope.form.entity.logo;
+        }
+        ApplyanceAPI.postNewEntity(entity).then($scope.onCreateEntity);
       };
 
     }]);
