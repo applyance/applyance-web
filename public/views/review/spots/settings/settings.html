@@ -11,14 +11,15 @@
       <div class="settings-inputs__field">
         <div class="radio-group">
           <button type="button" class="radio spot-status--open" ng-class="{ 'is-selected':isStatus('open') }" ng-click="updateStatus('open')">Open</button>
-          <button type="button" class="radio spot-status--paused" ng-class="{ 'is-selected':isStatus('paused') }" ng-click="updateStatus('paused')">Paused</button>
           <button type="button" class="radio spot-status--closed" ng-class="{ 'is-selected':isStatus('closed') }" ng-click="updateStatus('closed')">Closed</button>
         </div>
       </div>
     </li>
     <li class="settings-inputs__item">
       <label class="settings-inputs__label">Description</label>
-      <div class="rich-editor text-trim" ng-model="spot.detail" medium-editor options='{ "placeholder": "Enter a spot description", "buttons": ["bold", "italic", "underline", "anchor", "header1", "header2", "quote", "orderedlist", "unorderedlist"]}'></div>
+      <div class="rich-editor-wrap">
+        <div class="rich-editor text-trim" ng-model="spot.detail" medium-editor options='{ "placeholder": "Enter a spot description", "buttons": ["bold", "italic", "underline", "anchor", "header1", "header2", "quote", "orderedlist", "unorderedlist"]}'></div>
+      </div>
     </li>
   </ul>
   <div class="settings-inputs__tray">

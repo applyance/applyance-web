@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = angular.module('Review')
-  .controller('SpotSettingsSettingsCtrl', ['$scope', 'flash', 'ApplyanceAPI',
-    function ($scope, flash, ApplyanceAPI) {
+  .controller('SpotSettingsSettingsCtrl', ['$scope', 'flash', 'ApplyanceAPI', '$timeout',
+    function ($scope, flash, ApplyanceAPI, $timeout) {
 
       $scope.flash = flash;
 

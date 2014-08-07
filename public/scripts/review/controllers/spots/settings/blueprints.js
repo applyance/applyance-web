@@ -4,31 +4,27 @@ module.exports = angular.module('Review')
   .controller('SpotSettingsBlueprintsCtrl', ['$scope', 'ApplyanceAPI',
     function ($scope, ApplyanceAPI) {
 
-      $scope.$on('spot-loaded', function(spot) {
+      $scope.definitions = [];
+      ApplyanceAPI.getDefinitions().then(function(definitions) {
+         $scope.definitions = definitions.plain();
+      });
 
-        $scope.definitions = [];
-        ApplyanceAPI.getDefinitions().then(function(definitions) {
-           $scope.definitions = definitions.plain();
-        });
+      $scope.blueprints = [];
+      ApplyanceAPI.getSpotBlueprints($scope.spot.id).then(function(blueprints) {
+        $scope.blueprints = $scope.blueprints.concat(blueprints);
+      });
 
-        $scope.blueprints = [];
-        ApplyanceAPI.getSpotBlueprints($scope.spot.id).then(function(blueprints) {
-          $scope.blueprints = $scope.blueprints.concat(blueprints);
-        });
+      ApplyanceAPI.getBlueprints($scope.spot.entity.id).then(function(blueprints) {
+        blueprints = _.map(blueprints, $scope.mapParentBlueprint);
+        $scope.blueprints = $scope.blueprints.concat(blueprints);
+      });
 
-        ApplyanceAPI.getBlueprints($scope.spot.entity.id).then(function(blueprints) {
+      if ($scope.spot.entity.parent) {
+        ApplyanceAPI.getBlueprints($scope.spot.entity.parent.id).then(function(blueprints) {
           blueprints = _.map(blueprints, $scope.mapParentBlueprint);
           $scope.blueprints = $scope.blueprints.concat(blueprints);
         });
-
-        if ($scope.spot.entity.parent) {
-          ApplyanceAPI.getBlueprints($scope.spot.entity.parent.id).then(function(blueprints) {
-            blueprints = _.map(blueprints, $scope.mapParentBlueprint);
-            $scope.blueprints = $scope.blueprints.concat(blueprints);
-          });
-        }
-
-      });
+      }
 
       $scope.mapParentBlueprint = function(blueprint) {
         blueprint.is_parent = true;

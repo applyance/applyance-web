@@ -1054,7 +1054,7 @@ blockquote {
   clear: both; }
 
 /* Buttons */
-.btn, .btn--primary, .btn--base, .btn--secondary {
+.btn, .btn--primary, .btn--base, .btn--secondary, .btn--accent {
   display: inline-block;
   padding: 14px 42px;
   font-size: 16px;
@@ -1070,13 +1070,16 @@ blockquote {
   -webkit-transition: background-color 200ms ease-in-out;
   -moz-transition: background-color 200ms ease-in-out;
   transition: background-color 200ms ease-in-out; }
-  .btn:not(.is-disabled):focus, .btn--primary:not(.is-disabled):focus, .btn--base:not(.is-disabled):focus, .btn--secondary:not(.is-disabled):focus, .btn:not(.is-disabled):hover, .btn--primary:not(.is-disabled):hover, .btn--base:not(.is-disabled):hover, .btn--secondary:not(.is-disabled):hover {
+  .btn:not(.is-disabled):focus, .btn--primary:not(.is-disabled):focus, .btn--base:not(.is-disabled):focus, .btn--secondary:not(.is-disabled):focus, .btn--accent:not(.is-disabled):focus, .btn:not(.is-disabled):hover, .btn--primary:not(.is-disabled):hover, .btn--base:not(.is-disabled):hover, .btn--secondary:not(.is-disabled):hover, .btn--accent:not(.is-disabled):hover {
     background-color: rgba(0, 0, 0, 0.15); }
-  .btn.is-small, .is-small.btn--primary, .is-small.btn--base, .is-small.btn--secondary {
+  .btn.is-small, .is-small.btn--primary, .is-small.btn--base, .is-small.btn--secondary, .is-small.btn--accent {
     font-size: 14px;
     padding: 12px 24px; }
-  .btn.is-disabled, .is-disabled.btn--primary, .is-disabled.btn--base, .is-disabled.btn--secondary {
-    cursor: default;
+  .btn.is-mini, .is-mini.btn--primary, .is-mini.btn--base, .is-mini.btn--secondary, .is-mini.btn--accent {
+    font-size: 14px;
+    padding: 8px 12px; }
+  .btn.is-disabled, .is-disabled.btn--primary, .is-disabled.btn--base, .is-disabled.btn--secondary, .is-disabled.btn--accent {
+    cursor: not-allowed;
     opacity: .3; }
 
 .btn--primary {
@@ -1096,6 +1099,12 @@ blockquote {
   color: white; }
   .btn--secondary:not(.is-disabled):focus, .btn--secondary:not(.is-disabled):hover {
     background-color: #5e5e5e; }
+
+.btn--accent {
+  background-color: #3eccbe;
+  color: white; }
+  .btn--accent:not(.is-disabled):focus, .btn--accent:not(.is-disabled):hover {
+    background-color: #2daa9e; }
 
 /* Attachment */
 .attachment {

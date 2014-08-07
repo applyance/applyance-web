@@ -37,7 +37,7 @@
   line-height: 1.4;
 }
 
-.settings-inputs__item .rich-editor {
+.settings-inputs__item .rich-editor-wrap {
   display: inline-block;
   width: 600px;
   width: calc(100% - 200px);
@@ -112,6 +112,7 @@ textarea,
 /* Rich Editor */
 
 .rich-editor {
+  display: block;
   min-height: 216px;
   padding: 18px;
 
@@ -172,6 +173,11 @@ $active-toolbar-color: darken($color-brand, 15%);
 }
 .medium-editor-toolbar-form-anchor input:-ms-input-placeholder {
   color: $color-text;
+}
+.medium-editor-placeholder:after {
+  color: lighten($color-text, 40%);
+  padding: 18px;
+  font-style: normal;
 }
 
 .medium-editor-toolbar-anchor-preview {

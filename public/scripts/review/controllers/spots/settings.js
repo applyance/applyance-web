@@ -1,16 +1,14 @@
 'use strict';
 
 module.exports = angular.module('Review')
-  .controller('SpotSettingsCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'Store', 'ApplyanceAPI',
-  function ($scope, $rootScope, $routeParams, $location, Store, ApplyanceAPI) {
+  .controller('SpotSettingsCtrl', ['$scope', '$rootScope', '$routeParams', 'Store', '$location', 'spot',
+  function ($scope, $rootScope, $routeParams, Store, $location, spot) {
+
+    $scope.spot = spot;
+    $scope.currentScope = Store.getCurrentScope();
 
     $rootScope.inSpotSettings = true;
     $scope.spotSettings = $location.path().split('/')[3];
-
-    ApplyanceAPI.getSpot($routeParams['id']).then(function(spot) {
-      $scope.spot = spot.plain();
-      $scope.$broadcast('spot-loaded', $scope.spot);
-    });
 
     $scope.isActive = function(settings) {
       return $scope.spotSettings == settings;

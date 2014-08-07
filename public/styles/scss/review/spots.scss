@@ -1,0 +1,38 @@
+.display-grid--spot__actions__item__status {
+  position: relative;
+  font-size: 16px;
+  padding-left: 10px + 6px;
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    margin-top: -5px;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: $color-accent;
+  }
+}
+
+.display-grid--spot__actions__item__status--open {
+  @extend .display-grid--spot__actions__item__status;
+  &:before {
+    background-color: $color-accent;
+  }
+}
+
+.display-grid--spot__actions__item__status--paused {
+  @extend .display-grid--spot__actions__item__status;
+  &:before {
+    background-color: $color-brand;
+  }
+}
+
+.display-grid--spot__actions__item__status--closed {
+  @extend .display-grid--spot__actions__item__status;
+  &:before {
+    background-color: $color-red;
+  }
+}

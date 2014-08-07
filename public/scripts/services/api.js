@@ -61,10 +61,13 @@ module.exports = angular.module('Applyance', ['restangular'])
       };
       this.putSpot = function(spot) {
         return $http.put(apiHost + "/spots/" + spot.id, spot);
-      }
+      };
       this.postSpot = function(entityId, spot) {
         return Restangular.one("entities", entityId).all("spots").post(spot);
-      }
+      };
+      this.deleteSpot = function(id) {
+        return Restangular.one('spots', id).remove();
+      };
 
       // Ratings
       this.getApplicationRatings = function(id) {

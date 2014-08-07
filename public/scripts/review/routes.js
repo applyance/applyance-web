@@ -23,15 +23,36 @@ module.exports = function($routeProvider, $locationProvider, me, $routeParams) {
     })
     .when('/spots/:id/settings', {
       templateUrl: 'views/review/spots/settings.html',
-      controller: 'SpotSettingsCtrl'
+      controller: 'SpotSettingsCtrl',
+      resolve: {
+        spot: function($route, ApplyanceAPI) {
+          return ApplyanceAPI.getSpot($route.current.params.id).then(function(spot) {
+            return spot.plain();
+          });
+        }
+      }
     })
     .when('/spots/:id/blueprints', {
       templateUrl: 'views/review/spots/settings.html',
-      controller: 'SpotSettingsCtrl'
+      controller: 'SpotSettingsCtrl',
+      resolve: {
+        spot: function($route, ApplyanceAPI) {
+          return ApplyanceAPI.getSpot($route.current.params.id).then(function(spot) {
+            return spot.plain();
+          });
+        }
+      }
     })
     .when('/spots/:id/applications', {
       templateUrl: 'views/review/spots/applications.html',
-      controller: 'SpotApplicationsCtrl'
+      controller: 'SpotApplicationsCtrl',
+      resolve: {
+        spot: function($route, ApplyanceAPI) {
+          return ApplyanceAPI.getSpot($route.current.params.id).then(function(spot) {
+            return spot.plain();
+          });
+        }
+      }
     })
 
     // settings

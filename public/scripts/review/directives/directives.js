@@ -39,4 +39,39 @@ module.exports = angular.module('Review')
       }
     };
   }])
+  .directive('ngConfirmClick', [
+    function() {
+      return {
+        link: function (scope, element, attr) {
+          var msg = attr.ngConfirmClick || "Are you sure?";
+          var clickAction = attr.confirmedClick;
+          element.bind('click',function (e) {
+            e.stopPropagation();
+            if (window.confirm(msg)) {
+              scope.$eval(clickAction)
+            }
+          });
+        }
+      };
+    }
+  ])
+  .directive('aplGo', ['$location', '$timeout',
+    function($location, $timeout) {
+      return {
+        link: function (scope, element, attr) {
+          var targetPath = attr.aplGo;
+          var canGo = (attr.aplCanGo == "true");
+          if (canGo) {
+            element.bind('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              $timeout(function() {
+                $location.path(targetPath);
+              }, 50);
+            });
+          }
+        }
+      }
+    }
+  ])
 ;

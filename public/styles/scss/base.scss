@@ -110,8 +110,12 @@ blockquote {
     font-size: 14px;
     padding: 12px 24px;
   }
+  &.is-mini {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
   &.is-disabled {
-    cursor: default;
+    cursor: not-allowed;
     opacity: .3;
   }
 }
@@ -143,6 +147,16 @@ blockquote {
   &:not(.is-disabled):focus,
   &:not(.is-disabled):hover {
     background-color: darken(#777, 10%);
+  }
+}
+
+.btn--accent {
+  @extend .btn;
+  background-color: $color-accent;
+  color: white;
+  &:not(.is-disabled):focus,
+  &:not(.is-disabled):hover {
+    background-color: darken($color-accent, 10%);
   }
 }
 
