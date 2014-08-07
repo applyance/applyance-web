@@ -1,8 +1,8 @@
 'use strict';
 
 // Vendor Libs
-window.CryptoJS = require("crypto-js");
-window.moment = require("moment");
+window.CryptoJS     = require("crypto-js");
+window.moment       = require("moment");
 window.MediumEditor = require("medium-editor");
 
 require("angular");

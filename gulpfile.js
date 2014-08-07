@@ -18,7 +18,7 @@ gulp.task('watchify', function() {
 
   function rebundleReview() {
 
-    gutil.log('---------BUNDLING REVIEW.JS---------');
+    gutil.log(gutil.colors.green('---------BUNDLING REVIEW.JS---------'));
     gutil.log(moment().format("M/D/YY - h:mm:ss a"));
     gutil.log('------------------------------------');
 
@@ -42,7 +42,7 @@ gulp.task('watchify', function() {
 
   function rebundleApply() {
 
-    gutil.log('---------BUNDLING APPLY.JS---------');
+    gutil.log(gutil.colors.green('---------BUNDLING APPLY.JS---------'));
     gutil.log(moment().format("M/D/YY - h:mm:ss a"));
     gutil.log('------------------------------------');
 
@@ -65,7 +65,7 @@ gulp.task('watchify', function() {
 
   function rebundleRegister() {
 
-    gutil.log('---------BUNDLING REGISTER.JS---------');
+    gutil.log(gutil.colors.green('---------BUNDLING REGISTER.JS---------'));
     gutil.log(moment().format("M/D/YY - h:mm:ss a"));
     gutil.log('------------------------------------');
 

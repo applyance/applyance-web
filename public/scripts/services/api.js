@@ -1,7 +1,6 @@
 'use strict';
 
 window._ = require('lodash');
-window.$ = require('jquery');
 require('restangular');
 
 module.exports = angular.module('Applyance', ['restangular'])
