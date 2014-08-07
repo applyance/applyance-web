@@ -1,0 +1,13 @@
+<div style="font-size: 12px;">
+	<style type="text/css">
+		.bold {
+			font-weight: bold;
+		}
+	</style>
+	<a href="" ng-click="showEntityList = !showEntityList">{{ activeEntity().name }}</a>
+	<ul ng-show="showEntityList">
+		<li ng-repeat="entity in entities()"
+		    ng-class="{ bold: !entity.parent }"
+		    ng-click="updateEntitySelect(entity)">{{ entity.name }}</li>
+	</ul>
+</div>

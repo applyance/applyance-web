@@ -41,12 +41,7 @@
       </nav>
       <div class="account" ng-controller="AccountCtrl">
 
-        <div class="selector">
-          <select class="account__context"
-                  ng-model="selectedEntity"
-                  ng-options="entity.name for entity in entities()"
-                  ng-change="updateEntitySelect()"></select>
-        </div>
+        <context-switcher></context-switcher>
 
         <a href="/accounts/{{ accountId }}/settings" title="Account Avatar">
           <img ng-src="{{ getAvatarURL() }}" class="account__avatar" />

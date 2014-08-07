@@ -6,23 +6,6 @@ module.exports = angular.module('Review')
 
       $scope.accountId = Store.getAccount().id;
 
-      $scope.entities = function() {
-        return Store.getEntities();
-      };
-      $scope.getActiveEntity = function() {
-        return Store.getActiveEntity();
-      };
-
-      $scope.selectedEntity = Store.getActiveEntity();
-      $rootScope.$on('contextChanged', function(e, args) {
-        $scope.selectedEntity = Store.getActiveEntity();
-      });
-
-      $scope.updateEntitySelect = function() {
-        Store.setActiveEntityId($scope.selectedEntity.id);
-        $location.path('/entities/' + Store.getActiveEntityId() + '/applications');
-      };
-
       $scope.getAvatarURL = function() {
         if (!Store.getAccount()) { return; }
 
