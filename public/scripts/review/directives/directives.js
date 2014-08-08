@@ -53,7 +53,7 @@ module.exports = angular.module('Review')
             var sortedChildEntityLists = {};
             sortedEntities = [];
             angular.forEach(sortedParentEntitiesList, function(pe, i) {
-              
+
               var childEntitiesList = childEntitiesLists[pe.id];
               var sortedChildEntitiesList = $filter('orderBy')(childEntitiesList, sortingPredicates);
 
@@ -92,7 +92,7 @@ module.exports = angular.module('Review')
             default:
               $location.path('/entities/' + Store.getActiveEntityId() + '/applications');
           }
-          
+
         };
         elem.on('click', function(e) {
           e.stopPropagation();
