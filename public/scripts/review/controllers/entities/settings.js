@@ -6,7 +6,7 @@ module.exports = angular.module('Review')
 
       $scope.flash = flash;
 
-      $scope.e = Store.getActiveEntity();
+      $scope.e = angular.copy(Store.getActiveEntity());
 
       if ($scope.e.location) {
         var a = $scope.e.address;
