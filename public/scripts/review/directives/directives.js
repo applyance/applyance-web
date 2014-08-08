@@ -18,7 +18,8 @@ module.exports = angular.module('Review')
       }
     };
   })
-  .directive('contextSwitcher', ['Store', '$location', '$document', function (Store, $location, $document) {
+  .directive('contextSwitcher', ['Store', '$location', '$document', '$filter',
+    function (Store, $location, $document, $filter) {
     return {
       restrict: 'AE',
       replace: true,
@@ -26,8 +27,47 @@ module.exports = angular.module('Review')
       link: function(scope, elem, attrs) {
         scope.showEntityList = false;
 
+        var sortedEntities = [];
+
         scope.entities = function() {
-          return Store.getEntities();
+          if (Store.getIsSortDirty()) {
+            var entityList = Store.getEntities();
+            var parentEntitiesList = [];
+            var childEntitiesLists = {};
+
+            // Group the entities by parent entites
+            angular.forEach(entityList, function(e, i) {
+              if (e.parent) {
+                if (!childEntitiesLists[e.parent.id]) {
+                  childEntitiesLists[e.parent.id] = [];
+                }
+                childEntitiesLists[e.parent.id].push(e);
+              } else {
+                parentEntitiesList.push(e);
+              }
+            });
+
+            // Alpha-numerically sort all the lists
+            var sortingPredicates = ['name', 'created_at'];
+            var sortedParentEntitiesList = $filter('orderBy')(parentEntitiesList, sortingPredicates);
+            var sortedChildEntityLists = {};
+            sortedEntities = [];
+            angular.forEach(sortedParentEntitiesList, function(pe, i) {
+              
+              var childEntitiesList = childEntitiesLists[pe.id];
+              var sortedChildEntitiesList = $filter('orderBy')(childEntitiesList, sortingPredicates);
+
+              // Insert the parent followed by it's children into the master list
+              sortedEntities.push(pe);
+              angular.forEach(sortedChildEntitiesList, function(sortedChild, i) {
+                sortedEntities.push(sortedChild);
+              });
+            });
+
+            Store.setIsSortDirty(false);
+          }
+
+          return sortedEntities;
         };
         scope.activeEntity = function() {
           return Store.getActiveEntity();
