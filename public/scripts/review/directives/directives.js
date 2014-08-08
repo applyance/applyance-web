@@ -75,7 +75,24 @@ module.exports = angular.module('Review')
         scope.updateEntitySelect = function(selectedEntity) {
           scope.showEntityList = false;
           Store.setActiveEntityId(selectedEntity.id);
-          $location.path('/entities/' + Store.getActiveEntityId() + '/applications');
+
+          var pathParts = $location.path().split('/');
+          var mainContext = pathParts[1];
+          var secondaryContext = pathParts[3];
+
+          switch(mainContext) {
+            case "entities":
+              $location.path('/entities/' + Store.getActiveEntityId() + '/' + secondaryContext);
+              break;
+            case "spots":
+              $location.path('/entities/' + Store.getActiveEntityId() + '/spots');
+              break;
+            case "accounts":
+              break;
+            default:
+              $location.path('/entities/' + Store.getActiveEntityId() + '/applications');
+          }
+          
         };
         elem.on('click', function(e) {
           e.stopPropagation();
