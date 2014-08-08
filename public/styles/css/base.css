@@ -1166,6 +1166,8 @@ blockquote {
   @media only screen and (min-width: 900px) {
     .selection-grid.is-2 .selection-grid__item {
       width: 50%; } }
+  .selection-grid.is-mini .selection-grid__box {
+    height: 60px; }
 
 .selection-grid__item {
   display: inline-block;
@@ -1223,4 +1225,12 @@ blockquote {
 
 .selection-grid__item:not(.is-disabled) .selection-grid__link:active .selection-grid__box {
   background-color: #3eccbe;
+  color: white; }
+
+.selection-grid.is-neutral .selection-grid__item:not(.is-set) .selection-grid__link:hover .selection-grid__box,
+.selection-grid.is-neutral .selection-grid__item.is-set .selection-grid__box {
+  border-color: #333; }
+
+.selection-grid.is-neutral .selection-grid__item:not(.is-disabled) .selection-grid__link:active .selection-grid__box {
+  background-color: #333;
   color: white; }

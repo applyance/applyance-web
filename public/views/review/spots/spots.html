@@ -11,9 +11,6 @@
         <li class="display-grid__item" ng-repeat="spot in spots">
           <div class="display-grid__box" ng-class="{ 'is-clickable':currentScope == 'admin' }">
             <div class="display-grid__title" apl-go="spots/{{ spot.id }}/settings" apl-can-go="{{ currentScope == 'admin' }}">{{ spot.name }}</div>
-            <a href="spots/{{ spot.id }}/applications" ng-if="spot.application_count > 0" class="display-grid__content display-grid--spot__content--applications">
-              <span class="count">{{ spot.application_count }}</span><span class="label">{{ (spot.application_count == 1) ? 'Application' : 'Applications' }}</span>
-            </a>
             <div class="display-grid__tray group" apl-go="spots/{{ spot.id }}/settings" apl-can-go="{{ currentScope == 'admin' }}">
               <ul class="display-grid__actions--primary">
                 <li class="display-grid__actions__item display-grid--spot__actions__item__status--{{ spot.status }}">
@@ -26,6 +23,9 @@
                 </li>
               </ul>
             </div>
+            <a href="spots/{{ spot.id }}/applications" ng-if="spot.application_count > 0" class="display-grid__content display-grid--spot__content--applications">
+              <span class="count">{{ spot.application_count }}</span><span class="label">{{ (spot.application_count == 1) ? 'Application' : 'Applications' }}</span>
+            </a>
           </div>
         </li>
       </ul>

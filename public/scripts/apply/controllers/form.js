@@ -34,7 +34,7 @@ module.exports = angular.module('Apply')
         $scope.childEntities = entities.plain();
       });
 
-      $scope.toggleSelectedChildEntities = function(childEntity) {
+      $scope.toggleSelectedChildEntity = function(childEntity) {
         var selectedChildEntity = _.findWhere($scope.selectedChildEntities, { id: childEntity.id });
         if (selectedChildEntity) {
           $scope.selectedChildEntities.splice($scope.selectedChildEntities.indexOf(selectedChildEntity), 1);
@@ -45,6 +45,25 @@ module.exports = angular.module('Apply')
 
       $scope.isChildEntitySelected = function(childEntity) {
         return _.contains($scope.selectedChildEntities, childEntity);
+      };
+
+      $scope.spots = [];
+      $scope.selectedSpots = [];
+      ApplyanceAPI.getSpots($scope.entity.id).then(function(spots) {
+        $scope.spots = spots.plain();
+      });
+
+      $scope.toggleSelectedSpot = function(spot) {
+        var selectedSpot = _.findWhere($scope.selectedSpots, { id: spot.id });
+        if (selectedSpot) {
+          $scope.selectedSpots.splice($scope.selectedSpots.indexOf(selectedSpot), 1);
+        } else {
+          $scope.selectedSpots.push(spot);
+        }
+      };
+
+      $scope.isSpotSelected = function(spot) {
+        return _.contains($scope.selectedSpots, spot);
       };
 
       $scope.$watch('blueprints', function() {
@@ -201,14 +220,21 @@ module.exports = angular.module('Apply')
           });
         });
 
-        var entity_ids = [];
-        entity_ids.push($scope.entity.id);
-
         var application = {
           applicant: $scope.applicant,
-          entity_ids: entity_ids,
           fields: fields
         };
+
+        if ($scope.selectedChildEntities.length > 0) {
+          application.entity_ids = _.pluck($scope.selectedChildEntities, 'id');
+        } else {
+          application.entity_ids = [];
+          application.entity_ids.push($scope.entity.id);
+        }
+
+        if ($scope.selectedSpots.length > 0) {
+          application.spot_ids = _.pluck($scope.selectedSpots, 'id');
+        }
 
         $scope.submitting = true;
         $timeout(function() {

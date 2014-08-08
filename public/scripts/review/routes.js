@@ -47,9 +47,14 @@ module.exports = function($routeProvider, $locationProvider, me, $routeParams) {
       templateUrl: 'views/review/spots/applications.html',
       controller: 'SpotApplicationsCtrl',
       resolve: {
-        spot: function($route, ApplyanceAPI) {
+        spot_data: function($route, ApplyanceAPI) {
           return ApplyanceAPI.getSpot($route.current.params.id).then(function(spot) {
-            return spot.plain();
+            return ApplyanceAPI.getSpotApplications($route.current.params.id).then(function(applications) {
+              return {
+                applications: applications,
+                spot: spot
+              };
+            });
           });
         }
       }

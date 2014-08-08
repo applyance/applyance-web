@@ -435,6 +435,7 @@ a.tag, a.tag--success {
 
 .display-grid__item {
   display: inline-block;
+  vertical-align: top;
   padding: 24px;
   width: 33.33333%; }
 
@@ -823,6 +824,15 @@ textarea,
 .top-header {
   margin-top: 0; }
 
+.top-header__annotation {
+  padding-left: 24px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase;
+  color: #aaa; }
+
 .header-action {
   margin-top: -5px; }
   @media only screen and (min-width: 480px) {
@@ -1198,9 +1208,10 @@ a.slats__item__header {
   height: 400px; }
 
 .application {
-  float: left;
   max-width: 760px;
   width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   border: 4px solid #eef0f2; }
 
 /* Applicant Section */
@@ -1319,7 +1330,9 @@ a.slats__item__header {
 .display-grid--spot__content--applications {
   display: block;
   padding: 12px 24px;
+  padding-top: 16px;
   font-size: 16px;
+  font-weight: 400;
   text-decoration: none;
   text-transform: uppercase;
   text-rendering: optimizeLegibility;

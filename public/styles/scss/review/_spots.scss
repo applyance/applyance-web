@@ -40,7 +40,9 @@
 .display-grid--spot__content--applications {
   display: block;
   padding: 12px 24px;
+  padding-top: 12px + 4px;
   font-size: 16px;
+  font-weight: 400;
   text-decoration: none;
   text-transform: uppercase;
   text-rendering: optimizeLegibility;

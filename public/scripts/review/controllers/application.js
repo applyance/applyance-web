@@ -29,6 +29,17 @@ module.exports = angular.module('Review')
         $scope.cumulativeRating = Math.round($scope.cumulativeRating * 10) / 10;
       });
 
+      $scope.getApplyable = function() {
+        if (!$scope.application) {
+          return;
+        }
+        if ($scope.application.spots.length > 0) {
+          return _.pluck($scope.application.spots, 'name').join(", ");
+        } else {
+          return _.pluck($scope.application.entities, 'name').join(", ");
+        }
+      };
+
       $scope.getEntity = function() {
         if (!$scope.application) {
           return;

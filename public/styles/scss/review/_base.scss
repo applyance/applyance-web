@@ -137,6 +137,7 @@ a.tag {
 
 .display-grid__item {
   display: inline-block;
+  vertical-align: top;
   padding: 24px;
   width: percentage(1 / 3);
 }

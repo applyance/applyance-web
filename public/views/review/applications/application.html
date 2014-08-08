@@ -1,11 +1,5 @@
 <div class="main-container group">
 
-  <div class="application__sidebar-wrap">
-    <div class="application__sidebar">
-
-    </div>
-  </div>
-
   <div class="application">
 
     <div class="application__applicant">
@@ -35,7 +29,7 @@
 
     <div class="application__actions group">
       <div class="application__actions__entity">
-        Application to {{ getEntity().name }}
+        Application to {{ getApplyable() }}
       </div>
       <ul class="application__actions__rating applicant-rating">
         <li class="applicant-rating__item is-settable"

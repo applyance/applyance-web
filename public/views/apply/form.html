@@ -78,13 +78,13 @@
 
       <!-- Subentities -->
       <li ng-if="step == 'blueprints' && childEntities.length > 0" class="app-form__blueprints__item">
-        <label class="app-form__label" for="applicant-phone_number">Are you interested in working at any specific location(s)?</label>
+        <label class="app-form__label">Are you interested in any specific location(s)?</label>
         <div class="app-form__description">
           Select all that apply.
         </div>
-        <ul class="selection-grid is-2 is-mini">
+        <ul class="selection-grid is-2 is-mini is-neutral">
           <li class="selection-grid__item" ng-class="{ 'is-set':isChildEntitySelected(childEntity) }" ng-repeat="childEntity in childEntities">
-            <a class="selection-grid__link" href="" ng-click="toggleSelectedChildEntities(childEntity)">
+            <a class="selection-grid__link" href="" ng-click="toggleSelectedChildEntity(childEntity)">
               <div class="selection-grid__box">
                 <span class="selection-grid__label">
                   {{ childEntity.name }}
@@ -95,6 +95,24 @@
         </ul>
       </li>
 
+      <!-- Spots -->
+      <li ng-if="step == 'blueprints' && spots.length > 0" class="app-form__blueprints__item">
+        <label class="app-form__label">Are you interested in any specific position(s)?</label>
+        <div class="app-form__description">
+          Select all that apply.
+        </div>
+        <ul class="selection-grid is-2 is-mini is-neutral">
+          <li class="selection-grid__item" ng-class="{ 'is-set':isSpotSelected(spot) }" ng-repeat="spot in spots">
+            <a class="selection-grid__link" href="" ng-click="toggleSelectedSpot(spot)">
+              <div class="selection-grid__box">
+                <span class="selection-grid__label">
+                  {{ spot.name }}
+                </span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </li>
 
       <li ng-if="step == 'blueprints'" class="app-form__blueprints__item" ng-repeat="blueprint in blueprints">
         <label class="app-form__label" for="blueprint[{{ blueprint.id }}]">

@@ -19,7 +19,7 @@ module.exports = angular.module('Review')
       });
 
       $scope.scopes = [{ scope: "admin", name: "Administrator" }, { scope: "limited", name: "Reviewer" }];
-      $scope.selectedScope =  $scope.scopes[1];
+      $scope.selectedScope = $scope.scopes[1];
 
       $scope.newInvite = {};
 
@@ -48,6 +48,7 @@ module.exports = angular.module('Review')
       };
 
       $scope.commitInvite = function() {
+        console.dir($scope.selectedScope);
         if ($scope.newInvite.email && $scope.selectedScope.name) {
           ApplyanceAPI.postReviewerInvite(Store.getActiveEntityId(), {
             email: $scope.newInvite.email,

@@ -1,17 +1,12 @@
 'use strict';
 
 module.exports = angular.module('Review')
-  .controller('SpotApplicationsCtrl', ['$scope', '$routeParams', 'ApplyanceAPI', 'Store',
-    function ($scope, $routeParams, ApplyanceAPI, Store) {
+  .controller('SpotApplicationsCtrl', ['$scope', '$routeParams', 'ApplyanceAPI', 'Store', 'spot_data',
+    function ($scope, $routeParams, ApplyanceAPI, Store, spot_data) {
 
       $scope.activeEntity = Store.getActiveEntity();
-      $scope.applications = [];
-      ApplyanceAPI.getSpot($routeParams['id']).then(function(spot) {
-        $scope.spot = spot;
-        ApplyanceAPI.getSpotApplications(spot.id).then(function(applications) {
-          $scope.applications = applications;
-        });
-      });
+      $scope.spot = spot_data.spot;
+      $scope.applications = spot_data.applications;
 
       $scope.getAvatarUrl = function(application) {
         if (application.applicant.account.avatar) {
