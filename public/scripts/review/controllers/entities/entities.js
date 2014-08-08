@@ -4,6 +4,10 @@ module.exports = angular.module('Review')
   .controller('EntityEntitiesCtrl', ['$scope', 'ApplyanceAPI', '$timeout', 'Store', '$location',
     function ($scope, ApplyanceAPI, $timeout, Store, $location) {
 
+      if (Store.getActiveEntity().parent) {
+        $location.path("/entities/" + Store.getActiveEntityId() + "/settings");
+      }
+
       $scope.units = [];
       ApplyanceAPI.getEntities(Store.getActiveEntityId()).then(function(entities) {
          $scope.entities = entities;

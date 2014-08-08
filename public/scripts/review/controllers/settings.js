@@ -7,6 +7,10 @@ module.exports = angular.module('Review')
     $rootScope.inSettings = true;
     $scope.settings = $location.path().split('/')[3];
 
+    if (Store.getCurrentScope() != "admin") {
+      $location.path('/entities/' + Store.getActiveEntityId() + '/applications');
+    }
+
     $scope.isActive = function(settings) {
       return $scope.settings == settings;
     };

@@ -7,6 +7,7 @@ module.exports = angular.module('Review')
       var account = me.account;
       var reviewers = me.reviewers;
       var activeEntityId = me.reviewers[0].entity.id;
+      var isSortDirty = true;
 
       //
       // Account
@@ -28,6 +29,12 @@ module.exports = angular.module('Review')
       //
       // Entites
       //
+      this.getIsSortDirty = function() {
+        return isSortDirty;
+      };
+      this.setIsSortDirty = function(_dirty) {
+        isSortDirty = _dirty;
+      };
       this.getEntities = function() {
         return _.map(reviewers, function(reviewer) {
           return reviewer.entity;
@@ -52,9 +59,11 @@ module.exports = angular.module('Review')
           }
         });
         reviewerPosition.entity = _.extend(reviewerPosition.entity, entity);
+        isSortDirty = true;
       };
       this.addEntity = function(reviewerPosition) {
         reviewers.push(reviewerPosition);
+        isSortDirty = true;
       };
       this.removeEntity = function(entity) {
         var reviewerPosition;
@@ -64,6 +73,7 @@ module.exports = angular.module('Review')
           }
         });
         reviewers.splice(reviewers.indexOf(reviewerPosition), 1);
+        isSortDirty = true;
       };
       this.getCurrentScope = function() {
         var T = this;

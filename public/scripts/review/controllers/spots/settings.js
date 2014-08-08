@@ -10,6 +10,10 @@ module.exports = angular.module('Review')
     $rootScope.inSpotSettings = true;
     $scope.spotSettings = $location.path().split('/')[3];
 
+    if (Store.getCurrentScope() != "admin") {
+      $location.path('/entities/' + Store.getActiveEntityId() + '/spots');
+    }
+
     $scope.isActive = function(settings) {
       return $scope.spotSettings == settings;
     };

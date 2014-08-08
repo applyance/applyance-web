@@ -18,9 +18,7 @@ gulp.task('watchify', function() {
 
   function rebundleReview() {
 
-    gutil.log(gutil.colors.green('---------BUNDLING REVIEW.JS---------'));
-    gutil.log(moment().format("M/D/YY - h:mm:ss a"));
-    gutil.log('------------------------------------');
+    gutil.log(gutil.colors.green('---------BUNDLING REVIEW.JS: ' + moment().format("M/D/YY - h:mm:ss a") + ' ---------'));
 
     return reviewBundler.bundle()
       // log errors if they happen
@@ -42,9 +40,7 @@ gulp.task('watchify', function() {
 
   function rebundleApply() {
 
-    gutil.log(gutil.colors.green('---------BUNDLING APPLY.JS---------'));
-    gutil.log(moment().format("M/D/YY - h:mm:ss a"));
-    gutil.log('------------------------------------');
+    gutil.log(gutil.colors.green('---------BUNDLING APPLY.JS ' + moment().format("M/D/YY - h:mm:ss a") + ' ---------'));
 
     return applyBundler.bundle()
       // log errors if they happen
@@ -65,9 +61,7 @@ gulp.task('watchify', function() {
 
   function rebundleRegister() {
 
-    gutil.log(gutil.colors.green('---------BUNDLING REGISTER.JS---------'));
-    gutil.log(moment().format("M/D/YY - h:mm:ss a"));
-    gutil.log('------------------------------------');
+    gutil.log(gutil.colors.green('---------BUNDLING REGISTER.JS ' + moment().format("M/D/YY - h:mm:ss a") + ' ---------'));
 
     return registerBundler.bundle()
       // log errors if they happen
