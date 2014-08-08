@@ -38,8 +38,15 @@ module.exports = angular.module('Apply')
         var selectedChildEntity = _.findWhere($scope.selectedChildEntities, { id: childEntity.id });
         if (selectedChildEntity) {
           $scope.selectedChildEntities.splice($scope.selectedChildEntities.indexOf(selectedChildEntity), 1);
+          $scope.blueprints = _.reject($scope.blueprints, function(blueprint) {
+            return blueprint.entity && (blueprint.entity.id == selectedChildEntity.id);
+          });
         } else {
           $scope.selectedChildEntities.push(childEntity);
+          ApplyanceAPI.getBlueprints(childEntity.id).then(function(blueprints) {
+            blueprints = $scope.mapDatumsToBlueprints(blueprints.plain());
+            $scope.blueprints = $scope.blueprints.concat(blueprints);
+          });
         }
       };
 
@@ -57,8 +64,15 @@ module.exports = angular.module('Apply')
         var selectedSpot = _.findWhere($scope.selectedSpots, { id: spot.id });
         if (selectedSpot) {
           $scope.selectedSpots.splice($scope.selectedSpots.indexOf(selectedSpot), 1);
+          $scope.blueprints = _.reject($scope.blueprints, function(blueprint) {
+            return blueprint.spot && (blueprint.spot.id == selectedSpot.id);
+          });
         } else {
           $scope.selectedSpots.push(spot);
+          ApplyanceAPI.getSpotBlueprints(spot.id).then(function(blueprints) {
+            blueprints = $scope.mapDatumsToBlueprints(blueprints.plain());
+            $scope.blueprints = $scope.blueprints.concat(blueprints);
+          });
         }
       };
 
@@ -80,7 +94,7 @@ module.exports = angular.module('Apply')
       $scope.resetEmail = function() {
         $scope.emailNote = 'check';
         $scope.passwordNote = 'check';
-        $scope.step = 'blueprints';
+        $scope.step = 'email';
         $scope.showPassword = false;
         $scope.readyToSubmit = false;
       }
@@ -164,20 +178,26 @@ module.exports = angular.module('Apply')
       }
 
       $scope.onDatumsLoad = function(datums) {
-        _.each($scope.blueprints, function(blueprint) {
+        $scope.datums = datums.data;
+        $scope.mapDatumsToBlueprints($scope.blueprints);
+        $scope.passwordNote = 'found';
+        $scope.step = 'blueprints';
+        $scope.checkForReadyToSubmit();
+      }
+
+      $scope.mapDatumsToBlueprints = function(blueprints) {
+        _.each(blueprints, function(blueprint) {
           if (blueprint.definition.is_contextual) {
             return;
           }
-          var thisDatum = _.find(datums.data, function(datum) {
+          var thisDatum = _.find($scope.datums, function(datum) {
             return datum.definition.id == blueprint.definition.id;
           });
           if (thisDatum) {
             blueprint.detail = thisDatum.detail;
           }
         });
-        $scope.passwordNote = 'found';
-        $scope.step = 'blueprints';
-        $scope.checkForReadyToSubmit();
+        return blueprints;
       }
 
       $scope.passwordNotFound = function() {

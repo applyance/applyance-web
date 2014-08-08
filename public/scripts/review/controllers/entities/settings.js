@@ -5,12 +5,15 @@ module.exports = angular.module('Review')
     function ($scope, $rootScope, flash, ApplyanceAPI, Store, $timeout) {
 
       $scope.flash = flash;
+      $scope.address = {
+        field: ""
+      };
 
       $scope.e = angular.copy(Store.getActiveEntity());
 
       if ($scope.e.location) {
-        var a = $scope.e.address;
-        $scope.address = a.address_1 + "\n" + a.city + ", " + a.state + " " + a.postal_code;
+        var a = $scope.e.location.address;
+        $scope.address.field = a.address_1 + "\n" + a.city + ", " + a.state + " " + a.postal_code;
       }
 
       if ($scope.e.logo) {
@@ -66,7 +69,7 @@ module.exports = angular.module('Review')
         }
         if ($scope.hasAddressChanged) {
           entity.location = {
-            address: $scope.address
+            address: $scope.address.field
           };
         }
         ApplyanceAPI.putEntity(entity).then($scope.onUpdateEntity);
