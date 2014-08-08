@@ -354,7 +354,6 @@ a.slats__item__header {
   margin: -19px 0;
   cursor: default;
   background-color: darken($color-base, 5%);
-
   @include transition(background-color 200ms ease-in-out);
   .icon {
     display: none;
@@ -402,12 +401,14 @@ a.slats__item__header {
 .context-switcher__entities-wrap {
   display: block;
   position: absolute;
-  top: 54px + 12px;
-  top: calc(100% + 19px + 12px);
+  top: 54px + 8px;
+  top: calc(100% + 19px + 8px);
   right: 0;
   &:before {
     content: '';
     position: absolute;
+    width: 0;
+    height: 0;
     top: -12px;
     right: 12px;
 
@@ -438,7 +439,7 @@ a.slats__item__header {
 
 .context-switcher__entity__link {
   display: block;
-  padding: 12px 24px;
+  padding: 18px 24px;
 
   font-size: 14px;
   color: white;

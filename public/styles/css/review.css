@@ -1138,12 +1138,14 @@ a.slats__item__header {
 .context-switcher__entities-wrap {
   display: block;
   position: absolute;
-  top: 66px;
-  top: calc(100% + 19px + 12px);
+  top: 62px;
+  top: calc(100% + 19px + 8px);
   right: 0; }
   .context-switcher__entities-wrap:before {
     content: '';
     position: absolute;
+    width: 0;
+    height: 0;
     top: -12px;
     right: 12px;
     border-top: 6px solid transparent;
@@ -1169,7 +1171,7 @@ a.slats__item__header {
 
 .context-switcher__entity__link {
   display: block;
-  padding: 12px 24px;
+  padding: 18px 24px;
   font-size: 14px;
   color: white;
   text-decoration: none;

@@ -223,6 +223,11 @@ blockquote {
       width: percentage(1 / 4);
     }
   }
+  &.is-2 .selection-grid__item {
+    @media only screen and (min-width : 900px) {
+      width: percentage(1 / 2);
+    }
+  }
 }
 
 .selection-grid__item {

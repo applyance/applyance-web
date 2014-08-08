@@ -76,6 +76,26 @@
         <textarea class="app-form__input" ng-model="applicant.location.address">{{ applicant.location.address }}</textarea>
       </li>
 
+      <!-- Subentities -->
+      <li ng-if="step == 'blueprints' && childEntities.length > 0" class="app-form__blueprints__item">
+        <label class="app-form__label" for="applicant-phone_number">Are you interested in working at any specific location(s)?</label>
+        <div class="app-form__description">
+          Select all that apply.
+        </div>
+        <ul class="selection-grid is-2 is-mini">
+          <li class="selection-grid__item" ng-class="{ 'is-set':isChildEntitySelected(childEntity) }" ng-repeat="childEntity in childEntities">
+            <a class="selection-grid__link" href="" ng-click="toggleSelectedChildEntities(childEntity)">
+              <div class="selection-grid__box">
+                <span class="selection-grid__label">
+                  {{ childEntity.name }}
+                </span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+
       <li ng-if="step == 'blueprints'" class="app-form__blueprints__item" ng-repeat="blueprint in blueprints">
         <label class="app-form__label" for="blueprint[{{ blueprint.id }}]">
           {{ blueprint.definition.label | blueprint:entity }}

@@ -28,6 +28,25 @@ module.exports = angular.module('Apply')
         });
       }
 
+      $scope.childEntities = [];
+      $scope.selectedChildEntities = [];
+      ApplyanceAPI.getEntities($scope.entity.id).then(function(entities) {
+        $scope.childEntities = entities.plain();
+      });
+
+      $scope.toggleSelectedChildEntities = function(childEntity) {
+        var selectedChildEntity = _.findWhere($scope.selectedChildEntities, { id: childEntity.id });
+        if (selectedChildEntity) {
+          $scope.selectedChildEntities.splice($scope.selectedChildEntities.indexOf(selectedChildEntity), 1);
+        } else {
+          $scope.selectedChildEntities.push(childEntity);
+        }
+      };
+
+      $scope.isChildEntitySelected = function(childEntity) {
+        return _.contains($scope.selectedChildEntities, childEntity);
+      };
+
       $scope.$watch('blueprints', function() {
         $scope.checkForReadyToSubmit();
       }, true);
@@ -42,7 +61,7 @@ module.exports = angular.module('Apply')
       $scope.resetEmail = function() {
         $scope.emailNote = 'check';
         $scope.passwordNote = 'check';
-        $scope.step = 'email';
+        $scope.step = 'blueprints';
         $scope.showPassword = false;
         $scope.readyToSubmit = false;
       }

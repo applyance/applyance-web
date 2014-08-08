@@ -1163,6 +1163,9 @@ blockquote {
   @media only screen and (min-width: 1100px) {
     .selection-grid.is-4 .selection-grid__item {
       width: 25%; } }
+  @media only screen and (min-width: 900px) {
+    .selection-grid.is-2 .selection-grid__item {
+      width: 50%; } }
 
 .selection-grid__item {
   display: inline-block;
