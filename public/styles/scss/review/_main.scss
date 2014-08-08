@@ -34,7 +34,7 @@
   letter-spacing: 2px;
   text-rendering: optimizeLegibility;
   text-transform: uppercase;
-  
+
   color: #aaa;
 }
 
@@ -454,6 +454,7 @@ a.slats__item__header {
   padding: 18px 24px;
 
   font-size: 14px;
+  font-weight: 500;
   color: white;
   text-decoration: none;
 
@@ -469,5 +470,24 @@ a.slats__item__header {
 }
 
 .context-switcher__entity__item.is-child .context-switcher__entity__link {
-  padding-left: 48px;
+  position: relative;
+  padding-left: 24px + 12px + 10px;
+  font-weight: 300;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    margin-top: -6px;
+    left: 24px;
+
+    width: 12px;
+    height: 12px;
+
+    background-size: contain;
+    background-image: url('/img/corner-arrow.white.png');
+    background-repeat: no-repeat;
+
+    opacity: .25;
+  }
 }

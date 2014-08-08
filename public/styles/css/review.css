@@ -1183,6 +1183,7 @@ a.slats__item__header {
   display: block;
   padding: 18px 24px;
   font-size: 14px;
+  font-weight: 500;
   color: white;
   text-decoration: none;
   overflow: hidden;
@@ -1195,7 +1196,21 @@ a.slats__item__header {
     background-color: #161b1d; }
 
 .context-switcher__entity__item.is-child .context-switcher__entity__link {
-  padding-left: 48px; }
+  position: relative;
+  padding-left: 46px;
+  font-weight: 300; }
+  .context-switcher__entity__item.is-child .context-switcher__entity__link:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    margin-top: -6px;
+    left: 24px;
+    width: 12px;
+    height: 12px;
+    background-size: contain;
+    background-image: url("/img/corner-arrow.white.png");
+    background-repeat: no-repeat;
+    opacity: .25; }
 
 /* Sidebar */
 .application__sidebar-wrap {

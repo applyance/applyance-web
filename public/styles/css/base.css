@@ -1042,6 +1042,8 @@ blockquote {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat; }
+  .selector select {
+    padding-right: 46px; }
 
 .text-trim > *:first-child {
   margin-top: 0; }

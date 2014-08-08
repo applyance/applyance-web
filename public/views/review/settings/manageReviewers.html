@@ -17,13 +17,13 @@
   <div class="new-prompt__main">
     <input name="newInvite" ng-model="newInvite.email" value="{{ newInvite.email }}" type="text" placeholder="Email of new member" size="24">
     <div class="selector">
-      <select ng-model="selectedScope"
-          ng-options="scope.name | capitalize for scope in scopes"></select>
+      <select ng-model="inviteScopes.selected"
+          ng-options="scope.name | capitalize for scope in inviteScopes.list"></select>
     </div>
   </div>
   <ul class="new-prompt__actions">
     <li class="new-prompt__actions__item">
-      <button class="btn--primary" ng-click="commitInvite()">Send Invite</button>
+      <button class="btn--primary" ng-click="commitInvite()" ng-class="{ 'is-disabled':submittingInvite }" ng-disable="submittingInvite">Send Invite</button>
     </li>
     <li class="new-prompt__actions__item">
       <button class="btn" ng-click="closeNewPrompt()">Cancel</button>

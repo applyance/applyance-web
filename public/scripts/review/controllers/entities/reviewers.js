@@ -18,8 +18,10 @@ module.exports = angular.module('Review')
          $scope.invites = invites;
       });
 
-      $scope.scopes = [{ scope: "admin", name: "Administrator" }, { scope: "limited", name: "Reviewer" }];
-      $scope.selectedScope = $scope.scopes[1];
+      $scope.inviteScopes = {
+        list: [{ scope: "admin", name: "Administrator" }, { scope: "limited", name: "Reviewer" }],
+      };
+      $scope.inviteScopes.selected = $scope.inviteScopes.list[1];
 
       $scope.newInvite = {};
 
@@ -29,7 +31,9 @@ module.exports = angular.module('Review')
 
       $scope.revokeAccess = function(reviewer) {
         if ($scope.isRevokable(reviewer)) {
-          ApplyanceAPI.deleteReviewer(reviewer.id);
+          ApplyanceAPI.deleteReviewer(reviewer.id).then(function() {
+            $scope.reviewers.splice($scope.reviewers.indexOf(reviewer), 1);
+          });
         }
       };
 
@@ -47,15 +51,17 @@ module.exports = angular.module('Review')
         $scope.inviting = true;
       };
 
+      $scope.submittingInvite = false;
       $scope.commitInvite = function() {
-        console.dir($scope.selectedScope);
-        if ($scope.newInvite.email && $scope.selectedScope.name) {
+        $scope.submittingInvite = true;
+        if ($scope.newInvite.email && $scope.inviteScopes.selected.name) {
           ApplyanceAPI.postReviewerInvite(Store.getActiveEntityId(), {
             email: $scope.newInvite.email,
-            scope: $scope.selectedScope.scope
+            scope: $scope.inviteScopes.selected.scope
           }).then(function(invite) {
             $scope.invites.push(invite);
             $scope.inviting = false;
+            $scope.submittingInvite = false;
             $scope.newInvite = {};
           });
         }
