@@ -70,11 +70,11 @@ module.exports = angular.module('Applyance', ['restangular'])
       };
 
       // Ratings
-      this.getApplicationRatings = function(id) {
-        return Restangular.one('applications', id).all("ratings").getList();
+      this.getCitizenRatings = function(id) {
+        return Restangular.one('citizens', id).all("ratings").getList();
       };
       this.postRating = function(id, rating) {
-        return Restangular.one('accounts', id).all('ratings').post(rating);
+        return Restangular.one('citizens', id).all('ratings').post(rating);
       };
       this.putRating = function(rating) {
         return $http.put(apiHost + "/ratings/" + rating.id, rating);
@@ -156,7 +156,7 @@ module.exports = angular.module('Applyance', ['restangular'])
 
       // Datums
       this.getDatums = function(id) {
-        return Restangular.one('applicants', id).all('datums').getList();
+        return Restangular.one('citizens', id).all('datums').getList();
       };
 
       // Spots

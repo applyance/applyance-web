@@ -7,12 +7,15 @@ module.exports = angular.module('Review')
       $scope.ratings = null;
       ApplyanceAPI.getApplication($routeParams['id']).then(function(application) {
         $scope.application = application.plain();
-        $scope.ratings = $scope.application.ratings;
-        var meRating = $scope.getMeRating();
-        if (meRating) {
-          $scope._setRatingOption(meRating.rating);
-        }
-        $scope.$broadcast('ratingChange');
+        ApplyanceAPI.getCitizenRatings($scope.application.citizen.id).then(function(ratings) {
+          $scope.ratings = ratings.plain();
+          console.dir($scope.ratings);
+          var meRating = $scope.getMeRating();
+          if (meRating) {
+            $scope._setRatingOption(meRating.rating);
+          }
+          $scope.$broadcast('ratingChange');
+        });
       });
 
       $scope.cumulativeRating = 0.0;
@@ -52,10 +55,10 @@ module.exports = angular.module('Review')
           return;
         }
 
-        if ($scope.application.applicant.account.avatar) {
-          return $scope.application.applicant.account.avatar.url;
+        if ($scope.application.citizen.account.avatar) {
+          return $scope.application.citizen.account.avatar.url;
         }
-        var gravatarEmail = CryptoJS.MD5($scope.application.applicant.account.email);
+        var gravatarEmail = CryptoJS.MD5($scope.application.citizen.account.email);
         return 'https://www.gravatar.com/avatar/' + gravatarEmail + '?d=mm';
       };
 

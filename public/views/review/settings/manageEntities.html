@@ -10,7 +10,12 @@
         <div class="slats__main">
           <div class="edit-box" ng-class="{ 'is-editing':isEditing(entity) }">
             <div class="edit-box__label">{{ entity.name }}</div>
-            <input class="edit-box__input" type="text" ng-model="entity.name" value="{{ entity.name }}" size="{{ entity.name.length }}" focus-on="isEditingEntity-{{ entity.id }}" ng-blur="updateEntity(entity)" ng-keyup="($event.keyCode == 13) ? updateEntity(entity) : null">
+            <input
+                class="edit-box__input" type="text" value="{{ entity.name }}" size="{{ entity.name.length }}"
+                ng-model="entity.name"
+                focus-on="isEditingEntity-{{ entity.id }}"
+                ng-blur="updateEntity(entity)"
+                ng-keyup="($event.keyCode == 13) ? updateEntity(entity) : null">
             <a href="" class="edit-box__edit" ng-click="triggerEdit(entity)">
               <i class="icon-pencil"></i>
             </a>
@@ -21,7 +26,7 @@
             <a href="" class="btn is-small" ng-click="navToEntitySettings(entity.id)">Edit</a>
           </li>
           <li class="slats__actions__item">
-            <a href="" class="btn--secondary is-small" ng-click="removeEntity(entity)">Remove</a>
+            <a href="" class="btn--secondary is-small" confirmed-click="removeEntity(entity)" ng-confirm-click="Are you sure you want to delete {{ entity.name }}?">Remove</a>
           </li>
         </ul>
       </li>

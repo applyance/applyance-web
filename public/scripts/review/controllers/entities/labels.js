@@ -37,7 +37,7 @@ module.exports = angular.module('Review')
       }
 
       $scope.addLabel = function() {
-        ApplyanceAPI.postLabel($scope.entity.id, {
+        ApplyanceAPI.postLabel(Store.getActiveEntityId(), {
           name: "New Label",
           color: "000000"
         }).then(function(label) {

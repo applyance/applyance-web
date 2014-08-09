@@ -153,10 +153,10 @@ module.exports = angular.module('Apply')
       };
 
       $scope.onAuthenticateSuccess = function(me, status, headers, config) {
-        if (me.applicant) {
+        if (me.citizen) {
           $scope.mapMeToApplicant(me);
           var api_key = headers('authorization').split('auth=')[1];
-          $http.get(ApplyanceAPI.getApiHost() + "/applicants/" + $scope.applicant.id + "/datums", {
+          $http.get(ApplyanceAPI.getApiHost() + "/citizens/" + $scope.applicant.id + "/datums", {
             headers: { 'Authorization': 'ApplyanceLogin auth=' + api_key }
           }).then($scope.onDatumsLoad);
         } else {
@@ -165,13 +165,13 @@ module.exports = angular.module('Apply')
       };
 
       $scope.mapMeToApplicant = function(me) {
-        $scope.applicant.id = me.applicant.id;
+        $scope.applicant.id = me.citizen.id;
         $scope.applicant.name = me.account.name;
-        if (me.applicant.phone_number) {
-          $scope.applicant.phone_number = me.applicant.phone_number;
+        if (me.citizen.phone_number) {
+          $scope.applicant.phone_number = me.citizen.phone_number;
         }
-        if (me.applicant.location) {
-          var a = me.applicant.location.address;
+        if (me.citizen.location) {
+          var a = me.citizen.location.address;
           $scope.applicant.location.address =
             a.address_1 + "\n" + a.city + ", " + a.state + " " + a.postal_code;
         }
@@ -241,7 +241,7 @@ module.exports = angular.module('Apply')
         });
 
         var application = {
-          applicant: $scope.applicant,
+          citizen: $scope.applicant,
           fields: fields
         };
 

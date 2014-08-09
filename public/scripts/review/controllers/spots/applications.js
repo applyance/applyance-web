@@ -9,10 +9,10 @@ module.exports = angular.module('Review')
       $scope.applications = spot_data.applications;
 
       $scope.getAvatarUrl = function(application) {
-        if (application.applicant.account.avatar) {
-          return application.applicant.account.avatar.url;
+        if (application.citizen.account.avatar) {
+          return application.citizen.account.avatar.url;
         }
-        return 'https://www.gravatar.com/avatar/' + CryptoJS.MD5(application.applicant.account.email) + '?d=mm';
+        return 'https://www.gravatar.com/avatar/' + CryptoJS.MD5(application.citizen.account.email) + '?d=mm';
       };
 
       $scope.getRating = function(application) {

@@ -8,17 +8,17 @@
       </div>
       <div class="application__applicant__info">
         <h2 class="application__applicant__name">
-          {{ application.applicant.account.name }}
+          {{ application.citizen.account.name }}
         </h2>
-        <div ng-if="application.applicant.location" class="application__applicant__location">
-          <i class="icon icon-location"></i>{{ application.applicant.location.address.city }}, {{ application.applicant.location.address.state }}
+        <div ng-if="application.citizen.location" class="application__applicant__location">
+          <i class="icon icon-location"></i>{{ application.citizen.location.address.city }}, {{ application.citizen.location.address.state }}
         </div>
         <ul class="application__applicant__contact">
           <li class="application__applicant__contact__item">
-            {{ application.applicant.account.email }}
+            {{ application.citizen.account.email }}
           </li>
-          <li ng-if="application.applicant.phone_number" class="application__applicant__contact__item">
-            {{ application.applicant.phone_number }}
+          <li ng-if="application.citizen.phone_number" class="application__applicant__contact__item">
+            {{ application.citizen.phone_number }}
           </li>
         </ul>
       </div>
@@ -44,11 +44,11 @@
     </div>
 
     <ol class="application__fields">
-      <li ng-if="application.applicant.location" class="application__fields__item">
+      <li ng-if="application.citizen.location" class="application__fields__item">
         <div class="application__fields__label">
           Address
         </div>
-        <div class="application__fields__detail text-trim" ng-bind-html="renderAddress(application.applicant.location.address)"></div>
+        <div class="application__fields__detail text-trim" ng-bind-html="renderAddress(application.citizen.location.address)"></div>
       </li>
       <li class="application__fields__item" ng-repeat="field in application.fields">
         <div class="application__fields__label">

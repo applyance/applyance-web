@@ -8,7 +8,10 @@
     <div class="slats__main">
       <div class="edit-box" ng-class="{ 'is-editing':isEditing(label) }">
         <div class="edit-box__label">{{ label.name }}</div>
-        <input class="edit-box__input" type="text" ng-model="label.name" value="{{ label.name }}" size="{{ label.name.length }}" focus-on="isEditingLabel-{{ label.id }}" ng-blur="updateLabel(label)">
+        <input class="edit-box__input" type="text" value="{{ label.name }}" size="{{ label.name.length }}"
+            ng-model="label.name"
+            focus-on="isEditingLabel-{{ label.id }}"
+            ng-blur="updateLabel(label)" ng-keyup="($event.keyCode == 13) ? updateLabel(label) : null">
         <a href="" class="edit-box__edit" ng-click="triggerEdit(label)">
           <i class="icon-pencil"></i>
         </a>
@@ -22,7 +25,8 @@
         </div>
       </li>
       <li class="slats__actions__item">
-        <a href="" class="btn--secondary is-small" ng-click="removeLabel(label)">Remove</a>
+        <a href="" class="btn--secondary is-small"
+            confirmed-click="removeLabel(label)" ng-confirm-click="Are you sure you want to delete {{ label.name }}?">Remove</a>
       </li>
     </ul>
   </li>

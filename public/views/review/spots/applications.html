@@ -16,7 +16,7 @@
             </li>
             <li class="slats__units__item">
               <a class="slats__item__header" href="applications/{{ application.id }}">
-                {{ application.applicant.account.name }}
+                {{ application.citizen.account.name }}
               </a>
               <div>
                 Applied on {{ application.submitted_at | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
