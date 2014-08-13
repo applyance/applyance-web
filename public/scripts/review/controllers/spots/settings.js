@@ -4,6 +4,7 @@ module.exports = angular.module('Review')
   .controller('SpotSettingsCtrl', ['$scope', '$rootScope', '$routeParams', 'Store', '$location', 'spot',
   function ($scope, $rootScope, $routeParams, Store, $location, spot) {
 
+    $rootScope.withSidebar = true;
     $scope.spot = spot;
     $scope.currentScope = Store.getCurrentScope();
 

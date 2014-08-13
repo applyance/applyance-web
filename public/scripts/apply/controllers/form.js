@@ -152,33 +152,37 @@ module.exports = angular.module('Apply')
           });
       };
 
-      $scope.onAuthenticateSuccess = function(me, status, headers, config) {
-        if (me.citizen) {
+      $scope.onAuthenticateSuccess = function(me) {
+        if (me.citizens) {
           $scope.mapMeToApplicant(me);
-          var api_key = headers('authorization').split('auth=')[1];
-          $http.get(ApplyanceAPI.getApiHost() + "/citizens/" + $scope.applicant.id + "/datums", {
-            headers: { 'Authorization': 'ApplyanceLogin auth=' + api_key }
-          }).then($scope.onDatumsLoad);
+          ApplyanceAPI.getProfile(me.account.id).then($scope.onProfileLoad);
         } else {
           $scope.passwordNotFound();
         }
       };
 
+      $scope.onProfileLoad = function(profile) {
+        $scope.mapProfileToApplicant(profile);
+        ApplyanceAPI.getDatums(profile.id).then($scope.onDatumsLoad);
+      };
+
       $scope.mapMeToApplicant = function(me) {
-        $scope.applicant.id = me.citizen.id;
         $scope.applicant.name = me.account.name;
-        if (me.citizen.phone_number) {
-          $scope.applicant.phone_number = me.citizen.phone_number;
+      };
+
+      $scope.mapProfileToApplicant = function(profile) {
+        if (profile.phone_number) {
+          $scope.applicant.phone_number = profile.phone_number;
         }
-        if (me.citizen.location) {
-          var a = me.citizen.location.address;
+        if (profile.location) {
+          var a = profile.location.address;
           $scope.applicant.location.address =
             a.address_1 + "\n" + a.city + ", " + a.state + " " + a.postal_code;
         }
-      }
+      };
 
       $scope.onDatumsLoad = function(datums) {
-        $scope.datums = datums.data;
+        $scope.datums = datums.plain();
         $scope.mapDatumsToBlueprints($scope.blueprints);
         $scope.passwordNote = 'found';
         $scope.step = 'blueprints';
@@ -241,7 +245,7 @@ module.exports = angular.module('Apply')
         });
 
         var application = {
-          citizen: $scope.applicant,
+          applicant: $scope.applicant,
           fields: fields
         };
 
@@ -257,12 +261,10 @@ module.exports = angular.module('Apply')
         }
 
         $scope.submitting = true;
-        $timeout(function() {
-          ApplyanceAPI.postApplication(application).then(function(application) {
-            $scope.submitting = false;
-            $scope.submitted = true;
-          });
-        }, 750);
+        ApplyanceAPI.postApplication(application).then(function(application) {
+          $scope.submitting = false;
+          $scope.submitted = true;
+        });
 
       }
 

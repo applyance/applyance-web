@@ -1,38 +1,47 @@
 <div class="main-container">
 
   <h1 class="top-header">
-    Applications<span class="top-header__annotation">{{ activeEntity.name }}</span>
-    <a ng-if="applications.length > 0" href="/{{ activeEntity.slug }}" target="_blank" class="tag application-header-link">
+    Applicants<span class="top-header__annotation">{{ activeEntity.name }}</span>
+    <a ng-if="citizens.length > 0" href="/{{ activeEntity.slug }}" target="_blank" class="tag application-header-link">
       View Your Application Form
     </a>
   </h1>
 
-  <div ng-switch on="applications.length">
+  <div ng-switch on="citizens.length">
     <div ng-switch-default>
 
       <ul class="slats">
-        <li class="slats__item" ng-repeat="application in applications">
+        <li class="slats__item" ng-repeat="citizen in citizens">
 
-          <ul class="slats__units unit--2of3">
+          <ul class="slats__units unit--1of2">
             <li class="slats__units__item unit--1of10">
-              <img class="avatar" ng-src="{{ getAvatarUrl(application) }}" />
+              <img class="avatar" ng-src="{{ getAvatarUrl(citizen) }}" />
             </li>
             <li class="slats__units__item">
-              <a class="slats__item__header" href="applications/{{ application.id }}">
-                {{ application.citizen.account.name }}
+              <a class="slats__item__header" href="applicants/{{ citizen.id }}">
+                {{ citizen.account.name }}
               </a>
               <div>
-                Applied on {{ application.submitted_at | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+                Applied on {{ citizen.applications[citizen.applications.length - 1].submitted_at | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
               </div>
             </li>
           </ul>
 
-          <ul class="slats__units is-right unit--1of3">
-            <li class="slats__units__item">
+          <ul class="slats__units is-right unit--1of2">
+            <li class="slats__units__item unit--1of2" ng-if="getLabels(citizen).length > 0">
+              <ul class="applicant-labels application-list__labels">
+                <li class="applicant-labels__item"
+                    ng-repeat="label in getLabels(citizen)"
+                    apl-tooltip="{{ label.name }}">
+                  <span class="label-ring" style="background-color: #{{ label.color }}"></span>
+                </li>
+              </ul>
+            </li>
+            <li class="slats__units__item unit--1of2">
               <ul class="applicant-rating">
                 <li class="applicant-rating__item"
                     ng-repeat="i in [1,2,3,4,5]"
-                    ng-class="{ 'is-set':isRatingSet(i, application) }">
+                    ng-class="{ 'is-set':isRatingSet(i, citizen) }">
                   <i class="icon-star-5"></i>
                 </li>
               </ul>

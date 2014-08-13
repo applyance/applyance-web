@@ -13,7 +13,8 @@
     "restangular": "~1.4.0",
     "lodash": "~2.4.1",
     "angular-scroll": "~0.6.1",
-    "angular-medium-editor": "*"
+    "angular-medium-editor": "*",
+    "tether": "~0.6.5"
   },
   "resolutions": {
     "moment": "~2.8.1"

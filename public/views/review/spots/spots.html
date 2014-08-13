@@ -23,8 +23,8 @@
                 </li>
               </ul>
             </div>
-            <a href="spots/{{ spot.id }}/applications" ng-if="spot.application_count > 0" class="display-grid__content display-grid--spot__content--applications">
-              <span class="count">{{ spot.application_count }}</span><span class="label">{{ (spot.application_count == 1) ? 'Application' : 'Applications' }}</span>
+            <a href="spots/{{ spot.id }}/applications" ng-if="spot.citizen_count > 0" class="display-grid__content display-grid--spot__content--applications">
+              <span class="count">{{ spot.citizen_count }}</span><span class="label">{{ (spot.citizen_count == 1) ? 'Applicant' : 'Applicants' }}</span>
             </a>
           </div>
         </li>

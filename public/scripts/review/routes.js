@@ -11,9 +11,24 @@ module.exports = function($routeProvider, $locationProvider, me, $routeParams) {
       controller: 'ApplicationsCtrl',
       templateUrl: 'views/review/applications/applications.html'
     })
-    .when('/applications/:id', {
-      templateUrl: 'views/review/applications/application.html',
-      controller: 'ApplicationCtrl'
+    .when('/applicants/:id', {
+      templateUrl: 'views/review/applicants/applicant.html',
+      controller: 'ApplicationCtrl',
+      resolve: {
+        citizen_data: function($route, ApplyanceAPI) {
+          return ApplyanceAPI.getCitizen($route.current.params.id).then(function(citizen) {
+            return ApplyanceAPI.getProfile(citizen.account.id).then(function(profile) {
+              return ApplyanceAPI.getApplication(citizen.applications[citizen.applications.length - 1].id).then(function(application) {
+                return {
+                  application: application.plain(),
+                  profile: profile.plain(),
+                  citizen: citizen.plain()
+                };
+              });
+            });
+          });
+        }
+      }
     })
 
     // spots
@@ -49,9 +64,9 @@ module.exports = function($routeProvider, $locationProvider, me, $routeParams) {
       resolve: {
         spot_data: function($route, ApplyanceAPI) {
           return ApplyanceAPI.getSpot($route.current.params.id).then(function(spot) {
-            return ApplyanceAPI.getSpotApplications($route.current.params.id).then(function(applications) {
+            return ApplyanceAPI.getSpotCitizens($route.current.params.id).then(function(citizens) {
               return {
-                applications: applications,
+                citizens: citizens,
                 spot: spot
               };
             });

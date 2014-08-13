@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="/styles/css/base.css" />
     <link rel="stylesheet" type="text/css" href="/styles/css/review.css" />
   </head>
-  <body ng-app="Review">
+  <body ng-app="Review" ng-class="{ 'is-flash-open':flashMessage, 'with-sidebar':withSidebar }">
 
     <header class="header" ng-controller="HeaderCtrl">
       <a href="entities/{{ activeEntityId() }}/applications" class="mark">
@@ -24,7 +24,7 @@
           <li class="nav__item"
               ng-class="{ 'is-active':isActive('/entities/' + activeEntityId() + '/applications') }">
             <a href="entities/{{ activeEntityId() }}/applications"
-               class="nav__link">Applications</a>
+               class="nav__link">Applicants</a>
           </li>
           <li class="nav__item"
               ng-class="{ 'is-active':isActive('/entities/' + activeEntityId() + '/spots') }">
@@ -64,7 +64,7 @@
       </div>
     </header>
 
-    <div class="flash text-trim" ng-show="flashMessage">
+    <div class="flash text-trim">
       <p>{{ flashMessage }}</p>
     </div>
 

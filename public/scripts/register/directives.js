@@ -13,7 +13,7 @@ module.exports = angular.module('Register')
               $document.scrollToElement(someElement, 0, 500).then(function() {
                 $rootScope.$broadcast('register-scrolled-to-step-' + attrs.aplRegisterScrollToStep);
               });
-            }, 50);
+            }, 100);
           });
         }
       };

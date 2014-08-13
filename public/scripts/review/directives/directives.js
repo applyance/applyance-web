@@ -140,4 +140,89 @@ module.exports = angular.module('Review')
       }
     }
   ])
+  .directive('aplClickOutside', ['$document', function($document) {
+    return {
+      scope: {
+        aplClickOutside: '&'
+      },
+      link: function(scope, elem, attr, ctrl) {
+        elem.bind('click', function(e) {
+          e.stopPropagation();
+        });
+        $document.bind('click', function() {
+          scope.$apply(function() {
+            scope.aplClickOutside();
+          });
+        });
+      }
+    }
+  }])
+  .directive('aplTooltip', ['$document', function($document) {
+    return {
+      restrict: 'A',
+      link: function(scope, elem, attr, ctrl) {
+
+        var tooltip = document.createElement('div');
+        tooltip.classList.add('tooltip');
+        tooltip.innerHTML = attr.aplTooltip;
+        document.body.appendChild(tooltip);
+
+        var tether = null;
+        elem.bind('mouseenter', function(e) {
+          tooltip.classList.add('is-open');
+          tether = new Tether({
+            element: tooltip,
+            target: elem[0],
+            attachment: 'top center',
+            targetAttachment: 'bottom center',
+            offset: '-18px 0'
+          });
+        });
+
+        elem.bind('mouseleave', function(e) {
+          tooltip.classList.remove('is-open');
+          tether.destroy();
+        });
+
+      }
+    }
+  }])
+  .directive('aplColorSwatch', ['Store', '$location', '$document', '$filter',
+    function (Store, $location, $document, $filter) {
+    return {
+      restrict: 'AE',
+      templateUrl: 'scripts/review/directives/colorSwatch.html',
+      scope: {
+        color: "=",
+        onColorSelected: "&"
+      },
+      link: function(scope, elem, attrs) {
+        scope.showPane = false;
+        scope.colors = [
+          { hex: "FF3E3E" },
+          { hex: "FF9A3E" },
+          { hex: "E5DC35" },
+          { hex: "3EFF7E" },
+          { hex: "40D2FF" },
+          { hex: "D93EFF" },
+
+          { hex: "992623" },
+          { hex: "995C25" },
+          { hex: "999925" },
+          { hex: "25994C" },
+          { hex: "267E99" },
+          { hex: "822399" }
+        ];
+        scope.selectedColor = _.findWhere(scope.colors, { hex: scope.color });
+
+        scope.selectColor = function(color) {
+          scope.selectedColor = color;
+          scope.onColorSelected({
+            color: color.hex
+          });
+          scope.showPane = false;
+        };
+      }
+    }
+  }])
 ;
