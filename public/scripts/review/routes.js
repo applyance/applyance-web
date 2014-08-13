@@ -96,6 +96,10 @@ module.exports = function($routeProvider, $locationProvider, me, $routeParams) {
       templateUrl: 'views/review/settings/settings.html',
       controller: 'SettingsCtrl'
     })
+    .when('/entities/:id/billing', {
+      templateUrl: 'views/review/settings/settings.html',
+      controller: 'SettingsCtrl'
+    })
 
     .otherwise({
       redirectTo: '/entities/' + me.reviewers[0].entity.id + '/applications'

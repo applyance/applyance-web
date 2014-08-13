@@ -25,6 +25,11 @@
       <i class="icon icon-tag"></i>Labels
     </a>
   </li>
+  <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('billing') }">
+    <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/billing">
+      <i class="icon icon-credit-card"></i>Billing
+    </a>
+  </li>
 </ul>
 
 <!-- content area (right side stuff) -->
@@ -43,5 +48,8 @@
   </div>
   <div ng-switch-when="labels" ng-controller="EntityLabelsCtrl">
     <div ng-include="'views/review/settings/manageLabels.html'"></div>
+  </div>
+  <div ng-switch-when="billing" ng-controller="EntityBillingCtrl">
+    <div ng-include="'views/review/settings/manageBilling.html'"></div>
   </div>
 </div>

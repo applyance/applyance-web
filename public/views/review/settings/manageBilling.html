@@ -1,0 +1,27 @@
+<h1 class="top-header">
+  Billing
+  <a class="header-action btn--primary" ng-class="{ 'is-disabled':isUpdating }" ng-disabled="isUpdating" ng-click="updateBilling()">{{ isUpdating ? 'Saving' : 'Save' }}</a>
+</h1>
+
+<div class="toaster text-trim">
+  <p>
+    Note that we are a free service while in beta. Payments are powered by <a href="https://stripe.com">Stripe</a>. Your information does not touch our servers.
+  </p>
+</div>
+
+<div class="settings-inputs">
+  <ul class="settings-inputs__list">
+    <li class="settings-inputs__item">
+      <label class="settings-inputs__label">Card Number</label>
+      <input type="text" value="" placeholder="1234 5678 1234 5678" size="30">
+    </li>
+    <li class="settings-inputs__item">
+      <label class="settings-inputs__label">Card Expiration</label>
+      <input type="text" value="" placeholder="MM / YY" size="8">
+    </li>
+    <li class="settings-inputs__item">
+      <label class="settings-inputs__label">Card CVC</label>
+      <input type="text" value="" placeholder="" size="5">
+    </li>
+  </ul>
+</div>

@@ -38,6 +38,7 @@ require("./controllers/entities/entities");
 require("./controllers/entities/reviewers");
 require("./controllers/entities/settings");
 require("./controllers/entities/labels");
+require("./controllers/entities/billing");
 
 require("./controllers/spots/spots");
 require("./controllers/spots/applications");
