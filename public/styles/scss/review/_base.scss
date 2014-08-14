@@ -89,15 +89,34 @@ h1, h2, h3, h4 {
 /* Flash */
 
 .flash {
+  height: 0;
   position: fixed;
-  top: $header-height + 24px;
-  right: 24px;
+  top: $header-height;
+  left: 0;
+  right: 0;
   z-index: 100;
   display: inline-block;
-  max-width: 420px;
-  padding: 18px 24px;
+  padding: 0 60px;
+  overflow: hidden;
   background-color: mix(white, $color-accent, 75%);
-  border-radius: 5px;
+
+  @include transition(all 150ms ease-in-out);
+}
+
+.with-sidebar .flash {
+  left: $sidebar-width;
+}
+
+.is-flash-open {
+  $_height: 70px;
+  .flash {
+    height: $_height;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+  .main-container {
+    top: $_height;
+  }
 }
 
 /* Tags */

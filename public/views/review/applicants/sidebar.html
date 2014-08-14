@@ -1,0 +1,43 @@
+<li class="sidebar__lead group">
+  <a href="" class="link" ng-click="sidebar.collapsed = !sidebar.collapsed">
+    {{ sidebar.collapsed ? 'Show Sidebar' : 'Hide Sidebar' }}<i class="icon icon-{{ sidebar.collapsed ? 'login' : 'logout' }}"></i>
+  </a>
+</li>
+<li class="sidebar__item">
+  <div class="sidebar__item__title">Labels</div>
+  <ul class="application__sidebar__labels" ng-if="citizen.labels.length > 0">
+    <li class="application__sidebar__labels__item" ng-repeat="label in citizen.labels">
+      <span class="label-ring is-gray" style="background-color: #{{ label.color }};"></span>
+      <span class="name">{{ label.name }}</span>
+      <i class="icon icon-delete-o-circle"
+          ng-click="toggleLabelOnCitizen(label)"></i>
+    </li>
+  </ul>
+
+  <div ng-if="citizen.labels.length == 0 && entityLabels.length == 0">
+    You haven't created any labels yet. <a href="entities/{{ activeEntity.id }}/labels">Manage Labels</a>
+  </div>
+
+  <div class="application__sidebar__assign-labels"
+      ng-if="entityLabels.length > 0"
+      apl-click-outside="dropdown.open = false">
+    <a href="" class="btn--secondary is-dropdown"
+        ng-class="{ 'is-dropdown-open':dropdown.open }"
+        ng-click="dropdown.open = !dropdown.open">
+      Add Labels<i class="icon icon-caret-right"></i>
+    </a>
+    <div class="application__sidebar__assign-labels__popup" ng-show="dropdown.open">
+      <ul class="application__sidebar__assign-labels__list">
+        <li class="application__sidebar__assign-labels__item" ng-repeat="label in entityLabels">
+          <a
+              class="application__sidebar__assign-labels__link"
+              href=""
+              ng-click="toggleLabelOnCitizen(label)">
+            <span class="label-ring" style="background-color: #{{ label.color }};"></span>
+            <span class="name">{{ label.name }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</li>

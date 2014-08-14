@@ -1,0 +1,13 @@
+<div class="color-swatch" apl-click-outside="showPane = false">
+  <a href="" class="color-swatch__selected"
+      style="background-color: #{{ selectedColor.hex }};"
+      ng-click="showPane = !showPane"><i class="icon icon-caret-right"></i></a>
+  <div class="color-swatch__pane" ng-show="showPane">
+    <ul class="color-swatch__list">
+      <li class="color-swatch__item" ng-repeat="color in colors">
+        <a href="" class="color-swatch__link" style="background-color: #{{ color.hex }};"
+            ng-click="selectColor(color)"></a>
+      </li>
+    </ul>
+  </div>
+</div>

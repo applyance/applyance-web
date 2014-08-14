@@ -3,27 +3,41 @@
   <a href="" class="header-action btn--primary" ng-click="addLabel()">Create Label</a>
 </h1>
 
-<ul class="slats">
-  <li class="slats__item" ng-repeat="label in labels">
-    <div class="slats__main">
-      <div class="edit-box" ng-class="{ 'is-editing':isEditing(label) }">
-        <div class="edit-box__label">{{ label.name }}</div>
-        <input class="edit-box__input" type="text" ng-model="label.name" value="{{ label.name }}" size="{{ label.name.length }}" focus-on="isEditingLabel-{{ label.id }}" ng-blur="updateLabel(label)">
-        <a href="" class="edit-box__edit" ng-click="triggerEdit(label)">
-          <i class="icon-pencil"></i>
-        </a>
-      </div>
-    </div>
-    <ul class="slats__actions">
-      <li class="slats__actions__item">
-        <div class="color-swatch">
-          <span class="color-swatch__color" style="background-color: #{{ label.color }};"></span>
-          <input class="color-swatch__input" type="text" ng-model="label.color" size="6" value="{{ label.color }}" ng-blur="updateLabel(label)">
+<div ng-switch on="labels.length">
+  <div ng-switch-default>
+    <ul class="slats">
+      <li class="slats__item" ng-repeat="label in labels" ng-class="{ 'is-disabled':label.isParent }">
+        <div ng-if="label.isParent" class="slats__disable-overlay"></div>
+        <div class="slats__main">
+          <div class="edit-box" ng-class="{ 'is-editing':isEditing(label) }">
+            <div class="edit-box__label">{{ label.name }}</div>
+            <input class="edit-box__input" type="text" value="{{ label.name }}" size="{{ label.name.length }}"
+                ng-model="label.name"
+                focus-on="isEditingLabel-{{ label.id }}"
+                ng-blur="updateLabel(label)" ng-keyup="($event.keyCode == 13) ? updateLabel(label) : null">
+            <a href="" class="edit-box__edit" ng-click="triggerEdit(label)">
+              <i class="icon-pencil"></i>
+            </a>
+          </div>
         </div>
-      </li>
-      <li class="slats__actions__item">
-        <a href="" class="btn--secondary is-small" ng-click="removeLabel(label)">Remove</a>
+        <ul class="slats__actions">
+          <li class="slats__actions__item">
+            <apl-color-swatch color="label.color" on-color-selected="updateLabelColor(color, label)"></apl-color-swatch>
+          </li>
+          <li class="slats__actions__item">
+            <a href="" class="btn--secondary is-small"
+                confirmed-click="removeLabel(label)"
+                ng-confirm-click="Are you sure you want to delete {{ label.name }}?">Remove</a>
+          </li>
+        </ul>
       </li>
     </ul>
-  </li>
-</ul>
+  </div>
+  <div ng-switch-when="0">
+    <div class="toaster text-trim">
+      <p>
+        Use labels to stay organized with your applicants.
+      </p>
+    </div>
+  </div>
+</div>

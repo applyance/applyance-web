@@ -19,6 +19,10 @@ module.exports = angular.module('Applyance', ['restangular'])
       this.getApiHost = function() {
         return apiHost;
       };
+      this.setApiKey = function(apiKey) {
+        Restangular.setDefaultHeaders({ 'Authorization': "ApplyanceLogin auth=" + apiKey });
+        $http.defaults.headers.common['Authorization'] = "ApplyanceLogin auth=" + apiKey;
+      };
 
       this.getMe = function() {
         return $http.get(apiHost + "/accounts/me");
@@ -32,7 +36,12 @@ module.exports = angular.module('Applyance', ['restangular'])
         return $http.get(apiHost + '/emails?email=' + email);
       };
       this.authenticate = function(auth) {
-        return $http.post(apiHost + '/accounts/auth', auth);
+        var api = this;
+        return $http.post(apiHost + '/accounts/auth', auth).success(function(me, status, headers, config) {
+          var apiKey = headers('authorization').split('auth=')[1];
+          api.setApiKey(apiKey);
+          return me;
+        });
       };
       this.postReviewer = function(entityId, reviewer) {
         return $http.post(apiHost + '/entities/' + entityId + '/reviewers', reviewer);
@@ -50,6 +59,25 @@ module.exports = angular.module('Applyance', ['restangular'])
       };
       this.getSpotApplications = function(spotId) {
         return Restangular.one("spots", spotId).all("applications").getList();
+      };
+
+      // Citizens
+      this.getCitizens = function(entityId) {
+        return Restangular.one("entities", entityId).all("citizens").getList();
+      };
+      this.getCitizen = function(id) {
+        return Restangular.one("citizens", id).get();
+      };
+      this.putCitizen = function(id, obj) {
+        return $http.put(apiHost + "/citizens/" + id, obj);
+      };
+      this.getSpotCitizens = function(spotId) {
+        return Restangular.one("spots", spotId).all("citizens").getList();
+      };
+
+      // Profiles
+      this.getProfile = function(id) {
+        return Restangular.one("profiles", id).get();
       };
 
       // Spots
@@ -70,11 +98,11 @@ module.exports = angular.module('Applyance', ['restangular'])
       };
 
       // Ratings
-      this.getApplicationRatings = function(id) {
-        return Restangular.one('applications', id).all("ratings").getList();
+      this.getCitizenRatings = function(id) {
+        return Restangular.one('citizens', id).all("ratings").getList();
       };
       this.postRating = function(id, rating) {
-        return Restangular.one('accounts', id).all('ratings').post(rating);
+        return Restangular.one('citizens', id).all('ratings').post(rating);
       };
       this.putRating = function(rating) {
         return $http.put(apiHost + "/ratings/" + rating.id, rating);
@@ -156,7 +184,7 @@ module.exports = angular.module('Applyance', ['restangular'])
 
       // Datums
       this.getDatums = function(id) {
-        return Restangular.one('applicants', id).all('datums').getList();
+        return Restangular.one('profiles', id).all('datums').getList();
       };
 
       // Spots
@@ -176,6 +204,9 @@ module.exports = angular.module('Applyance', ['restangular'])
       };
       this.putLabel = function(label) {
         return $http.put(apiHost + "/labels/" + label.id, label);
+      };
+      this.getCitizenLabels = function(id) {
+        return Restangular.one('citizens', id).all('labels').getList();
       };
 
       return this;

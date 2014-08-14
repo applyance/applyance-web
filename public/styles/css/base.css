@@ -1058,17 +1058,20 @@ blockquote {
 /* Buttons */
 .btn, .btn--primary, .btn--base, .btn--secondary, .btn--accent {
   display: inline-block;
-  padding: 14px 42px;
+  padding: 14px 36px;
+  position: relative;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.2;
   text-decoration: none;
   text-align: center;
+  letter-spacing: 0;
   outline: none;
   border: 0;
   border-radius: 4px;
   background-color: rgba(0, 0, 0, 0.075);
   color: #333333;
+  cursor: pointer;
   -webkit-transition: background-color 200ms ease-in-out;
   -moz-transition: background-color 200ms ease-in-out;
   transition: background-color 200ms ease-in-out; }
@@ -1080,9 +1083,41 @@ blockquote {
   .btn.is-mini, .is-mini.btn--primary, .is-mini.btn--base, .is-mini.btn--secondary, .is-mini.btn--accent {
     font-size: 14px;
     padding: 8px 12px; }
+    .btn.is-mini.is-dropdown .icon, .is-mini.is-dropdown.btn--primary .icon, .is-mini.is-dropdown.btn--base .icon, .is-mini.is-dropdown.btn--secondary .icon, .is-mini.is-dropdown.btn--accent .icon {
+      font-size: 14px;
+      margin-left: 8px; }
   .btn.is-disabled, .is-disabled.btn--primary, .is-disabled.btn--base, .is-disabled.btn--secondary, .is-disabled.btn--accent {
     cursor: not-allowed;
     opacity: .3; }
+  .btn.is-block, .is-block.btn--primary, .is-block.btn--base, .is-block.btn--secondary, .is-block.btn--accent {
+    width: 100%; }
+  .btn.is-dropdown .icon, .is-dropdown.btn--primary .icon, .is-dropdown.btn--base .icon, .is-dropdown.btn--secondary .icon, .is-dropdown.btn--accent .icon {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+    margin-top: -3px;
+    margin-left: 12px;
+    opacity: .25;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    transition-property: transform;
+    -webkit-transition-duration: 200ms;
+    -moz-transition-duration: 200ms;
+    transition-duration: 200ms;
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out; }
+  .btn.is-dropdown.is-dropdown-open .icon, .is-dropdown.is-dropdown-open.btn--primary .icon, .is-dropdown.is-dropdown-open.btn--base .icon, .is-dropdown.is-dropdown-open.btn--secondary .icon, .is-dropdown.is-dropdown-open.btn--accent .icon {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg); }
 
 .btn--primary {
   background-color: #f2bc36;

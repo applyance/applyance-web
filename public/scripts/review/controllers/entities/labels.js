@@ -4,11 +4,21 @@ module.exports = angular.module('Review')
   .controller('EntityLabelsCtrl', ['$scope', 'ApplyanceAPI', '$timeout', 'Store',
     function ($scope, ApplyanceAPI, $timeout, Store) {
 
+      $scope.activeEntity = Store.getActiveEntity();
+
       $scope.labels = [];
-      ApplyanceAPI.getLabels(Store.getActiveEntityId()).then(function(labels) {
-         $scope.labels = labels;
+      ApplyanceAPI.getLabels($scope.activeEntity.id).then(function(labels) {
          $scope.labels.reverse();
+         $scope.labels = labels.concat($scope.labels);
       });
+
+      if ($scope.activeEntity.parent) {
+        ApplyanceAPI.getLabels($scope.activeEntity.parent.id).then(function(labels) {
+          labels = _.each(labels, function(label) { label.isParent = true; });
+          $scope.labels.reverse();
+          $scope.labels = $scope.labels.concat(labels);
+        });
+      }
 
       $scope.isEditing = function(label) {
         return !!label.isEditing;
@@ -34,12 +44,19 @@ module.exports = angular.module('Review')
           name: label.name,
           color: label.color
         });
-      }
+      };
+
+      $scope.updateLabelColor = function(color, label) {
+        ApplyanceAPI.putLabel({
+          id: label.id,
+          color: color
+        });
+      };
 
       $scope.addLabel = function() {
-        ApplyanceAPI.postLabel($scope.entity.id, {
+        ApplyanceAPI.postLabel(Store.getActiveEntityId(), {
           name: "New Label",
-          color: "000000"
+          color: "40D2FF"
         }).then(function(label) {
           label.isEditing = true;
           $scope.labels.unshift(label);

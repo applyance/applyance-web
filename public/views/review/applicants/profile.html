@@ -1,0 +1,64 @@
+<div class="application__applicant">
+  <div class="application__applicant__avatar">
+    <img class="avatar" ng-src="{{ getAvatarUrl() }}">
+  </div>
+  <div class="application__applicant__info">
+    <h2 class="application__applicant__name">
+      {{ citizen.account.name }}
+    </h2>
+    <ul class="application__applicant__contact">
+      <li ng-if="profile.location" class="application__applicant__contact__item">
+        <i class="icon icon-location"></i>{{ profile.location.address.city }}, {{ profile.location.address.state }}
+      </li>
+      <li class="application__applicant__contact__item">
+        <i class="icon icon-envelope"></i>{{ citizen.account.email }}
+      </li>
+      <li ng-if="profile.phone_number" class="application__applicant__contact__item">
+        <i class="icon icon-telephone"></i>{{ profile.phone_number }}
+      </li>
+    </ul>
+  </div>
+  <div class="application__applicant__rating">
+    {{ cumulativeRating | number:1 }}
+  </div>
+</div>
+
+<div class="application-profile__applied-to group">
+  Applied to {{ getApplyable() }} on {{ application.submitted_at | amDateFormat: 'MMM. D, YYYY' }}
+</div>
+
+<div class="application__actions group">
+  <ul class="applicant-labels application__actions__labels" ng-if="citizen.labels.length > 0">
+    <li class="applicant-labels__item"
+        ng-repeat="label in citizen.labels"
+        apl-tooltip="{{ label.name }}">
+      <span class="label-ring is-gray" style="background-color: #{{ label.color }}"></span>
+    </li>
+  </ul>
+  <ul class="application__actions__rating applicant-rating">
+    <li class="applicant-rating__item is-settable"
+        ng-repeat="ratingOption in ratingOptions"
+        ng-class="{ 'is-active':ratingOption.active, 'is-set':ratingOption.set }"
+        ng-click="setRatingOption(ratingOption)"
+        ng-mouseover="mouseoverRatingOption(ratingOption)"
+        ng-mouseleave="mouseleaveRatingOption(ratingOption)">
+      <i class="icon-star-5"></i>
+    </li>
+  </ul>
+</div>
+
+<ol class="application__fields">
+  <li ng-if="profile.location" class="application__fields__item">
+    <div class="application__fields__label">
+      Address
+    </div>
+    <div class="application__fields__detail text-trim" ng-bind-html="renderAddress(profile.location.address)"></div>
+  </li>
+  <li class="application__fields__item" ng-repeat="field in application.fields">
+    <div class="application__fields__label">
+      {{ field.datum.definition.label | blueprint:activeEntity }}
+    </div>
+    <div class="application__fields__detail text-trim" ng-bind-html="renderDetail(field.datum.detail.value)">
+    </div>
+  </li>
+</ol>

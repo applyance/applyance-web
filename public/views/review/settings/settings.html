@@ -20,9 +20,14 @@
       <i class="icon icon-notepad"></i>Questions
     </a>
   </li>
-  <li ng-hide="true" class="sidebar-menu__item" ng-class="{ 'is-active': isActive('labels') }">
+  <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('labels') }">
     <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/labels">
       <i class="icon icon-tag"></i>Labels
+    </a>
+  </li>
+  <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('billing') }">
+    <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/billing">
+      <i class="icon icon-credit-card"></i>Billing
     </a>
   </li>
 </ul>
@@ -43,5 +48,8 @@
   </div>
   <div ng-switch-when="labels" ng-controller="EntityLabelsCtrl">
     <div ng-include="'views/review/settings/manageLabels.html'"></div>
+  </div>
+  <div ng-switch-when="billing" ng-controller="EntityBillingCtrl">
+    <div ng-include="'views/review/settings/manageBilling.html'"></div>
   </div>
 </div>

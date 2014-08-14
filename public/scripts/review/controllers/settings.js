@@ -4,6 +4,7 @@ module.exports = angular.module('Review')
   .controller('SettingsCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'Store',
   function ($scope, $rootScope, $routeParams, $location, Store) {
 
+    $rootScope.withSidebar = true;
     $rootScope.inSettings = true;
     $scope.settings = $location.path().split('/')[3];
 

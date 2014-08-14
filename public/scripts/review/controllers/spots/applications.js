@@ -6,26 +6,35 @@ module.exports = angular.module('Review')
 
       $scope.activeEntity = Store.getActiveEntity();
       $scope.spot = spot_data.spot;
-      $scope.applications = spot_data.applications;
+      $scope.citizens = spot_data.citizens;
 
-      $scope.getAvatarUrl = function(application) {
-        if (application.applicant.account.avatar) {
-          return application.applicant.account.avatar.url;
+      $scope.getLabels = function(citizen) {
+        if ($scope.activeEntity.parent) {
+          return citizen.labels;
         }
-        return 'https://www.gravatar.com/avatar/' + CryptoJS.MD5(application.applicant.account.email) + '?d=mm';
+        return _.reject(citizen.labels, function(label) {
+          return label.entity_id != $scope.activeEntity.id;
+        });
       };
 
-      $scope.getRating = function(application) {
+      $scope.getAvatarUrl = function(citizen) {
+        if (citizen.account.avatar) {
+          return citizen.account.avatar.url;
+        }
+        return 'https://www.gravatar.com/avatar/' + CryptoJS.MD5(citizen.account.email) + '?d=mm';
+      };
+
+      $scope.getRating = function(citizen) {
         var cumulative = 0.0;
-        _.each(application.ratings, function(rating) {
+        _.each(citizen.ratings, function(rating) {
           cumulative += rating.rating;
         });
-        cumulative = cumulative / application.ratings.length;
+        cumulative = cumulative / citizen.ratings.length;
         return Math.round(cumulative);
       };
 
-      $scope.isRatingSet = function(i, application) {
-        return (i <= $scope.getRating(application));
+      $scope.isRatingSet = function(i, citizen) {
+        return (i <= $scope.getRating(citizen));
       };
 
     }
