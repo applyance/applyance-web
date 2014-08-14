@@ -1,18 +1,37 @@
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var source = require('vinyl-source-stream');
+var gulp       = require('gulp');
+var gutil      = require('gulp-util');
+var source     = require('vinyl-source-stream');
 var browserify = require('browserify');
-var watchify = require('watchify');
-var streamify = require('gulp-streamify');
-var uglify = require("gulp-uglify");
-var moment = require("moment");
+var watchify   = require('watchify');
+var streamify  = require('gulp-streamify');
+var uglify     = require("gulp-uglify");
+var moment     = require("moment");
+var sass = require('gulp-ruby-sass');
+
+var paths = {
+  styles: 'public/styles/scss/**/*'
+}
+
+gulp.task('sass', function () {
+
+  gutil.log(gutil.colors.green('---------BUNDLING CSS: ' + moment().format("M/D/YY - h:mm:ss a") + ' ---------'));
+  return gulp.src('public/styles/scss/**/*')
+    .pipe(sass())
+    .on('error', function (err) { console.log(err.message); })
+    .pipe(gulp.dest('public/styles/css'));
+});
 
 gulp.task('watchify', function() {
 
   //
   // Watch for JS changes in the Review Module
   //
-  var reviewBundler = watchify(browserify('./public/scripts/review/app.js', { cache: {}, packageCache: {}, fullPaths: true, debug: true }));
+  var reviewBundler = watchify(browserify('./public/scripts/review/app.js', {
+    cache: {},
+    packageCache: {},
+    fullPaths: true,
+    debug: true
+  }));
   reviewBundler.on('update', rebundleReview);
   rebundleReview();
 
@@ -34,7 +53,12 @@ gulp.task('watchify', function() {
   //
   // Watch for JS changes in the Apply Module
   //
-  var applyBundler = watchify(browserify('./public/scripts/apply/app.js', { cache: {}, packageCache: {}, fullPaths: true, debug: true }));
+  var applyBundler = watchify(browserify('./public/scripts/apply/app.js', {
+    cache: {},
+    packageCache: {},
+    fullPaths: true,
+    debug: true
+  }));
   applyBundler.on('update', rebundleApply);
   rebundleApply();
 
@@ -55,7 +79,12 @@ gulp.task('watchify', function() {
   //
   // Watch for JS changes in the Register Module
   //
-  var registerBundler = watchify(browserify('./public/scripts/register/app.js', { cache: {}, packageCache: {}, fullPaths: true, debug: true }));
+  var registerBundler = watchify(browserify('./public/scripts/register/app.js', {
+    cache: {},
+    packageCache: {},
+    fullPaths: true,
+    debug: true
+  }));
   registerBundler.on('update', rebundleRegister);
   rebundleRegister();
 
@@ -74,6 +103,8 @@ gulp.task('watchify', function() {
   }
 });
 
-gulp.task('watch', ['watchify'])
+gulp.task('watch', ['watchify'], function() {
+  gulp.watch(paths.styles, ['sass']);  
+});
 
-gulp.task('default', ['watch'])
+gulp.task('default', ['watch']);
