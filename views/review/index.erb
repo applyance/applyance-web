@@ -69,7 +69,11 @@
     </div>
 
     <main class="main" ng-view></main>
-
+    
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script>
+        Stripe.setPublishableKey('pk_test_3L0pQ9kdQFxpcAAheVcu3ZWo');
+    </script>
     <script type="text/javascript" src="/scripts/review/review.js"></script>
     <script>
       var app = angular.module('Applyance');

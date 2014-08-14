@@ -14,7 +14,8 @@
     "lodash": "~2.4.1",
     "angular-scroll": "~0.6.1",
     "angular-medium-editor": "*",
-    "tether": "~0.6.5"
+    "tether": "~0.6.5",
+    "angular-payments": "*"
   },
   "resolutions": {
     "moment": "~2.8.1"

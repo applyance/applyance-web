@@ -6,9 +6,14 @@ module.exports = angular.module('Review')
 
       $scope.activeEntity = Store.getActiveEntity();
 
-      $scope.updateBilling = function() {
-
-      };
+      $scope.updateBilling = function(status, response) {
+				if(response.error) {
+					// there was an error. Fix it.
+				} else {
+					// got stripe token, now charge it or smt
+					token = response.id
+				}
+			};
 
     }
   ]

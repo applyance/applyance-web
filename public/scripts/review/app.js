@@ -10,9 +10,10 @@ require("angular");
 require("angular-route");
 require("angular-moment");
 require("angular-medium-editor");
+require('./../ext/angular-payments/lib/angular-payments.js');
 
 // Define Review Module
-angular.module('Review', [require("../services/api").name, 'ngRoute', 'angularMoment', 'angular-medium-editor'])
+angular.module('Review', [require("../services/api").name, 'ngRoute', 'angularMoment', 'angular-medium-editor', 'angularPayments'])
   .config(['$routeProvider', '$locationProvider', 'me', require("./routes")]);
 
 require("../directives");
