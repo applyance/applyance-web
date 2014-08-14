@@ -15,7 +15,7 @@
     "angular-scroll": "~0.6.1",
     "angular-medium-editor": "*",
     "tether": "~0.6.5",
-    "angular-payments": "*"
+    "angular-payments": "https://github.com/stephenjwatkins/angular-payments.git"
   },
   "resolutions": {
     "moment": "~2.8.1"

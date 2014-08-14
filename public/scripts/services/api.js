@@ -135,6 +135,23 @@ module.exports = angular.module('Applyance', ['restangular'])
         return $http.put(apiHost + "/entities/" + entity.id, entity);
       };
 
+      // Entity Customers
+      this.getCustomerForEntity = function(id) {
+        return Restangular.one('entities', id).one('customer').get();
+      };
+      this.getEntityCustomer = function(id) {
+        return Restangular.all('entities').one('customers', id).get();
+      };
+      this.postEntityCustomer = function(id, customer) {
+        return Restangular.one('entities', id).all('customers').post(customer);
+      };
+      this.putEntityCustomer = function(entityCustomer) {
+        return $http.put(apiHost + "/entities/customers/" + entityCustomer.id, entityCustomer);
+      };
+      this.deleteEntityCustomer = function(id) {
+        return Restangular.all('entities').one('customers', id).remove();
+      };
+
       // Reviewers
       this.getReviewers = function(id) {
         return Restangular.one('entities', id).all('reviewers').getList();

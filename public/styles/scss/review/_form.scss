@@ -30,6 +30,16 @@
   display: inline-block;
 }
 
+.settings-inputs__field--data {
+  @extend .settings-inputs__field;
+  padding: 12px 18px;
+
+  font-size: 16px;
+  line-height: 1.4;
+
+  color: $color-text;
+}
+
 .settings-inputs__note {
   font-size: 14px;
   padding: 12px 22px;
