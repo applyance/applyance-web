@@ -13,7 +13,7 @@ module.exports = angular.module('Review')
       $scope.form = {
         updating: false,
         change: false,
-        new: false,
+        new: true,
         customer: null
       };
 
