@@ -15,7 +15,7 @@
 
   <div class="settings-inputs">
     <ul class="settings-inputs__list">
-      <li class="settings-inputs__item" ng-if="!form.customer.isNew">
+      <li class="settings-inputs__item" ng-if="!form.new">
         <label class="settings-inputs__label">Card on File</label>
         <div class="settings-inputs__field--data">
           **** **** **** {{ form.customer.last4 }}, {{ form.customer.exp_month }} / {{ form.customer.exp_year }}
@@ -23,7 +23,7 @@
           <a href="" ng-click="form.change = !form.change">{{ form.change ? 'Cancel' : 'Update' }}</a>
         </div>
       </li>
-      <li class="settings-inputs__item" ng-show="form.customer.isNew || form.change">
+      <li class="settings-inputs__item" ng-show="form.new || form.change">
         <label class="settings-inputs__label">Card Number</label>
         <input type="text"
                size="22"
@@ -33,7 +33,7 @@
                payments-format="card"
                placeholder="1234 1234 1234 1234">
       </li>
-      <li class="settings-inputs__item" ng-show="form.customer.isNew || form.change">
+      <li class="settings-inputs__item" ng-show="form.new || form.change">
         <label class="settings-inputs__label">Card Expiration</label>
         <input type="text"
                size="8"
@@ -42,7 +42,7 @@
                payments-format="expiry"
                placeholder="MM / YY">
       </li>
-      <li class="settings-inputs__item" ng-show="form.customer.isNew || form.change">
+      <li class="settings-inputs__item" ng-show="form.new || form.change">
         <label class="settings-inputs__label">Card CVC</label>
         <input type="text"
                size="5"

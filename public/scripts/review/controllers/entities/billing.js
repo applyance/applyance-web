@@ -1,10 +1,15 @@
 'use strict';
 
 module.exports = angular.module('Review')
-  .controller('EntityBillingCtrl', ['$scope', '$route', 'ApplyanceAPI', 'Store',
-    function ($scope, $route, ApplyanceAPI, Store) {
+  .controller('EntityBillingCtrl', ['$scope', '$route', '$location', 'ApplyanceAPI', 'Store',
+    function ($scope, $route, $location, ApplyanceAPI, Store) {
+
+      if (Store.getActiveEntity().parent) {
+        $location.path("/entities/" + Store.getActiveEntityId() + "/settings");
+      }
 
       $scope.activeEntity = Store.getActiveEntity();
+
       $scope.form = {
         updating: false,
         change: false,

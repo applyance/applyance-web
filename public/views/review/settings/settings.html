@@ -5,7 +5,7 @@
       <i class="icon icon-settings"></i>Settings
     </a>
   </li>
-  <li ng-if="!getActiveEntity().parent && !getActiveEntity().parent_id" class="sidebar-menu__item" ng-class="{ 'is-active': isActive('entities') }">
+  <li ng-if="!getActiveEntity().parent" class="sidebar-menu__item" ng-class="{ 'is-active': isActive('entities') }">
     <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/entities">
       <i class="icon icon-location"></i>Locations
     </a>
@@ -25,7 +25,7 @@
       <i class="icon icon-tag"></i>Labels
     </a>
   </li>
-  <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('billing') }">
+  <li ng-if="!getActiveEntity().parent" class="sidebar-menu__item" ng-class="{ 'is-active': isActive('billing') }">
     <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/billing">
       <i class="icon icon-credit-card"></i>Billing
     </a>
