@@ -1,15 +1,15 @@
 'use strict';
 
 module.exports = angular.module('Review')
-  .controller('EntityLabelsCtrl', ['$scope', 'ApplyanceAPI', '$timeout', 'Store',
-    function ($scope, ApplyanceAPI, $timeout, Store) {
+  .controller('EntityLabelsCtrl', ['$scope', 'ApplyanceAPI', '$timeout', 'Store', '$filter',
+    function ($scope, ApplyanceAPI, $timeout, Store, $filter) {
 
       $scope.activeEntity = Store.getActiveEntity();
 
       $scope.labels = [];
       ApplyanceAPI.getLabels($scope.activeEntity.id).then(function(labels) {
-         $scope.labels.reverse();
-         $scope.labels = labels.concat($scope.labels);
+         // $scope.labels.reverse();
+         $scope.labels = $filter('orderBy')(labels, "name");
       });
 
       if ($scope.activeEntity.parent) {
@@ -50,6 +50,12 @@ module.exports = angular.module('Review')
         ApplyanceAPI.putLabel({
           id: label.id,
           color: color
+        }).then(function(r) {
+          angular.forEach($scope.labels, function(l, index) {
+            if (l.name == label.name) {
+              l.color = color;
+            }
+          });
         });
       };
 
