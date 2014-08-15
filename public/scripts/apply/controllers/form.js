@@ -153,7 +153,7 @@ module.exports = angular.module('Apply')
       };
 
       $scope.onAuthenticateSuccess = function(me) {
-        if (me.citizens) {
+        if (me.citizens.length > 0) {
           $scope.mapMeToApplicant(me);
           ApplyanceAPI.getProfile(me.account.id).then($scope.onProfileLoad);
         } else {
