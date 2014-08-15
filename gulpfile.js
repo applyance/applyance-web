@@ -107,4 +107,8 @@ gulp.task('watch', ['watchify'], function() {
   gulp.watch(paths.styles, ['sass']);  
 });
 
+gulp.task('test', function() {
+  gutil.log(gutil.colors.green('---------TESTING: ' + moment().format("M/D/YY - h:mm:ss a") + ' ---------'));
+});
+
 gulp.task('default', ['watch']);
