@@ -55,6 +55,7 @@ gulp.task('build', ['sass', 'buildJS'], function() {
 
 gulp.task('test', function() {
   gutil.log(gutil.colors.green('---------TESTING would happen here: ' + moment().format("M/D/YY - h:mm:ss a") + ' ---------'));
+  process.exit(0);
 });
 
 gulp.task('default', ['watch']);
