@@ -28,6 +28,65 @@ gulp.task('sass', function () {
 
 gulp.task('watchify', function() {
 
+  var reviewBundler = watchify(browserify('./public/scripts/review/app.js', {
+    cache: {},
+    packageCache: {},
+    fullPaths: true,
+    debug: true
+  }));
+  var applyBundler = watchify(browserify('./public/scripts/apply/app.js', {
+    cache: {},
+    packageCache: {},
+    fullPaths: true,
+    debug: true
+  }));
+  var registerBundler = watchify(browserify('./public/scripts/register/app.js', {
+    cache: {},
+    packageCache: {},
+    fullPaths: true,
+    debug: true
+  }));
+
+  function rebundleReview() {
+
+    gutil.log(gutil.colors.green('---------BUNDLING REVIEW.JS: ' + moment().format("M/D/YY - h:mm:ss a") + ' ---------'));
+
+    return reviewBundler.bundle()
+      // log errors if they happen
+      .on('error', function(e) {
+        gutil.log('Browserify Error', e);
+      })
+      .pipe(source('review.js'))
+      .pipe(gulpif(isProduction, streamify(uglify()))) // only minify if production
+      .pipe(gulp.dest('./public/scripts/review'));
+  }
+  function rebundleApply() {
+
+    gutil.log(gutil.colors.green('---------BUNDLING APPLY.JS ' + moment().format("M/D/YY - h:mm:ss a") + ' ---------'));
+
+    return applyBundler.bundle()
+      // log errors if they happen
+      .on('error', function(e) {
+        gutil.log('Browserify Error', e);
+      })
+      .pipe(source('apply.js'))
+      .pipe(gulpif(isProduction, streamify(uglify()))) // only minify if production
+      .pipe(gulp.dest('./public/scripts/apply'));
+  }
+  function rebundleRegister() {
+
+    gutil.log(gutil.colors.green('---------BUNDLING REGISTER.JS ' + moment().format("M/D/YY - h:mm:ss a") + ' ---------'));
+
+    return registerBundler.bundle()
+      // log errors if they happen
+      .on('error', function(e) {
+        gutil.log('Browserify Error', e);
+      })
+      .pipe(source('register.js'))
+      .pipe(gulpif(isProduction, streamify(uglify()))) // only minify if production
+      .pipe(gulp.dest('./public/scripts/register'));
+  }
+
   // Watch for JS changes in the Review Module
   reviewBundler.on('update', rebundleReview);
 
@@ -36,10 +95,10 @@ gulp.task('watchify', function() {
 
   // Watch for JS changes in the Register Module
   registerBundler.on('update', rebundleRegister);
-
 });
 
 gulp.task('watch', ['buildJS','watchify'], function() {
+
   gulp.watch(paths.styles, ['sass']);
 });
 
@@ -47,75 +106,65 @@ gulp.task('buildJS', function() {
   rebundleReview();
   rebundleApply();
   rebundleRegister();
+
+  //
+  // Bundle the Review JS files
+  //
+  browserify('./public/scripts/review/app.js', {
+    cache: {},
+    packageCache: {},
+    fullPaths: true,
+    debug: !isProduction
+  })
+  .bundle()
+  .on('error', function(e) { // log errors if they happen
+    gutil.log('Browserify Error', e);
+  })
+  .pipe(source('review.js'))
+  .pipe(gulpif(isProduction, streamify(uglify()))) // only minify if production
+  .pipe(gulp.dest('./public/scripts/review'));
+
+  //
+  // Bundle the Register JS files
+  //
+  browserify('./public/scripts/apply/app.js', {
+    cache: {},
+    packageCache: {},
+    fullPaths: true,
+    debug: !isProduction
+  })
+  .bundle()
+  .on('error', function(e) { // log errors if they happen
+    gutil.log('Browserify Error', e);
+  })
+  .pipe(source('apply.js'))
+  .pipe(gulpif(isProduction, streamify(uglify()))) // only minify if production
+  .pipe(gulp.dest('./public/scripts/apply'));
+
+  //
+  // Bundle the Register JS files
+  //
+  browserify('./public/scripts/register/app.js', {
+    cache: {},
+    packageCache: {},
+    fullPaths: true,
+    debug: !isProduction
+  })
+  .bundle()
+  .on('error', function(e) { // log errors if they happen
+    gutil.log('Browserify Error', e);
+  })
+  .pipe(source('register.js'))
+  .pipe(gulpif(isProduction, streamify(uglify()))) // only minify if production
+  .pipe(gulp.dest('./public/scripts/register'));
 });
 
-gulp.task('build', ['sass', 'buildJS'], function() {
-  process.exit(0);
-});
+gulp.task('build', ['sass', 'buildJS']);
 
 gulp.task('test', function() {
+
   gutil.log(gutil.colors.green('---------TESTING would happen here: ' + moment().format("M/D/YY - h:mm:ss a") + ' ---------'));
-  process.exit(0);
 });
 
 gulp.task('default', ['watch']);
 
-
-var reviewBundler = watchify(browserify('./public/scripts/review/app.js', {
-  cache: {},
-  packageCache: {},
-  fullPaths: true,
-  debug: !isProduction
-}));
-var applyBundler = watchify(browserify('./public/scripts/apply/app.js', {
-  cache: {},
-  packageCache: {},
-  fullPaths: true,
-  debug: !isProduction
-}));
-var registerBundler = watchify(browserify('./public/scripts/register/app.js', {
-  cache: {},
-  packageCache: {},
-  fullPaths: true,
-  debug: !isProduction
-}));
-
-function rebundleReview() {
-
-  gutil.log(gutil.colors.green('---------BUNDLING REVIEW.JS: ' + moment().format("M/D/YY - h:mm:ss a") + ' ---------'));
-
-  return reviewBundler.bundle()
-    // log errors if they happen
-    .on('error', function(e) {
-      gutil.log('Browserify Error', e);
-    })
-    .pipe(source('review.js'))
-    .pipe(gulpif(isProduction, streamify(uglify()))) // only minify if production
-    .pipe(gulp.dest('./public/scripts/review'));
-}
-function rebundleApply() {
-
-  gutil.log(gutil.colors.green('---------BUNDLING APPLY.JS ' + moment().format("M/D/YY - h:mm:ss a") + ' ---------'));
-
-  return applyBundler.bundle()
-    // log errors if they happen
-    .on('error', function(e) {
-      gutil.log('Browserify Error', e);
-    })
-    .pipe(source('apply.js'))
-    .pipe(gulpif(isProduction, streamify(uglify()))) // only minify if production
-    .pipe(gulp.dest('./public/scripts/apply'));
-}
-function rebundleRegister() {
-
-  gutil.log(gutil.colors.green('---------BUNDLING REGISTER.JS ' + moment().format("M/D/YY - h:mm:ss a") + ' ---------'));
-
-  return registerBundler.bundle()
-    // log errors if they happen
-    .on('error', function(e) {
-      gutil.log('Browserify Error', e);
-    })
-    .pipe(source('register.js'))
-    .pipe(gulpif(isProduction, streamify(uglify()))) // only minify if production
-    .pipe(gulp.dest('./public/scripts/register'));
-}
