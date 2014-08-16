@@ -5,7 +5,14 @@ rvm:
 
 before_install:
   - npm install
+  - npm install -g bower
   - bower install
 
+before_script:
+  - gulp build
+  
 script:
   - gulp test
+
+after_script:
+  - gulp build
