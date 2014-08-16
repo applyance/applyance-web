@@ -48,9 +48,7 @@ gulp.task('buildJS', function() {
   rebundleRegister();
 });
 
-gulp.task('build', ['sass', 'buildJS'], function() {
-  gutil.log(gutil.colors.green('---------BUILDING (is this before or after the build tasks have finished: ' + moment().format("M/D/YY - h:mm:ss a") + ' ---------'));
-});
+gulp.task('build', ['sass', 'buildJS']);
 
 gulp.task('test', function() {
   gutil.log(gutil.colors.green('---------TESTING would happen here: ' + moment().format("M/D/YY - h:mm:ss a") + ' ---------'));
