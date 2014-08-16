@@ -32,6 +32,7 @@ config.yml
 
 .DS_Store
 .sass-cache
+.c9
 
 ## Client db
 db/applyance_client.db
