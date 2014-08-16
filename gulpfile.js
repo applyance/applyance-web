@@ -103,9 +103,6 @@ gulp.task('watch', ['buildJS','watchify'], function() {
 });
 
 gulp.task('buildJS', function() {
-  rebundleReview();
-  rebundleApply();
-  rebundleRegister();
 
   //
   // Bundle the Review JS files
@@ -125,7 +122,7 @@ gulp.task('buildJS', function() {
   .pipe(gulp.dest('./public/scripts/review'));
 
   //
-  // Bundle the Register JS files
+  // Bundle the Apply JS files
   //
   browserify('./public/scripts/apply/app.js', {
     cache: {},
