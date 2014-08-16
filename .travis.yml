@@ -5,7 +5,7 @@ rvm:
 
 before_install:
   - npm install
+  - bower install
 
 script:
   - gulp test
-  - node -v
