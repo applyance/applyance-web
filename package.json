@@ -16,6 +16,7 @@
     "debowerify": "^0.8.1",
     "gulp": "^3.8.6",
     "gulp-angular-htmlify": "^0.2.2",
+    "gulp-exit": "0.0.2",
     "gulp-if": "^1.2.4",
     "gulp-imagemin": "^0.6.2",
     "gulp-minify-css": "^0.3.7",

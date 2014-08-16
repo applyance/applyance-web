@@ -9,6 +9,7 @@ var moment     = require("moment");
 var sass = require('gulp-ruby-sass');
 var args   = require('yargs').argv;
 var gulpif = require('gulp-if');
+var exit = require('gulp-exit');
 
 var isProduction = args.env === 'production';
 
@@ -49,7 +50,7 @@ gulp.task('buildJS', function() {
 });
 
 gulp.task('build', ['sass', 'buildJS'], function() {
-  return;
+  process.exit(0);
 });
 
 gulp.task('test', function() {
