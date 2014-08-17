@@ -10,12 +10,33 @@ var sass = require('gulp-ruby-sass');
 var args   = require('yargs').argv;
 var gulpif = require('gulp-if');
 var exit = require('gulp-exit');
+var _ = require('lodash');
+var karma = require('karma').server;
 
 var isProduction = args.env === 'production';
 
 var paths = {
   styles: 'public/styles/scss/**/*'
 };
+
+var karmaCommonConf = {
+  browsers: ['Chrome'],
+  frameworks: ['jasmine'],
+  files: [
+    'public/scripts/review/review.js',
+    'test/**/*.spec.js'
+  ]
+};
+
+//Run test once and exit
+gulp.task('test', function (done) {
+  karma.start(_.assign({}, karmaCommonConf, {singleRun: true}), done);
+});
+
+// Watch for file changes and re-run tests on each change
+gulp.task('tdd', function (done) {
+  karma.start(karmaCommonConf, done);
+});
 
 gulp.task('sass', function () {
 
@@ -157,11 +178,6 @@ gulp.task('buildJS', function() {
 });
 
 gulp.task('build', ['sass', 'buildJS']);
-
-gulp.task('test', function() {
-
-  gutil.log(gutil.colors.green('---------TESTING would happen here: ' + moment().format("M/D/YY - h:mm:ss a") + ' ---------'));
-});
 
 gulp.task('default', ['watch']);
 
