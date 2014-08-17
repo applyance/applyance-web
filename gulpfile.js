@@ -20,22 +20,23 @@ var paths = {
 };
 
 var karmaCommonConf = {
-  browsers: ['Chrome'],
   frameworks: ['jasmine'],
   files: [
     'public/scripts/review/review.js',
+    'public/scripts/apply/apply.js',
+    'public/scripts/register/register.js',
     'test/**/*.spec.js'
   ]
 };
 
 //Run test once and exit
 gulp.task('test', function (done) {
-  karma.start(_.assign({}, karmaCommonConf, {singleRun: true}), done);
+  karma.start(_.assign({}, karmaCommonConf, {singleRun: true, browsers: ['PhantomJS']}), done);
 });
 
 // Watch for file changes and re-run tests on each change
 gulp.task('tdd', function (done) {
-  karma.start(karmaCommonConf, done);
+  karma.start(_.assign({}, karmaCommonConf, {browsers: ['Chrome']}), done);
 });
 
 gulp.task('sass', function () {

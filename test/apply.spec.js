@@ -1,4 +1,4 @@
-describe("A suite", function() {
+describe("Apply suite", function() {
   it("contains spec with an expectation", function() {
     expect(true).toBe(true);
   });
