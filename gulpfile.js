@@ -29,14 +29,15 @@ var karmaCommonConf = {
   ]
 };
 
-//Run test once and exit
+//Run test once and exit (for CI)
 gulp.task('test', function (done) {
   karma.start(_.assign({}, karmaCommonConf, {singleRun: true, browsers: ['PhantomJS']}), done);
 });
 
-// Watch for file changes and re-run tests on each change
+// Watch for file changes and re-run tests on each change (for local dev - included in watch task)
 gulp.task('tdd', function (done) {
   karma.start(_.assign({}, karmaCommonConf, {browsers: ['Chrome']}), done);
+  // karma.start(karmaCommonConf, done);
 });
 
 gulp.task('sass', function () {
@@ -119,7 +120,7 @@ gulp.task('watchify', function() {
   registerBundler.on('update', rebundleRegister);
 });
 
-gulp.task('watch', ['buildJS','watchify'], function() {
+gulp.task('watch', ['buildJS','watchify', 'tdd'], function() {
 
   gulp.watch(paths.styles, ['sass']);
 });
