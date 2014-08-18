@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'thin'
 gem 'sinatra'
 gem 'sinatra-contrib'
 
@@ -7,9 +8,15 @@ gem 'sqlite3'
 gem 'sequel'
 
 gem 'oj'
-
-gem 'rerun'
-gem 'thin'
-
 gem 'rest_client'
 gem 'json'
+
+group :development do
+  gem 'rerun'
+end
+
+group :test do
+  gem 'rspec'
+  gem 'rack-test'
+  gem 'factory_girl'
+end
