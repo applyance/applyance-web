@@ -13,6 +13,7 @@ gem 'json'
 
 group :development do
   gem 'rerun'
+  gem 'capistrano', '~> 3.2.0'
 end
 
 group :test do

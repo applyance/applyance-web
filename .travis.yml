@@ -1,16 +1,15 @@
 language: ruby
-
 rvm:
-  - 2.0.0
-
+- 2.0.0
 before_install:
-  - gem install sass
-  - npm install
-  - npm install -g bower
-  - bower install
-
+- openssl aes-256-cbc -K $encrypted_d7d4cdfc8ea8_key -iv $encrypted_d7d4cdfc8ea8_iv
+  -in config.yml.enc -out config.yml -d
+- gem install sass
+- npm install
+- npm install -g bower
+- bower install
 before_script:
-  - gulp build
-
+- gulp build
 script:
-  - gulp test
+- gulp test
+- rspec test/ruby
