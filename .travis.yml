@@ -12,4 +12,4 @@ before_script:
 - gulp build
 script:
 - gulp test
-- rspec test/ruby
+- bundle exec rspec test/ruby
