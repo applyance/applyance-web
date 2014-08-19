@@ -591,3 +591,9 @@ html {
 
 .errors__lead {
   margin-bottom: 48px; }
+
+.investors__logo {
+  display: inline-block;
+  margin-bottom: 96px;
+  width: 188.5px;
+  height: auto; }

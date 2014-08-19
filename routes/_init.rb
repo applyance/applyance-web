@@ -1,8 +1,6 @@
 require_relative '_errors'
 require_relative 'main'
 require_relative 'accounts/_init'
-require_relative 'spots'
-require_relative 'entities'
 
 module Applyance
   module Routing

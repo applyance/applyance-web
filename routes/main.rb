@@ -10,7 +10,10 @@ module Applyance
           erb :'main/investors', :layout => :'layouts/bare'
         end
 
-        # Entity Application
+        # APPLICATIONS
+        #
+        # This is a catch all route for application slugs
+        # This will need to be modified for nested applications in the future
         app.get '/:slug' do
           @api_host = app.settings.api_host
           @api_key = session[:api_key]
