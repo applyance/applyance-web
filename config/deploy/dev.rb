@@ -1,12 +1,29 @@
+set :stage, :production
+
+# This is used in the Nginx VirtualHost to specify which domains
+# the app should appear on. If you don't yet have DNS setup, you'll
+# need to create entries in your local Hosts file for testing.
+set :server_name, "dev.applyance.com"
+
+# used in case we're deploying multiple versions of the same
+# app side by side. Also provides quick sanity checks when looking
+# at filepaths
+set :full_app_name, "#{fetch(:application)}_#{fetch(:stage)}"
+
+server 'dev.applyance.com', user: 'deploy', roles: %w{web app db}, primary: true
+
+# set :deploy_to, "/srv/#{fetch(:deploy_user)}/#{fetch(:full_app_name)}/release/"
+set :deploy_to, "/srv/www/applyance.com"
+
 # Simple Role Syntax
 # ==================
 # Supports bulk-adding hosts to roles, the primary server in each group
 # is considered to be the first unless any hosts have the primary
 # property set.  Don't declare `role :all`, it's a meta role.
 
-role :app, %w{deploy@example.com}
-role :web, %w{deploy@example.com}
-role :db,  %w{deploy@example.com}
+# role :app, %w{deploy@applyance.com}
+# role :web, %w{deploy@applyance.com}
+# role :db,  %w{deploy@applyance.com}
 
 
 # Extended Server Syntax
@@ -15,7 +32,7 @@ role :db,  %w{deploy@example.com}
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
+# server 'applyance.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
 
 
 # Custom SSH Options
@@ -33,7 +50,7 @@ server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
 #
 # And/or per server (overrides global)
 # ------------------------------------
-# server 'example.com',
+# server 'applyance.com',
 #   user: 'user_name',
 #   roles: %w{web app},
 #   ssh_options: {
