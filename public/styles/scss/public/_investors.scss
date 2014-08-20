@@ -1,0 +1,189 @@
+.investors {
+}
+
+.investors__lead {
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-image: url('/img/investors/mast.jpg');
+    background-size: cover;
+    background-repeat: none;
+    background-position: center 30%;
+
+    opacity: .25;
+  }
+  .container {
+    position: relative;
+  }
+}
+
+.investors__logo {
+  display: inline-block;
+  margin-bottom: 96px;
+  width: (377px / 2);
+  height: auto;
+}
+
+.investors__actions {
+  list-style-type: none;
+  margin: -24px;
+  padding: 0;
+  font-size: 0;
+}
+
+.investors__actions__item {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  padding: 24px;
+  @media only screen and (min-width : 480px) {
+    width: percentage(1 / 2);
+  }
+}
+
+.investors__actions__wrap {
+  border: 1px solid rgba(black, .25);
+  box-shadow: 2px 2px 0 rgba(black, .05);
+}
+
+.investors__actions__link {
+  display: block;
+  padding: 36px;
+  position: relative;
+
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+
+  color: $color-base;
+  border: 2px solid rgba(black, .05);
+
+  @include transition(border-color 200ms ease-in-out);
+
+  &:hover {
+    border-color: $color-accent;
+  }
+}
+
+/* Slide */
+
+.investors__slide {
+  position: fixed;
+  top: 0;
+  left: 100%;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: black;
+  text-align: center;
+  font-size: 0;
+
+  @include transition(left 800ms ease-in-out);
+
+  &.is-open {
+    left: 0;
+  }
+}
+
+.investors__slide__close {
+  display: inline-block;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+
+  width: 24px;
+  height: 24px;
+
+  text-decoration: none;
+  opacity: .7;
+
+  @include transition(opacity 200ms ease-in-out);
+
+  .icon {
+    font-size: 30px;
+    color: white;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.investors__slide__wrapper {
+	position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+
+  @include transform(translate(-50%, -50%));
+}
+
+.investors__slide__frame {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+
+  top: 50%;
+  left: 50%;
+  max-width: 720px;
+  max-height: 525px;
+
+  @include transform(translate(-50%, -50%));
+}
+
+/* Financials Form */
+
+.investors__financial-form {
+  display: block;
+  font-size: 0;
+  .email,
+  .submit {
+    display: inline-block;
+  }
+  .email {
+    margin: 0;
+    padding: 12px 18px;
+    width: 100%;
+    max-width: 300px;
+
+    font-size: 16px;
+    line-height: 1.4;
+
+    color: $color-text;
+    outline: none;
+    border: 4px solid $color-gray-rgba;
+    border-radius: 5px;
+    background-color: white;
+
+    @include appearance(none);
+    @include transition(border-color 200ms ease-in-out);
+
+    &:focus {
+      border-color: rgba($color-gray-rgba, .15);
+    }
+  }
+  .submit {
+    padding: 16px 24px;
+    margin-top: 24px;
+    @media only screen and (min-width : 480px) {
+      margin-left: 12px;
+      margin-top: 0;
+    }
+  }
+  .thanks {
+    font-size: 16px;
+  }
+}

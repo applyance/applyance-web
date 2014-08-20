@@ -19,20 +19,18 @@
 </div>
 
 <section ng-if="form.submitted" class="register__submitted">
-  <div class="container">
-    <div class="register__submitted__wrapper">
-      <h1 class="lead--big">
-        You're ready to hire
-      </h1>
-      <div class="subline">
-        Pretty easy, huh? Just share the link below to start hiring.
-      </div>
-      <div class="register__submitted__app-link">
-        http://applyance.com/{{ entity.slug }}
-      </div>
-      <div>
-        <a class="btn--primary" href="/entities/{{ entity.id }}/applications" target="_self">Go to Your Reviewer Dashboard</a>
-      </div>
+  <div class="register__submitted__wrapper">
+    <h1 class="lead--big">
+      You're ready to hire
+    </h1>
+    <div class="subline">
+      Pretty easy, huh? Just share the link below to start hiring.
+    </div>
+    <div class="register__submitted__app-link">
+      http://applyance.com/{{ entity.slug }}
+    </div>
+    <div>
+      <a class="btn--primary" href="/entities/{{ entity.id }}/applications" target="_self">Go to Your Reviewer Dashboard</a>
     </div>
   </div>
 </section>
