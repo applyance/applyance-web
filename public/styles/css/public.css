@@ -8,19 +8,23 @@ html {
   html.bare {
     background-color: #eef0f2; }
 
-.container {
+.container, .container--full, .container--narrow {
   max-width: 960px;
   width: auto;
   padding-left: 24px;
   padding-right: 24px;
   margin-left: auto;
   margin-right: auto; }
-  .container.is-full {
-    max-width: none; }
-    @media only screen and (min-width: 480px) {
-      .container.is-full {
-        padding-left: 48px;
-        padding-right: 48px; } }
+
+.container--full {
+  max-width: none; }
+  @media only screen and (min-width: 480px) {
+    .container--full {
+      padding-left: 48px;
+      padding-right: 48px; } }
+
+.container--narrow {
+  max-width: 768px; }
 
 /* Header */
 .header, .header--base {
@@ -467,7 +471,8 @@ html {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 720px;
+  width: 100%;
+  max-width: 768px;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
@@ -494,7 +499,7 @@ html {
 
 .home__headline {
   margin: 0;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
   font-size: 30px;
   font-weight: 300;
   text-align: center;
@@ -505,6 +510,7 @@ html {
       text-align: left; } }
 
 .home__subline {
+  margin: 0;
   font-size: 16px;
   font-weight: 300;
   line-height: 1.5;
@@ -609,7 +615,7 @@ html {
     background-repeat: none;
     background-position: center 30%;
     opacity: .25; }
-  .investors__lead .container {
+  .investors__lead .container, .investors__lead .container--full, .investors__lead .container--narrow {
     position: relative; }
 
 .investors__logo {
@@ -640,6 +646,7 @@ html {
 .investors__actions__link {
   display: block;
   padding: 36px;
+  position: relative;
   font-size: 20px;
   font-weight: 500;
   line-height: 1.2;
