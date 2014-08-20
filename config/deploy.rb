@@ -38,6 +38,8 @@ set :deploy_via, :copy
 
 namespace :deploy do
 
+	after 'deploy:started', 'deploy:ship'
+
   after 'deploy:publishing', 'deploy:restart'
 
 end
