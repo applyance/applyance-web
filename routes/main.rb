@@ -10,6 +10,23 @@ module Applyance
           erb :'main/invest', :layout => :'layouts/public'
         end
 
+        # Privacy policy
+        app.get '/privacy' do
+          erb :'main/privacy', :layout => :'layouts/public'
+        end
+
+        # Home
+        app.get '/' do
+          if session[:api_key].nil?
+            erb :'main/index', :layout => :'layouts/home'
+          else
+            @api_host = api_host
+            @api_key = session[:api_key]
+            @me = me(@api_key)
+            erb :'review/index'
+          end
+        end
+
         # APPLICATIONS
         #
         # This is a catch all route for application slugs
@@ -27,18 +44,6 @@ module Applyance
           @entity = JSON.parse(response)
 
           erb :'entities/apply'
-        end
-
-        # Home
-        app.get '/' do
-          if session[:api_key].nil?
-            erb :'main/index', :layout => :'layouts/home'
-          else
-            @api_host = api_host
-            @api_key = session[:api_key]
-            @me = me(@api_key)
-            erb :'review/index'
-          end
         end
 
         # Catch all, go to the app
