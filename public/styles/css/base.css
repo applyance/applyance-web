@@ -1086,6 +1086,9 @@ blockquote {
     .btn.is-mini.is-dropdown .icon, .is-mini.is-dropdown.btn--primary .icon, .is-mini.is-dropdown.btn--base .icon, .is-mini.is-dropdown.btn--secondary .icon, .is-mini.is-dropdown.btn--accent .icon {
       font-size: 14px;
       margin-left: 8px; }
+  .btn.is-big, .is-big.btn--primary, .is-big.btn--base, .is-big.btn--secondary, .is-big.btn--accent {
+    padding: 16px 48px;
+    font-size: 20px; }
   .btn.is-disabled, .is-disabled.btn--primary, .is-disabled.btn--base, .is-disabled.btn--secondary, .is-disabled.btn--accent {
     cursor: not-allowed;
     opacity: .3; }

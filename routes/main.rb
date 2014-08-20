@@ -5,9 +5,9 @@ module Applyance
 
         api_host = app.settings.api_host
 
-        # Investors
-        app.get '/investors' do
-          erb :'main/investors', :layout => :'layouts/bare'
+        # Investor landing page
+        app.get '/invest' do
+          erb :'main/invest', :layout => :'layouts/public'
         end
 
         # APPLICATIONS

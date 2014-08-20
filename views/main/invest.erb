@@ -1,0 +1,125 @@
+<% content_for :html_class do %>investors<% end %>
+
+<section class="section investors__lead is-base is-medium">
+  <div class="container a--center text-trim">
+    <h1 class="lead--big register-lead--big">
+      We're Improving HR for the Quick-serve World
+    </h1>
+    <div>
+      <a href="mailto:contact@applyance.com" class="btn--primary is-big">Join Us</a>
+    </div>
+  </div>
+</section>
+
+<section class="section is-big is-gray">
+  <div class="container a--center">
+    <div class="lead register-lead">
+      Find out more about us by visiting these links.
+    </div>
+    <ul class="investors__actions">
+      <li class="investors__actions__item">
+        <div class="investors__actions__wrap">
+          <a href="#" class="investors__actions__link js-deck">Deck</a>
+        </div>
+      </li>
+      <li class="investors__actions__item">
+        <div class="investors__actions__wrap">
+          <a href="https://s3.amazonaws.com/prod.applyance.uploads/ExecutiveSummary.pdf" class="investors__actions__link" target="_blank">Executive Summary</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section is-big">
+  <div class="container a--center">
+    <div class="lead register-lead">
+      Enter your email to view our financial projections.
+    </div>
+    <form id="signup" class="investors__financial-form" method="get" action="//hackapp.us7.list-manage.com/subscribe/post-json?u=a1794c38d0a94a032de2b7336&amp;id=1f03dc06ef&amp;c=?">
+      <input class="email" type="text" name="EMAIL" placeholder="Email here" size="30" />
+      <button class="submit btn--primary" name="subscribe" type="submit">Submit</button>
+    </form>
+  </div>
+</section>
+
+<section class="section investors__slide js-slide" style="display: none;">
+  <div class="investors__slide__wrapper">
+    <iframe class="investors__slide__frame" src="//slides.com/stephenwatkins/applyance/embed?style=dark" width="720" height="525" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+  </div>
+  <a href="#" class="investors__slide__close js-close-slide">
+    <i class="icon icon-delete-o-circle"></i>
+  </a>
+</section>
+
+<% content_for :scripts do %>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+jQuery(document).ready(function($) {
+
+  var $deck = $('.js-deck'),
+      $slide = $('.js-slide'),
+      $slideClose = $('.js-close-slide');
+
+  $deck.on('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    $slide.show();
+    setTimeout(function() {
+      $slide.addClass('is-open');
+    }, 100);
+  });
+
+  $slideClose.on('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    closeSlide();
+  });
+
+  $(document).on('keyup', function(e) {
+    if (e.keyCode != 27) {
+      return;
+    }
+    closeSlide();
+  });
+
+  function closeSlide() {
+    $slide.removeClass('is-open');
+    setTimeout(function() {
+      $slide.hide();
+    }, 1500);
+  }
+
+  /* Mailchimp Signup */
+
+  var $form = $('#signup');
+
+  $form.on('submit', function(e) {
+    e.preventDefault();
+    subscribe();
+  });
+
+  function subscribe() {
+    $.ajax({
+      type: "GET",
+      url: $form.attr('action'),
+      data: $form.serialize(),
+      dataType: "json"
+    })
+    .done(function( data ) {
+      if (data.result == "success") {
+        $form.fadeOut('fast', function() {
+          $form.html('<div class="thanks">Perfect! <a href="https://s3.amazonaws.com/prod.applyance.uploads/Financial+Projections.xlsx" class="btn--primary is-big" target="_blank">View financial projections</a>.</div>');
+          $form.fadeIn();
+        });
+      } else {
+        $form.html('<div class="thanks">' + data.msg + '</div>');
+      }
+    });
+  }
+
+});
+</script>
+<% end %>
