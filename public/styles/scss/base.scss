@@ -46,6 +46,21 @@ blockquote {
   border-left: 4px solid $color-accent;
 }
 
+h1, h2, h3, h4 {
+  margin-top: 2.25em;
+  margin-bottom: 1.25em;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 400;
+}
+
 .selector {
   display: inline-block;
   position: relative;
@@ -123,6 +138,10 @@ blockquote {
       font-size: 14px;
       margin-left: 8px;
     }
+  }
+  &.is-big {
+    padding: 16px 48px;
+    font-size: 20px;
   }
   &.is-disabled {
     cursor: not-allowed;
