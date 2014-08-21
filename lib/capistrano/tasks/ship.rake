@@ -2,8 +2,8 @@ namespace :deploy do
   desc 'Clean, Package, and Upload Code'
 	task :ship do
 
-		# remove files we don't need on the remote server
-  	%w(node_modules test).each do |dir|
+		# remove files we don't need on the remote server (node_modules test bower etc)
+  	%w(test).each do |dir|
       on roles(:app), in: :sequence, wait: 5 do
         system("sudo rm -rf #{dir}")
       end
