@@ -2,7 +2,11 @@
 
   <h1 class="top-header">
     Spots
-    <a href="" ng-if="spots.length > 0" class="header-action btn--primary" ng-click="createSpot()">Create Spot</a>
+    <div class="header-action-wrap">
+      <a href="" class="header-action btn--primary"
+          ng-if="spots.length > 0"
+          ng-click="createSpot()">Create Spot</a>
+    </div>
   </h1>
 
   <div ng-switch on="spots.length">

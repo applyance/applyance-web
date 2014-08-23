@@ -1,6 +1,5 @@
 <h1 class="top-header">
   Settings
-  <a class="header-action btn--primary" ng-class="{ 'is-disabled':isUpdating }" ng-disabled="isUpdating" ng-click="startUpdateEntity()">{{ isUpdating ? 'Saving' : 'Save' }}</a>
 </h1>
 
 <div class="settings-inputs">
@@ -23,6 +22,12 @@
     <li class="settings-inputs__item">
       <label class="settings-inputs__label">Location</label>
       <textarea name="entityLocation" ng-model="address.field" ng-change="addressChange()" placeholder="Enter your address here" cols="30">{{ address.field }}</textarea>
+    </li>
+    <li class="settings-inputs__tray">
+      <button type="submit" class="btn--primary"
+          ng-class="{ 'is-disabled':isUpdating }"
+          ng-disabled="isUpdating"
+          ng-click="startUpdateEntity()">{{ isUpdating ? 'Saving' : 'Save' }}</button>
     </li>
   </ul>
 </div>
