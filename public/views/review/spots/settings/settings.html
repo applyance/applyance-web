@@ -1,6 +1,5 @@
 <h1 class="top-header">
   Spot Settings
-  <a class="header-action btn--primary" ng-class="{ 'is-disabled':isUpdating }" ng-disabled="isUpdating" ng-click="updateSpot()">{{ isUpdating ? 'Saving' : 'Save' }}</a>
 </h1>
 
 <div class="settings-inputs">
@@ -23,6 +22,12 @@
       <div class="rich-editor-wrap">
         <div class="rich-editor text-trim" ng-model="spot.detail" medium-editor options='{ "placeholder": "Enter a spot description", "buttons": ["bold", "italic", "underline", "anchor", "header1", "header2", "quote", "orderedlist", "unorderedlist"]}'></div>
       </div>
+    </li>
+    <li class="settings-inputs__tray">
+      <button class="btn--primary"
+          ng-class="{ 'is-disabled':isUpdating }"
+          ng-disabled="isUpdating"
+          ng-click="updateSpot()">{{ isUpdating ? 'Saving' : 'Save' }}</button>
     </li>
   </ul>
 </div>

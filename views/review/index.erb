@@ -12,13 +12,20 @@
     <link rel="stylesheet" type="text/css" href="/styles/css/base.css" />
     <link rel="stylesheet" type="text/css" href="/styles/css/review.css" />
   </head>
-  <body ng-app="Review" ng-class="{ 'is-flash-open':flashMessage, 'with-sidebar':withSidebar }">
+  <body
+      ng-app="Review"
+      ng-class="{
+        'is-flash-open':flashMessage,
+        'with-sidebar':withSidebar,
+        'is-menu-open':menuStates.main,
+        'is-account-menu-open':menuStates.account,
+        'is-context-menu-open':menuStates.context,
+        'is-settings-menu-open':menuStates.settings
+      }">
 
     <header class="header" ng-controller="HeaderCtrl">
-      <a href="entities/{{ activeEntityId() }}/applications" class="mark">
-        <span class="mark__helper"></span>
-        <img src="/img/mark.blue.png" class="mark__img">
-      </a>
+      <span class="hamburger" ng-click="toggleResponsiveMenu('main');"><i class="icon icon-bars"></i></span>
+      <a href="entities/{{ activeEntityId() }}/applications" class="mark"></a>
       <nav class="nav">
         <ul class="nav__list group">
           <li class="nav__item"
@@ -43,21 +50,23 @@
 
         <context-switcher></context-switcher>
 
-        <a href="/accounts/{{ accountId }}/settings" title="Account Avatar">
-          <img ng-src="{{ getAvatarURL() }}" class="account__avatar" />
+        <a href="" ng-click="toggleResponsiveMenu('account')" class="account__avatar" title="Account Avatar">
+          <img ng-src="{{ getAvatarURL() }}" />
         </a>
 
         <ul class="account__settings-list">
 
           <li class="account__settings-item">
             <a href="/accounts/{{ accountId }}/settings" class="account__settings-link" title="Account Settings">
-              <i class="icon-settings"></i>
+              <i class="icon icon-settings"></i>
+              <span class="label">Account Settings</span>
             </a>
           </li>
 
           <li class="account__settings-item">
             <a href="/accounts/logout" target="_self" class="account__settings-link" title="Sign Out">
-              <i class="icon-logout"></i>
+              <i class="icon icon-logout"></i>
+              <span class="label">Sign Out</span>
             </a>
           </li>
         </ul>
@@ -68,7 +77,9 @@
       <p>{{ flashMessage }}</p>
     </div>
 
-    <main class="main" ng-view></main>
+    <div class="main-wrap">
+      <main class="main" ng-view></main>
+    </div>
 
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <script>

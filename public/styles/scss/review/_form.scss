@@ -15,15 +15,22 @@
 
 .settings-inputs__tray {
   margin-top: 48px;
-  padding-left: $settings-inputs-label-width;
+  padding-left: 0;
+  @media only screen and (min-width : $breakpoint-settings-list) {
+    padding-left: $settings-inputs-label-width;
+  }
 }
 
 .settings-inputs__label {
-  display: inline-block;
-  vertical-align: top;
+  display: block;
   padding: 15px 0;
   font-size: 16px;
-  width: $settings-inputs-label-width;
+
+  @media only screen and (min-width : $breakpoint-settings-list) {
+    display: inline-block;
+    vertical-align: top;
+    width: $settings-inputs-label-width;
+  }
 }
 
 .settings-inputs__field {
@@ -48,9 +55,11 @@
 }
 
 .settings-inputs__item .rich-editor-wrap {
-  display: inline-block;
-  width: 600px;
-  width: calc(100% - 200px);
+  @media only screen and (min-width : $breakpoint-settings-list) {
+    display: inline-block;
+    width: 600px;
+    width: calc(100% - 200px);
+  }
 }
 
 input,
@@ -60,6 +69,8 @@ textarea,
 .rich-editor {
   margin: 0;
   padding: 12px 18px;
+  width: 100%;
+  max-width: 360px;
 
   font-size: 16px;
   line-height: 1.4;
@@ -85,6 +96,7 @@ textarea,
 }
 
 .radio {
+  width: auto;
   border-radius: 0;
   border-left: 1px solid $color-gray-rgba;
   border-right: 1px solid $color-gray-rgba;

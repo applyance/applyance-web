@@ -1,15 +1,8 @@
 <div
-    class="main-container--application with-sidebar--application"
-    ng-class="{ 'is-collapsed':sidebar.collapsed }">
+    class="main-container--application">
   <div class="application-container group">
     <div
         ng-include src="'views/review/applicants/profile.html'"
         ng-controller="ApplicationProfileCtrl" class="application"></div>
   </div>
 </div>
-
-<ul class="sidebar--applicant"
-    ng-controller="ApplicationSidebarCtrl"
-    ng-include src="'views/review/applicants/sidebar.html'"
-    ng-class="{ 'is-collapsed':sidebar.collapsed }">
-</ul>

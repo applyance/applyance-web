@@ -6,6 +6,9 @@ window.moment       = require("moment");
 window.MediumEditor = require("medium-editor");
 window.Tether       = require("tether");
 
+var attachFastClick = require('fastclick');
+attachFastClick(document.body);
+
 require("angular");
 require("angular-route");
 require("angular-moment");
@@ -14,6 +17,22 @@ require('./../ext/angular-payments/lib/angular-payments.js');
 
 // Define Review Module
 angular.module('Review', [require("../services/api").name, 'ngRoute', 'angularMoment', 'angular-medium-editor', 'angularPayments'])
+  .run(['$rootScope', function($rootScope) {
+    $rootScope.menuStates = { 'main': false, 'account': false, 'context': false, 'settings': false };
+    $rootScope.closeResponsiveMenus = function() {
+      _.each($rootScope.menuStates, function(menu, key) {
+        $rootScope.menuStates[key] = false;
+      });
+    };
+    $rootScope.toggleResponsiveMenu = function(menu) {
+      var target = !$rootScope.menuStates[menu];
+      $rootScope.closeResponsiveMenus();
+      $rootScope.menuStates[menu] = target;
+    };
+    $rootScope.$on("$routeChangeSuccess", function(args) {
+      $rootScope.closeResponsiveMenus();
+    });
+  }])
   .config(['$routeProvider', '$locationProvider', 'me', require("./routes")]);
 
 require("../directives");

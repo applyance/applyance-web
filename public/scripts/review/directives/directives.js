@@ -18,8 +18,8 @@ module.exports = angular.module('Review')
       }
     };
   })
-  .directive('contextSwitcher', ['Store', '$location', '$document', '$filter',
-    function (Store, $location, $document, $filter) {
+  .directive('contextSwitcher', ['$rootScope', 'Store', '$location', '$document', '$filter',
+    function ($rootScope, Store, $location, $document, $filter) {
     return {
       restrict: 'AE',
       replace: true,
@@ -28,6 +28,10 @@ module.exports = angular.module('Review')
         scope.showEntityList = false;
 
         var sortedEntities = [];
+
+        scope.toggleContextMenu = function() {
+          $rootScope.toggleMenu('context');
+        };
 
         scope.entities = function() {
           if (Store.getIsSortDirty()) {
