@@ -2,7 +2,6 @@
 
   <h1 class="top-header">
     Billing
-    <button class="header-action btn--primary" ng-class="{ 'is-disabled':form.updating }" type="submit">{{ form.updating ? 'Saving' : 'Save' }}</button>
   </h1>
 
   <div class="toaster text-trim">
@@ -50,6 +49,11 @@
                payments-validate="cvc"
                payments-type-model="type"
                payments-format="cvc">
+      </li>
+      <li class="settings-inputs__tray">
+        <button type="submit" class="btn--primary"
+            ng-class="{ 'is-disabled':form.updating }"
+            ng-disabled="form.updating">{{ form.updating ? 'Saving' : 'Save' }}</button>
       </li>
     </ul>
   </div>

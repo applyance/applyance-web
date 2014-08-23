@@ -1201,7 +1201,11 @@ h3 {
   opacity: .1; }
 
 .attachment__choose {
-  margin-left: 24px; }
+  margin-top: 24px; }
+  @media only screen and (min-width: 400px) {
+    .attachment__choose {
+      margin-top: 0;
+      margin-left: 24px; } }
 
 .attachment__file {
   opacity: 0;

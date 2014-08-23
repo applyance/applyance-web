@@ -1,36 +1,40 @@
 <!-- Secondary nav aka Sidebar -->
-<ul class="sidebar-menu">
-  <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('settings') }">
-    <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/settings">
-      <i class="icon icon-settings"></i>Settings
-    </a>
-  </li>
-  <li ng-if="!getActiveEntity().parent" class="sidebar-menu__item" ng-class="{ 'is-active': isActive('entities') }">
-    <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/entities">
-      <i class="icon icon-location"></i>Locations
-    </a>
-  </li>
-  <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('reviewers') }">
-    <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/reviewers">
-      <i class="icon icon-group"></i>Team
-    </a>
-  </li>
-  <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('blueprints') }">
-    <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/blueprints">
-      <i class="icon icon-notepad"></i>Questions
-    </a>
-  </li>
-  <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('labels') }">
-    <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/labels">
-      <i class="icon icon-tag"></i>Labels
-    </a>
-  </li>
-  <li ng-if="!getActiveEntity().parent" class="sidebar-menu__item" ng-class="{ 'is-active': isActive('billing') }">
-    <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/billing">
-      <i class="icon icon-credit-card"></i>Billing
-    </a>
-  </li>
-</ul>
+<div class="sidebar" ng-class="{ 'is-responsive-open':isResponsiveOpen }">
+  <a href="" class="sidebar-dropdown"
+      ng-click="isResponsiveOpen = !isResponsiveOpen"><i class="icon icon-bars"></i></a>
+  <ul class="sidebar-menu">
+    <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('settings') }">
+      <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/settings">
+        <i class="icon icon-settings"></i>Settings
+      </a>
+    </li>
+    <li ng-if="!getActiveEntity().parent" class="sidebar-menu__item" ng-class="{ 'is-active': isActive('entities') }">
+      <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/entities">
+        <i class="icon icon-location"></i>Locations
+      </a>
+    </li>
+    <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('reviewers') }">
+      <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/reviewers">
+        <i class="icon icon-group"></i>Team
+      </a>
+    </li>
+    <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('blueprints') }">
+      <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/blueprints">
+        <i class="icon icon-notepad"></i>Questions
+      </a>
+    </li>
+    <li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('labels') }">
+      <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/labels">
+        <i class="icon icon-tag"></i>Labels
+      </a>
+    </li>
+    <li ng-if="!getActiveEntity().parent" class="sidebar-menu__item" ng-class="{ 'is-active': isActive('billing') }">
+      <a class="sidebar-menu__link" href="/entities/{{ getActiveEntity().id }}/billing">
+        <i class="icon icon-credit-card"></i>Billing
+      </a>
+    </li>
+  </ul>
+</div>
 
 <!-- content area (right side stuff) -->
 <div class="main-container with-sidebar" ng-switch="settings">
