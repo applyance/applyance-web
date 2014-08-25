@@ -14,7 +14,7 @@ namespace :travis do
 	task :create_release do
 		run_locally do
 			execute :mkdir, '-p', :'tmp'
-			execute "tar -cz --exclude .git/ --exclude .sass-cache/ --exclude node_modules/ --exclude public/scripts/ext/ -f tmp/#{fetch(:release_timestamp)}.tar.gz ."
+			execute "tar -cz --exclude .git/ --exclude .sass-cache/ --exclude node_modules/ --exclude public/scripts/ext/ --exclude tmp/#{fetch(:release_timestamp)}.tar.gz -f tmp/#{fetch(:release_timestamp)}.tar.gz ."
 		end
 		on release_roles :all do
 			execute :mkdir, '-p', release_path
