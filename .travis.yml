@@ -13,3 +13,5 @@ before_script:
 script:
 - gulp test
 - bundle exec rspec test/ruby
+after_success:
+- cap development deploy
