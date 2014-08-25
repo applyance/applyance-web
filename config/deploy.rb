@@ -45,7 +45,7 @@ namespace :deploy do
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
 			within current_path do
-				if test("[ -f tmp/pids/thin.pid ]")
+				if test("[ -f #{current_path}/tmp/pids/thin.pid ]")
 					execute :bundle, :exec, "thin restart --port 3002 --environment #{fetch(:stage)} --daemonize"
 			  else
 					execute :bundle, :exec, "thin start --port 3002 --environment #{fetch(:stage)} --daemonize"
