@@ -13,12 +13,19 @@ $header-link-color: white;
 $header-link-underline-color: $color-brand;
 
 $mark-bg-color: $color-brand;
-$mark-width: 22px;
+$_mark-ratio: (108/ 85);
+$mark-width: 24px;
+$mark-height: $mark-width / $_mark-ratio;
+$mark-mobile-width: 28px;
+$mark-mobile-height: $mark-mobile-width / $_mark-ratio;
+
+// Nav
+
+$mobile-nav-width: 240px;
 
 // Sidebar
 
 $sidebar-width: 260px;
-
 
 // Settings
 
@@ -32,3 +39,17 @@ $toaster-max-width: 900px;
 
 $application-width: 800px;
 $application-sidebar-width: 308px;
+
+// Breakpoints
+
+$mobile-nav-breakpoint: 768px + 1px;
+$mobile-account-breakpoint: 1024px + 1px;
+
+$mobile-settings-sidebar-breakpoint: 768px + 1px;
+
+// Save buttons on the header line
+$mobile-header-action-breakpoint: 480px;
+
+$breakpoint-slats: 768px;
+
+$breakpoint-settings-list: 660px;

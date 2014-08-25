@@ -32,11 +32,11 @@ module.exports = angular.module('Review')
           cumulative += rating.rating;
         });
         cumulative = cumulative / citizen.ratings.length;
-        return Math.round(cumulative);
+        return cumulative;
       };
 
       $scope.isRatingSet = function(i, citizen) {
-        return (i <= $scope.getRating(citizen));
+        return (i <= Math.round($scope.getRating(citizen)));
       };
 
     }]);

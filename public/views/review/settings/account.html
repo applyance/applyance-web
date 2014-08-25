@@ -1,7 +1,6 @@
 <div class="main-container">
   <h1 class="top-header">
     Account Settings
-    <a class="header-action btn--primary" ng-class="{ 'is-disabled':isUpdating }" ng-disabled="isUpdating" ng-click="updateAccount()">{{ isUpdating ? 'Saving' : 'Save' }}</a>
   </h1>
 
   <div class="settings-inputs">
@@ -37,6 +36,12 @@
             With changes to sensitive data, we need you to verify your password.
           </div>
         </div>
+      </li>
+      <li class="settings-inputs__tray">
+        <button type="submit" class="btn--primary"
+            ng-class="{ 'is-disabled':isUpdating }"
+            ng-disabled="isUpdating"
+            ng-click="updateAccount()">{{ isUpdating ? 'Saving' : 'Save' }}</button>
       </li>
     </ul>
   </div>

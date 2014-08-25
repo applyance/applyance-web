@@ -1,15 +1,19 @@
-<ul class="sidebar-menu">
-	<li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('settings') }">
-		<a class="sidebar-menu__link" href="/spots/{{ spot.id }}/settings">
-			<i class="icon icon-settings"></i>Spot Settings
-		</a>
-	</li>
-	<li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('blueprints') }">
-		<a class="sidebar-menu__link" href="/spots/{{ spot.id }}/blueprints">
-			<i class="icon icon-notepad"></i>Spot Questions
-		</a>
-	</li>
-</ul>
+<div class="sidebar" ng-class="{ 'is-responsive-open':isResponsiveOpen }">
+	<a href="" class="sidebar-dropdown"
+			ng-click="isResponsiveOpen = !isResponsiveOpen"><i class="icon icon-bars"></i></a>
+	<ul class="sidebar-menu">
+		<li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('settings') }">
+			<a class="sidebar-menu__link" href="/spots/{{ spot.id }}/settings">
+				<i class="icon icon-settings"></i>Spot Settings
+			</a>
+		</li>
+		<li class="sidebar-menu__item" ng-class="{ 'is-active': isActive('blueprints') }">
+			<a class="sidebar-menu__link" href="/spots/{{ spot.id }}/blueprints">
+				<i class="icon icon-notepad"></i>Spot Questions
+			</a>
+		</li>
+	</ul>
+</div>
 
 <!-- content area (right side stuff) -->
 <div class="main-container with-sidebar" ng-switch="spotSettings">

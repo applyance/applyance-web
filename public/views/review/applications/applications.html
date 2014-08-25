@@ -14,20 +14,23 @@
         <li class="slats__item" ng-repeat="citizen in citizens">
 
           <ul class="slats__units unit--1of2">
-            <li class="slats__units__item unit--1of10">
-              <img class="avatar" ng-src="{{ getAvatarUrl(citizen) }}" />
-            </li>
             <li class="slats__units__item">
+              <img class="avatar slats--application__avatar" ng-src="{{ getAvatarUrl(citizen) }}" />
+            </li>
+            <li class="slats__units__item slats--application__main">
               <a class="slats__item__header" href="applicants/{{ citizen.id }}">
                 {{ citizen.account.name }}
               </a>
               <div>
-                Applied on {{ citizen.applications[citizen.applications.length - 1].submitted_at | amDateFormat: 'MMMM Do YYYY, h:mm a' }}
+                <span class="slats--application__applied-on">Applied on </span>{{ citizen.applications[citizen.applications.length - 1].submitted_at | amDateFormat: 'MMM. Do YYYY, h:mm a' }}
               </div>
             </li>
           </ul>
 
-          <ul class="slats__units is-right unit--1of2">
+          <ul class="slats__units is-right unit--1of2 slats--application__meta">
+            <li class="slats__units__item unit--1of2 slats--application__number-rating">
+              {{ getRating(citizen) | number:1 }}
+            </li>
             <li class="slats__units__item unit--1of2" ng-if="getLabels(citizen).length > 0">
               <ul class="applicant-labels application-list__labels">
                 <li class="applicant-labels__item"
@@ -37,7 +40,7 @@
                 </li>
               </ul>
             </li>
-            <li class="slats__units__item unit--1of2">
+            <li class="slats__units__item unit--1of2 slats--application__star-rating">
               <ul class="applicant-rating">
                 <li class="applicant-rating__item"
                     ng-repeat="i in [1,2,3,4,5]"

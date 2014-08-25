@@ -1,4 +1,5 @@
 <div class="context-switcher">
+	<a href="" class="context-switcher__mobile-pin" ng-click="closeResponsiveMenus(); showEntityList = !showEntityList"><i class="icon icon-location"></i></a>
 	<a ng-if="activeEntity().parent"
 			class="context-switcher__active-parent" href=""
 			ng-click="updateEntitySelect(activeEntity().parent)">{{ activeEntity().parent.name }}<i class="icon icon-caret-right"></i></a>
