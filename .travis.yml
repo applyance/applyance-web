@@ -2,7 +2,8 @@ language: ruby
 rvm:
 - 2.0.0
 before_install:
-- openssl aes-256-cbc -k "$encrypted_d7d4cdfc8ea8_key" -in config.yml.enc -out config.yml -d
+- openssl aes-256-cbc -k "$encrypted_d7d4cdfc8ea8_key" -in config.yml.enc -out config.yml
+  -d
 - gem install sass
 - npm install
 - npm install -g bower
@@ -13,7 +14,10 @@ script:
 - gulp test
 - bundle exec rspec test/ruby
 after_success:
+- cat $DEPLOY_KEY > ~/.ssh/id_rsa
+- chmod 600 ~/.ssh/id_rsa
 - bundle exec cap development deploy
 env:
   global:
-    secure: Q0ICB3PvEvB6P8Ffq4IP8RYecixLLZ93hndOB9mRqn+UwXxRZ4GqtLQGb/zZ9bhyDNWJHBPjZo8p4tGum7fpVijVrpHd7YFS5AqcK/1P4NC6UKWO8cg8u5Qnj736InB9kegDuz1J2FkS3gJcSHjKxt9mMgMJwVWZEfi7Mf1Hh9A=
+  - secure: Q0ICB3PvEvB6P8Ffq4IP8RYecixLLZ93hndOB9mRqn+UwXxRZ4GqtLQGb/zZ9bhyDNWJHBPjZo8p4tGum7fpVijVrpHd7YFS5AqcK/1P4NC6UKWO8cg8u5Qnj736InB9kegDuz1J2FkS3gJcSHjKxt9mMgMJwVWZEfi7Mf1Hh9A=
+  - secure: XlkRylZHiSR5eSnMRzWwep/0gGiKKzQSc6KmtQz6rkh4Opeo/6H0xHXgMnVsusLwK8zXVP9AwAyhC+pz5u/Gwn7STQOSl7GLOEbCjdigLWYyHJtRrM8hnhOvL2x3Z8T/rFr92tHlsBwxTX8uGeFSpnYbP1q9KJ98OP0H5zxMHiI=

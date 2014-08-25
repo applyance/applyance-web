@@ -41,4 +41,5 @@ public/scripts/review/review.js
 public/scripts/register/register.js
 public/scripts/apply/apply.js
 
-public/styles/css/*
+travis_rsa
+travis_rsa.pub
