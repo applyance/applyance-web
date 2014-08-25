@@ -2,8 +2,7 @@ language: ruby
 rvm:
 - 2.0.0
 before_install:
-- openssl aes-256-cbc -k "$encrypted_d7d4cdfc8ea8_key" -in config.yml.enc -out config.yml
-  -d
+- openssl aes-256-cbc -k "$encrypted_d7d4cdfc8ea8_key" -in config.yml.enc -out config.yml -d
 - gem install sass
 - npm install
 - npm install -g bower
