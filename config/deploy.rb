@@ -1,6 +1,6 @@
 lock '3.2.1'
 
-set :application, 'applyance-web'
+set :application, 'Applyance Web'
 set :scm, :git
 
 namespace :travis do
