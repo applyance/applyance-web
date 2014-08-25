@@ -44,12 +44,14 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-			within current_path do
-				if test("[ -f #{current_path}/tmp/pids/thin.pid ]")
+			if test "[ -f #{current_path}/tmp/pids/thin.pid ]"
+				within current_path do
 					execute :bundle, :exec, "thin restart --port 3002 --environment #{fetch(:stage)} --daemonize"
-			  else
+				end
+		  else
+				within current_path do
 					execute :bundle, :exec, "thin start --port 3002 --environment #{fetch(:stage)} --daemonize"
-			  end
+				end
 			end
     end
   end
