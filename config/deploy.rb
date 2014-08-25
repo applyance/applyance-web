@@ -2,6 +2,8 @@ lock '3.2.1'
 
 set :application, 'Applyance Web'
 set :scm, :git
+set :linked_dirs, %w{bin log tmp/pids}
+set :keep_releases, 5
 
 namespace :travis do
 
