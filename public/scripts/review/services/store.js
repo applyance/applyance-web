@@ -25,6 +25,11 @@ module.exports = angular.module('Review')
       this.getReviewers = function() {
         return reviewers;
       };
+      this.hasAccessToEntity = function(targetEntity) {
+        return _.find(this.getEntities(), function(entity) {
+          return entity.id == targetEntity.id;
+        });
+      };
 
       //
       // Entites
@@ -35,6 +40,7 @@ module.exports = angular.module('Review')
       this.setIsSortDirty = function(_dirty) {
         isSortDirty = _dirty;
       };
+
       this.getEntities = function() {
         return _.map(reviewers, function(reviewer) {
           return reviewer.entity;

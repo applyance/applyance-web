@@ -29,7 +29,7 @@ module Applyance
 
         # APPLICATIONS
         #
-        # This is a catch all route for application slugs
+        # This is a CATCH ALL route for application slugs
         # This will need to be modified for nested applications in the future
         app.get '/:slug' do
           @api_host = app.settings.api_host
@@ -44,17 +44,6 @@ module Applyance
           @entity = JSON.parse(response)
 
           erb :'entities/apply'
-        end
-
-        # Catch all, go to the app
-        app.get //, :provides => 'html' do
-          if session[:api_key].nil?
-            redirect to("/")
-          end
-          @api_host = app.settings.api_host
-          @api_key = session[:api_key]
-          @me = me(@api_key)
-          erb :'review/index'
         end
 
       end

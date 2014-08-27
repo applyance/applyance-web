@@ -31,7 +31,14 @@ module Applyance
             end
 
             session[:api_key] = auth['api_key']
-            redirect to('/')
+
+            redirect_to = '/'
+            if params[:redirect_to]
+              redirect_to = params[:redirect_to]
+              session[:redirect_to] = nil
+            end
+
+            redirect to(redirect_to)
 
           end
 

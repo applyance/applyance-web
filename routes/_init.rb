@@ -1,6 +1,7 @@
 require_relative '_errors'
 require_relative 'main'
 require_relative 'accounts/_init'
+require_relative 'review'
 
 module Applyance
   module Routing
@@ -8,6 +9,7 @@ module Applyance
       def self.registered(app)
         app.register Applyance::Routing::Errors
         app.register Applyance::Routing::Accounts::Init
+        app.register Applyance::Routing::Review
         app.register Applyance::Routing::Main
       end
     end

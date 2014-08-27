@@ -1,6 +1,8 @@
 require 'sinatra/base'
 require 'sinatra/config_file'
-require "sinatra/content_for"
+require 'sinatra/content_for'
+require 'sinatra/multi_route'
+require 'rack-flash'
 
 require 'sequel'
 require 'oj'
@@ -15,6 +17,7 @@ module Applyance
   class Client < Sinatra::Base
 
     helpers Sinatra::ContentFor
+    register Sinatra::MultiRoute
 
     # Load config file
     register Sinatra::ConfigFile
@@ -29,6 +32,9 @@ module Applyance
       enable :static
       set :show_exceptions, :after_handler
     end
+
+    # Enable rack flash
+    use Rack::Flash, :sweep => true
 
     # Helpers
     helpers Applyance::Helpers::API

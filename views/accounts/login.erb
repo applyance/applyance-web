@@ -25,6 +25,9 @@
 
   <ul class="login__tray">
     <li class="login__tray__item">
+      <% if session[:redirect_to] %>
+      <input type="hidden" name="redirect_to" value="<%= session[:redirect_to] %>" />
+      <% end %>
       <button class="btn--base login__submit" type="submit">Sign In</button>
     </li>
     <li class="login__tray__item">

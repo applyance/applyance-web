@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'thin'
 gem 'sinatra'
 gem 'sinatra-contrib'
+gem 'rack-flash3'
 
 gem 'sqlite3'
 gem 'sequel'

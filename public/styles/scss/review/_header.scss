@@ -372,6 +372,9 @@
     font-size: 16px;
     opacity: .25;
   }
+  &.is-not-clickable {
+    cursor: default;
+  }
 }
 
 .context-switcher__entities-wrap {

@@ -1087,6 +1087,8 @@ textarea,
     color: white;
     font-size: 16px;
     opacity: .25; }
+  .context-switcher__active-parent.is-not-clickable {
+    cursor: default; }
 
 .context-switcher__entities-wrap {
   display: block;

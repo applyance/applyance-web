@@ -2,16 +2,23 @@
 	<a href="" class="context-switcher__mobile-pin" ng-click="closeResponsiveMenus(); showEntityList = !showEntityList"><i class="icon icon-location"></i></a>
 	<a ng-if="activeEntity().parent"
 			class="context-switcher__active-parent" href=""
-			ng-click="updateEntitySelect(activeEntity().parent)">{{ activeEntity().parent.name }}<i class="icon icon-caret-right"></i></a>
+			ng-class="{ 'is-not-clickable':isEntityAccessible(activeEntity().parent) }"
+			ng-click="updateEntitySelect(activeEntity().parent)">
+		{{ activeEntity().parent.name }}<i class="icon icon-caret-right"></i>
+	</a>
 	<a class="context-switcher__active-entity" href=""
 			ng-click="showEntityList = !showEntityList"
-			ng-class="{ 'is-single':(entities().length == 1) }">{{ activeEntity().name }}<i class="icon icon-caret-right"></i></a>
-	<div class="context-switcher__entities-wrap" ng-if="entities().length > 1" ng-show="showEntityList">
+			ng-class="{ 'is-single':(entityCount() == 1) }">
+		{{ activeEntity().name }}<i class="icon icon-caret-right"></i>
+	</a>
+	<div class="context-switcher__entities-wrap" ng-if="entityCount() > 1" ng-show="showEntityList">
 		<ul class="context-switcher__entities">
 			<li class="context-switcher__entity__item"
 					ng-repeat="entity in entities()"
 			    ng-class="{ 'is-child': !!entity.parent }">
-				<a class="context-switcher__entity__link" href="" ng-click="updateEntitySelect(entity)">{{ entity.name }}</a>
+				<a class="context-switcher__entity__link" href="" ng-click="updateEntitySelect(entity)">
+					{{ entity.name }}
+				</a>
 			</li>
 		</ul>
 	</div>

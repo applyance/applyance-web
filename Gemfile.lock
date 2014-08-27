@@ -35,6 +35,8 @@ GEM
     netrc (0.7.7)
     oj (2.9.9)
     rack (1.5.2)
+    rack-flash3 (1.0.5)
+      rack
     rack-protection (1.5.3)
       rack
     rack-test (0.6.2)
@@ -94,6 +96,7 @@ DEPENDENCIES
   factory_girl
   json
   oj
+  rack-flash3
   rack-test
   rerun
   rest_client

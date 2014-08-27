@@ -120,8 +120,7 @@ gulp.task('watchify', function() {
   registerBundler.on('update', rebundleRegister);
 });
 
-gulp.task('watch', ['sass', 'buildJS','watchify', 'tdd'], function() {
-
+gulp.task('watch', ['sass', 'buildJS', 'watchify'], function() {
   gulp.watch(paths.styles, ['sass']);
 });
 
@@ -182,4 +181,3 @@ gulp.task('buildJS', function() {
 gulp.task('build', ['sass', 'buildJS']);
 
 gulp.task('default', ['watch']);
-
