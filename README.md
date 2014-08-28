@@ -1,7 +1,7 @@
 Applyance Client
 ==
 
-[![Build Status](https://magnum.travis-ci.com/applyance/applyance-web.svg?token=6FXdJAyY54zXPTSyzCZp&branch=feature/ci)](https://magnum.travis-ci.com/applyance/applyance-web)
+[![Build Status](https://magnum.travis-ci.com/applyance/applyance-web.svg?token=6FXdJAyY54zXPTSyzCZp&branch=dev)](https://magnum.travis-ci.com/applyance/applyance-web)
 
 Client component for Applyance that interfaces with the server.
 
