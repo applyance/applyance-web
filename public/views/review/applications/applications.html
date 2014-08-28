@@ -21,8 +21,9 @@
               <a class="slats__item__header" href="applicants/{{ citizen.id }}">
                 {{ citizen.account.name }}
               </a>
-              <div>
-                <span class="slats--application__applied-on">Applied on</span> {{ citizen.applications[citizen.applications.length - 1].submitted_at | amDateFormat: 'MMM. Do YYYY, h:mm a' }}
+              <div class="slats--application__applied-on">
+                <span class="preface">Applied on</span>
+                <span class="date">{{ citizen.applications[citizen.applications.length - 1].submitted_at | amDateFormat: 'MMM. Do YYYY, h:mm a' }}</span>
               </div>
             </li>
           </ul>

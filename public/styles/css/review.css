@@ -1464,11 +1464,14 @@ a.slats__item__header {
       width: 72px;
       height: 72px; } }
 
-.slats--application__applied-on {
+.slats--application__applied-on .preface {
   display: none; }
   @media only screen and (min-width: 1024px) {
-    .slats--application__applied-on {
+    .slats--application__applied-on .preface {
       display: inline-block; } }
+@media only screen and (min-width: 1024px) {
+  .slats--application__applied-on .date {
+    margin-left: 12px; } }
 
 .slats--application__number-rating {
   display: inline-block;

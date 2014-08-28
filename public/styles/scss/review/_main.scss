@@ -353,9 +353,16 @@ a.slats__item__header {
 }
 
 .slats--application__applied-on {
-  display: none;
-  @media only screen and (min-width : 1024px) {
-    display: inline-block;
+  .preface {
+    display: none;
+    @media only screen and (min-width : 1024px) {
+      display: inline-block;
+    }
+  }
+  .date {
+    @media only screen and (min-width : 1024px) {
+      margin-left: 12px;
+    }
   }
 }
 
