@@ -27,12 +27,16 @@ build/
 
 .rvmrc
 
-## Config files for server
-config.yml
-
 .DS_Store
 .sass-cache
 .c9
 
 ## Client db
 db/applyance_client.db
+
+public/scripts/review/review.js
+public/scripts/register/register.js
+public/scripts/apply/apply.js
+
+config/config.yml
+config/config.production.yml

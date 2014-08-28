@@ -2,8 +2,7 @@ language: ruby
 rvm:
 - 2.0.0
 before_install:
-- openssl aes-256-cbc -K $encrypted_d7d4cdfc8ea8_key -iv $encrypted_d7d4cdfc8ea8_iv
-  -in config.yml.enc -out config.yml -d
+- openssl aes-256-cbc -k "$chicken_sandwiches" -in config/config.development.yml.enc -out config/config.yml -d
 - gem install sass
 - npm install
 - npm install -g bower
@@ -13,3 +12,11 @@ before_script:
 script:
 - gulp test
 - bundle exec rspec test/ruby
+after_success:
+- bundle exec cap development deploy
+env:
+  global:
+    secure: k6PBGTMYj/N5KPbMwAVnlrkyDknudw9MJK/sNTspodJAZPmcIaHcWKgbURhGj2IQBsEObHnX6wpbfGs1iNHqEBiA8PeenxcoHkivsMpbzDUcp9xa7GRU0D+eERyzws9wg1MB4ALgdyorIP6V2yKjEpl8r1iOWcePmNgf93ec0iY=
+notifications:
+  slack:
+    secure: HsMnZomfPeLQNIjFGoVRK+9YnIHD0PFNsL/Se+2L7li0sjQzaVZ+EEohGT+Ph5oFq5uitmdoCxmWPIZJrk5Y083ZiJMkuoLzqta+IgzfvOVeWG+ctgb5aiESAbUWfDJKWgi7SlWicQ7/8MmqCt4JLIIMmBhBZfGQQPLIjOfyNOg=

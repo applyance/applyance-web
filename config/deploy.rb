@@ -1,58 +1,65 @@
-# config valid only for Capistrano 3.1
 lock '3.2.1'
 
-set :application, 'applyance.com'
-set :repo_url, 'https://github.com/applyance/client.git'
+set :application, 'Applyance Web'
+set :scm, :git
+set :linked_dirs, %w{bin log tmp/pids}
+set :keep_releases, 5
+set :deploy_to, "/srv/www/applyance.com"
 
-# Default branch is :master
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
+namespace :travis do
 
-# Default deploy_to directory is /var/www/my_app
-# set :deploy_to, '/var/www/my_app'
+	desc 'Check that travis is reachable'
+	task :check do
+		exit 1 unless true
+	end
 
-# Default value for :scm is :git
-# set :scm, :git
+	desc 'Package to release'
+	task :create_release do
+		run_locally do
+			execute :mkdir, '-p', :'tmp'
+			execute "tar -cz --exclude test --exclude vendor --exclude .git --exclude .sass-cache --exclude node_modules --exclude public/scripts/ext --exclude public/styles/scss --exclude tmp/#{fetch(:release_timestamp)}.tar.gz -f tmp/#{fetch(:release_timestamp)}.tar.gz ."
+		end
+		on release_roles :all do
+			execute :mkdir, '-p', release_path
+			upload! "tmp/#{fetch(:release_timestamp)}.tar.gz", "#{release_path}/#{fetch(:release_timestamp)}.tar.gz"
+			execute "tar -xvf #{release_path}/#{fetch(:release_timestamp)}.tar.gz --directory #{release_path}"
+			execute "rm #{release_path}/#{fetch(:release_timestamp)}.tar.gz"
+		end
+		run_locally do
+			execute "rm -rf tmp"
+		end
+	end
 
-# Default value for :format is :pretty
-# set :format, :pretty
+	desc 'Determine the revision that will be deployed'
+	task :set_current_revision do
+		set :current_revision, "12345"
+	end
 
-# Default value for :log_level is :debug
-# set :log_level, :debug
-
-# Default value for :pty is false
-# set :pty, true
-
-# Default value for :linked_files is []
-# set :linked_files, %w{config/database.yml}
-
-# Default value for linked_dirs is []
-# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
-
-# Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
-
-# Default value for keep_releases is 5
-# set :keep_releases, 5
+end
 
 namespace :deploy do
+
+	desc 'Use Travis'
+	task :use_travis do
+		set :scm, :travis
+	end
 
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
-      # execute :touch, release_path.join('tmp/restart.txt')
+			if test "[ -f #{current_path}/tmp/pids/thin.pid ]"
+				within current_path do
+					execute :bundle, :exec, "thin restart --port 3002 --environment #{fetch(:stage)} --daemonize"
+				end
+		  else
+				within current_path do
+					execute :bundle, :exec, "thin start --port 3002 --environment #{fetch(:stage)} --daemonize"
+				end
+			end
     end
   end
 
-  after :publishing, :restart
-
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
-  end
+	before :starting, :use_travis
+	after :publishing, :restart
 
 end

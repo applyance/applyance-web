@@ -1,0 +1,4 @@
+environment:
+  database_name: applyance_client
+  api_host: http://api.dev.applyance.co
+  stripe_publishable_key: pk_test_3L0xQ9kdQFxpcGGheVvu3ZWo
