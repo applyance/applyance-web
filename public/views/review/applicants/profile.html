@@ -24,7 +24,7 @@
 </div>
 
 <div class="application-profile__applied-to group">
-  Applied to {{ getApplyable() }} on {{ application.submitted_at | amDateFormat: 'MMM. D, YYYY' }}
+  Applied to {{ getApplyable() }} on {{ application.submitted_at | aplMoment: 'MMM. D, YYYY' }}
 </div>
 
 <div class="application__actions group">

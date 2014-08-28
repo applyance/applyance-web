@@ -671,7 +671,8 @@ textarea,
 .rich-editor {
   display: block;
   min-height: 216px;
-  padding: 18px; }
+  padding: 18px;
+  max-width: none; }
   .rich-editor h3, .rich-editor h4 {
     font-weight: 500;
     margin-top: 2em;
@@ -1469,9 +1470,6 @@ a.slats__item__header {
   @media only screen and (min-width: 1024px) {
     .slats--application__applied-on .preface {
       display: inline-block; } }
-@media only screen and (min-width: 1024px) {
-  .slats--application__applied-on .date {
-    margin-left: 12px; } }
 
 .slats--application__number-rating {
   display: inline-block;
@@ -2086,7 +2084,7 @@ a.slats__item__header {
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100%;
-  width: calc(100% - 48px); }
+  width: calc(100% - 49px); }
 
 /* Application Sidebar Applications */
 .application__sidebar__applications {

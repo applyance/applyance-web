@@ -20,7 +20,7 @@
               </a>
               <div class="slats--application__applied-on">
                 <span class="preface">Applied on</span>
-                <span class="date">{{ citizen.applications[citizen.applications.length - 1].submitted_at | amDateFormat: 'MMM. Do YYYY, h:mm a' }}</span>
+                <span class="date">{{ citizen.applications[citizen.applications.length - 1].submitted_at | aplMoment: 'MMM. Do YYYY, h:mm a' }}</span>
               </div>
             </li>
           </ul>

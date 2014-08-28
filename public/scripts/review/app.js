@@ -11,12 +11,11 @@ attachFastClick(document.body);
 
 require("angular");
 require("angular-route");
-require("angular-moment");
 require("angular-medium-editor");
 require('./../ext/angular-payments/lib/angular-payments.js');
 
 // Define Review Module
-angular.module('Review', [require("../services/api").name, 'ngRoute', 'angularMoment', 'angular-medium-editor', 'angularPayments'])
+angular.module('Review', [require("../services/api").name, 'ngRoute', 'angular-medium-editor', 'angularPayments'])
   .run(['$rootScope', function($rootScope) {
     $rootScope.menuStates = { 'main': false, 'account': false, 'context': false, 'settings': false };
     $rootScope.closeResponsiveMenus = function() {

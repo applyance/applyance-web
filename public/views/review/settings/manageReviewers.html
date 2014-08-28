@@ -58,7 +58,7 @@
     <li class="slats__item" ng-repeat="invite in invites">
       <div class="slats__main">
         <div class="slats__item__header">{{ invite.email }}</div>
-        <div>Sent on {{ invite.created_at | amDateFormat: 'MMMM Do YYYY, h:mm a' }}</div>
+        <div>Sent on {{ invite.created_at | aplMoment: 'MMMM Do YYYY, h:mm a' }}</div>
       </div>
       <ul class="slats__actions">
         <li class="slats__actions__item">

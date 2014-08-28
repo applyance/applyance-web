@@ -25,4 +25,9 @@ module.exports = angular.module('Applyance')
       return obj.address_1 + "<br />" + obj.city + ", " + obj.state + " " + obj.postal_code;
     }
   })
+  .filter('aplMoment', function () {
+    return function(input, format) {
+      return moment(input, 'YYYY-MM-DD HH:mm:ss Z').format(format);
+    }
+  })
 ;

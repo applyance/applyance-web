@@ -86,8 +86,8 @@ module.exports = angular.module('Review')
           tether = new Tether({
             element: tooltip,
             target: elem[0],
-            attachment: 'top center',
-            targetAttachment: 'bottom center',
+            attachment: attr.aplTooltipAttachment || 'top center',
+            targetAttachment: attr.aplTooltipTargetAttachment || 'bottom center',
             offset: '-18px 0'
           });
         });
