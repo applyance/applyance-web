@@ -4,4 +4,3 @@ server 'dev.applyance.com',
   primary: true
 
 set :stage, :development
-set :deploy_to, "/srv/www/applyance.com"

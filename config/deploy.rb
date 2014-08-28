@@ -4,6 +4,7 @@ set :application, 'Applyance Web'
 set :scm, :git
 set :linked_dirs, %w{bin log tmp/pids}
 set :keep_releases, 5
+set :deploy_to, "/srv/www/applyance.com"
 
 namespace :travis do
 
