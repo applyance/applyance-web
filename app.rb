@@ -18,7 +18,7 @@ module Applyance
 
     # Load config file
     register Sinatra::ConfigFile
-    config_file 'config.yml'
+    config_file 'config/config.yml'
 
     # Config
     set :root, File.dirname(__FILE__)
