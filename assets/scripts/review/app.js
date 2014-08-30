@@ -37,7 +37,7 @@ angular.module('Review', [require("../services/api").name, 'ngRoute', 'angular-m
 require("../directives");
 require("../filters");
 require("./directives/directives");
-require("./directives/contextSwitcher");
+require("./directives/contextswitcher");
 
 require("./services/store");
 require("./services/flash");

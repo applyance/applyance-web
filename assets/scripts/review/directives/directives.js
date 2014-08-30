@@ -104,7 +104,7 @@ module.exports = angular.module('Review')
     function (Store, $location, $document, $filter) {
     return {
       restrict: 'AE',
-      templateUrl: 'scripts/review/directives/colorSwatch.html',
+      templateUrl: 'views/review/directives/colorSwatch.html',
       scope: {
         color: "=",
         onColorSelected: "&"

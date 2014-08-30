@@ -1,31 +1,39 @@
 var gulp       = require('gulp');
-var gutil      = require('gulp-util');
-var source     = require('vinyl-source-stream');
-var browserify = require('browserify');
-var watchify   = require('watchify');
+var gulpif     = require('gulp-if');
+var sass       = require('gulp-ruby-sass');
 var streamify  = require('gulp-streamify');
 var uglify     = require("gulp-uglify");
+var gutil      = require('gulp-util');
+
+var browserify = require('browserify');
+var karma      = require('karma').server;
+var _          = require('lodash');
 var moment     = require("moment");
-var sass = require('gulp-ruby-sass');
-var args   = require('yargs').argv;
-var gulpif = require('gulp-if');
-var exit = require('gulp-exit');
-var _ = require('lodash');
-var karma = require('karma').server;
+var source     = require('vinyl-source-stream');
+var watchify   = require('watchify');
+var args       = require('yargs').argv;
 
 var isProduction = args.env === 'production';
 
 var paths = {
-  styles: 'public/styles/scss/**/*'
+  styles_in: 'assets/scss/**/*',
+  styles_out: 'public/styles/css',
+
+  applyJS_root: './assets/scripts/apply/app.js',
+  registerJS_root: './assets/scripts/register/app.js',
+  reviewJS_root: './assets/scripts/review/app.js',
+  script_out: './public/scripts',
+
+  tests: 'test/**/*.spec.js'
 };
 
 var karmaCommonConf = {
   frameworks: ['jasmine'],
   files: [
-    'public/scripts/review/review.js',
-    'public/scripts/apply/apply.js',
-    'public/scripts/register/register.js',
-    'test/**/*.spec.js'
+    paths.reviewJS_root,
+    paths.applyJS_root,
+    paths.registerJS_root,
+    paths.tests
   ]
 };
 
@@ -43,27 +51,27 @@ gulp.task('tdd', function (done) {
 gulp.task('sass', function () {
 
   gutil.log(gutil.colors.green('---------BUNDLING CSS: ' + moment().format("M/D/YY - h:mm:ss a") + ' ---------'));
-  return gulp.src('public/styles/scss/**/*')
+  return gulp.src('assets/scss/**/*')
     .pipe(sass())
     .on('error', function (err) { console.log(err.message); })
-    .pipe(gulp.dest('public/styles/css'));
+    .pipe(gulp.dest(paths.styles_out));
 });
 
 gulp.task('watchify', function() {
 
-  var reviewBundler = watchify(browserify('./public/scripts/review/app.js', {
+  var reviewBundler = watchify(browserify(paths.reviewJS_root, {
     cache: {},
     packageCache: {},
     fullPaths: true,
     debug: true
   }));
-  var applyBundler = watchify(browserify('./public/scripts/apply/app.js', {
+  var applyBundler = watchify(browserify(paths.applyJS_root, {
     cache: {},
     packageCache: {},
     fullPaths: true,
     debug: true
   }));
-  var registerBundler = watchify(browserify('./public/scripts/register/app.js', {
+  var registerBundler = watchify(browserify(paths.registerJS_root, {
     cache: {},
     packageCache: {},
     fullPaths: true,
@@ -81,7 +89,7 @@ gulp.task('watchify', function() {
       })
       .pipe(source('review.js'))
       .pipe(gulpif(isProduction, streamify(uglify()))) // only minify if production
-      .pipe(gulp.dest('./public/scripts/review'));
+      .pipe(gulp.dest(paths.script_out));
   }
   function rebundleApply() {
 
@@ -94,7 +102,7 @@ gulp.task('watchify', function() {
       })
       .pipe(source('apply.js'))
       .pipe(gulpif(isProduction, streamify(uglify()))) // only minify if production
-      .pipe(gulp.dest('./public/scripts/apply'));
+      .pipe(gulp.dest(paths.script_out));
   }
   function rebundleRegister() {
 
@@ -107,7 +115,7 @@ gulp.task('watchify', function() {
       })
       .pipe(source('register.js'))
       .pipe(gulpif(isProduction, streamify(uglify()))) // only minify if production
-      .pipe(gulp.dest('./public/scripts/register'));
+      .pipe(gulp.dest(paths.script_out));
   }
 
   // Watch for JS changes in the Review Module
@@ -120,8 +128,8 @@ gulp.task('watchify', function() {
   registerBundler.on('update', rebundleRegister);
 });
 
-gulp.task('watch', ['sass', 'buildJS', 'watchify'], function() {
-  gulp.watch(paths.styles, ['sass']);
+gulp.task('watch', ['build', 'watchify'], function() {
+  gulp.watch(paths.styles_in, ['sass']);
 });
 
 gulp.task('buildJS', function() {
@@ -129,7 +137,7 @@ gulp.task('buildJS', function() {
   //
   // Bundle the Review JS files
   //
-  browserify('./public/scripts/review/app.js', {
+  browserify(paths.reviewJS_root, {
     cache: {},
     packageCache: {},
     fullPaths: true,
@@ -141,12 +149,12 @@ gulp.task('buildJS', function() {
   })
   .pipe(source('review.js'))
   .pipe(gulpif(isProduction, streamify(uglify()))) // only minify if production
-  .pipe(gulp.dest('./public/scripts/review'));
+  .pipe(gulp.dest(paths.script_out));
 
   //
   // Bundle the Apply JS files
   //
-  browserify('./public/scripts/apply/app.js', {
+  browserify(paths.applyJS_root, {
     cache: {},
     packageCache: {},
     fullPaths: true,
@@ -158,12 +166,12 @@ gulp.task('buildJS', function() {
   })
   .pipe(source('apply.js'))
   .pipe(gulpif(isProduction, streamify(uglify()))) // only minify if production
-  .pipe(gulp.dest('./public/scripts/apply'));
+  .pipe(gulp.dest(paths.script_out));
 
   //
   // Bundle the Register JS files
   //
-  browserify('./public/scripts/register/app.js', {
+  browserify(paths.registerJS_root, {
     cache: {},
     packageCache: {},
     fullPaths: true,
@@ -175,7 +183,7 @@ gulp.task('buildJS', function() {
   })
   .pipe(source('register.js'))
   .pipe(gulpif(isProduction, streamify(uglify()))) // only minify if production
-  .pipe(gulp.dest('./public/scripts/register'));
+  .pipe(gulp.dest(paths.script_out));
 });
 
 gulp.task('build', ['sass', 'buildJS']);

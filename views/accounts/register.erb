@@ -21,7 +21,7 @@
     <%= erb :'shared/_footer' %>
     <%= yield_content :scripts %>
 
-    <script type="text/javascript" src="/scripts/register/register.js"></script>
+    <script type="text/javascript" src="/scripts/register.js"></script>
     <script>
       var app = angular.module('Register');
       app.constant('apiHost', '<%= @api_host %>');
