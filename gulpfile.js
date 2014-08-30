@@ -30,9 +30,9 @@ var paths = {
 var karmaCommonConf = {
   frameworks: ['jasmine'],
   files: [
-    paths.reviewJS_root,
-    paths.applyJS_root,
-    paths.registerJS_root,
+    paths.script_out + "/apply.js",
+    paths.script_out + "/register.js",
+    paths.script_out + "/review.js",
     paths.tests
   ]
 };
