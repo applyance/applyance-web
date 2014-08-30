@@ -6,7 +6,7 @@ module.exports = angular.module('Review')
     return {
       restrict: 'AE',
       replace: true,
-      templateUrl: 'xviews/review/directives/contextSwitcher.html',
+      templateUrl: 'views/review/directives/contextSwitcher.html',
       link: function(scope, elem, attrs) {
         scope.showEntityList = false;
 
