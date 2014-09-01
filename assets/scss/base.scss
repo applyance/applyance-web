@@ -310,8 +310,8 @@ h3 {
   text-decoration: none;
   color: $color-text;
 
-  border: 1px solid darken($color-gray, 25%);
-  box-shadow: 2px 2px 0 $color-gray;
+  border: 1px solid rgba(black, .3);
+  box-shadow: 2px 2px 0 $color-gray-rgba;
 }
 
 .selection-grid__box {
@@ -320,10 +320,11 @@ h3 {
 
   font-size: 14px;
   font-weight: 500;
+  line-height: 1.4;
   text-transform: uppercase;
   text-align: left;
 
-  border: 2px solid $color-gray;
+  border: 2px solid $color-gray-rgba;
 
   @include transition-property (border-color, background-color);
   @include transition-duration(200ms);

@@ -32,7 +32,7 @@ module.exports = angular.module('Review')
         });
       };
 
-      $scope.isDefinitionDisabled = function(definition) {
+      $scope.isDisabled = function(definition) {
         var blueprint = $scope.getBlueprintFromDefinition(definition);
         return blueprint && blueprint.is_parent;
       }
@@ -42,7 +42,7 @@ module.exports = angular.module('Review')
       };
 
       $scope.toggle = function(definition) {
-        if ($scope.isDefinitionDisabled(definition)) {
+        if ($scope.isDisabled(definition)) {
           return;
         }
 

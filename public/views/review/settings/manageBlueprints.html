@@ -6,14 +6,10 @@
   </p>
 </div>
 
-<ul class="selection-grid">
-  <li class="selection-grid__item" ng-class="{ 'is-set':isSet(definition), 'is-disabled':isDefinitionDisabled(definition) }" ng-repeat="definition in definitions">
-    <a class="selection-grid__link" href="" ng-click="toggle(definition)">
-      <div class="selection-grid__box">
-        <span class="selection-grid__label">
-          {{ definition.name | blueprint:e }}
-        </span>
-      </div>
-    </a>
-  </li>
-</ul>
+<apl-blueprints
+    definitions="definitions"
+    cols="2"
+    definition-is-set="isSet(definition)"
+    definition-is-disabled="isDisabled(definition)"
+    definition-clicked="toggle(definition)">
+</apl-blueprints>

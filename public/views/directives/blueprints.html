@@ -1,0 +1,13 @@
+<ul class="selection-grid is-{{ cols }}">
+	<li class="selection-grid__item"
+			ng-class="{ 'is-set':isSet(definition), 'is-disabled':isDisabled(definition) }"
+			ng-repeat="definition in definitions">
+		<a class="selection-grid__link" href="" ng-click="onClick(definition)">
+			<div class="selection-grid__box">
+				<div class="selection-grid__label">
+					{{ definition.label | aplCut:true:90:'...' }}
+				</div>
+			</div>
+		</a>
+	</li>
+</ul>

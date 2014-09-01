@@ -35,6 +35,8 @@ angular.module('Review', [require("../services/api").name, 'ngRoute', 'angular-m
   .config(['$routeProvider', '$locationProvider', 'me', require("./routes")]);
 
 require("../directives");
+require("../directives/blueprints")
+
 require("../filters");
 require("./directives/directives");
 require("./directives/contextswitcher");
