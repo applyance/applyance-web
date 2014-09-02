@@ -23,6 +23,7 @@ angular.module('Register', [ApplyanceApi.name, 'ngRoute', 'duScroll'])
   });
 
 require("../directives");
+require("../directives/blueprints");
 require("../filters");
 require("./directives");
 

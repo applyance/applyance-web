@@ -5,17 +5,12 @@
       Finally, what questions do you want on your application?
     </div>
 
-    <ul class="selection-grid is-4">
-      <li class="selection-grid__item" ng-class="{ 'is-set':isDefinitionSet(definition) }" ng-repeat="definition in definitions">
-        <a class="selection-grid__link" href="" ng-click="toggleDefinition(definition)">
-          <div class="selection-grid__box">
-            <span class="selection-grid__label">
-              {{ definition.name }}
-            </span>
-          </div>
-        </a>
-      </li>
-    </ul>
+    <apl-blueprints
+        definitions="definitions"
+        cols="3"
+        definition-clicked="toggle(definition)"
+        definition-is-set="isSet(definition)">
+    </apl-blueprints>
 
     <div>
       <button

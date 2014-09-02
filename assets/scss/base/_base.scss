@@ -1,0 +1,59 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+html {
+  box-sizing: border-box;
+
+  font-size: 100%;
+  font-family: 'Gotham Rounded SSm A', 'Gotham Rounded SSm B';
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1.2;
+
+  color: $color-text;
+}
+
+p {
+  line-height: 1.5;
+}
+
+strong {
+  font-weight: 500;
+}
+
+a {
+  color: $color-accent;
+  @include transition(color 200ms ease-in-out);
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+select {
+  padding-right: 18px + 12px + 18px;
+}
+
+blockquote {
+  margin-left: 24px;
+  padding: 12px 24px;
+  border-left: 4px solid $color-accent;
+}
+
+h1, h2, h3, h4 {
+  margin-top: 2.25em;
+  margin-bottom: 1.25em;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 400;
+}

@@ -15,11 +15,11 @@ module.exports = angular.module('Register')
         });
       };
 
-      $scope.isDefinitionSet = function(definition) {
+      $scope.isSet = function(definition) {
         return !!$scope.getBlueprintFromDefinition(definition);
       };
 
-      $scope.toggleDefinition = function(definition) {
+      $scope.toggle = function(definition) {
         var blueprint = $scope.getBlueprintFromDefinition(definition);
         if (blueprint) {
           $scope.blueprints.splice($scope.blueprints.indexOf(blueprint), 1);

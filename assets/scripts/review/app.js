@@ -35,12 +35,17 @@ angular.module('Review', [require("../services/api").name, 'ngRoute', 'angular-m
   .config(['$routeProvider', '$locationProvider', 'me', require("./routes")]);
 
 require("../directives");
+require("../directives/blueprints")
+require("../directives/manageDefinition")
+
 require("../filters");
 require("./directives/directives");
 require("./directives/contextswitcher");
 
 require("./services/store");
 require("./services/flash");
+
+require("./controllers/app");
 
 require("./controllers/header/header");
 require("./controllers/header/account");

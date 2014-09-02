@@ -94,20 +94,6 @@ a {
   margin: 0;
 }
 
-.app-form__blueprints__item {
-  margin-bottom: 48px;
-  &:last-child { margin-bottom: 0; }
-  &.is-tight {
-    margin-bottom: 24px;
-  }
-  @media only screen and (min-width : 480px) {
-    margin-bottom: 72px;
-    &.is-tight {
-      margin-bottom: 48px;
-    }
-  }
-}
-
 .app-form__note {
   position: relative;
   font-size: 14px;
@@ -152,67 +138,8 @@ a {
   }
 }
 
-.app-form__label {
-  display: block;
-  margin-bottom: 24px;
-  font-size: 16px;
-  font-weight: 500;
-  @media only screen and (min-width : 480px) {
-    margin-bottom: 32px;
-    font-size: 18px;
-  }
-}
-
-.app-form__description {
-  display: block;
-  margin-top: -12px;
-  margin-bottom: 24px;
-  font-size: 14px;
-  font-weight: 300;
-  @media only screen and (min-width : 480px) {
-    margin-top: -20px;
-    margin-bottom: 32px;
-    font-size: 16px;
-  }
-}
-
-.app-form__input {
-  display: block;
-  width: 100%;
-  padding: 12px;
-
-  font-size: 16px;
-
-  outline: none;
-  background-color: transparent;
-  border-radius: 0;
-  border: 1px solid rgba(black, .1);
-  border-left-width: 3px;
-  resize: none;
-
-  @include appearance(none);
-  @include transition(border-color 200ms ease-in-out);
-
-  &:focus {
-    border-left-color: darken($color-gray, 25%);
-  }
-
-  @media only screen and (min-width : 480px) {
-    padding: 18px;
-    font-size: 18px;
-  }
-}
-
 .selector {
   display: block;
-}
-
-textarea.app-form__input {
-  height: 80px;
-  line-height: 1.5;
-  @media only screen and (min-width : 480px) {
-    height: 120px;
-  }
 }
 
 .app-form__submit {

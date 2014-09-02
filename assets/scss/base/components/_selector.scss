@@ -1,0 +1,25 @@
+/* Selector */
+
+.selector {
+  display: inline-block;
+  position: relative;
+  background-color: white;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    margin-top: -6px;
+    right: 18px + 4px;
+    width: 12px;
+    height: 12px;
+    opacity: .25;
+
+    background-image: url('/img/select.arrow.black.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  select {
+    padding-right: 12px + 22px + 12px;
+  }
+}
