@@ -44,7 +44,6 @@ require("./directives/contextswitcher");
 
 require("./services/store");
 require("./services/flash");
-require("./services/definitionManager");
 
 require("./controllers/app");
 
