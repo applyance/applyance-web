@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = angular.module('Review')
-  .controller('EntityBlueprintsCtrl', ['$scope', 'ApplyanceAPI', 'Store', 'DefinitionManager',
-    function ($scope, ApplyanceAPI, Store, DefinitionManager) {
+  .controller('EntityBlueprintsCtrl', ['$scope', 'ApplyanceAPI', 'Store',
+    function ($scope, ApplyanceAPI, Store) {
 
       $scope.e = Store.getActiveEntity();
       $scope.rootE = $scope.e.parent ? $scope.e.parent : $scope.e;
