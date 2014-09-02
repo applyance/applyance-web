@@ -10,7 +10,9 @@ module.exports = angular.module('Applyance')
         'cols': '=',
         'definitionClicked': '&',
         'definitionIsSet': '&',
-        'definitionIsDisabled': '&?'
+        'definitionIsDisabled': '&?',
+        'definitionEdited': '&?',
+        'definitionRemoved': '&?'
       },
       templateUrl: 'views/directives/blueprints.html',
       link: function(scope, elem, attrs) {
@@ -25,6 +27,13 @@ module.exports = angular.module('Applyance')
         };
         scope.onClick = function(definition) {
           scope.definitionClicked({ definition: definition });
+        };
+        scope.edit = function(definition, $event) {
+          $event.stopPropagation();
+          scope.definitionEdited({ definition: definition });
+        };
+        scope.remove = function(definition) {
+          scope.definitionRemoved({ definition: definition });
         };
       }
     };

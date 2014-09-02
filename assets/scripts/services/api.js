@@ -178,6 +178,18 @@ module.exports = angular.module('Applyance', ['restangular'])
       this.getDefinitions = function() {
         return Restangular.all("definitions").getList();
       };
+      this.deleteDefinition = function(id) {
+        return Restangular.one("definitions", id).remove();
+      };
+      this.putDefinition = function(definition) {
+        return Restangular.one("definitions", definition.id).customPUT(definition);
+      };
+      this.getEntityDefinitions = function(id) {
+        return Restangular.one('entities', id).all('definitions').getList();
+      };
+      this.postEntityDefinition = function(id, definition) {
+        return Restangular.one('entities', id).all('definitions').post(definition);
+      };
 
       // Blueprints
       this.deleteBlueprint = function(id) {

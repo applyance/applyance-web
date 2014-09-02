@@ -1,15 +1,33 @@
-<h1 class="top-header">Questions</h1>
+<apl-manage-definition
+    ng-if="AppState.newQuestion"
+    apl-definition-count="customDefinitionCount"
+    apl-definition="definitionToManage"
+    apl-on-cancel="toggleCreateQuestionDialog()"
+    apl-on-save="createNewDefinition(definition, cb)">
+</apl-manage-definition>
+
+<h1 class="top-header">
+  Questions
+  <div class="header-action-wrap">
+    <a href="" class="header-action btn--primary"
+        ng-class="{ 'is-disabled':(customDefinitionCount == 5) }"
+        ng-disabled="customDefinitionCount == 5"
+        ng-click="openCreateDefinition()">Create Question</a>
+  </div>
+</h1>
 
 <div class="toaster text-trim">
   <p>
-    Select all questions you would like answered on an application to {{ e.name }}. Note that we already include basic contact information (name, email, phone, and address).
+    Select the questions you would like answered on an application to {{ e.name }}. We already include basic information such as name, email, phone number, and address.
   </p>
 </div>
 
 <apl-blueprints
-    definitions="definitions"
     cols="2"
+    definitions="definitions"
     definition-is-set="isSet(definition)"
     definition-is-disabled="isDisabled(definition)"
-    definition-clicked="toggle(definition)">
+    definition-clicked="toggle(definition)"
+    definition-edited="editCreatedDefinition(definition)"
+    definition-removed="removeCreatedDefinition(definition)">
 </apl-blueprints>

@@ -36,6 +36,7 @@ angular.module('Review', [require("../services/api").name, 'ngRoute', 'angular-m
 
 require("../directives");
 require("../directives/blueprints")
+require("../directives/manageDefinition")
 
 require("../filters");
 require("./directives/directives");
@@ -43,6 +44,9 @@ require("./directives/contextswitcher");
 
 require("./services/store");
 require("./services/flash");
+require("./services/definitionManager");
+
+require("./controllers/app");
 
 require("./controllers/header/header");
 require("./controllers/header/account");

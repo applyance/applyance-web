@@ -23,9 +23,9 @@
   <form class="app-form__form" name="apply" ng-submit="onSubmit()">
     <ul class="app-form__blueprints">
 
-      <li class="app-form__blueprints__item is-tight">
-        <label class="app-form__label" for="applicant-email">Email</label>
-        <input autofocus class="app-form__input" id="applicant-email" type="text" ng-model="applicant.email" value="{{ applicant.email }}" ng-debounce="750" ng-change="checkEmail()">
+      <li class="app-form-blueprint is-tight">
+        <label class="app-form-blueprint__label" for="applicant-email">Email</label>
+        <input autofocus class="app-form-blueprint__input" id="applicant-email" type="text" ng-model="applicant.email" value="{{ applicant.email }}" ng-debounce="750" ng-change="checkEmail()">
         <div class="app-form__note in-progress" ng-if="emailNote == 'loading'">
           Searching for your account...
         </div>
@@ -40,9 +40,9 @@
         </div>
       </li>
 
-      <li class="app-form__blueprints__item" ng-if="showPassword">
-        <label class="app-form__label" for="applicant-password">Password</label>
-        <input class="app-form__input" id="applicant-password" type="password" ng-model="applicant.password" focus-on="passwordFocus" ng-change="authenticate()" ng-debounce="750">
+      <li class="app-form-blueprint" ng-if="showPassword">
+        <label class="app-form-blueprint__label" for="applicant-password">Password</label>
+        <input class="app-form-blueprint__input" id="applicant-password" type="password" ng-model="applicant.password" focus-on="passwordFocus" ng-change="authenticate()" ng-debounce="750">
         <div class="app-form__note in-progress" ng-if="passwordNote == 'loading'">
           Trying to log you in...
         </div>
@@ -61,25 +61,25 @@
         </div>
       </li>
 
-      <li ng-if="step == 'blueprints'" class="app-form__blueprints__item">
-        <label class="app-form__label" for="applicant-name">Name</label>
-        <input class="app-form__input" id="applicant-name" type="text" ng-model="applicant.name" focus-on="nameFocus" value="{{ applicant.name }}">
+      <li ng-if="step == 'blueprints'" class="app-form-blueprint">
+        <label class="app-form-blueprint__label" for="applicant-name">Name</label>
+        <input class="app-form-blueprint__input" id="applicant-name" type="text" ng-model="applicant.name" focus-on="nameFocus" value="{{ applicant.name }}">
       </li>
 
-      <li ng-if="step == 'blueprints'" class="app-form__blueprints__item">
-        <label class="app-form__label" for="applicant-phone_number">Phone Number</label>
-        <input type="text" id="applicant-phone_number" class="app-form__input" ng-model="applicant.phone_number" value="{{ applicant.phone_number }}">
+      <li ng-if="step == 'blueprints'" class="app-form-blueprint">
+        <label class="app-form-blueprint__label" for="applicant-phone_number">Phone Number</label>
+        <input type="text" id="applicant-phone_number" class="app-form-blueprint__input" ng-model="applicant.phone_number" value="{{ applicant.phone_number }}">
       </li>
 
-      <li ng-if="step == 'blueprints'" class="app-form__blueprints__item">
-        <label class="app-form__label" for="applicant-phone_number">Address</label>
-        <textarea class="app-form__input" ng-model="applicant.location.address">{{ applicant.location.address }}</textarea>
+      <li ng-if="step == 'blueprints'" class="app-form-blueprint">
+        <label class="app-form-blueprint__label" for="applicant-phone_number">Address</label>
+        <textarea class="app-form-blueprint__input" ng-model="applicant.location.address">{{ applicant.location.address }}</textarea>
       </li>
 
       <!-- Subentities -->
-      <li ng-if="step == 'blueprints' && childEntities.length > 0" class="app-form__blueprints__item">
-        <label class="app-form__label">Are you interested in any specific location(s)?</label>
-        <div class="app-form__description">
+      <li ng-if="step == 'blueprints' && childEntities.length > 0" class="app-form-blueprint">
+        <label class="app-form-blueprint__label">Are you interested in any specific location(s)?</label>
+        <div class="app-form-blueprint__description">
           Select all that apply.
         </div>
         <ul class="selection-grid is-2 is-mini is-neutral">
@@ -96,9 +96,9 @@
       </li>
 
       <!-- Spots -->
-      <li ng-if="step == 'blueprints' && spots.length > 0" class="app-form__blueprints__item">
-        <label class="app-form__label">Are you interested in any specific position(s)?</label>
-        <div class="app-form__description">
+      <li ng-if="step == 'blueprints' && spots.length > 0" class="app-form-blueprint">
+        <label class="app-form-blueprint__label">Are you interested in any specific position(s)?</label>
+        <div class="app-form-blueprint__description">
           Select all that apply.
         </div>
         <ul class="selection-grid is-2 is-mini is-neutral">
@@ -114,19 +114,19 @@
         </ul>
       </li>
 
-      <li ng-if="step == 'blueprints'" class="app-form__blueprints__item" ng-repeat="blueprint in blueprints">
-        <label class="app-form__label" for="blueprint[{{ blueprint.id }}]">
+      <li ng-if="step == 'blueprints'" class="app-form-blueprint" ng-repeat="blueprint in blueprints">
+        <label class="app-form-blueprint__label" for="blueprint[{{ blueprint.id }}]">
           {{ blueprint.definition.label | blueprint:entity }}
         </label>
-        <div ng-if="blueprint.definition.description" class="app-form__description">
+        <div ng-if="blueprint.definition.description" class="app-form-blueprint__description">
           {{ blueprint.definition.description | blueprint:entity }}
         </div>
         <div ng-switch="blueprint.definition.type">
-          <input ng-switch-when="text" class="app-form__input" type="text" id="blueprint[{{ blueprint.id }}]" ng-model="blueprint.detail.value" value="{{ blueprint.detail.value }}">
+          <input ng-switch-when="text" class="app-form-blueprint__input" type="text" id="blueprint[{{ blueprint.id }}]" ng-model="blueprint.detail.value" value="{{ blueprint.detail.value }}">
           <div ng-switch-when="choice" class="selector">
-            <select class="app-form__input" id="blueprint[{{ blueprint.id }}]" ng-model="blueprint.detail.value" ng-options="choice for choice in blueprint.definition.helper.choices"></select>
+            <select class="app-form-blueprint__input" id="blueprint[{{ blueprint.id }}]" ng-model="blueprint.detail.value" ng-options="choice for choice in blueprint.definition.helper.choices"></select>
           </div>
-          <textarea ng-switch-default class="app-form__input" id="blueprint[{{ blueprint.id }}]" ng-model="blueprint.detail.value">{{ blueprint.detail.value }}</textarea>
+          <textarea ng-switch-default class="app-form-blueprint__input" id="blueprint[{{ blueprint.id }}]" ng-model="blueprint.detail.value">{{ blueprint.detail.value }}</textarea>
         </div>
       </li>
 

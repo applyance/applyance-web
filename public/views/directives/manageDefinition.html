@@ -1,0 +1,49 @@
+<div class="create-definition">
+  <div class="create-definition__outer-wrap">
+    <div class="create-definition__inner-wrap">
+      <div class="create-definition__editor">
+        <ul class="create-definition__editor__options">
+          <li class="create-definition__editor__options__item">
+            <label for="question">Question</label>
+            <textarea class="is-thin" id="question" ng-model="definition.label" placeholder="Question goes here..."></textarea>
+          </li>
+          <li class="create-definition__editor__options__item">
+            <label for="description">Description</label>
+            <textarea class="is-thin" id="description" ng-model="definition.description" placeholder="Description goes here..."></textarea>
+          </li>
+        </ul>
+        <div class="create-definition__editor__tray">
+          <ul class="create-definition__editor__actions">
+            <li class="create-definition__editor__actions__item">
+              <a href="" class="btn is-small" ng-click="cancel()">Cancel</a>
+            </li>
+            <li class="create-definition__editor__actions__item">
+              <a href="" class="btn--primary is-small"
+                  ng-class="{ 'is-disabled':state.saving }"
+                  ng-disabled="state.saving"
+                  ng-click="save()">{{ state.saving ? 'Saving' : 'Save' }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="create-definition__preview">
+        <div class="create-definition__note">
+          You are using {{ aplDefinitionCount }} of 5 custom questions.
+        </div>
+        <div class="create-definition__preview__box">
+          <div class="app-form-blueprint">
+            <label class="app-form-blueprint__label" for="datum">
+              {{ definition.label }}
+            </label>
+            <div ng-if="definition.description" class="app-form-blueprint__description">
+              {{ definition.description }}
+            </div>
+            <div>
+              <textarea class="app-form-blueprint__input" id="datum"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+.text-trim > * {
+  &:first-child {
+    margin-top: 0;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}

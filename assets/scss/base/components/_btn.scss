@@ -1,0 +1,108 @@
+/* Buttons */
+
+.btn {
+  display: inline-block;
+  padding: 14px 36px;
+  position: relative;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-decoration: none;
+  text-align: center;
+  letter-spacing: 0;
+
+  outline: none;
+  border: 0;
+  border-radius: 4px;
+  background-color: $color-gray-rgba;
+  color: $color-text;
+  cursor: pointer;
+
+  @include transition(background-color 200ms ease-in-out);
+
+  &:not(.is-disabled):focus,
+  &:not(.is-disabled):hover {
+    background-color: rgba($color-gray-rgba, .15);
+  }
+  &.is-small {
+    font-size: 14px;
+    padding: 12px 24px;
+  }
+  &.is-mini {
+    font-size: 14px;
+    padding: 8px 12px;
+    &.is-dropdown .icon {
+      font-size: 14px;
+      margin-left: 8px;
+    }
+  }
+  &.is-big {
+    padding: 16px 48px;
+    font-size: 20px;
+  }
+  &.is-disabled {
+    cursor: not-allowed;
+    opacity: .3;
+  }
+  &.is-block {
+    width: 100%;
+  }
+  &.is-dropdown {
+    .icon {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 16px;
+      margin-top: -3px;
+      margin-left: 12px;
+      opacity: .25;
+      @include transform(rotate(90deg));
+      @include transition-property(transform);
+      @include transition-duration(200ms);
+      @include transition-timing-function(ease-in-out);
+    }
+    &.is-dropdown-open .icon {
+      @include transform(rotate(-90deg));
+    }
+  }
+}
+
+.btn--primary {
+  @extend .btn;
+  background-color: $color-brand;
+  color: white;
+  &:not(.is-disabled):focus,
+  &:not(.is-disabled):hover {
+    background-color: lighten($color-brand, 10%);
+  }
+}
+
+.btn--base {
+  @extend .btn;
+  background-color: $color-base;
+  color: white;
+  &:not(.is-disabled):focus,
+  &:not(.is-disabled):hover {
+    background-color: lighten($color-base, 10%);
+  }
+}
+
+.btn--secondary {
+  @extend .btn;
+  background-color: #777;
+  color: white;
+  &:not(.is-disabled):focus,
+  &:not(.is-disabled):hover {
+    background-color: darken(#777, 10%);
+  }
+}
+
+.btn--accent {
+  @extend .btn;
+  background-color: $color-accent;
+  color: white;
+  &:not(.is-disabled):focus,
+  &:not(.is-disabled):hover {
+    background-color: darken($color-accent, 10%);
+  }
+}
