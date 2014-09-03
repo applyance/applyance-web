@@ -12,7 +12,7 @@ module.exports = angular.module('Review')
       // Get the right definitions
       $scope.definitions = [];
       ApplyanceAPI.getDefinitions().then(function(definitions) {
-         $scope.definitions = definitions;
+         $scope.definitions = $scope.definitions.concat(definitions);
       });
 
       // Get the custom questions
@@ -21,7 +21,7 @@ module.exports = angular.module('Review')
         _.each(definitions, function(definition) {
           definition.isEntity = true;
         });
-        $scope.definitions = $scope.definitions.concat(definitions);
+        $scope.definitions = definitions.concat($scope.definitions);
       });
 
       // Get the blueprints
