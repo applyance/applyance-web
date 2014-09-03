@@ -1,0 +1,211 @@
+
+/* Settings Inputs */
+
+.settings-inputs__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+}
+
+.settings-inputs__item {
+  margin-top: 36px;
+  &:first-child { margin-top: 0; }
+}
+
+.settings-inputs__tray {
+  margin-top: 48px;
+  padding-left: 0;
+  @media only screen and (min-width : $breakpoint-settings-list) {
+    padding-left: $settings-inputs-label-width;
+  }
+}
+
+.settings-inputs__label {
+  display: block;
+  padding: 15px 0;
+  font-size: 16px;
+
+  @media only screen and (min-width : $breakpoint-settings-list) {
+    display: inline-block;
+    vertical-align: top;
+    width: $settings-inputs-label-width;
+  }
+}
+
+.settings-inputs__field {
+  display: inline-block;
+}
+
+.settings-inputs__field--data {
+  @extend .settings-inputs__field;
+  padding: 12px 18px;
+
+  font-size: 16px;
+  line-height: 1.4;
+
+  color: $color-text;
+}
+
+.settings-inputs__note {
+  font-size: 14px;
+  padding: 12px 22px;
+  max-width: 353px;
+  line-height: 1.4;
+}
+
+.settings-inputs__item .rich-editor-wrap {
+  @media only screen and (min-width : $breakpoint-settings-list) {
+    display: inline-block;
+    width: 600px;
+    width: calc(100% - 200px);
+  }
+}
+
+input,
+select,
+textarea,
+.radio,
+.rich-editor {
+  margin: 0;
+  padding: 12px 18px;
+  width: 100%;
+  max-width: 360px;
+
+  font-size: 16px;
+  line-height: 1.4;
+
+  color: $color-text;
+  outline: none;
+  border: 4px solid $color-gray-rgba;
+  border-radius: 5px;
+  background-color: white;
+
+  @include appearance(none);
+  @include transition(border-color 200ms ease-in-out);
+
+  &:focus {
+    border-color: rgba($color-gray-rgba, .15);
+  }
+  &.is-thin {
+    border-width: 2px;
+  }
+}
+
+/* Button Group */
+
+.radio-group {
+  font-size: 0;
+}
+
+.radio {
+  width: auto;
+  border-radius: 0;
+  border-left: 1px solid $color-gray-rgba;
+  border-right: 1px solid $color-gray-rgba;
+
+  @include transition(color 200ms ease-in-out);
+
+  &:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-left: 4px solid $color-gray-rgba;
+  }
+  &:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-right: 4px solid $color-gray-rgba;
+  }
+  &.is-selected {
+    color: $color-accent;
+  }
+  &:focus {
+    border-color: $color-gray-rgba;
+    color: $color-accent;
+  }
+}
+
+.radio {
+  &.is-selected.spot-status--paused {
+    color: $color-brand;
+  }
+  &.is-selected.spot-status--closed {
+    color: #ef4d37;
+  }
+}
+
+/* Rich Editor */
+
+.rich-editor {
+  display: block;
+  min-height: 216px;
+  padding: 18px;
+  max-width: none;
+
+  h3, h4 {
+    font-weight: 500;
+    margin-top: 2em;
+    margin-bottom: 1.5em;
+  }
+  h3 {
+    font-size: 22px;
+  }
+  h4 {
+    font-size: 18px;
+  }
+  ul {
+    list-style-type: disc;
+  }
+}
+
+/* Editor Toolbar */
+
+$primary-toolbar-color: $color-brand;
+$hover-toolbar-color: darken($color-brand, 10%);
+$active-toolbar-color: darken($color-brand, 15%);
+
+.medium-toolbar-arrow-under:after {
+  border-color: $primary-toolbar-color transparent transparent transparent;
+}
+.medium-toolbar-arrow-over:before {
+  border-color: transparent transparent $primary-toolbar-color transparent;
+}
+
+.medium-editor-toolbar {
+  background-color: $primary-toolbar-color;
+}
+.medium-editor-toolbar li button {
+  border-right: 1px solid darken($primary-toolbar-color, 5%);
+}
+.medium-editor-toolbar li button:hover {
+  background-color: $hover-toolbar-color;
+}
+.medium-editor-toolbar li .medium-editor-button-active {
+  background-color: $active-toolbar-color;
+}
+
+.medium-editor-toolbar-form-anchor input {
+  background: $primary-toolbar-color;
+}
+.medium-editor-toolbar-form-anchor input::-webkit-input-placeholder {
+  color: $color-text;
+}
+.medium-editor-toolbar-form-anchor input:-moz-placeholder {
+  /* Firefox 18- */
+  color: $color-text;
+}
+.medium-editor-toolbar-form-anchor input::-moz-placeholder {
+  color: $color-text;
+}
+.medium-editor-toolbar-form-anchor input:-ms-input-placeholder {
+  color: $color-text;
+}
+.medium-editor-placeholder:after {
+  color: lighten($color-text, 40%);
+  padding: 18px;
+  font-style: normal;
+}
+
+.medium-editor-toolbar-anchor-preview {
+  background: $primary-toolbar-color;
+}

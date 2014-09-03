@@ -1,0 +1,154 @@
+@import 'init';
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: white;
+}
+
+a {
+  color: $color-text;
+}
+
+.app-form__submitted {
+  padding: 24px;
+  font-size: 14px;
+  background-color: $color-gray;
+  @media only screen and (min-width : 480px) {
+    font-size: 16px;
+    padding: 48px;
+  }
+}
+
+.app-form__submitted__title {
+  margin-bottom: 24px;
+  font-size: 16px;
+  font-weight: 500;
+  @media only screen and (min-width : 480px) {
+    font-size: 18px;
+  }
+}
+
+.app-form {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 48px 12px;
+  max-width: 700px;
+  @media only screen and (min-width : 480px) {
+    padding: 96px 24px;
+  }
+}
+
+.app-form__logo {
+  display: block;
+  max-width: 100%;
+  max-height: 200px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 48px;
+  @media only screen and (min-width : 480px) {
+    max-width: 75%;
+    max-height: 260px;
+  }
+}
+
+.app-form__title {
+  margin-bottom: 48px;
+  text-rendering: optimizeLegibility;
+  text-align: center;
+  @media only screen and (min-width : 480px) {
+    margin-bottom: 72px;
+  }
+}
+
+.app-form__title__headline {
+  margin-bottom: 6px;
+  font-size: 16px;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  @media only screen and (min-width : 480px) {
+    font-size: 18px;
+  }
+}
+
+.app-form__title__applyable {
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  @media only screen and (min-width : 480px) {
+    font-size: 26px;
+  }
+}
+
+.app-form__blueprints {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.app-form__note {
+  position: relative;
+  font-size: 14px;
+  padding: 12px;
+  padding-bottom: 0;
+  line-height: 1.5;
+  &.in-progress {
+    font-style: italic;
+  }
+  &.with-icon {
+    padding-left: 12px + 32px + 12px;
+    .icon {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      width: 42px;
+      height: 42px;
+      line-height: 32px;
+      font-size: 42px;
+    }
+    .icon-check-o-circle {
+      color: $color-accent;
+    }
+    .icon-delete-o-circle {
+      color: lighten(desaturate(red, 40%), 15%);
+    }
+  }
+  @media only screen and (min-width : 480px) {
+    font-size: 18px;
+    padding: 18px;
+    &.with-icon {
+      padding-left: 18px + 48px + 18px;
+      .icon {
+        top: 18px;
+        left: 18px;
+        width: 64px;
+        height: 64px;
+        line-height: 48px;
+        font-size: 64px;
+      }
+    }
+  }
+}
+
+.selector {
+  display: block;
+}
+
+.app-form__submit {
+  display: block;
+  width: 100%;
+  padding: 18px 24px;
+  max-width: 320px;
+  margin-top: 48px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0;
+}

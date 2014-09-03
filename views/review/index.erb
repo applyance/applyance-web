@@ -14,6 +14,7 @@
   </head>
   <body
       ng-app="Review"
+      ng-controller="AppCtrl"
       ng-class="{
         'is-flash-open':flashMessage,
         'with-sidebar':withSidebar,
@@ -85,7 +86,7 @@
     <script>
         Stripe.setPublishableKey('<%= Applyance::Client.settings.stripe_publishable_key %>');
     </script>
-    <script type="text/javascript" src="/scripts/review/review.js"></script>
+    <script type="text/javascript" src="/scripts/review.js"></script>
     <script>
       var app = angular.module('Applyance');
       app.constant('me', <%= JSON.dump(@me) %>);

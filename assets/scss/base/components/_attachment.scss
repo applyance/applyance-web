@@ -1,0 +1,55 @@
+/* Attachment */
+
+.attachment {
+  display: inline-block;
+}
+
+.attachment__box {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 140px;
+  height: 140px;
+  padding: 6px;
+
+  text-align: center;
+
+  background-color: lighten($color-gray, 5%);
+  border: 4px dashed $color-gray;
+  border-radius: 5px;
+
+  img {
+    display: block;
+    position: relative;
+    top: 50%;
+    @include transform(translateY(-50%));
+    width: 100%;
+    height: auto;
+
+    border-radius: 3px;
+  }
+}
+
+.attachment__empty {
+  display: inline-block;
+  margin-top: -4px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  @include transform(translate(-50%, -50%));
+  font-size: 96px;
+  opacity: .1;
+}
+
+.attachment__choose {
+  margin-top: 24px;
+  @media only screen and (min-width : 400px) {
+    margin-top: 0;
+    margin-left: 24px;
+  }
+}
+
+.attachment__file {
+  opacity: 0;
+  width: 1px;
+}

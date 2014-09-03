@@ -1,0 +1,19 @@
+<ul class="selection-grid is-{{ cols }}">
+	<li class="selection-grid__item"
+			ng-class="{ 'is-set':isSet(definition), 'is-disabled':isDisabled(definition), 'is-manageable':definition.isEntity }"
+			ng-repeat="definition in definitions">
+		<div class="selection-grid__link" ng-click="onClick(definition)">
+			<div class="selection-grid__box">
+				<div class="selection-grid__label">
+					{{ definition.label | aplCut:true:100:'...' }}
+				</div>
+				<ul class="selection-grid__manage" ng-if="definition.isEntity">
+					<li class="selection-grid__manage__item">
+						<a href="" class="selection-grid__manage__link"
+								ng-click="edit(definition, $event)"><i class="icon icon-pencil"></i></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</li>
+</ul>

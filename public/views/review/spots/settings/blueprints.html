@@ -1,4 +1,20 @@
-<h1 class="top-header">Spot Questions</h1>
+<apl-manage-definition
+    ng-if="AppState.newQuestion"
+    apl-definition-count="customDefinitionCount"
+    apl-definition="definitionToManage"
+    apl-on-cancel="toggleCreateQuestionDialog()"
+    apl-on-save="createNewDefinition(definition, cb)">
+</apl-manage-definition>
+
+<h1 class="top-header">
+  Spot Questions
+  <div class="header-action-wrap">
+    <a href="" class="header-action btn--primary"
+        ng-class="{ 'is-disabled':(customDefinitionCount == 5) }"
+        ng-disabled="customDefinitionCount == 5"
+        ng-click="openCreateDefinition()">Create Question</a>
+  </div>
+</h1>
 
 <div class="toaster text-trim">
   <p>
@@ -8,14 +24,12 @@
   </p>
 </div>
 
-<ul class="selection-grid">
-  <li class="selection-grid__item" ng-class="{ 'is-set':isSet(definition), 'is-disabled':isDefinitionDisabled(definition) }" ng-repeat="definition in definitions">
-    <a class="selection-grid__link" href="" ng-click="toggle(definition)">
-      <div class="selection-grid__box">
-        <span class="selection-grid__label">
-          {{ definition.name | blueprint:spot.entity }}
-        </span>
-      </div>
-    </a>
-  </li>
-</ul>
+<apl-blueprints
+    cols="2"
+    definitions="definitions"
+    definition-is-set="isSet(definition)"
+    definition-is-disabled="isDisabled(definition)"
+    definition-clicked="toggle(definition)"
+    definition-edited="editCreatedDefinition(definition)"
+    definition-removed="removeCreatedDefinition(definition)">
+</apl-blueprints>
