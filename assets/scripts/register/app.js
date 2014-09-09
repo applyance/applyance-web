@@ -28,6 +28,3 @@ require("../filters");
 require("./directives");
 
 require("./controllers/form");
-require("./controllers/reviewer");
-require("./controllers/entity");
-require("./controllers/blueprints");

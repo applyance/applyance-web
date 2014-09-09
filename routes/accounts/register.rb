@@ -15,7 +15,7 @@ module Applyance
 
             @errors = collect_errors(response)
             if @errors.length > 0
-              return erb :'accounts/register', :layout => :'layouts/public'
+              return erb :'accounts/register'
             end
 
             @domain = JSON.parse(response)
