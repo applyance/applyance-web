@@ -14,7 +14,7 @@ module.exports = angular.module('Applyance')
         'definitionEdited': '&?',
         'definitionRemoved': '&?'
       },
-      templateUrl: 'views/directives/blueprints.html',
+      templateUrl: '/views/directives/blueprints.html',
       link: function(scope, elem, attrs) {
         scope.isDisabled = function(definition) {
           if (!scope.definitionIsDisabled) {

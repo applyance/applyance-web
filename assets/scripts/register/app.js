@@ -10,12 +10,12 @@ angular.module('Register', [ApplyanceApi.name, 'ngRoute', 'duScroll'])
   .config(function($routeProvider, $locationProvider) {
 
     $routeProvider
-      .when('/accounts/register', {
+      .when('/register', {
         templateUrl: '/views/register/form.html',
         controller: 'FormCtrl'
       })
       .otherwise({
-        redirectTo: '/accounts/register'
+        redirectTo: '/register'
       });
 
     $locationProvider.html5Mode(true);

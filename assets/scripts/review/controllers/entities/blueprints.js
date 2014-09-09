@@ -11,7 +11,7 @@ module.exports = angular.module('Review')
 
       // Get the right definitions
       $scope.definitions = [];
-      ApplyanceAPI.getDefinitions().then(function(definitions) {
+      ApplyanceAPI.getDomainDefinitions($scope.e.domain.id).then(function(definitions) {
          $scope.definitions = $scope.definitions.concat(definitions);
       });
 

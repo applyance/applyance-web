@@ -34,6 +34,8 @@ module.exports = angular.module('Review')
               }
               childEntitiesLists[e.parent.id].push(e);
               parentEntitiesList.push(e.parent);
+            } else {
+              parentEntitiesList.push(e);
             }
           });
           parentEntitiesList = _.uniq(parentEntitiesList, function(e) { return e.id; })

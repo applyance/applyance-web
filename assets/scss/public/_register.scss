@@ -19,15 +19,29 @@
   padding-right: 24px;
   margin-left: auto;
   margin-right: auto;
+  width: 100%;
   @media only screen and (min-width : 480px) {
-    margin-top: 96px;
+    margin-top: 72px;
     padding-left: 48px;
     padding-right: 48px;
   }
 }
 
+.register__form {
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .register__fields-wrap {
+  position: relative;
   text-align: center;
+  overflow: hidden;
+  padding: 48px 0;
+  border-top: 3px solid $color-gray;
+  @media only screen and (min-width : 480px) {
+    padding: 144px 0;
+  }
 }
 
 .register__fields {
@@ -35,31 +49,30 @@
   list-style-type: none;
   padding: 0;
   margin: 0;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .register__fields__item {
-  margin-bottom: 36px;
+  margin-bottom: 24px;
   &:last-child { margin-bottom: 0; }
   @media only screen and (min-width : 480px) {
-    margin-bottom: 48px;
+    margin-bottom: 36px;
+  }
+  &.break {
+    margin-bottom: 72px;
   }
 }
 
 .register__fields__input {
   display: block;
   width: 100%;
-  max-width: 500px;
   padding: 8px 12px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 300;
 
   color: $color-text;
   outline: none;
   border: 0;
-  border-bottom: 2px solid rgba(black, .1);
+  border-bottom: 1px solid rgba(black, .1);
   background-color: transparent;
 
   @include transition(border-color 200ms ease-in-out);
@@ -70,22 +83,21 @@
 
   @media only screen and (min-width : 480px) {
     padding: 12px 18px;
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 
 .register__fields__logo-label {
   display: inline-block;
   vertical-align: middle;
-  padding: 12px;
-  font-size: 18px;
+  padding: 12px 18px;
+  font-size: 16px;
   font-weight: 300;
   text-align: center;
   color: #aaa;
   width: 100%;
   @media only screen and (min-width : 480px) {
-    font-size: 20px;
-    width: 170px;
+    font-size: 18px;
     text-align: left;
   }
 }
@@ -94,6 +106,7 @@
   display: inline-block;
   vertical-align: middle;
   text-align: center;
+  padding: 12px 18px;
   .attachment__choose {
     margin-left: 0;
   }
@@ -102,6 +115,14 @@
     .attachment__choose {
       margin-left: 12px;
     }
+  }
+  .attachment__box {
+    border-width: 2px;
+    width: 100px;
+    height: 100px;
+  }
+  .attachment__empty {
+    font-size: 72px;
   }
 }
 
@@ -131,4 +152,10 @@
   padding: 18px;
   font-size: 20px;
   border: 3px solid $color-gray;
+}
+
+.register__submitted__recommended-note  {
+  font-size: 16px;
+  margin: 24px 0;
+  color: #999;
 }

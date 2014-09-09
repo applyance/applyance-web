@@ -1,33 +1,72 @@
-<section class="section is-base">
-  <div class="container">
-    <h1 class="lead--big register-lead--big">
-      Start hiring in <span class="text-highlight">5 minutes</span>
-    </h1>
+<div ng-include="'/views/register/leads/' + domain.slug + '.html'"></div>
+
+<section class="section is-spaceless" id="form">
+  <div class="container--narrow">
+
+    <div class="register__fields-wrap">
+
+      <div class="register__form">
+        <ul class="register__fields">
+          <li class="register__fields__item">
+            <input class="register__fields__input" id="reviewer-name" name="reviewerName" type="text" placeholder="Full Name" ng-model="form.reviewer.name" focus-on="formActivated">
+          </li>
+          <li class="register__fields__item">
+            <input class="register__fields__input" id="reviewer-email" name="reviewerEmail" type="text" placeholder="Email" ng-model="form.reviewer.email">
+          </li>
+          <li class="register__fields__item break">
+            <input class="register__fields__input" id="reviewer-password" name="reviewerPassword" type="password" placeholder="Password" ng-model="form.reviewer.password">
+          </li>
+          <li class="register__fields__item">
+            <input class="register__fields__input" id="entity-name" name="entityName" type="text" placeholder="Company Name" ng-model="form.entity.name" focus-on="register-scrolled-to-step-2">
+          </li>
+          <li class="register__fields__item">
+            <div class="register__fields__logo-label">
+              Company Logo
+            </div>
+            <div class="register__fields__logo-input">
+              <div class="attachment">
+                <div class="attachment__box">
+                  <i class="attachment__empty icon-photo"></i>
+                  <img ng-if="form.entity.attachment" ng-src="{{ form.entity.attachment.url }}" alt="avatar" />
+                </div>
+                <button class="btn attachment__choose" ng-click="clickChoose()">Choose</button>
+                <input class="attachment__file" id="logo" type="file" fileread="form.entity" accepts="image/*" tabindex="-1">
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div>
+          <button
+              ng-class="{ 'is-disabled':(!(form.reviewer.isValid && form.entity.isValid) || form.submitting) }"
+              ng-disabled="form.submitting || !(form.reviewer.isValid && form.entity.isValid)"
+              ng-click="submit()"
+              class="btn--primary is-outline register-btn" type="submit">
+            {{ form.submitting ? 'Registering' : 'Register' }}
+          </button>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
-
-<div ng-if="form.step >= 1">
-  <div ng-include="'/views/register/steps/personal.html'" ng-controller="ReviewerCtrl"></div>
-</div>
-
-<div ng-if="form.step >= 2">
-  <div ng-include="'/views/register/steps/company.html'" ng-controller="EntityCtrl"></div>
-</div>
-
-<div ng-if="form.step >= 3">
-  <div ng-include="'/views/register/steps/blueprints.html'" ng-controller="BlueprintsCtrl"></div>
-</div>
 
 <section ng-if="form.submitted" class="register__submitted">
   <div class="register__submitted__wrapper">
     <h1 class="lead--big">
-      You're ready to hire
+      You're ready to start
     </h1>
-    <div class="subline">
-      Pretty easy, huh? Just share the link below to start hiring.
+    <div class="subline text-trim">
+      <p>
+        Pretty easy, huh? Share the link below to accept applicants.
+      </p>
     </div>
     <div class="register__submitted__app-link">
       http://applyance.com/{{ entity.slug }}
+    </div>
+    <div class="register__submitted__recommended-note text-trim">
+      <p>
+        Note that a recommended application was created for you. If desired, you can tweak the application in your reviewer dashboard.
+      </p>
     </div>
     <div>
       <a class="btn--primary" href="/entities/{{ entity.id }}/applications" target="_self">Go to Your Reviewer Dashboard</a>

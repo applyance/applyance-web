@@ -14,8 +14,8 @@
 
   text-align: center;
 
-  background-color: lighten($color-gray, 5%);
-  border: 4px dashed $color-gray;
+  background-color: transparent;
+  border: 4px dashed $color-gray-rgba;
   border-radius: 5px;
 
   img {

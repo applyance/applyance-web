@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="/img/favicon.png">
 
-    <base href="/">
+    <base href="/<%= params[:domain] %>/">
     <link rel="stylesheet" type="text/css" href="//cloud.typography.com/7222252/709524/css/fonts.css" />
     <link rel="stylesheet" type="text/css" href="/styles/css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="/styles/css/base.css" />
@@ -15,15 +15,24 @@
   <body ng-app="Register">
 
     <div class="wrap">
-      <%= erb :'shared/_header' %>
+      <section class="home__header group">
+        <div class="container--narrow">
+          <a href="/">
+            <img src="/img/logo.blue.png" class="home__header__logo" />
+          </a>
+          <a href="/accounts/login" class="home__header__sign-in">Sign In</a>
+        </div>
+      </section>
       <main class="register" ng-view></main>
     </div>
+
     <%= erb :'shared/_footer' %>
     <%= yield_content :scripts %>
 
     <script type="text/javascript" src="/scripts/register.js"></script>
     <script>
       var app = angular.module('Register');
+      app.constant('domain', <%= JSON.dump(@domain) %>)
       app.constant('apiHost', '<%= @api_host %>');
       app.constant('apiKey', '');
     </script>

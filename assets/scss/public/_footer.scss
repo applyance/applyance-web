@@ -1,0 +1,114 @@
+/* Footer */
+
+.footer {
+  position: relative;
+  font-size: 0;
+  text-align: center;
+  @media only screen and (min-width : 768px) {
+    text-align: left;
+  }
+}
+
+.footer__content {
+  padding-top: 72px;
+  padding-bottom: 72px;
+  border-top: 3px solid $color-gray;
+}
+
+.borderless .footer__content {
+  border-top: 0;
+}
+
+.footer__company-info {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  @media only screen and (min-width : 768px) {
+    width: percentage(1 / 2);
+  }
+}
+
+.footer__logo {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  opacity: .6;
+  @media only screen and (min-width : 768px) {
+    width: 130px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.footer__copyright {
+  margin-top: 24px;
+  font-size: 12px;
+  color: #bbb;
+}
+
+/* Site Info */
+
+.footer__site-info {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 24px;
+  width: 100%;
+  @media only screen and (min-width : 768px) {
+    margin-top: 0;
+    width: percentage(1 / 2);
+  }
+}
+
+/* Nav Lists */
+
+.footer__nav-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0;
+}
+
+.footer__nav-list__item {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  @media only screen and (min-width : 768px) {
+    width: percentage(1 / 2);
+  }
+}
+
+/* Navs */
+
+.footer__nav {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0;
+}
+
+.footer__nav__item {
+  display: block;
+  width: 100%;
+  @media only screen and (min-width : 768px) {
+    width: percentage(1 / 2);
+  }
+}
+
+.footer__nav__link {
+  display: block;
+  padding: 6px 0;
+
+  font-size: 12px;
+  text-decoration: none;
+
+  color: #bbb;
+
+  @include transition(color 200ms ease-in-out);
+
+  &:hover {
+    color: #888;
+  }
+}
