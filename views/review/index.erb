@@ -24,55 +24,7 @@
         'is-settings-menu-open':menuStates.settings
       }">
 
-    <header class="header" ng-controller="HeaderCtrl">
-      <span class="hamburger" ng-click="toggleResponsiveMenu('main');"><i class="icon icon-bars"></i></span>
-      <a href="entities/{{ activeEntityId() }}/applications" class="mark"></a>
-      <nav class="nav">
-        <ul class="nav__list group">
-          <li class="nav__item"
-              ng-class="{ 'is-active':isActive('/entities/' + activeEntityId() + '/applications') }">
-            <a href="entities/{{ activeEntityId() }}/applications"
-               class="nav__link">Applicants</a>
-          </li>
-          <li class="nav__item"
-              ng-class="{ 'is-active':isActive('/entities/' + activeEntityId() + '/spots') }">
-            <a href="entities/{{ activeEntityId() }}/spots"
-               class="nav__link">Spots</a>
-          </li>
-          <li class="nav__item"
-              ng-class="{ 'is-active':inSettings }"
-              ng-if="isAdmin()">
-            <a href="entities/{{ activeEntityId() }}/settings"
-               class="nav__link">Manage {{ activeEntity().parent ? 'Location' : 'Company' }}</a>
-          </li>
-        <ul>
-      </nav>
-      <div class="account" ng-controller="AccountCtrl">
-
-        <context-switcher></context-switcher>
-
-        <a href="" ng-click="toggleResponsiveMenu('account')" class="account__avatar" title="Account Avatar">
-          <img ng-src="{{ getAvatarURL() }}" />
-        </a>
-
-        <ul class="account__settings-list">
-
-          <li class="account__settings-item">
-            <a href="/accounts/{{ accountId }}/settings" class="account__settings-link" title="Account Settings">
-              <i class="icon icon-settings"></i>
-              <span class="label">Account Settings</span>
-            </a>
-          </li>
-
-          <li class="account__settings-item">
-            <a href="/accounts/logout" target="_self" class="account__settings-link" title="Sign Out">
-              <i class="icon icon-logout"></i>
-              <span class="label">Sign Out</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </header>
+    <ng-include src="'/views/review/header.html'"></ng-include>
 
     <div class="flash text-trim">
       <p>{{ flashMessage }}</p>
@@ -82,6 +34,15 @@
       <main class="main" ng-view></main>
     </div>
 
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-54463153-1', 'auto');
+      ga('send', 'pageview');
+    </script>
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <script>
         Stripe.setPublishableKey('<%= Applyance::Client.settings.stripe_publishable_key %>');

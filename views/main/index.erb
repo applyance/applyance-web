@@ -1,54 +1,153 @@
-<section class="section is-base home__top-section">
-  <div class="container">
-    <div class="home__pitch">
-      <h1 class="home__headline">Applications made simple</h1>
-      <h2 class="home__subline">We take the time, energy, and cost out of your hiring process.</h2>
-      <div class="home__actions">
-        <a class="btn--primary home__btn--start" href="/accounts/register">Start Hiring in 5 Minutes</a>
-      </div>
-    </div>
-    <div class="home__screen">
-      <img src="/img/home.screen.list.png">
-    </div>
-  </div>
-</section>
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= erb :'shared/_meta' %>
+  </head>
+  <body>
 
-<section class="section is-big">
-  <div class="container">
-    <ul class="home__features">
-      <li class="home__features__item">
-        <div class="home__features__icon">
-          <i class="icon icon-smartphone"></i>
-        </div>
-        <div class="home__features__title">
-          Mobile Form
-        </div>
-        <div class="home__features__description">
-          Broaden your funnel by gaining exposure to multiple platforms.
-        </div>
-      </li>
-      <li class="home__features__item">
-        <div class="home__features__icon">
-          <i class="icon icon-notepad"></i>
-        </div>
-        <div class="home__features__title">
-          Common Application
-        </div>
-        <div class="home__features__description">
-          Reusable answers streamline the application process.
-        </div>
-      </li>
-      <li class="home__features__item">
-        <div class="home__features__icon">
-          <i class="icon icon-group"></i>
-        </div>
-        <div class="home__features__title">
-          Collaborative Review
-        </div>
-        <div class="home__features__description">
-          Teams can collaborate on reviewing applications.
-        </div>
-      </li>
-    </ul>
-  </div>
-</section>
+    <div class="wrap">
+
+      <main class="main">
+
+        <section class="home__header group">
+          <div class="container--narrow">
+            <img src="/img/logo.blue.png" class="home__header__logo" />
+            <a href="/accounts/login" class="home__header__sign-in">Sign In</a>
+          </div>
+        </section>
+
+        <section class="section home__lead-section">
+          <div class="container--narrow">
+            <div class="home__pitch a--center">
+              <h1 class="home__headline">Applications made simple.</h1>
+              <h2 class="home__subline">Your people are your business. Take control.</h2>
+              <ul class="home__actions">
+                <li class="home__actions__item">
+                  <a class="btn--primary is-outline home__actions__link" href="/employers/register">For Employers</a>
+                </li>
+                <li class="home__actions__item">
+                  <a class="btn--accent is-outline home__actions__link" href="/schools/register">For Schools</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section is-spaceless home__features-section">
+          <div class="container--narrow">
+            <ul class="home__features">
+              <li class="home__features__item is-left group">
+                <div class="home__features__text">
+                  <div class="home__features__title">
+                    Organization
+                  </div>
+                  <div class="home__features__description">
+                    Simplify your workflow with beautiful, clutter-free tools.
+                  </div>
+                </div>
+                <div class="home__features__screen">
+                  <img src="/img/home-features/organization.png" />
+                  <div class="home__features__screen__gradient"></div>
+                </div>
+              </li>
+              <li class="home__features__item is-right group">
+                <div class="home__features__text">
+                  <div class="home__features__title">
+                    Collaboration
+                  </div>
+                  <div class="home__features__description">
+                    Work together as a team to find the best applicants.
+                  </div>
+                </div>
+                <div class="home__features__screen">
+                  <img src="/img/home-features/collaborative-review.png" />
+                  <div class="home__features__screen__gradient"></div>
+                </div>
+              </li>
+              <li class="home__features__item is-left group">
+                <div class="home__features__text">
+                  <div class="home__features__title">
+                    Locations
+                  </div>
+                  <div class="home__features__description">
+                    Tame the complexities of growing with support for locations.
+                  </div>
+                </div>
+                <div class="home__features__screen">
+                  <img src="/img/home-features/multiple-locations.png" />
+                  <div class="home__features__screen__gradient"></div>
+                </div>
+              </li>
+              <li class="home__features__item is-right group">
+                <div class="home__features__text">
+                  <div class="home__features__title">
+                    Spots
+                  </div>
+                  <div class="home__features__description">
+                    Accept applicants through a wider range of flexibility with spots.
+                  </div>
+                </div>
+                <div class="home__features__screen">
+                  <img src="/img/home-features/multiple-spots.png" />
+                  <div class="home__features__screen__gradient"></div>
+                </div>
+              </li>
+              <li class="home__features__item is-left group">
+                <div class="home__features__text">
+                  <div class="home__features__title">
+                    Mobile
+                  </div>
+                  <div class="home__features__description">
+                    Broaden your funnel by gaining exposure on numerous platforms.
+                  </div>
+                </div>
+                <div class="home__features__screen">
+                  <img src="/img/home-features/mobile-form-left.png" />
+                  <div class="home__features__screen__gradient"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section is-spaceless home__cta-section">
+          <div class="container--narrow">
+            <ul class="home__ctas">
+              <li class="home__ctas__item is-left group">
+                <div class="home__cta__text">
+                  <div class="home__cta__title">
+                    For Employers
+                  </div>
+                  <div class="home__cta__description">
+                    Simplify your hiring process.
+                  </div>
+                </div>
+                <div class="home__cta__cta">
+                  <a class="btn--primary is-outline" href="/employers/register">Sign Up</a>
+                </div>
+              </li>
+              <li class="home__ctas__item is-left group">
+                <div class="home__cta__text">
+                  <div class="home__cta__title">
+                    For Schools
+                  </div>
+                  <div class="home__cta__description">
+                    Simplify your admissions process.
+                  </div>
+                </div>
+                <div class="home__cta__cta">
+                  <a class="btn--accent is-outline" href="/schools/register">Sign Up</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <%= erb :'shared/_footer' %>
+    <%= erb :'shared/_common_scripts' %>
+
+  </body>
+</html>

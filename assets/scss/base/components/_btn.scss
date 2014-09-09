@@ -19,10 +19,12 @@
   color: $color-text;
   cursor: pointer;
 
-  @include transition(background-color 200ms ease-in-out);
+  @include transition(
+    background-color 200ms ease-in-out,
+    border-color 200ms ease-in-out);
 
-  &:not(.is-disabled):focus,
-  &:not(.is-disabled):hover {
+  &:not(.is-disabled, .is-outline):focus,
+  &:not(.is-disabled, .is-outline):hover {
     background-color: rgba($color-gray-rgba, .15);
   }
   &.is-small {
@@ -65,15 +67,27 @@
       @include transform(rotate(-90deg));
     }
   }
+  &.is-outline {
+    background-color: transparent;
+    border: 3px solid transparent;
+  }
 }
 
 .btn--primary {
   @extend .btn;
   background-color: $color-brand;
   color: white;
-  &:not(.is-disabled):focus,
-  &:not(.is-disabled):hover {
+  &:not(.is-disabled, .is-outline):focus,
+  &:not(.is-disabled, .is-outline):hover {
     background-color: lighten($color-brand, 10%);
+  }
+  &.is-outline {
+    border-color: $color-brand;
+    color: $color-brand;
+    &:not(.is-disabled):focus,
+    &:not(.is-disabled):hover {
+      border-color: lighten($color-brand, 10%);
+    }
   }
 }
 
@@ -81,9 +95,17 @@
   @extend .btn;
   background-color: $color-base;
   color: white;
-  &:not(.is-disabled):focus,
-  &:not(.is-disabled):hover {
+  &:not(.is-disabled, .is-outline):focus,
+  &:not(.is-disabled, .is-outline):hover {
     background-color: lighten($color-base, 10%);
+  }
+  &.is-outline {
+    border-color: $color-base;
+    color: $color-base;
+    &:not(.is-disabled):focus,
+    &:not(.is-disabled):hover {
+      border-color: lighten($color-base, 10%);
+    }
   }
 }
 
@@ -91,9 +113,17 @@
   @extend .btn;
   background-color: #777;
   color: white;
-  &:not(.is-disabled):focus,
-  &:not(.is-disabled):hover {
+  &:not(.is-disabled, .is-outline):focus,
+  &:not(.is-disabled, .is-outline):hover {
     background-color: darken(#777, 10%);
+  }
+  &.is-outline {
+    border-color: #777;
+    color: #777;
+    &:not(.is-disabled):focus,
+    &:not(.is-disabled):hover {
+      border-color: darken(#777, 10%);
+    }
   }
 }
 
@@ -101,8 +131,16 @@
   @extend .btn;
   background-color: $color-accent;
   color: white;
-  &:not(.is-disabled):focus,
-  &:not(.is-disabled):hover {
+  &:not(.is-disabled, .is-outline):focus,
+  &:not(.is-disabled, .is-outline):hover {
     background-color: darken($color-accent, 10%);
+  }
+  &.is-outline {
+    border-color: $color-accent;
+    color: $color-accent;
+    &:not(.is-disabled):focus,
+    &:not(.is-disabled):hover {
+      border-color: darken($color-accent, 10%);
+    }
   }
 }

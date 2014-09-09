@@ -128,6 +128,9 @@ module.exports = angular.module('Applyance', ['restangular'])
       this.postNewEntity = function(entity) {
         return Restangular.all('entities').post(entity);
       };
+      this.postDomainEntity = function(id, entity) {
+        return Restangular.one('domains', id).all('entities').post(entity);
+      };
       this.deleteEntity = function(id) {
         return Restangular.one('entities', id).remove();
       };
@@ -175,6 +178,9 @@ module.exports = angular.module('Applyance', ['restangular'])
       };
 
       // Definitions
+      this.getDomainDefinitions = function(id) {
+        return Restangular.one('domains', id).all("definitions").getList();
+      };
       this.getDefinitions = function() {
         return Restangular.all("definitions").getList();
       };

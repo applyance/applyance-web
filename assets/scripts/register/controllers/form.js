@@ -1,8 +1,10 @@
 'use strict';
 
 module.exports = angular.module('Register')
-  .controller('FormCtrl', ['$scope', '$http', 'ApplyanceAPI', '$timeout',
-    function ($scope, $http, ApplyanceAPI, $timeout) {
+  .controller('FormCtrl', ['$scope', '$http', 'ApplyanceAPI', '$timeout', 'domain',
+    function ($scope, $http, ApplyanceAPI, $timeout, domain) {
+
+      $scope.domain = domain;
 
       $scope.form = {
         step: 1,
@@ -19,7 +21,56 @@ module.exports = angular.module('Register')
         }
       };
 
+      $scope.setFormActivated = function() {
+        $scope.$broadcast('formActivated');
+      };
+
       $scope.blueprints = [];
+      $scope.definitions = [];
+      ApplyanceAPI.getDomainDefinitions($scope.domain.id).then(function(definitions) {
+        $scope.definitions = definitions.plain();
+        var coreDefinitions = _.where($scope.definitions, { is_core: true });
+        _.each(coreDefinitions, function(definition) {
+          $scope.blueprints.push({
+            definition_id: definition.id,
+            position: 1,
+            is_required: true
+          });
+        });
+      });
+
+      $scope.isReviewerValid = function() {
+        $scope.form.reviewer.isValid = true;
+        if (
+             $scope.form.reviewer.name.length == 0
+          || $scope.form.reviewer.email.length == 0
+          || $scope.form.reviewer.password.length == 0) {
+          $scope.form.reviewer.isValid = false;
+        }
+      };
+
+      $scope.$watch('form.reviewer', $scope.isReviewerValid, true);
+
+      $scope.isEntityValid = function() {
+        $scope.form.entity.isValid = true;
+        if ($scope.form.entity.name.length == 0) {
+          $scope.form.entity.isValid = false;
+        }
+      };
+
+      $scope.$watch('form.entity', $scope.isEntityValid, true);
+
+      $scope.clickChoose = function() {
+        $timeout(function() {
+          var logo = document.getElementById('logo');
+          var event = new MouseEvent('click', {
+            'view': window,
+            'bubbles': true,
+            'cancelable': true
+          });
+          logo.dispatchEvent(event);
+        }, 100);
+      };
 
       $scope.submit = function() {
         $scope.form.submitting = true;
@@ -85,7 +136,7 @@ module.exports = angular.module('Register')
         if ($scope.form.entity.logo) {
           entity.logo = $scope.form.entity.logo;
         }
-        ApplyanceAPI.postNewEntity(entity).then($scope.onCreateEntity);
+        ApplyanceAPI.postDomainEntity($scope.domain.id, entity).then($scope.onCreateEntity);
       };
 
     }]);
