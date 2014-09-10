@@ -3,11 +3,16 @@
 .context-switcher {
   display: inline-block;
   vertical-align: middle;
+  float: right;
 
   position: relative;
   margin: 0;
   font-size: 0;
   z-index: 100;
+
+  @media only screen and (min-width : $mobile-account-breakpoint) {
+    float: none;
+  }
 }
 
 .context-switcher__mobile-pin {
@@ -73,15 +78,15 @@
     right: 24px - 4px;
     color: white;
     font-size: 16px;
-    opacity: .25;
+    opacity: .4;
     @include transform(rotate(90deg));
   }
 }
 
 .context-switcher__active-parent {
   position: relative;
-  margin-right: 24px;
-  padding-right: 36px;
+  margin-right: 18px;
+  padding-right: 32px;
   .icon {
     position: absolute;
     top: 50%;
@@ -89,7 +94,7 @@
     right: 0;
     color: white;
     font-size: 16px;
-    opacity: .25;
+    opacity: .4;
   }
   &.is-not-clickable {
     cursor: default;
@@ -101,7 +106,7 @@
   position: absolute;
   top: 54px + 8px;
   top: calc(100% + 12px);
-  right: 0;
+  right: 12px;
   &:before {
     content: '';
     position: absolute;

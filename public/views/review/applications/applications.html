@@ -1,10 +1,7 @@
 <div class="main-container">
 
   <h1 class="top-header">
-    Applicants<span class="top-header__annotation">{{ activeEntity.name }}</span>
-    <a ng-if="citizens.length > 0" href="/{{ activeEntity.slug }}" target="_blank" class="tag application-header-link">
-      View Your Application Form
-    </a>
+    Applicants
   </h1>
 
   <div ng-switch on="citizens.length">

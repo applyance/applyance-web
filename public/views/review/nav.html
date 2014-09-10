@@ -27,11 +27,11 @@
         ng-if="isAdmin()">
       <a href="entities/{{ activeEntityId() }}/settings"
          class="nav__link"
-         apl-tooltip="Manage {{ activeEntity().parent ? 'Location' : 'Company' }}"
+         apl-tooltip="{{ activeEntity().parent ? 'Location' : 'Company' }} Settings"
          apl-tooltip-attachment="middle left"
          apl-tooltip-target-attachment="middle right">
         <i class="icon icon-settings"></i>
-        <span class="label">Manage {{ activeEntity().parent ? 'Location' : 'Company' }}</span>
+        <span class="label">{{ activeEntity().parent ? 'Location' : 'Company' }} Settings</span>
       </a>
     </li>
   </ul>

@@ -2,21 +2,23 @@
   <span class="hamburger" ng-click="toggleResponsiveMenu('main');"><i class="icon icon-bars"></i></span>
   <a href="entities/{{ activeEntityId() }}/applications" class="mark"></a>
   <context-switcher></context-switcher>
+  <div class="header__application-link">
+    <a href="/{{ activeEntity().slug }}" target="_blank">
+      Application
+      <i class="icon icon-window-maximize"></i>
+    </a>
+  </div>
   <div class="account" ng-controller="AccountCtrl">
-
     <a href="" ng-click="toggleResponsiveMenu('account')" class="account__avatar" title="Account Avatar">
       <img ng-src="{{ getAvatarURL() }}" />
     </a>
-
     <ul class="account__settings-list">
-
       <li class="account__settings-item">
         <a href="/accounts/{{ accountId }}/settings" class="account__settings-link" title="Account Settings">
           <i class="icon icon-settings"></i>
           <span class="label">Account Settings</span>
         </a>
       </li>
-
       <li class="account__settings-item">
         <a href="/accounts/logout" target="_self" class="account__settings-link" title="Sign Out">
           <i class="icon icon-logout"></i>

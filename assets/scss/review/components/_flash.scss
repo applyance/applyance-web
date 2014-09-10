@@ -28,7 +28,7 @@
 
 .with-sidebar .flash {
   @media only screen and (min-width : $mobile-settings-sidebar-breakpoint) {
-    left: $sidebar-width;
+    left: $sidebar-width + $nav-width;
   }
 }
 
