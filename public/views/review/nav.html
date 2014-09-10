@@ -1,0 +1,38 @@
+<nav class="nav">
+  <ul class="nav__list group">
+    <li class="nav__item"
+        ng-class="{ 'is-active':isActive('/entities/' + activeEntityId() + '/applications') }">
+      <a href="entities/{{ activeEntityId() }}/applications"
+         class="nav__link"
+         apl-tooltip="Applicants"
+         apl-tooltip-attachment="middle left"
+         apl-tooltip-target-attachment="middle right">
+        <i class="icon icon-id-card"></i>
+        <span class="label">Applicants</span>
+      </a>
+    </li>
+    <li class="nav__item"
+        ng-class="{ 'is-active':isActive('/entities/' + activeEntityId() + '/spots') }">
+      <a href="entities/{{ activeEntityId() }}/spots"
+         class="nav__link"
+         apl-tooltip="Spots"
+         apl-tooltip-attachment="middle left"
+         apl-tooltip-target-attachment="middle right">
+        <i class="icon icon-text-clipboard"></i>
+        <span class="label">Spots</span>
+      </a>
+    </li>
+    <li class="nav__item"
+        ng-class="{ 'is-active':inSettings }"
+        ng-if="isAdmin()">
+      <a href="entities/{{ activeEntityId() }}/settings"
+         class="nav__link"
+         apl-tooltip="Manage {{ activeEntity().parent ? 'Location' : 'Company' }}"
+         apl-tooltip-attachment="middle left"
+         apl-tooltip-target-attachment="middle right">
+        <i class="icon icon-settings"></i>
+        <span class="label">Manage {{ activeEntity().parent ? 'Location' : 'Company' }}</span>
+      </a>
+    </li>
+  </ul>
+</nav>

@@ -1,0 +1,59 @@
+/* Flash */
+
+.flash {
+  height: 0;
+  position: fixed;
+  top: $header-height + 60px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: inline-block;
+  padding: 0 24px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  background-color: mix(white, $color-accent, 75%);
+
+  @include transition(all 150ms ease-in-out);
+
+  @media only screen and (min-width : 600px) {
+    padding: 0 60px;
+  }
+  @media only screen and (min-width : $mobile-settings-sidebar-breakpoint) {
+    top: $header-height;
+  }
+}
+
+.with-sidebar .flash {
+  @media only screen and (min-width : $mobile-settings-sidebar-breakpoint) {
+    left: $sidebar-width;
+  }
+}
+
+.is-flash-open .flash {
+  height: 60px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+.is-flash-open .main-container {
+  top: 60px + 60px;
+}
+
+@media only screen and (min-width : 600px) {
+  .is-flash-open .flash {
+    height: 70px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+  .is-flash-open .main-container {
+    top: 70px + 60px;
+  }
+}
+
+@media only screen and (min-width : $mobile-settings-sidebar-breakpoint) {
+  .is-flash-open .main-container {
+    top: 70px;
+  }
+}

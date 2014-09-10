@@ -1,0 +1,25 @@
+/* Tag */
+
+.tag {
+  display: inline-block;
+  padding: 12px 24px;
+
+  font-size: 16px;
+  text-decoration: none;
+
+  color: $color-text;
+  border-radius: 24px;
+  border: 2px solid $color-gray-rgba;
+}
+
+.tag--success {
+  @extend .tag;
+  border-color: $color-accent;
+}
+
+a.tag {
+  @include transition(border-color 200ms ease-in-out);
+  &:hover {
+    border-color: rgba($color-gray-rgba, .15);
+  }
+}

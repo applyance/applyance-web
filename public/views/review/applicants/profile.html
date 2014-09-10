@@ -75,7 +75,7 @@
     </div>
     <div class="application__fields__detail text-trim" ng-bind-html="renderAddress(profile.location.address)"></div>
   </li>
-  <li class="application__fields__item" ng-repeat="field in application.fields">
+  <li class="application__fields__item" ng-repeat="field in application.fields" ng-if="field.datum.definition">
     <div class="application__fields__label">
       {{ field.datum.definition.label | blueprint:activeEntity }}
     </div>

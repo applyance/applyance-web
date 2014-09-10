@@ -1,0 +1,215 @@
+.header,
+.mark {
+  height: $header-height;
+}
+
+.header {
+  font-size: 0;
+  background-color: $header-bg-color;
+}
+
+.mark {
+  display: inline-block;
+  vertical-align: middle;
+  width: $mark-mobile-width;
+  text-align: center;
+
+  background-image: url('/img/mark.gold.png');
+  background-size: $mark-mobile-width;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  @media only screen and (min-width : $mobile-nav-breakpoint) {
+    width: 24px + $mark-width + 24px;
+    background-image: url('/img/mark.blue.png');
+    background-color: $mark-bg-color;
+    background-size: $mark-width;
+    @include transition(background-color 200ms ease-in-out);
+    &:hover {
+      background-color: lighten($mark-bg-color, 5%);
+    }
+  }
+}
+
+.mark__img,
+.mark__helper {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.mark__helper {
+  height: 100%;
+}
+
+.mark__img {
+  width: $mark-width;
+  height: auto;
+}
+
+/* Account */
+
+.account {
+  position: relative;
+  display: inline-block;
+  float: right;
+  height: $header-height;
+}
+
+.account__avatar,
+.account__settings-list {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.account__avatar {
+  cursor: pointer;
+  position: relative;
+  width: $header-height;
+  height: $header-height;
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include transform(translate(-50%, -50%));
+    display: block;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+  }
+  @media only screen and (min-width : $mobile-account-breakpoint) {
+    cursor: default;
+  }
+}
+
+.account__settings-list {
+  display: none;
+  position: absolute;
+  top: 100%;
+  top: calc(100% + 12px);
+  right: 6px;
+  width: 280px;
+  z-index: 10;
+  padding: 0;
+
+  background-color: $color-base;
+  border-radius: 5px;
+
+  list-style-type: none;
+  margin: 0;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    right: 12px;
+    width: 0;
+    height: 0;
+
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid $color-base;
+  }
+
+  @media only screen and (min-width : $mobile-account-breakpoint) {
+    display: inline-block;
+    position: relative;
+    top: auto;
+    right: auto;
+    width: auto;
+    z-index: auto;
+
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+
+    &:before { content: none; }
+  }
+}
+
+@media only screen and (max-width : $mobile-account-breakpoint) {
+  /* body */.is-account-menu-open .account__settings-list {
+    display: block;
+  }
+}
+
+.account__settings-item {
+  border-bottom: 1px solid rgba(black, .1);
+  &:last-child { border-bottom: 0; }
+  @media only screen and (min-width : $mobile-account-breakpoint) {
+    float: left;
+    border-bottom: 0;
+  }
+}
+
+.account__settings-link {
+  display: block;
+  padding: 18px 24px;
+  font-size: 0;
+  text-decoration: none;
+  color: white;
+
+  .icon {
+    display: none;
+    font-size: 20px;
+  }
+  .label {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  @media only screen and (min-width : $mobile-account-breakpoint) {
+    padding: 12px;
+    color: $header-link-color;
+    opacity: .5;
+    @include transition(opacity 200ms ease-in-out);
+    .icon { display: inline-block; }
+    .label { display: none; }
+    &:hover { opacity: 1; }
+  }
+}
+
+/* Header Modifiers */
+
+
+.top-header {
+  margin-top: 0;
+}
+
+.top-header__annotation {
+  display: none;
+  padding-left: 24px;
+
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase;
+
+  color: #bbb;
+
+  @media only screen and (min-width : 480px) {
+    display: inline-block;
+  }
+}
+
+.header-action-wrap {
+  display: block;
+  margin-top: 12px;
+  @media only screen and (min-width : $mobile-header-action-breakpoint) {
+    display: inline-block;
+    margin-top: -5px;
+    float: right;
+  }
+}
+
+/* Application Header Link */
+
+.application-header-link {
+  display: none;
+  @media only screen and (min-width : 768px) {
+    display: block;
+    margin-top: -5px;
+    float: right;
+  }
+}

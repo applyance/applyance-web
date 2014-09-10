@@ -87,8 +87,7 @@ module.exports = angular.module('Review')
             element: tooltip,
             target: elem[0],
             attachment: attr.aplTooltipAttachment || 'top center',
-            targetAttachment: attr.aplTooltipTargetAttachment || 'bottom center',
-            offset: '-18px 0'
+            targetAttachment: attr.aplTooltipTargetAttachment || 'bottom center'
           });
         });
 

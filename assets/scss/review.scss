@@ -1,10 +1,3 @@
 @import 'init';
-@import 'ext/medium-editor/init';
-@import 'review/config';
 
-@import 'review/base';
-@import 'review/form';
-@import 'review/header';
-@import 'review/main';
-@import 'review/application';
-@import 'review/spots';
+@import 'review/_init';

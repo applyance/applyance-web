@@ -1,0 +1,54 @@
+.main-wrap,
+.main {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.main-wrap {
+  overflow-x: hidden;
+  top: $header-height;
+}
+
+.main {
+  top: 0;
+  @include transition-property(transform);
+  @include transition-duration(200ms);
+  @include transition-timing-function(cubic-bezier(.7, 0, .175, 1));
+
+  @media only screen and (min-width : $mobile-nav-breakpoint) {
+    left: 72px;
+  }
+}
+
+.main-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 36px 24px;
+  overflow: auto;
+
+  @include transition(top 150ms ease-in-out);
+
+  &.with-sidebar {
+    top: 60px;
+    @media only screen and (min-width : $mobile-settings-sidebar-breakpoint) {
+      top: 0;
+      margin-left: $sidebar-width - 24px;
+    }
+    @media only screen and (min-width : 1024px) {
+      margin-left: $sidebar-width;
+    }
+  }
+
+  @media only screen and (min-width : 480px) {
+    padding: 48px;
+  }
+
+  @media only screen and (min-width : 1024px) {
+    padding: 60px;
+  }
+}

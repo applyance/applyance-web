@@ -1,0 +1,62 @@
+/* Settings Inputs */
+
+.settings-inputs__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+}
+
+.settings-inputs__item {
+  margin-top: 36px;
+  &:first-child { margin-top: 0; }
+}
+
+.settings-inputs__tray {
+  margin-top: 48px;
+  padding-left: 0;
+  @media only screen and (min-width : $breakpoint-settings-list) {
+    padding-left: $settings-inputs-label-width;
+  }
+}
+
+.settings-inputs__label {
+  display: block;
+  padding: 15px 0;
+  font-size: 16px;
+
+  @media only screen and (min-width : $breakpoint-settings-list) {
+    display: inline-block;
+    vertical-align: top;
+    width: $settings-inputs-label-width;
+  }
+}
+
+.settings-inputs__field {
+  display: inline-block;
+}
+
+.settings-inputs__field--data {
+  @extend .settings-inputs__field;
+  padding: 12px 18px;
+
+  font-size: 16px;
+  line-height: 1.4;
+
+  color: $color-text;
+}
+
+.settings-inputs__note {
+  font-size: 14px;
+  padding: 12px 22px;
+  max-width: 353px;
+  line-height: 1.4;
+}
+
+.settings-inputs__item .rich-editor-wrap {
+  @media only screen and (min-width : $breakpoint-settings-list) {
+    display: inline-block;
+    width: 600px;
+    width: calc(100% - 200px);
+  }
+}

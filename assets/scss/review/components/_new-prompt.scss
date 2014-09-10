@@ -1,0 +1,48 @@
+/* New Prompt */
+
+.new-prompt {
+  margin: 48px 0;
+  padding: 24px;
+  border-radius: 5px;
+  background-color: $color-gray;
+
+  @media only screen and (min-width : 480px) {
+    padding: 36px;
+  }
+}
+
+.new-prompt__header {
+  margin-bottom: 24px;
+}
+
+.new-prompt__title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.new-prompt__description {
+  margin-top: 12px;
+  font-size: 16px;
+}
+
+.new-prompt__actions {
+  list-style-type: none;
+  margin: 0;
+  margin-top: 24px;
+  padding: 0;
+}
+
+.new-prompt__actions__item {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0;
+  margin-top: 12px;
+  &:first-child {
+    margin-left: 0;
+    margin-top: 0;
+  }
+  @media only screen and (min-width : 410px) {
+    margin-top: 0;
+    margin-left: 12px;
+  }
+}

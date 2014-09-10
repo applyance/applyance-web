@@ -1,0 +1,81 @@
+/* Applicant Labels */
+
+.applicant-labels {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0;
+}
+
+.application-list__labels {
+  margin-top: 0;
+}
+
+.applicant-labels__item {
+  display: inline-block;
+  margin-right: 12px;
+  &:last-child { margin-right: 0; }
+  &:hover .label-ring {
+    @include transform(scale(1.25));
+  }
+}
+
+.applicant-labels__add {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.applicant-labels__add__link {
+  font-size: 13px;
+  text-decoration: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 100%;
+  border: 3px solid #3eccbe;
+  display: block;
+  text-align: center;
+  @include transition-property(transform);
+  @include transition-duration(100ms);
+  @include transition-timing-function(ease-in-out);
+
+  .icon {
+    position: relative;
+    top: 3px;
+    left: .5px;
+  }
+
+  &:hover {
+    @include transform(scale(1.15));
+  }
+}
+
+.label-ring {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 22px;
+  height: 22px;
+  border-radius: 100%;
+
+  @include transition-property(transform);
+  @include transition-duration(100ms);
+  @include transition-timing-function(ease-in-out);
+
+  &:before {
+    $_offset: 5px;
+    content: '';
+    position: absolute;
+    top: $_offset;
+    left: $_offset;
+    right: $_offset;
+    bottom: $_offset;
+    background-color: white;
+    border-radius: 100%;
+    @include transition(background-color 200ms ease-in-out);
+  }
+
+  &.is-gray:before {
+    background-color: $color-gray;
+  }
+}

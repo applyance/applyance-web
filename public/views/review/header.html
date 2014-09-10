@@ -1,29 +1,8 @@
 <header class="header" ng-controller="HeaderCtrl" ng-cloak>
   <span class="hamburger" ng-click="toggleResponsiveMenu('main');"><i class="icon icon-bars"></i></span>
   <a href="entities/{{ activeEntityId() }}/applications" class="mark"></a>
-  <nav class="nav">
-    <ul class="nav__list group">
-      <li class="nav__item"
-          ng-class="{ 'is-active':isActive('/entities/' + activeEntityId() + '/applications') }">
-        <a href="entities/{{ activeEntityId() }}/applications"
-           class="nav__link">Applicants</a>
-      </li>
-      <li class="nav__item"
-          ng-class="{ 'is-active':isActive('/entities/' + activeEntityId() + '/spots') }">
-        <a href="entities/{{ activeEntityId() }}/spots"
-           class="nav__link">Spots</a>
-      </li>
-      <li class="nav__item"
-          ng-class="{ 'is-active':inSettings }"
-          ng-if="isAdmin()">
-        <a href="entities/{{ activeEntityId() }}/settings"
-           class="nav__link">Manage {{ activeEntity().parent ? 'Location' : 'Company' }}</a>
-      </li>
-    <ul>
-  </nav>
+  <context-switcher></context-switcher>
   <div class="account" ng-controller="AccountCtrl">
-
-    <context-switcher></context-switcher>
 
     <a href="" ng-click="toggleResponsiveMenu('account')" class="account__avatar" title="Account Avatar">
       <img ng-src="{{ getAvatarURL() }}" />

@@ -1,0 +1,59 @@
+/* Edit Box */
+
+.edit-box {
+  position: relative;
+  &.is-editing .edit-box__label {
+    display: none;
+  }
+  &.is-editing .edit-box__input {
+    display: inline-block;
+  }
+}
+
+.edit-box__label,
+.edit-box__input {
+  padding: 8px;
+
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.edit-box__label {
+  display: inline-block;
+  position: relative;
+  border-radius: 5px;
+  border: 4px solid rgba($color-gray, .5);
+}
+
+.edit-box__input {
+  display: none;
+  position: relative;
+  width: auto;
+}
+
+.edit-box__edit {
+  display: inline-block;
+  margin-left: 6px;
+  width: 32px;
+  height: 32px;
+
+  font-size: 18px;
+  text-align: center;
+  line-height: 32px;
+  text-decoration: none;
+
+  color: $color-text;
+  border-radius: 100%;
+  background-color: transparent;
+  opacity: .5;
+
+  @include transition(
+    background-color 200ms ease-in-out,
+    opacity 200ms ease-in-out);
+
+  &:hover {
+    opacity: 1;
+    background-color: $color-gray-rgba;
+  }
+}
