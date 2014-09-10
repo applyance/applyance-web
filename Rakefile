@@ -17,22 +17,22 @@ namespace :travis do
 
   desc "Decrypt the configuration."
   task :decrypt_config do
-    is_pull_request = (ENV['TRAVIS_PULL_REQUEST'] == 'true')
+    is_pull_request = (ENV['TRAVIS_PULL_REQUEST'] != 'false')
     branch = ENV['TRAVIS_BRANCH']
     environment = ((branch == "master") && !is_pull_request) ? "production" : "development"
 
-    puts "Decrypting configuration for [#{branch}, #{environment}]."
+    puts "Decrypting configuration for [#{branch}, #{is_pull_request}, #{environment}]."
 
     sh "openssl aes-256-cbc -k \"$chicken_sandwiches\" -in config/config.#{environment}.yml.enc -out config/config.yml -d"
   end
 
   desc "Deploy based on branch."
   task :deploy do
-    is_pull_request = (ENV['TRAVIS_PULL_REQUEST'] == 'true')
+    is_pull_request = (ENV['TRAVIS_PULL_REQUEST'] != 'false')
     branch = ENV['TRAVIS_BRANCH']
     environment = ((branch == "master") && !is_pull_request) ? "production" : "development"
 
-    puts "Deploying for [#{branch}, #{environment}]."
+    puts "Deploying for [#{branch}, #{is_pull_request}, #{environment}]."
 
     sh "bundle exec cap #{environment} deploy"
   end
