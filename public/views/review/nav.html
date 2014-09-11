@@ -7,7 +7,9 @@
          apl-tooltip="Applicants"
          apl-tooltip-attachment="middle left"
          apl-tooltip-target-attachment="middle right">
-        <i class="icon icon-id-card"></i>
+        <svg class="icon">
+          <use xlink:href="#applicants" />
+        </svg>
         <span class="label">Applicants</span>
       </a>
     </li>
@@ -18,7 +20,9 @@
          apl-tooltip="Spots"
          apl-tooltip-attachment="middle left"
          apl-tooltip-target-attachment="middle right">
-        <i class="icon icon-text-clipboard"></i>
+        <svg class="icon">
+          <use xlink:href="#spots" />
+        </svg>
         <span class="label">Spots</span>
       </a>
     </li>
@@ -30,7 +34,9 @@
          apl-tooltip="{{ activeEntity().parent ? 'Location' : 'Company' }} Settings"
          apl-tooltip-attachment="middle left"
          apl-tooltip-target-attachment="middle right">
-        <i class="icon icon-settings"></i>
+        <svg class="icon">
+          <use xlink:href="#settings" />
+        </svg>
         <span class="label">{{ activeEntity().parent ? 'Location' : 'Company' }} Settings</span>
       </a>
     </li>

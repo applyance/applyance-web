@@ -99,13 +99,15 @@
     color: $color-base;
     text-align: center;
     .icon {
-      display: inline-block;
+      display: block;
       position: absolute;
       top: 50%;
-      margin-top: -14px;
+      margin-top: -11px;
       left: 50%;
       margin-left: -11px;
-      font-size: 28px;
+      width: 22px;
+      height: 22px;
+      color: $color-base;
     }
     .label { display: none; }
   }

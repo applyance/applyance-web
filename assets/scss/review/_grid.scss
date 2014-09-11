@@ -2,7 +2,7 @@
 
 @media only screen and (min-width : 768px) {
 
-  .unit { content: ''; }
+  .unit { display: inline-block; vertical-align: middle; }
   .unit--1of2 { @extend .unit; width: percentage(1 / 2); }
   .unit--1of3 { @extend .unit; width: percentage(1 / 3); }
   .unit--2of3 { @extend .unit; width: percentage(2 / 3); }

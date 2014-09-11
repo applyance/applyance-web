@@ -5,7 +5,9 @@
   <div class="header__application-link">
     <a href="/{{ activeEntity().slug }}" target="_blank">
       Application
-      <i class="icon icon-window-maximize"></i>
+      <svg class="icon">
+        <use xlink:href="#new-window" />
+      </svg>
     </a>
   </div>
   <div class="account" ng-controller="AccountCtrl">

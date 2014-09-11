@@ -27,46 +27,59 @@
   Applied to {{ getApplyable() }} on {{ application.submitted_at | aplMoment: 'MMM. D, YYYY' }}
 </div>
 
-<div class="application__actions group">
-  <ul class="applicant-labels application__actions__labels">
-    <li class="applicant-labels__item"
-        ng-repeat="label in citizen.labels"
-        apl-tooltip="{{ label.name }}">
-      <span class="label-ring is-gray" style="background-color: #{{ label.color }}"></span>
-    </li>
-    <li class="applicant-labels__add" apl-click-outside="dropdown.open = false">
-      <a href="" class="applicant-labels__add__link"
-          ng-class="{ 'is-dropdown-open':dropdown.open }"
-          ng-click="dropdown.open = !dropdown.open"><i class="icon icon-plus"></i></a>
-      <div class="application__sidebar__assign-labels__popup" ng-show="dropdown.open">
-        <ul class="application__sidebar__assign-labels__list">
-          <li class="application__sidebar__assign-labels__item"
-              ng-class="{ 'is-set':isLabelOnCitizen(label) }"
-              ng-repeat="label in entityLabels">
-            <a
-                class="application__sidebar__assign-labels__link"
-                href=""
-                ng-click="toggleLabelOnCitizen(label)">
-              <span class="label-ring" style="background-color: #{{ label.color }};"></span>
-              <span class="name">{{ label.name }}</span>
-              <i class="icon icon-check" ng-if="isLabelOnCitizen(label)"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </li>
-  </ul>
-  <ul class="application__actions__rating applicant-rating">
-    <li class="applicant-rating__item is-settable"
-        ng-repeat="ratingOption in ratingOptions"
-        ng-class="{ 'is-active':ratingOption.active, 'is-set':ratingOption.set }"
-        ng-click="setRatingOption(ratingOption)"
-        ng-mouseover="mouseoverRatingOption(ratingOption)"
-        ng-mouseleave="mouseleaveRatingOption(ratingOption)">
-      <i class="icon-star-5"></i>
-    </li>
-  </ul>
-</div>
+<ul class="application__actions group">
+  <li class="unit--1of2 left">
+    <ul class="applicant-labels application__actions__labels">
+      <li class="applicant-labels__item"
+          ng-repeat="label in citizen.labels"
+          apl-tooltip="{{ label.name }}">
+        <span class="label-ring is-gray" style="background-color: #{{ label.color }}"></span>
+      </li>
+      <li class="applicant-labels__add" apl-click-outside="dropdown.open = false">
+        <a href="" class="applicant-labels__add__link"
+            ng-class="{ 'is-dropdown-open':dropdown.open }"
+            ng-click="dropdown.open = !dropdown.open"><i class="icon icon-plus"></i></a>
+
+        <div class="application__sidebar__assign-labels__popup" ng-show="dropdown.open">
+          <ul class="application__sidebar__assign-labels__list">
+            <li class="application__sidebar__assign-labels__item"
+                ng-class="{ 'is-set':isLabelOnCitizen(label) }"
+                ng-repeat="label in entityLabels">
+              <a
+                  class="application__sidebar__assign-labels__link"
+                  href=""
+                  ng-click="toggleLabelOnCitizen(label)">
+                <span class="label-ring" style="background-color: #{{ label.color }};"></span>
+                <span class="name">{{ label.name }}</span>
+                <i class="icon icon-check" ng-if="isLabelOnCitizen(label)"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </li>
+    </ul>
+  </li>
+  <li class="unit--1of2 right">
+    <ul class="application__actions__rating applicant-rating">
+      <li class="applicant-rating__item is-settable"
+          ng-repeat="ratingOption in ratingOptions"
+          ng-class="{ 'is-active':ratingOption.active, 'is-set':ratingOption.set }"
+          ng-click="setRatingOption(ratingOption)"
+          ng-mouseover="mouseoverRatingOption(ratingOption)"
+          ng-mouseleave="mouseleaveRatingOption(ratingOption)">
+        <i class="icon-star-5"></i>
+      </li>
+    </ul>
+    <a href="" class="application__actions__btn--save-as-pdf"
+        ng-click="saveAsPDF()"
+        apl-tooltip="Download as PDF">
+      <svg class="icon--download">
+        <use xlink:href="#download-document" />
+      </svg>
+    </a>
+  </li>
+</ul>
 
 <ol class="application__fields">
   <li ng-if="profile.location" class="application__fields__item">

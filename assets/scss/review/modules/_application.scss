@@ -310,6 +310,7 @@
 
 .application__applicant__rating {
   display: block;
+
   position: absolute;
   top: 50%;
   margin-top: -48px;
@@ -363,10 +364,82 @@
 
 .application__actions {
   padding: 30px 36px;
+  font-size: 0;
+  list-style-type: none;
+  margin: 0;
   background-color: $color-gray;
 
   @media only screen and (min-width : 768px) {
     padding: 30px 48px;
+  }
+
+  .left,
+  .right {
+    text-align: center;
+  }
+
+  .left {
+    @media only screen and (min-width : 768px) {
+      text-align: left;
+    }
+  }
+
+  .right {
+    margin-top: 12px;
+    @media only screen and (min-width : 768px) {
+      margin-top: 0;
+      text-align: right;
+    }
+  }
+}
+
+.application__actions__btn {
+  position: relative;
+
+  display: inline-block;
+  vertical-align: middle;
+  height: 38px;
+  line-height: 38px;
+  min-width: 38px;
+  margin-left: 18px;
+
+  font-size: 16px;
+  text-decoration: none;
+  text-align: center;
+
+  color: $color-text;
+  border: 1px solid rgba(black, .2);
+  border-radius: 19px;
+
+  @include transition(border-color 200ms ease-in-out);
+
+  .icon {
+    position: relative;
+    top: -2px;
+    left: 1px;
+    font-size: 26px;
+    line-height: 38px;
+    opacity: .75;
+
+    @include transition(opacity 200ms ease-in-out);
+  }
+
+  &:hover {
+    border-color: rgba(black, .4);
+  }
+}
+
+.application__actions__btn--save-as-pdf {
+  @extend .application__actions__btn;
+  .icon--download {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -9px;
+    margin-left: -9px;
+    width: 18px;
+    height: 18px;
+    color: $color-base;
   }
 }
 
@@ -379,27 +452,11 @@
 
 .application__actions__labels,
 .application__actions__rating {
-  display: block;
+  display: inline-block;
+  vertical-align: middle;
   text-align: center;
   @media only screen and (min-width : 768px) {
-    display: inline-block;
-    vertical-align: middle;
     text-align: left;
-  }
-}
-
-.application__actions__labels {
-  @media only screen and (min-width : 768px) {
-    float: left;
-  }
-}
-
-.application__actions__rating {
-  @media only screen and (max-width : 767px) {
-    margin-top: 12px;
-  }
-  @media only screen and (min-width : 768px) {
-    float: right;
   }
 }
 
@@ -425,8 +482,4 @@
   margin-bottom: 24px;
   font-size: 18px;
   font-weight: 500;
-}
-
-.application__fields__detail {
-
 }
