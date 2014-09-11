@@ -19,7 +19,8 @@ module.exports = angular.module('Review')
 
       var getBase64FromImageUrl = function(url, cb) {
         var img = new Image();
-        img.src = url;
+        img.crossOrigin = 'anonymous';
+        img.src = "https://applyance.com/cors/" + url.replace("https://", "");
         img.onload = function () {
           var canvas = document.createElement("canvas");
           canvas.width = this.width;
@@ -105,7 +106,8 @@ module.exports = angular.module('Review')
           _.each($scope.application.fields, doc.field());
 
           // Save
-          doc.save($scope.citizen.account.name.replace(' ', '_') + '_application_' + moment().format('YYYY-MM-DD') + '.pdf');
+          // doc.save($scope.citizen.account.name.replace(' ', '_') + '_application_' + moment().format('YYYY-MM-DD') + '.pdf');
+          doc.output("dataurl");
 
         });
 
