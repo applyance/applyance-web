@@ -1,0 +1,68 @@
+.blueprint--fileupload__field {
+  padding: 12px;
+  border: 1px solid rgba(black, .1);
+  border-left-width: 3px;
+  @media only screen and (min-width : 480px) {
+    padding: 18px;
+  }
+}
+
+.blueprint--fileupload__list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 24px;
+}
+
+.blueprint--fileupload__list__item {
+  position: relative;
+  margin-bottom: 12px;
+  font-size: 0;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  > * {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.blueprint--fileupload__list__img {
+  width: 60px;
+  height: 60px;
+  border: 2px solid $color-gray;
+}
+
+.blueprint--fileupload__list__img--image {
+  @extend .blueprint--fileupload__list__img;
+}
+
+.blueprint--fileupload__list__img--document {
+  @extend .blueprint--fileupload__list__img;
+  padding: 12px;
+  fill: #999;
+}
+
+.blueprint--fileupload__list__name {
+  margin-left: 12px;
+  font-size: 14px;
+
+  @media only screen and (max-width : 480px) {
+    width: 100%;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.blueprint--fileupload__list__remove {
+  position: absolute;
+  top: 50%;
+  margin-top: -12px;
+  right: 0;
+  .icon {
+    width: 24px;
+    height: 24px;
+    fill: $color-red;
+  }
+}

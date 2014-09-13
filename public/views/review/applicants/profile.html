@@ -8,13 +8,28 @@
     </h2>
     <ul class="application__applicant__contact">
       <li ng-if="profile.location" class="application__applicant__contact__item">
-        <i class="icon icon-location"></i>{{ profile.location.address.city }}, {{ profile.location.address.state }}
+        <svg class="icon">
+          <use xlink:href="#location-pin" />
+        </svg>
+        <span class="label">
+          {{ profile.location.address.city }}, {{ profile.location.address.state }}
+        </span>
       </li>
       <li class="application__applicant__contact__item">
-        <i class="icon icon-envelope"></i>{{ citizen.account.email }}
+        <svg class="icon">
+          <use xlink:href="#envelope" />
+        </svg>
+        <span class="label">
+          {{ citizen.account.email }}
+        </span>
       </li>
       <li ng-if="profile.phone_number" class="application__applicant__contact__item">
-        <i class="icon icon-telephone"></i>{{ profile.phone_number }}
+        <svg class="icon">
+          <use xlink:href="#smartphone" />
+        </svg>
+        <span class="label">
+          {{ profile.phone_number }}
+        </span>
       </li>
     </ul>
   </div>
@@ -82,17 +97,37 @@
 </ul>
 
 <ol class="application__fields">
+
   <li ng-if="profile.location" class="application__fields__item">
     <div class="application__fields__label">
       Address
     </div>
     <div class="application__fields__detail text-trim" ng-bind-html="renderAddress(profile.location.address)"></div>
   </li>
+
   <li class="application__fields__item" ng-repeat="field in application.fields" ng-if="field.datum.definition">
     <div class="application__fields__label">
       {{ field.datum.definition.label | blueprint:activeEntity }}
     </div>
-    <div class="application__fields__detail text-trim" ng-bind-html="renderDetail(field.datum.detail.value)">
+    <div class="application__fields__detail text-trim"
+        ng-bind-html="renderDetail(field.datum.detail.value)"
+        ng-if="field.datum.definition.type != 'fileupload'">
     </div>
+    <ul class="application__fields__detail is-fileupload text-trim"
+        ng-if="field.datum.definition.type == 'fileupload'">
+      <li class="item" ng-repeat="attachment in field.datum.attachments">
+        <img ng-if="isAttachmentImage(attachment)" class="img" ng-src="{{ attachment.url }}">
+        <svg ng-if="!isAttachmentImage(attachment)" class="img doc">
+          <use xlink:href="#document" />
+        </svg>
+        <a href="{{ attachment.url }}" class="label" target="_blank">
+          {{ attachment.name }}
+          <svg class="icon">
+            <use xlink:href="#new-window" />
+          </svg>
+        </a>
+      </li>
+    </ul>
   </li>
+
 </ol>

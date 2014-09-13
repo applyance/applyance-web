@@ -1,5 +1,8 @@
 'use strict';
 
+window.jQuery = require("jquery");
+window.Tether       = require("tether");
+
 require("angular");
 require("angular-route");
 
@@ -22,6 +25,12 @@ angular.module('Apply', [ApplyanceApi.name, 'ngRoute'])
   });
 
 require("../directives");
+
+require("../directives/blueprints/text");
+require("../directives/blueprints/textarea");
+require("../directives/blueprints/fileupload");
+require("../directives/blueprints/choice");
+
 require("../filters");
 require("./directives");
 require("./controllers/form");

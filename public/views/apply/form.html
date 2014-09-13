@@ -23,20 +23,25 @@
   <form class="app-form__form" name="apply" ng-submit="onSubmit()">
     <ul class="app-form__blueprints">
 
+      <li class="app-form-blueprint">
+        <label class="app-form-blueprint__label" for="applicant-name">Name</label>
+        <input class="app-form-blueprint__input" id="applicant-name" type="text" ng-model="applicant.name" focus-on="nameFocus" value="{{ applicant.name }}">
+      </li>
+
       <li class="app-form-blueprint is-tight">
         <label class="app-form-blueprint__label" for="applicant-email">Email</label>
         <input autofocus class="app-form-blueprint__input" id="applicant-email" type="text" ng-model="applicant.email" value="{{ applicant.email }}" ng-debounce="750" ng-change="checkEmail()">
         <div class="app-form__note in-progress" ng-if="emailNote == 'loading'">
-          Searching for your account...
+          <!-- Searching for your account... -->
         </div>
         <div class="app-form__note" ng-if="emailNote == 'check'">
-          Let's get started with your email address. We'll try to save you some time by checking if you're in our system.
+          <!-- Let's get started with your email address. We'll try to save you some time by checking if you're in our system. -->
         </div>
         <div class="app-form__note with-icon" ng-if="emailNote == 'found'">
           <i class="icon icon-check-o-circle"></i>Good news! We found that email. Let's try to save you some time by logging in and retrieving previous answers.
         </div>
         <div class="app-form__note with-icon" ng-if="emailNote == 'notFound'">
-          <i class="icon icon-delete-o-circle"></i>We didn't find that email in our system. That's OK! You can still fill out the rest of the form to apply.
+          <!-- <i class="icon icon-delete-o-circle"></i>We didn't find that email in our system. That's OK! You can still fill out the rest of the form to apply. -->
         </div>
       </li>
 
@@ -47,8 +52,8 @@
           Trying to log you in...
         </div>
         <div class="app-form__note" ng-if="passwordNote == 'check'">
-          Enter your password here and we'll try to log you in.<br />
-          <a href="" ng-click="skipPassword()">Skip this step.</a>
+          Enter your password and we'll try to get past answers.
+          <!-- <a href="" ng-click="skipPassword()">Skip this step.</a> -->
         </div>
         <div class="app-form__note with-icon" ng-if="passwordNote == 'found'">
           <i class="icon icon-check-o-circle"></i>Great! We found your account and are filling in this application with previous answers.
@@ -57,27 +62,13 @@
           <i class="icon icon-delete-o-circle"></i>We didn't find a previous application in our system with those credentials. That's OK! You can still fill out the rest of the form to apply.
         </div>
         <div class="app-form__note with-icon" ng-if="passwordNote == 'skipped'">
-          <i class="icon icon-check-o-circle"></i>Skipped!
+          <!-- <i class="icon icon-check-o-circle"></i>Skipped! -->
         </div>
       </li>
 
-      <li ng-if="step == 'blueprints'" class="app-form-blueprint">
-        <label class="app-form-blueprint__label" for="applicant-name">Name</label>
-        <input class="app-form-blueprint__input" id="applicant-name" type="text" ng-model="applicant.name" focus-on="nameFocus" value="{{ applicant.name }}">
-      </li>
+      <!-- Locations -->
 
-      <li ng-if="step == 'blueprints'" class="app-form-blueprint">
-        <label class="app-form-blueprint__label" for="applicant-phone_number">Phone Number</label>
-        <input type="text" id="applicant-phone_number" class="app-form-blueprint__input" ng-model="applicant.phone_number" value="{{ applicant.phone_number }}">
-      </li>
-
-      <li ng-if="step == 'blueprints'" class="app-form-blueprint">
-        <label class="app-form-blueprint__label" for="applicant-phone_number">Address</label>
-        <textarea class="app-form-blueprint__input" ng-model="applicant.location.address">{{ applicant.location.address }}</textarea>
-      </li>
-
-      <!-- Subentities -->
-      <li ng-if="step == 'blueprints' && childEntities.length > 0" class="app-form-blueprint">
+      <li ng-if="childEntities.length > 0" class="app-form-blueprint">
         <label class="app-form-blueprint__label">Are you interested in any specific location(s)?</label>
         <div class="app-form-blueprint__description">
           Select all that apply.
@@ -96,7 +87,8 @@
       </li>
 
       <!-- Spots -->
-      <li ng-if="step == 'blueprints' && spots.length > 0" class="app-form-blueprint">
+
+      <li ng-if="spots.length > 0" class="app-form-blueprint">
         <label class="app-form-blueprint__label">Are you interested in any specific position(s)?</label>
         <div class="app-form-blueprint__description">
           Select all that apply.
@@ -114,25 +106,44 @@
         </ul>
       </li>
 
-      <li ng-if="step == 'blueprints'" class="app-form-blueprint" ng-repeat="blueprint in blueprints">
-        <label class="app-form-blueprint__label" for="blueprint[{{ blueprint.id }}]">
-          {{ blueprint.definition.label | blueprint:entity }}
-        </label>
-        <div ng-if="blueprint.definition.description" class="app-form-blueprint__description">
-          {{ blueprint.definition.description | blueprint:entity }}
-        </div>
+      <!-- Profile Info -->
+
+      <li class="app-form-blueprint">
+        <label class="app-form-blueprint__label" for="applicant-phone_number">Phone Number</label>
+        <input type="text" id="applicant-phone_number" class="app-form-blueprint__input" ng-model="applicant.phone_number" value="{{ applicant.phone_number }}">
+      </li>
+
+      <li class="app-form-blueprint">
+        <label class="app-form-blueprint__label" for="applicant-phone_number">Address</label>
+        <textarea class="app-form-blueprint__input" ng-model="applicant.location.address">{{ applicant.location.address }}</textarea>
+      </li>
+
+      <!-- Blueprints -->
+      <li class="app-form-blueprint" ng-repeat="blueprint in blueprints">
         <div ng-switch="blueprint.definition.type">
-          <input ng-switch-when="text" class="app-form-blueprint__input" type="text" id="blueprint[{{ blueprint.id }}]" ng-model="blueprint.detail.value" value="{{ blueprint.detail.value }}">
-          <div ng-switch-when="choice" class="selector">
-            <select class="app-form-blueprint__input" id="blueprint[{{ blueprint.id }}]" ng-model="blueprint.detail.value" ng-options="choice for choice in blueprint.definition.helper.choices"></select>
-          </div>
-          <textarea ng-switch-default class="app-form-blueprint__input" id="blueprint[{{ blueprint.id }}]" ng-model="blueprint.detail.value">{{ blueprint.detail.value }}</textarea>
+          <apl-blueprint-text
+              ng-switch-when="text"
+              apl-blueprint="blueprint"></apl-blueprint-text>
+          <apl-blueprint-choice
+              ng-switch-when="choice"
+              apl-blueprint="blueprint"></apl-blueprint-choice>
+          <apl-blueprint-fileupload
+              ng-switch-when="fileupload"
+              apl-blueprint="blueprint"></apl-blueprint-fileupload>
+          <apl-blueprint-textarea
+              ng-switch-default
+              apl-blueprint="blueprint"></apl-blueprint-textarea>
         </div>
       </li>
 
     </ul>
 
-    <button ng-class="{ 'is-disabled':(!readyToSubmit || submitting) }" ng-disabled="!readyToSubmit || submitting" class="btn--secondary app-form__submit" type="submit">{{ submitting ? 'Submitting' : 'Submit Application' }}</button>
+    <button
+        class="btn--secondary app-form__submit" type="submit"
+        ng-class="{ 'is-disabled':(!readyToSubmit || submitting) }"
+        ng-disabled="!readyToSubmit || submitting">
+      {{ submitting ? 'Submitting' : 'Submit Application' }}
+    </button>
 
   </form>
 

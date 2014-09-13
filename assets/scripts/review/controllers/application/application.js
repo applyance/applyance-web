@@ -19,6 +19,10 @@ module.exports = angular.module('Review')
         });
       }
 
+      $scope.isAttachmentImage = function(attachment) {
+        return (attachment.content_type.indexOf("image", 0) === 0);
+      }
+
       $scope.getEntityFromApplicationSpot = function(application, spot) {
         return _.findWhere(application.entities, { id: spot.entity_id });
       };

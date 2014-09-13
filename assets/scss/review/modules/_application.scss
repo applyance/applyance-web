@@ -296,15 +296,25 @@
 }
 
 .application__applicant__contact__item {
-  margin-bottom: 8px;
+  font-size: 0;
+  margin-bottom: 12px;
   &:last-child { margin-bottom: 0; }
+  > * {
+    display: inline-block;
+    vertical-align: middle;
+  }
   .icon {
     position: relative;
-    top: 1px;
+    width: 18px;
+    height: 18px;
     margin-right: 12px;
-    font-size: 18px;
+
+    fill: $color-brand;
+    fill: darken($color-brand, 10%);
     opacity: 1;
-    color: $color-brand;
+  }
+  .label {
+    font-size: 16px;
   }
 }
 
@@ -482,4 +492,41 @@
   margin-bottom: 24px;
   font-size: 18px;
   font-weight: 500;
+}
+
+.application__fields__detail.is-fileupload {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  .item {
+    margin-bottom: 12px;
+    &:last-child { margin-bottom: 0; }
+    font-size: 0;
+    > * {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  .img {
+    width: 60px;
+    height: 60px;
+    border: 2px solid $color-gray;
+    &.doc {
+      padding: 12px;
+      fill: $color-base;
+    }
+  }
+
+  .label {
+    margin-left: 12px;
+    font-size: 16px;
+    .icon {
+      opacity: .25;
+      margin-left: 8px;
+      width: 12px;
+      height: 12px;
+    }
+  }
 }

@@ -35,7 +35,7 @@ module.exports = angular.module('Review')
       jsPDF.API.field = function() {
         var doc = this;
         return function(field) {
-          if (!field.datum) {
+          if (!field.datum || !field.datum.detail) {
             return;
           }
 

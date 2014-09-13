@@ -1,0 +1,8 @@
+<ng-include src="'/views/directives/blueprints/_standard-label.html'"></ng-include>
+<div class="selector">
+  <select
+      id="definition[{{ blueprint.definition.id }}]"
+      class="app-form-blueprint__input"
+      ng-model="blueprint.detail.value"
+      ng-options="choice for choice in blueprint.definition.helper.choices"></select>
+</div>

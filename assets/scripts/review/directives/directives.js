@@ -70,35 +70,6 @@ module.exports = angular.module('Review')
       }
     }
   }])
-  .directive('aplTooltip', ['$document', function($document) {
-    return {
-      restrict: 'A',
-      link: function(scope, elem, attr, ctrl) {
-
-        var tooltip = document.createElement('div');
-        tooltip.classList.add('tooltip');
-        tooltip.innerHTML = attr.aplTooltip;
-        document.body.appendChild(tooltip);
-
-        var tether = null;
-        elem.bind('mouseenter', function(e) {
-          tooltip.classList.add('is-open');
-          tether = new Tether({
-            element: tooltip,
-            target: elem[0],
-            attachment: attr.aplTooltipAttachment || 'top center',
-            targetAttachment: attr.aplTooltipTargetAttachment || 'bottom center'
-          });
-        });
-
-        elem.bind('mouseleave', function(e) {
-          tooltip.classList.remove('is-open');
-          tether.destroy();
-        });
-
-      }
-    }
-  }])
   .directive('aplColorSwatch', ['Store', '$location', '$document', '$filter',
     function (Store, $location, $document, $filter) {
     return {

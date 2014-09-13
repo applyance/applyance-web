@@ -1,0 +1,6 @@
+<label class="app-form-blueprint__label" for="definition[{{ blueprint.definition.id }}]">
+  {{ blueprint.definition.label | blueprint:blueprint.entity }}
+</label>
+<div ng-if="blueprint.definition.description" class="app-form-blueprint__description">
+  {{ blueprint.definition.description | blueprint:blueprint.entity }}
+</div>

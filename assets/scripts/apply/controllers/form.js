@@ -24,7 +24,7 @@ module.exports = angular.module('Apply')
 
       if ($scope.entity.parent) {
         ApplyanceAPI.getBlueprints($scope.entity.parent.id).then(function(blueprints) {
-          $scope.blueprints = $scope.blueprints.concat(blueprints.plain());
+          $scope.blueprints = blueprints.plain().concat($scope.blueprints);
         });
       }
 
@@ -222,7 +222,8 @@ module.exports = angular.module('Apply')
         if ($scope.blueprints.length > 0) {
           var isComplete = true;
           _.each($scope.blueprints, function(blueprint) {
-            if (!blueprint.detail || (blueprint.detail.value.length == 0)) {
+            if ((!blueprint.detail || (blueprint.detail.value.length == 0))
+                && (!blueprint.attachments || (blueprint.attachments.length == 0))) {
               isComplete = false;
             }
           });
@@ -233,15 +234,19 @@ module.exports = angular.module('Apply')
       $scope.onSubmit = function() {
         var fields = [];
         _.each($scope.blueprints, function(blueprint) {
-          if (!blueprint.detail) {
+          if (!blueprint.detail && !blueprint.attachments) {
             return;
           }
-          fields.push({
+          var field = {
             datum: {
               definition_id: blueprint.definition.id,
               detail: blueprint.detail
             }
-          });
+          };
+          if (blueprint.attachments && (blueprint.attachments.length > 0)) {
+            field.datum.attachments = blueprint.attachments;
+          }
+          fields.push(field);
         });
 
         var application = {
