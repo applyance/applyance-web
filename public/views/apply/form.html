@@ -25,12 +25,14 @@
 
       <li class="app-form-blueprint">
         <label class="app-form-blueprint__label" for="applicant-name">Name</label>
-        <input class="app-form-blueprint__input" id="applicant-name" type="text" ng-model="applicant.name" focus-on="nameFocus" value="{{ applicant.name }}">
+        <input
+            class="app-form-blueprint__input" id="applicant-name" type="text"
+            autofocus ng-model="applicant.name" focus-on="nameFocus" value="{{ applicant.name }}">
       </li>
 
       <li class="app-form-blueprint is-tight">
         <label class="app-form-blueprint__label" for="applicant-email">Email</label>
-        <input autofocus class="app-form-blueprint__input" id="applicant-email" type="text" ng-model="applicant.email" value="{{ applicant.email }}" ng-debounce="750" ng-change="checkEmail()">
+        <input class="app-form-blueprint__input" id="applicant-email" type="text" ng-model="applicant.email" value="{{ applicant.email }}" ng-debounce="750" ng-change="checkEmail()">
         <div class="app-form__note in-progress" ng-if="emailNote == 'loading'">
           <!-- Searching for your account... -->
         </div>

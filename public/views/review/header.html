@@ -3,7 +3,7 @@
   <a href="entities/{{ activeEntityId() }}/applications" class="mark"></a>
   <context-switcher></context-switcher>
   <div class="header__application-link">
-    <a href="/{{ activeEntity().slug }}" target="_blank">
+    <a href="{{ activeApplicationUrl() }}" target="_blank">
       Application
       <svg class="icon">
         <use xlink:href="#new-window" />

@@ -9,20 +9,22 @@ require("angular-route");
 var ApplyanceApi = require("../services/api");
 
 angular.module('Apply', [ApplyanceApi.name, 'ngRoute'])
-  .config(function($routeProvider, $locationProvider, entity) {
+  .config(['$routeProvider', '$locationProvider', 'slugUrl',
+    function($routeProvider, $locationProvider, slugUrl) {
 
-    $routeProvider
-      .when('/:entity_slug', {
-        templateUrl: '/views/apply/form.html',
-        controller: 'FormCtrl'
-      })
-      .otherwise({
-        redirectTo: '/' + entity.slug
-      });
+      $routeProvider
+        .when('/:slugUrl*', {
+          templateUrl: '/views/apply/form.html',
+          controller: 'FormCtrl'
+        })
+        .otherwise({
+          redirectTo: '/' + slugUrl
+        });
 
-    $locationProvider.html5Mode(true);
+      $locationProvider.html5Mode(true);
 
-  });
+    }
+  ]);
 
 require("../directives");
 

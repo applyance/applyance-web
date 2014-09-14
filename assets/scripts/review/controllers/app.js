@@ -28,6 +28,14 @@ module.exports = angular.module('Review')
         return Store.getCurrentScope() == "admin";
       };
 
+      $scope.activeApplicationUrl = function() {
+        var url = "/";
+        if (Store.getActiveEntity().parent) {
+          url += Store.getActiveEntity().parent.slug + "/";
+        }
+        return url += Store.getActiveEntity().slug;
+      };
+
       // Update the active entity context on route change
       $rootScope.$on("$routeChangeSuccess", function(args) {
 

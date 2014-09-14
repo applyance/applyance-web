@@ -1,7 +1,8 @@
 require_relative '_errors'
-require_relative 'main'
 require_relative 'accounts/_init'
 require_relative 'review'
+require_relative 'main'
+require_relative 'application'
 
 module Applyance
   module Routing
@@ -11,6 +12,7 @@ module Applyance
         app.register Applyance::Routing::Accounts::Init
         app.register Applyance::Routing::Review
         app.register Applyance::Routing::Main
+        app.register Applyance::Routing::Application
       end
     end
   end

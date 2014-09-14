@@ -16,7 +16,7 @@
   </head>
   <body ng-app="Apply">
 
-    <%= IO.read("public/img/ui/_icons.svg") %>
+    <%= erb :'shared/_icons' %>
 
     <main class="app-form" ng-view></main>
 
@@ -32,6 +32,7 @@
     <script type="text/javascript" src="/scripts/apply.js"></script>
     <script>
       var app = angular.module('Applyance');
+      app.constant('slugUrl', '<%= @slug %>');
       app.constant('entity', <%= JSON.dump(@entity) %>);
       app.constant('apiHost', '<%= @api_host %>');
       app.constant('apiKey', '<%= @api_key %>');
