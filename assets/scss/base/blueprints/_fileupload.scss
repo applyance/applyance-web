@@ -40,7 +40,11 @@
 .blueprint--fileupload__list__img--document {
   @extend .blueprint--fileupload__list__img;
   padding: 12px;
+}
+.blueprint--fileupload__list__img--document__svg {
   fill: #999;
+  width: 100%;
+  height: 100%;
 }
 
 .blueprint--fileupload__list__name {

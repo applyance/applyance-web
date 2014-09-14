@@ -9,8 +9,8 @@
         class="blueprint--fileupload__list__img--image"
         ng-if="file.isImage"
         ng-src="{{ getImageSrc(file) }}" />
-    <span ng-if="!file.isImage">
-      <svg class="blueprint--fileupload__list__img--document">
+    <span class="blueprint--fileupload__list__img--document" ng-if="!file.isImage">
+      <svg class="blueprint--fileupload__list__img--document__svg">
         <use xlink:href="#document" />
       </svg>
     </span>
