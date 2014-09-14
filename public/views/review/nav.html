@@ -31,13 +31,13 @@
         ng-if="isAdmin()">
       <a href="entities/{{ activeEntityId() }}/settings"
          class="nav__link"
-         apl-tooltip="{{ activeEntity().parent ? 'Location' : 'Company' }} Settings"
+         apl-tooltip="{{ isActiveEntityRoot() ? 'Company' : 'Location' }} Settings"
          apl-tooltip-attachment="middle left"
          apl-tooltip-target-attachment="middle right">
         <svg class="icon">
           <use xlink:href="#settings" />
         </svg>
-        <span class="label">{{ activeEntity().parent ? 'Location' : 'Company' }} Settings</span>
+        <span class="label">{{ isActiveEntityRoot() ? 'Company' : 'Location' }} Settings</span>
       </a>
     </li>
   </ul>

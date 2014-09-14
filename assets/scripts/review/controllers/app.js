@@ -28,6 +28,10 @@ module.exports = angular.module('Review')
         return Store.getCurrentScope() == "admin";
       };
 
+      $scope.isActiveEntityRoot = function() {
+        return Store.getActiveEntity().parent == null;
+      };
+
       $scope.activeApplicationUrl = function() {
         var url = "/";
         if (Store.getActiveEntity().parent) {

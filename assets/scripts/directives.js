@@ -78,11 +78,11 @@ module.exports = angular.module('Applyance')
 
         var tooltip = document.createElement('div');
         tooltip.classList.add('tooltip');
-        tooltip.innerHTML = attr.aplTooltip;
         document.body.appendChild(tooltip);
 
         var tether = null;
         elem.bind('mouseenter', function(e) {
+          tooltip.innerHTML = attr.aplTooltip;
           tooltip.classList.add('is-open');
           tether = new Tether({
             element: tooltip,
