@@ -10,12 +10,11 @@
   vertical-align: middle;
   width: 140px;
   height: 140px;
-  padding: 6px;
 
   text-align: center;
 
   background-color: transparent;
-  border: 4px dashed $color-gray-rgba;
+  border: 4px solid $color-gray-rgba;
   border-radius: 5px;
 
   img {
@@ -26,19 +25,20 @@
     width: 100%;
     height: auto;
 
-    border-radius: 3px;
+    border-radius: 1px;
   }
 }
 
 .attachment__empty {
   display: inline-block;
-  margin-top: -4px;
+  margin-top: -2px;
   position: absolute;
   left: 50%;
   top: 50%;
   @include transform(translate(-50%, -50%));
-  font-size: 96px;
-  opacity: .1;
+  font-size: 72px;
+  opacity: 1;
+  color: $color-gray-rgba;
 }
 
 .attachment__choose {
