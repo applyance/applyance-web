@@ -1,9 +1,10 @@
 'use strict';
 
 module.exports = angular.module('Review')
-  .controller('AccountSettingsCtrl', ['$scope', '$rootScope', 'ApplyanceAPI', 'Store', '$timeout', 'flash',
-  function ($scope, $rootScope, ApplyanceAPI, Store, $timeout, flash) {
+  .controller('AccountSettingsCtrl', ['$scope', '$rootScope', 'apiKey', 'ApplyanceAPI', 'Store', '$timeout', 'flash',
+  function ($scope, $rootScope, apiKey, ApplyanceAPI, Store, $timeout, flash) {
 
+    $scope.apiKey = apiKey;
     $scope.flash = flash;
     $scope.currentInfo = Store.getAccount();
     $scope.account = angular.copy($scope.currentInfo);

@@ -117,6 +117,28 @@ a.slats__item__header {
   }
 }
 
+.slats--application__avatar--picture {
+  @extend .slats--application__avatar;
+}
+
+.slats--application__avatar--initials {
+  @extend .slats--application__avatar;
+  position: relative;
+  background-color: $color-gray;
+  border-radius: 100%;
+  .label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: inline-block;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -1px;
+    color: black;
+    @include transform(translate(-50%, -50%));
+  }
+}
+
 .slats--application__applied-on {
   .preface {
     display: none;

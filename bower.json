@@ -17,6 +17,7 @@
     "angular-payments": "https://github.com/stephenjwatkins/angular-payments.git",
     "fastclick": "~1.0.3",
     "jspdf": "~1.0.178",
-    "jquery": "~2.1.1"
+    "jquery": "~2.1.1",
+    "randomColor": "~0.1.1"
   }
 }

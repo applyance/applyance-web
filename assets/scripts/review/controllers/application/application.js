@@ -45,7 +45,11 @@ module.exports = angular.module('Review')
               spotsGrouped = _.groupBy(spots, 'entity_id');
           _.each(spotsGrouped, function(spots, entity_id, list) {
             var entity = _.findWhere(entities, { id: parseInt(entity_id) });
-            spotStrs.push(_.pluck(spots, 'name').join(", ") + " at " + entity.name);
+            var spotStr = _.pluck(spots, 'name').join(', ');
+            if (entity.parent) {
+              spotStr += " at " + entity.name;
+            }
+            spotStrs.push(spotStr);
           });
           applyableStr += spotStrs.join(", and ")
         }

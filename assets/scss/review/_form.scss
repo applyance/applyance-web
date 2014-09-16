@@ -26,6 +26,9 @@ textarea,
   &.is-thin {
     border-width: 2px;
   }
+  &[readonly] {
+    border-color: rgba($color-gray-rgba, .05);
+  }
 }
 
 /* Button Group */

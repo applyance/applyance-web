@@ -5,6 +5,7 @@ window.CryptoJS     = require("crypto-js");
 window.moment       = require("moment");
 window.MediumEditor = require("medium-editor");
 window.Tether       = require("tether");
+window.randomColor  = require("randomColor");
 require("jspdf");
 
 var attachFastClick = require('fastclick');

@@ -12,7 +12,10 @@
 
           <ul class="slats__units unit--1of2">
             <li class="slats__units__item">
-              <img class="avatar slats--application__avatar" ng-src="{{ getAvatarUrl(citizen) }}" />
+              <img class="avatar slats--application__avatar--picture" ng-src="{{ citizen.avatarUrl }}" ng-if="citizen.avatarUrl != -1" />
+              <div class="avatar slats--application__avatar--initials" ng-if="citizen.avatarUrl == -1">
+                <span class="label">{{ citizen.account.initials }}</span>
+              </div>
             </li>
             <li class="slats__units__item slats--application__main">
               <a class="slats__item__header" href="applicants/{{ citizen.id }}">

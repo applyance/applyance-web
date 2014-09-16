@@ -37,6 +37,10 @@
           </div>
         </div>
       </li>
+      <li class="settings-inputs__item">
+        <label class="settings-inputs__label">API Key</label>
+        <input type="text" size="30" value="{{ apiKey }}" readonly>
+      </li>
       <li class="settings-inputs__tray">
         <button type="submit" class="btn--primary"
             ng-class="{ 'is-disabled':isUpdating }"
