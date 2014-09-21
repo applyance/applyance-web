@@ -1,6 +1,7 @@
 <nav class="nav">
   <ul class="nav__list group">
     <li class="nav__item"
+        ng-if="hasActiveFeature('applicantList')"
         ng-class="{ 'is-active':isActive('/entities/' + activeEntityId() + '/applications') }">
       <a href="entities/{{ activeEntityId() }}/applications"
          class="nav__link"

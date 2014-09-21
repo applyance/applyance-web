@@ -11,6 +11,8 @@ module Applyance
                 '/entities/:id/blueprints',
                 '/entities/:id/labels',
                 '/entities/:id/billing',
+                '/entities/:id/billing/plan',
+                '/entities/:id/billing/card',
                 '/spots/:id/applications',
                 '/spots/:id/settings',
                 '/spots/:id/blueprints',

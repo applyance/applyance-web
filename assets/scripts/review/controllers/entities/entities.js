@@ -4,14 +4,21 @@ module.exports = angular.module('Review')
   .controller('EntityEntitiesCtrl', ['$scope', 'ApplyanceAPI', '$timeout', 'Store', '$location',
     function ($scope, ApplyanceAPI, $timeout, Store, $location) {
 
+      if (!Store.hasActiveFeature('locations')) {
+        $location.path($scope.getRootPath());
+      }
+
       if (Store.getActiveEntity().parent) {
         $location.path("/entities/" + Store.getActiveEntityId() + "/settings");
       }
 
+      $scope.form = {
+        adding: false
+      };
+
       $scope.units = [];
       ApplyanceAPI.getEntities(Store.getActiveEntityId()).then(function(entities) {
-         $scope.entities = entities;
-         $scope.entities.reverse();
+         $scope.entities = entities.plain().reverse();
       });
 
       $scope.isEditing = function(entity) {
@@ -19,6 +26,7 @@ module.exports = angular.module('Review')
       };
 
       $scope.removeEntity = function(entity) {
+        entity.removing = true;
         ApplyanceAPI.deleteEntity(entity.id).then(function() {
           $scope.entities.splice($scope.entities.indexOf(entity), 1);
           Store.removeEntity(entity);
@@ -50,6 +58,8 @@ module.exports = angular.module('Review')
           };
         }
 
+        $scope.form.adding = true;
+
         // Update DB through API
         ApplyanceAPI.postEntity(Store.getActiveEntityId(), entityToAdd).then(function(entity) {
 
@@ -73,6 +83,8 @@ module.exports = angular.module('Review')
           _.defer(function() {
             $scope.$broadcast('isEditingEntity-' + entity.id);
           });
+
+          $scope.form.adding = false;
 
         });
       };

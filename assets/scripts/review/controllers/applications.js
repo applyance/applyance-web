@@ -1,8 +1,12 @@
 'use strict';
 
 module.exports = angular.module('Review')
-  .controller('ApplicationsCtrl', ['$scope', '$http', 'ApplyanceAPI', 'Store',
-    function ($scope, $http, ApplyanceAPI, Store) {
+  .controller('ApplicationsCtrl', ['$scope', '$location', '$http', 'ApplyanceAPI', 'Store',
+    function ($scope, $location, $http, ApplyanceAPI, Store) {
+
+      if (!Store.hasActiveFeature('applicantList')) {
+        $location.path($scope.getRootPath());
+      }
 
       ApplyanceAPI.getCitizens(Store.getActiveEntityId()).then(function(citizens) {
          $scope.citizens = citizens;

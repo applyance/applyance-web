@@ -2,7 +2,11 @@
   Locations
   <div class="header-action-wrap">
     <a href="" class="header-action btn--primary"
-        ng-click="addEntity()">Create Location</a>
+        ng-class="{ 'is-disabled':form.adding }"
+        ng-disabled="form.adding"
+        ng-click="addEntity()">
+      {{ form.adding ? 'Generating Location' : 'Create Location' }}
+    </a>
   </div>
 </h1>
 
@@ -29,7 +33,13 @@
             <a href="" class="btn is-small" ng-click="navToEntitySettings(entity.id)">Edit Details</a>
           </li>
           <li class="slats__actions__item">
-            <a href="" class="btn--secondary is-small" confirmed-click="removeEntity(entity)" ng-confirm-click="Are you sure you want to delete {{ entity.name }}?">Remove</a>
+            <a href="" class="btn--secondary is-small"
+                ng-class="{ 'is-disabled':entity.removing }"
+                ng-disabled="entity.removing"
+                confirmed-click="removeEntity(entity)"
+                ng-confirm-click="Are you sure you want to delete {{ entity.name }}?">
+              {{ entity.removing ? 'Removing' : 'Remove' }}
+            </a>
           </li>
         </ul>
       </li>

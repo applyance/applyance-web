@@ -33,7 +33,7 @@
       </li>
     </ul>
   </div>
-  <div class="application__applicant__rating">
+  <div class="application__applicant__rating" ng-if="hasActiveFeature('applicantManagement')">
     {{ cumulativeRating | number:1 }}
   </div>
 </div>
@@ -42,7 +42,7 @@
   Applied to {{ getApplyable() }} on {{ application.submitted_at | aplMoment: 'MMM. D, YYYY' }}
 </div>
 
-<ul class="application__actions group">
+<ul class="application__actions group" ng-if="hasActiveFeature('applicantManagement')">
   <li class="unit--1of2 left">
     <ul class="applicant-labels application__actions__labels">
       <li class="applicant-labels__item"

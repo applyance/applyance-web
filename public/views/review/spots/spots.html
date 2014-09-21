@@ -27,7 +27,10 @@
                 </li>
               </ul>
             </div>
-            <a href="spots/{{ spot.id }}/applications" ng-if="spot.citizen_count > 0" class="display-grid__content display-grid--spot__content--applications">
+            <a
+                href="spots/{{ spot.id }}/applications"
+                class="display-grid__content display-grid--spot__content--applications"
+                ng-if="spot.citizen_count > 0 && hasActiveFeature('applicantList')">
               <span class="count">{{ spot.citizen_count }}</span><span class="label">{{ (spot.citizen_count == 1) ? 'Applicant' : 'Applicants' }}</span>
             </a>
           </div>

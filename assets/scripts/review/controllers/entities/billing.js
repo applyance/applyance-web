@@ -8,51 +8,13 @@ module.exports = angular.module('Review')
         $location.path("/entities/" + Store.getActiveEntityId() + "/settings");
       }
 
+      $scope.billingSection = $location.path().split('/')[4] || "main";
       $scope.activeEntity = Store.getActiveEntity();
 
-      $scope.form = {
-        updating: false,
-        change: false,
-        new: true,
-        customer: null
-      };
-
+      $scope.customer = null;
       ApplyanceAPI.getCustomerForEntity($scope.activeEntity.id).then(function(entityCustomer) {
-        $scope.form.new = _.isEmpty(entityCustomer.plain());
-        $scope.form.customer = entityCustomer.plain();
+        $scope.customer = entityCustomer.plain();
       });
-
-      $scope.updateBilling = function(status, response) {
-				if (response.error) {
-					// there was an error. Fix it.
-				} else {
-					// got stripe token, now charge it or smt
-					var token = response.id;
-          if ($scope.form.new) {
-            ApplyanceAPI.postEntityCustomer($scope.activeEntity.id, {
-              stripe_token: token
-            }).then(function(entityCustomer) {
-              $scope.form.customer = entityCustomer.plain();
-              $scope.resetState();
-            });
-          } else {
-            ApplyanceAPI.putEntityCustomer({
-              id: $scope.form.customer.id,
-              stripe_token: token
-            }).then(function(entityCustomer) {
-              $scope.form.customer = entityCustomer.data;
-              $scope.resetState();
-            });
-          }
-				}
-			};
-
-      $scope.resetState = function() {
-        $scope.form.new = false;
-        $scope.form.updating = false;
-        $scope.form.change = false;
-        $route.reload();
-      };
 
     }
   ]

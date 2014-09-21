@@ -1,8 +1,12 @@
 'use strict';
 
 module.exports = angular.module('Review')
-  .controller('EntityReviewersCtrl', ['$scope', 'ApplyanceAPI', 'Store',
-    function ($scope, ApplyanceAPI, Store) {
+  .controller('EntityReviewersCtrl', ['$scope', '$location', 'ApplyanceAPI', 'Store',
+    function ($scope, $location, ApplyanceAPI, Store) {
+
+      if (!Store.hasActiveFeature('team')) {
+        $location.path($scope.getRootPath());
+      }
 
       $scope.getActiveEntityName = function() {
         return Store.getActiveEntity().name;

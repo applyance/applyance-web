@@ -4,6 +4,10 @@ module.exports = angular.module('Review')
   .controller('ApplicationCtrl', ['$scope', '$routeParams', 'ApplyanceAPI', 'Store', '$filter', '$sce', 'citizen_data',
     function ($scope, $routeParams, ApplyanceAPI, Store, $filter, $sce, citizen_data) {
 
+      if (!Store.hasActiveFeature('applicantView')) {
+        $location.path($scope.getRootPath());
+      }
+
       $scope.activeEntity = Store.getActiveEntity();
       $scope.citizen = citizen_data.citizen;
       $scope.ratings = $scope.citizen.ratings;

@@ -108,4 +108,42 @@ module.exports = angular.module('Review')
       }
     }
   }])
+  .directive('aplCreditCardViewer', [function() {
+    return {
+      link: function(scope, elem, attr, ctrl) {
+        elem.card({
+          container: attr.aplCreditCardViewer,
+          numberInput: 'input#number',
+          expiryInput: 'input#expiry',
+          cvcInput: 'input#cvc',
+          nameInput: 'input#name',
+
+          width: 350,
+          formatting: true,
+
+          // Strings for translation - optional
+          messages: {
+            validDate: 'valid\nthru',
+            monthYear: 'MM / YY'
+          },
+
+          // Default values for rendered fields - options
+          values: {
+            number: '•••• •••• •••• ••••',
+            name: 'Full Name',
+            expiry: '••/••',
+            cvc: '•••'
+          }
+        });
+      }
+    }
+  }])
+  .directive('aplDisableByFeature', ['Store', function(Store) {
+    return {
+      link: function(scope, elem, attr, ctrl) {
+        var hasFeature = Store.hasActiveFeature(attr.aplDisableByFeature);
+        elem.prop('disabled', !hasFeature).toggleClass('disabled', !hasFeature);
+      }
+    }
+  }])
 ;

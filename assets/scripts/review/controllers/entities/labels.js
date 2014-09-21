@@ -1,8 +1,12 @@
 'use strict';
 
 module.exports = angular.module('Review')
-  .controller('EntityLabelsCtrl', ['$scope', 'ApplyanceAPI', '$timeout', 'Store', '$filter',
-    function ($scope, ApplyanceAPI, $timeout, Store, $filter) {
+  .controller('EntityLabelsCtrl', ['$scope', '$location', 'ApplyanceAPI', '$timeout', 'Store', '$filter',
+    function ($scope, $location, ApplyanceAPI, $timeout, Store, $filter) {
+
+      if (!Store.hasActiveFeature('labels')) {
+        $location.path($scope.getRootPath());
+      }
 
       $scope.activeEntity = Store.getActiveEntity();
 

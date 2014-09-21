@@ -1,59 +1,11 @@
-<form stripe-form="updateBilling" ng-submit="form.updating = true">
-
-  <h1 class="top-header">
-    Billing
-  </h1>
-
-  <div class="toaster text-trim">
-    <p>
-      Payments are powered by <a href="https://stripe.com" target="_blank">Stripe</a>. Sensitive information does not touch our servers.
-    </p>
+<div ng-switch="billingSection">
+  <div ng-switch-when="main" ng-controller="EntityBillingMainCtrl">
+    <div ng-include="'/views/review/settings/billing/main.html'"></div>
   </div>
-
-  <div class="settings-inputs">
-    <ul class="settings-inputs__list">
-      <li class="settings-inputs__item" ng-if="!form.new">
-        <label class="settings-inputs__label">Card on File</label>
-        <div class="settings-inputs__field--data">
-          **** **** **** {{ form.customer.last4 }}, {{ form.customer.exp_month }} / {{ form.customer.exp_year }}
-          <br />
-          <a href="" ng-click="form.change = !form.change">{{ form.change ? 'Cancel' : 'Update' }}</a>
-        </div>
-      </li>
-      <li class="settings-inputs__item" ng-show="form.new || form.change">
-        <label class="settings-inputs__label">Card Number</label>
-        <input type="text"
-               size="22"
-               ng-model="number"
-               payments-validate="card"
-               payments-type-model="type"
-               payments-format="card"
-               placeholder="1234 1234 1234 1234">
-      </li>
-      <li class="settings-inputs__item" ng-show="form.new || form.change">
-        <label class="settings-inputs__label">Card Expiration</label>
-        <input type="text"
-               size="8"
-               ng-model="expiry"
-               payments-validate="expiry"
-               payments-format="expiry"
-               placeholder="MM / YY">
-      </li>
-      <li class="settings-inputs__item" ng-show="form.new || form.change">
-        <label class="settings-inputs__label">Card CVC</label>
-        <input type="text"
-               size="5"
-               ng-model="cvc"
-               payments-validate="cvc"
-               payments-type-model="type"
-               payments-format="cvc">
-      </li>
-      <li class="settings-inputs__tray">
-        <button type="submit" class="btn--primary"
-            ng-class="{ 'is-disabled':form.updating }"
-            ng-disabled="form.updating">{{ form.updating ? 'Saving' : 'Save' }}</button>
-      </li>
-    </ul>
+  <div ng-switch-when="plan" ng-controller="EntityBillingPlanCtrl">
+    <div ng-include="'/views/review/settings/billing/plan.html'"></div>
   </div>
-
-</form>
+  <div ng-switch-when="card" ng-controller="EntityBillingCardCtrl">
+    <div ng-include="'/views/review/settings/billing/card.html'"></div>
+  </div>
+</div>

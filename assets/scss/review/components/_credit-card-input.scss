@@ -1,0 +1,42 @@
+.credit-card-input {
+  font-size: 0;
+  max-width: 350px;
+  width: 100%;
+}
+
+.credit-card-input__viewer {
+  display: inline-block;
+  margin-bottom: 36px;
+}
+
+.credit-card-input__fields {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.credit-card-input__field {
+  margin-bottom: 12px;
+  &:last-child { margin-bottom: 0; }
+}
+
+.credit-card-input__tray {
+  margin-top: 36px;
+}
+
+.credit-card-input__expiry,
+.credit-card-input__cvc {
+  margin-bottom: 12px;
+  @media only screen and (min-width : 768px) {
+    margin-bottom: 0;
+  }
+}
+
+@media only screen and (min-width : 768px) {
+  .credit-card-input__expiry {
+    padding-right: 6px;
+  }
+  .credit-card-input__cvc {
+    padding-left: 6px;
+  }
+}

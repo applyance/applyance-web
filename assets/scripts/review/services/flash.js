@@ -5,6 +5,9 @@ module.exports = angular.module('Review')
 
     $rootScope.$on("$routeChangeSuccess", function() {
       $rootScope.flashMessage = queue.shift() || "";
+      $timeout(function() {
+        $rootScope.flashMessage = "";
+      }, 4500);
     });
 
     $rootScope.$on("flash", function() {

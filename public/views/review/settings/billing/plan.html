@@ -1,0 +1,55 @@
+<div class="modal-overlay" ng-if="form.saving"></div>
+
+<h1 class="top-header">
+  <ul class="breadcrumbs">
+    <li class="breadcrumbs__item">
+      <a href="/entities/{{ activeEntity.id }}/billing" class="breadcrumbs__link">Billing</a>
+    </li>
+  </ul>
+  Subscription
+</h1>
+
+<div class="subscriptions">
+  <ul class="subscriptions__list">
+    <li class="subscriptions__list__item">
+      <div class="subscriptions__box">
+        <div class="subscriptions__title">Free Plan</div>
+        <ul class="subscriptions__features">
+          <li class="subscriptions__features__item">Unlimited Spots</li>
+          <li class="subscriptions__features__item">Accept Applications</li>
+          <li class="subscriptions__features__item"><del>Manage Applicants</del></li>
+          <li class="subscriptions__features__item"><del>Unlimited Users</del></li>
+        </ul>
+        <div class="subscriptions__price">
+          Free
+        </div>
+        <a href="" class="btn--primary subscriptions__action"
+            ng-class="{ 'is-disabled':(isCurrentPlan('free') || form.saving) }"
+            ng-disabled="(isCurrentPlan('free') || form.saving)"
+            ng-click="switchPlan('free')">
+          {{ getActionLabel('free') }}
+        </a>
+      </div>
+    </li>
+    <li class="subscriptions__list__item">
+      <div class="subscriptions__box">
+        <div class="subscriptions__title">Premium Plan</div>
+        <ul class="subscriptions__features">
+          <li class="subscriptions__features__item">Unlimited Spots</li>
+          <li class="subscriptions__features__item">Accept Applications</li>
+          <li class="subscriptions__features__item">Manage Applicants</li>
+          <li class="subscriptions__features__item">Unlimited Users</li>
+        </ul>
+        <div class="subscriptions__price">
+          $49/location/month
+        </div>
+        <a href="" class="btn--primary subscriptions__action"
+            ng-class="{ 'is-disabled':(isCurrentPlan('premium') || form.saving) }"
+            ng-disabled="(isCurrentPlan('premium') || form.saving)"
+            ng-click="switchPlan('premium')">
+          {{ getActionLabel('premium') }}
+        </a>
+      </div>
+    </li>
+  </ul>
+</div>

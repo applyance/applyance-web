@@ -6,7 +6,6 @@
   padding: 0;
   height: 60px;
   overflow: hidden;
-  background-color: $color-gray;
   background-color: darken($color-gray, 5%);
   z-index: 5;
 
@@ -137,10 +136,15 @@
   border-right: 2px solid transparent;
 
   @include transition(
+    background-color 200ms ease-in-out,
     border-right-color 200ms ease-in-out);
 
   @media only screen and (min-width : $mobile-settings-sidebar-breakpoint) {
     padding: 24px;
+  }
+
+  &:hover {
+    background-color: darken($color-gray, 8%);
   }
 }
 

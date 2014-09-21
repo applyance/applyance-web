@@ -53,7 +53,7 @@
   padding-bottom: 19px;
   margin: -19px 0;
   cursor: default;
-  background-color: darken($color-base, 5%);
+  background-color: darken($color-base, 15%);
   @include transition(background-color 200ms ease-in-out);
   .icon {
     display: none;
@@ -68,7 +68,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   &:hover {
-    background-color: darken($color-base, 15%);
+    background-color: darken($color-base, 25%);
   }
   .icon {
     display: inline-block;

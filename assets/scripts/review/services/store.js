@@ -98,6 +98,24 @@ module.exports = angular.module('Review')
         activeEntityId = id;
         $rootScope.$emit("contextChanged", {newEntityId: activeEntityId});
       };
+      this.getActiveRootEntity = function() {
+        var entity = this.getActiveEntity();
+        return entity.parent ? entity.parent : entity;
+      };
+
+      //
+      // Features
+      //
+
+      this.getActiveFeature = function(targetFeature) {
+        return _.find(this.getActiveRootEntity().customer.plan.features, function(feature) {
+          return feature.name == targetFeature;
+        });
+      };
+      this.hasActiveFeature = function(targetFeature) {
+        var feature = this.getActiveFeature(targetFeature);
+        return !!feature;
+      };
 
     }])
 ;

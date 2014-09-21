@@ -1,12 +1,14 @@
 'use strict';
 
 // Vendor Libs
+window.jQuery       = require("jquery");
 window.CryptoJS     = require("crypto-js");
 window.moment       = require("moment");
 window.MediumEditor = require("medium-editor");
 window.Tether       = require("tether");
 window.randomColor  = require("randomColor");
 require("jspdf");
+require("card");
 
 var attachFastClick = require('fastclick');
 attachFastClick(document.body);
@@ -33,8 +35,13 @@ angular.module('Review', [require("../services/api").name, 'ngRoute', 'angular-m
     $rootScope.$on("$routeChangeSuccess", function(args) {
       $rootScope.closeResponsiveMenus();
     });
-  }])
+  }]);
+
+angular.module('Review')
   .config(['$routeProvider', '$locationProvider', 'me', require("./routes")]);
+
+require("./services/store");
+require("./services/flash");
 
 require("../directives");
 require("../directives/blueprints")
@@ -43,9 +50,6 @@ require("../directives/manageDefinition")
 require("../filters");
 require("./directives/directives");
 require("./directives/contextswitcher");
-
-require("./services/store");
-require("./services/flash");
 
 require("./controllers/app");
 
@@ -66,6 +70,9 @@ require("./controllers/entities/reviewers");
 require("./controllers/entities/settings");
 require("./controllers/entities/labels");
 require("./controllers/entities/billing");
+require("./controllers/entities/billing/main");
+require("./controllers/entities/billing/card");
+require("./controllers/entities/billing/plan");
 
 require("./controllers/spots/spots");
 require("./controllers/spots/applications");

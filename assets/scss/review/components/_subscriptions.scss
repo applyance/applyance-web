@@ -1,0 +1,56 @@
+.subscriptions {
+  font-size: 0;
+}
+
+.subscriptions__list {
+  list-style-type: none;
+  padding: 0;
+  margin: -24px;
+}
+
+.subscriptions__list__item {
+  display: inline-block;
+  vertical-align: top;
+  padding: 24px;
+  width: 100%;
+  @media only screen and (min-width : 768px) {
+    max-width: 340px;
+  }
+}
+
+.subscriptions__box {
+  padding: 24px;
+  text-align: center;
+  background-color: white;
+  border: 3px solid $color-gray;
+  border-radius: 5px;
+}
+
+.subscriptions__title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.subscriptions__features {
+  list-style-type: none;
+  padding: 0;
+  margin: 24px 0;
+}
+
+.subscriptions__features__item {
+  padding: 12px 24px;
+  font-size: 14px;
+  color: $color-text;
+  border-top: 1px solid $color-gray;
+  &:last-child { border-bottom: 1px solid $color-gray; }
+}
+
+.subscriptions__price {
+  margin: 24px 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.subscriptions__action {
+
+}

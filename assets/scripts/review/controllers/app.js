@@ -8,6 +8,21 @@ module.exports = angular.module('Review')
         newQuestion: false
       };
 
+      $rootScope.$on("planChange", function() {
+        window.location.reload();
+      });
+
+      $scope.hasActiveFeature = function(feature) {
+        var hasFeature = Store.hasActiveFeature(feature);
+        return hasFeature;
+      };
+
+      $scope.getRootPath = function(feature) {
+        var path = 'entities/' + Store.getActiveEntity().id + '/';
+        path += Store.hasActiveFeature('applicantList') ? 'applications' : 'spots';
+        return path;
+      };
+
       $scope.toggleCreateQuestionDialog = function(toggleValue) {
         $scope.AppState.newQuestion = toggleValue || !$scope.AppState.newQuestion;
       };

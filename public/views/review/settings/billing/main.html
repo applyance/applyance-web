@@ -1,0 +1,42 @@
+<h1 class="top-header">
+  Billing
+</h1>
+
+<div class="settings-inputs">
+  <ul class="settings-inputs__list">
+    <li class="settings-inputs__item">
+      <label class="settings-inputs__label">Your Plan</label>
+      <div class="settings-inputs__field--data">
+        <div>{{ customer.plan.name }}<span ng-if="isTrial()"> (30 day trial)</span></div>
+        <a href="/entities/{{ activeEntity.id }}/billing/plan" class="btn--primary is-mini sp--top--small">View or Change Plan</a>
+      </div>
+    </li>
+    <li class="settings-inputs__item">
+      <label class="settings-inputs__label">
+        {{ (isTrial() && !customer.last4) ? 'Active Until' : 'Next Charge' }}
+      </label>
+      <div class="settings-inputs__field--data">
+        {{ customer.active_until | aplMoment:'MMMM D, YYYY' }}
+      </div>
+    </li>
+    <li class="settings-inputs__item">
+      <label class="settings-inputs__label">Source of Funds</label>
+      <div class="settings-inputs__field--data">
+        <div>
+          {{ customer.last4 ? 'Credit card on file' : 'No credit card on file' }}
+        </div>
+        <a href="/entities/{{ activeEntity.id }}/billing/card" class="btn--primary is-mini sp--top--small">View or Change Card</a>
+      </div>
+    </li>
+    <li class="settings-inputs__item" ng-if="customer.invoices.length > 0">
+      <label class="settings-inputs__label">Billing History</label>
+      <div class="settings-inputs__field--data">
+        <ul>
+          <li ng-repeat="invoice in customer.invoices">
+            {{ invoice.amount_due }} on {{ invoice.created_at | aplMoment:'MMMM D, YYYY' }}
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</div>

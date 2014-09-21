@@ -71,6 +71,10 @@ module.exports = angular.module('Apply')
           $scope.selectedSpots.push(spot);
           ApplyanceAPI.getSpotBlueprints(spot.id).then(function(blueprints) {
             blueprints = $scope.mapDatumsToBlueprints(blueprints.plain());
+            blueprints = _.map(blueprints, function(blueprint) {
+              blueprint.entity = blueprint.spot.entity;
+              return blueprint;
+            });
             $scope.blueprints = $scope.blueprints.concat(blueprints);
           });
         }

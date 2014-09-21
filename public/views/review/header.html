@@ -1,6 +1,6 @@
 <header class="header" ng-controller="HeaderCtrl" ng-cloak>
   <span class="hamburger" ng-click="toggleResponsiveMenu('main');"><i class="icon icon-bars"></i></span>
-  <a href="entities/{{ activeEntityId() }}/applications" class="mark"></a>
+  <a href="{{ getRootPath() }}" class="mark"></a>
   <context-switcher></context-switcher>
   <div class="header__application-link">
     <a href="{{ activeApplicationUrl() }}" target="_blank">

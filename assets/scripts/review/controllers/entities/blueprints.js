@@ -4,6 +4,10 @@ module.exports = angular.module('Review')
   .controller('EntityBlueprintsCtrl', ['$scope', 'ApplyanceAPI', 'Store',
     function ($scope, ApplyanceAPI, Store) {
 
+      if (!Store.hasActiveFeature('questions')) {
+        $location.path($scope.getRootPath());
+      }
+
       $scope.e = Store.getActiveEntity();
       $scope.rootE = $scope.e.parent ? $scope.e.parent : $scope.e;
       $scope.customDefinitionCount = 5;

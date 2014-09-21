@@ -1,0 +1,83 @@
+<h1 class="top-header">
+  <ul class="breadcrumbs">
+    <li class="breadcrumbs__item">
+      <a href="/entities/{{ activeEntity.id }}/billing" class="breadcrumbs__link">Billing</a>
+    </li>
+  </ul>
+  Credit Card
+</h1>
+
+<div class="settings-inputs" ng-if="customer.last4">
+  <ul class="settings-inputs__list">
+    <li class="settings-inputs__item">
+      <label class="settings-inputs__label">Card on File</label>
+      <div class="settings-inputs__field--data">
+        Credit card ending in <strong>{{ customer.last4 }}</strong>
+        <br />
+        Expires on <strong>{{ customer.exp_month }} / {{ customer.exp_year }}</strong>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<h2 ng-if="customer.last4">
+  Update Credit Card
+</h2>
+
+<div class="credit-card-input">
+
+  <div class="credit-card-input__viewer"></div>
+
+  <form
+      stripe-form="updateBilling"
+      ng-submit="form.updating = true"
+      apl-credit-card-viewer=".credit-card-input__viewer">
+    <ul class="credit-card-input__fields">
+      <li class="credit-card-input__field">
+        <input id="name"
+               type="text"
+               size="22"
+               ng-model="name"
+               placeholder="Name on Card">
+      </li>
+      <li class="credit-card-input__field">
+        <input id="number"
+               type="text"
+               size="22"
+               ng-model="number"
+               payments-validate="card"
+               payments-type-model="type"
+               payments-format="card"
+               placeholder="Card Number">
+      </li>
+      <li class="credit-card-input__field">
+        <div class="credit-card-input__expiry unit--1of2">
+          <input id="expiry"
+                 type="text"
+                 size="8"
+                 ng-model="expiry"
+                 payments-validate="expiry"
+                 payments-format="expiry"
+                 placeholder="MM / YY">
+        </div>
+        <div class="credit-card-input__cvc unit--1of2">
+          <input id="cvc"
+                 type="text"
+                 size="5"
+                 ng-model="cvc"
+                 payments-validate="cvc"
+                 payments-type-model="type"
+                 payments-format="cvc"
+                 placeholder="CVC">
+        </div>
+      </li>
+    </ul>
+
+    <div class="credit-card-input__tray">
+      <button type="submit" class="btn--primary"
+          ng-class="{ 'is-disabled':form.updating }"
+          ng-disabled="form.updating">{{ form.updating ? 'Saving' : 'Save' }}</button>
+    </div>
+
+  </form>
+</div>
