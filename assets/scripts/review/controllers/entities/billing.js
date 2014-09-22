@@ -14,6 +14,9 @@ module.exports = angular.module('Review')
       $scope.customer = null;
       ApplyanceAPI.getCustomerForEntity($scope.activeEntity.id).then(function(entityCustomer) {
         $scope.customer = entityCustomer.plain();
+        $scope.customer.invoices = _.reject($scope.customer.invoices, function(invoice) {
+          return parseInt(invoice.amount_due) == 0;
+        });
       });
 
     }
