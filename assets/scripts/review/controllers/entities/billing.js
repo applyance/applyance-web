@@ -15,7 +15,7 @@ module.exports = angular.module('Review')
       ApplyanceAPI.getCustomerForEntity($scope.activeEntity.id).then(function(entityCustomer) {
         $scope.customer = entityCustomer.plain();
         $scope.customer.invoices = _.reject($scope.customer.invoices, function(invoice) {
-          return parseInt(invoice.amount_due) == 0;
+          return (parseInt(invoice.amount_due) == 0) || !invoice.is_paid;
         });
         _.each($scope.customer.invoices, function(invoice) {
           invoice.status = $scope.getInvoiceStatus(invoice);
@@ -26,11 +26,11 @@ module.exports = angular.module('Review')
         if (invoice.is_paid) {
           return "Paid";
         }
-        if (invoice.is_closed) {
-          return "Closed";
-        }
         if (invoice.is_forgiven) {
           return "Forgiven";
+        }
+        if (invoice.is_closed) {
+          return "Closed";
         }
         if (invoice.is_attempted) {
           return "Not Paid";
