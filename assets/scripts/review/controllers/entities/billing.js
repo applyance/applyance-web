@@ -17,7 +17,26 @@ module.exports = angular.module('Review')
         $scope.customer.invoices = _.reject($scope.customer.invoices, function(invoice) {
           return parseInt(invoice.amount_due) == 0;
         });
+        _.each($scope.customer.invoices, function(invoice) {
+          invoice.status = $scope.getInvoiceStatus(invoice);
+        });
       });
+
+      $scope.getInvoiceStatus = function(invoice) {
+        if (invoice.is_paid) {
+          return "Paid";
+        }
+        if (invoice.is_closed) {
+          return "Closed";
+        }
+        if (invoice.is_forgiven) {
+          return "Forgiven";
+        }
+        if (invoice.is_attempted) {
+          return "Not Paid";
+        }
+        return "Pending";
+      };
 
     }
   ]

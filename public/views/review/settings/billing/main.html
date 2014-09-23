@@ -33,7 +33,7 @@
       <div class="settings-inputs__field--data">
         <ul class="li--block">
           <li ng-repeat="invoice in customer.invoices">
-            <strong>{{ (invoice.amount_due / 100.0) | currency }}</strong> on {{ invoice.created_at | aplMoment:'MMMM D, YYYY' }}
+            <strong>{{ (invoice.amount_due / 100.0) | currency }}</strong> on {{ invoice.created_at | aplMoment:'MMMM D, YYYY' }} <span ng-if="invoice.status">({{ invoice.status }})</span>
           </li>
         </ul>
       </div>
