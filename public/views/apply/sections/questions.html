@@ -1,0 +1,39 @@
+<div class="form-section trim"
+    ng-controller="QuestionsCtrl"
+    ng-class="{ 'is-disabled':isDisabled() }">
+  <div class="form-section__header">
+    <div class="form-section__headline">
+      Answer Questions
+    </div>
+    <div class="form-section__subline">
+      Please provide answers to all required questions below.
+    </div>
+  </div>
+  <div class="form-section__content text-trim">
+
+    <ul class="apply-questions">
+      <li class="apply-questions__item"
+          ng-repeat="blueprint in blueprints"
+          ng-class="{ 'is-valid':blueprint._valid, 'is-required':blueprint.is_required }">
+
+        <div class="apply-questions__item__container"
+            ng-switch="blueprint.definition.type">
+          <apl-blueprint-shorttext
+              ng-switch-when="shorttext"
+              apl-blueprint="blueprint"></apl-blueprint-shorttext>
+          <apl-blueprint-dropdown
+              ng-switch-when="dropdown"
+              apl-blueprint="blueprint"></apl-blueprint-dropdown>
+          <apl-blueprint-fileupload
+              ng-switch-when="fileupload"
+              apl-blueprint="blueprint"></apl-blueprint-fileupload>
+          <apl-blueprint-longtext
+              ng-switch-default
+              apl-blueprint="blueprint"></apl-blueprint-longtext>
+        </div>
+
+      </li>
+    </ul>
+
+  </div>
+</div>

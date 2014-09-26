@@ -29,12 +29,14 @@ module.exports = angular.module('Register')
       $scope.definitions = [];
       ApplyanceAPI.getDomainDefinitions($scope.domain.id).then(function(definitions) {
         $scope.definitions = definitions.plain();
-        var coreDefinitions = _.where($scope.definitions, { is_core: true });
+        var coreDefinitions = _.filter($scope.definitions, function(definition) {
+          return definition.is_core || definition.is_default;
+        });
         _.each(coreDefinitions, function(definition) {
           $scope.blueprints.push({
             definition_id: definition.id,
-            position: 1,
-            is_required: true
+            position: definition.default_position,
+            is_required: definition.default_is_required
           });
         });
       });

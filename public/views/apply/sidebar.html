@@ -1,0 +1,54 @@
+<ul class="apply-sidebar-items">
+
+  <li class="apply-sidebar-items__item">
+    <div class="apply-entity">
+      <img class="apply-entity__logo" ng-if="entity.logo.url" ng-src="{{ entity.logo ? entity.logo.url : null }}" />
+      <div class="apply-entity__name">
+        <div class="apply-entity__name__entity">{{ entity.name }}</div>
+        <div class="apply-entity__name__preface">Application</div>
+      </div>
+    </div>
+  </li>
+
+  <li class="apply-sidebar-items__item">
+    <ul class="apply-sections">
+      <li class="apply-sections__item is-complete">
+        <span class="apply-sections__item__progress">
+          <svg class="icon">
+            <use xlink:href="#checkmark-naked" />
+          </svg>
+        </span>
+        <span class="apply-sections__item__label">Select Locations</span>
+      </li>
+      <li class="apply-sections__item is-complete">
+        <span class="apply-sections__item__progress">
+          <svg class="icon">
+            <use xlink:href="#checkmark-naked" />
+          </svg>
+        </span>
+        <span class="apply-sections__item__label">Select Spots</span>
+      </li>
+      <li class="apply-sections__item is-incomplete">
+        <span class="apply-sections__item__progress"></span>
+        <span class="apply-sections__item__label">Answer Questions</span>
+      </li>
+    </ul>
+  </li>
+
+  <li class="apply-sidebar-items__item" ng-if="questions.length > 0">
+    <div class="apply-progress">
+      <ul class="apply-progress__questions">
+        <li class="apply-progress__questions__item"
+            ng-repeat="question in questions"
+            ng-class="{ 'is-complete':question.is_complete }"></li>
+      </ul>
+    </div>
+  </li>
+
+  <li class="apply-sidebar-items__item">
+    <div class="al--center">
+      <a href="" ng-click="" class="btn is-round is-small">Send Application</a>
+    </div>
+  </li>
+
+</ul>

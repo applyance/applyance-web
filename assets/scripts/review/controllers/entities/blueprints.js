@@ -67,7 +67,7 @@ module.exports = angular.module('Review')
       $scope.createNewDefinition = function(definition, cb) {
         var definitionToCreate = {
           label: definition.label,
-          type: "textarea",
+          type: "longtext",
           name: definition.label
         };
         if (definition.description && (definition.description.length > 0)) {
@@ -133,8 +133,8 @@ module.exports = angular.module('Review')
         } else {
           ApplyanceAPI.postBlueprint(Store.getActiveEntityId(), {
             definition_id: definition.id,
-            position: 1,
-            is_required: true
+            position: definition.default_position,
+            is_required: definition.default_is_required
           }).then(function(blueprint) {
             $scope.blueprints.push(blueprint);
           });

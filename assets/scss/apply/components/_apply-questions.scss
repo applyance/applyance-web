@@ -1,0 +1,19 @@
+.apply-questions {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.apply-questions__item {
+  border-style: solid;
+  border-color: $color-gray;
+  border-width: 0;
+  border-bottom-width: 1px;
+  &:first-child { border-top-width: 1px; }
+}
+html.is-dark .apply-questions__item {
+  border-color: $color-apply-theme-dark-main-beta;
+}
+
+.apply-questions__item__container {
+  padding: 36px 24px;
+}

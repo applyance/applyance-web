@@ -1,0 +1,30 @@
+.apply-submit {
+  display: none;
+}
+.is-header-shrunk .apply-submit {
+  display: inline-block;
+  vertical-align: middle;
+  width: percentage(1 / 2);
+  text-align: right;
+}
+
+.apply-submit__btn.apply-submit__btn {
+  vertical-align: middle;
+  padding: 10px 24px;
+  background-color: $color-success;
+  color: white;
+}
+
+.apply-submit__progress {
+  display: inline-block;
+  vertical-align: middle;
+
+  margin-right: 18px;
+  font-size: 12px;
+  font-weight: 500;
+
+  color: $color-apply-theme-light-text-beta;
+}
+.is-dark .apply-submit__progress {
+  color: $color-apply-theme-dark-text-beta;
+}

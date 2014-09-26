@@ -1,0 +1,59 @@
+<div class="form-section"
+    ng-controller="SpotsCtrl"
+    ng-class="{ 'is-disabled':isDisabled() }">
+  <div class="form-section__header">
+    <div class="form-section__headline">
+      Select Spots
+    </div>
+    <div class="form-section__subline">
+      Select all spots that you are interested in applying.
+    </div>
+  </div>
+  <div class="form-section__content text-trim">
+    <ul class="apply-spots">
+      <li class="apply-spots__item"
+          ng-repeat="(entity_id, spotObj) in spots"
+          ng-if="spotObj.spots.length > 0">
+
+        <div class="apply-spots__item__title"
+            ng-if="counts.locations > 0">
+          {{ spotObj.entity.name }}
+        </div>
+
+        <ul class="selection-list">
+          <li class="selection-list__item"
+              ng-repeat="spot in spotObj.spots"
+              ng-class="{ 'is-selected':spot.is_selected }">
+
+            <div class="apply-spot selection-list__item__container"
+                ng-click="toggleSpot(spot)">
+              <span class="selection-list__check">
+                <span class="icon-wrap">
+                  <svg class="icon">
+                    <use xlink:href="#checkmark-naked" />
+                  </svg>
+                </span>
+              </span>
+              <span class="apply-spot__content">
+                <div class="apply-spot__name">
+                  {{ spot.name }}
+                </div>
+                <div class="apply-spot__description text-trim"
+                    ng-if="spot.detail"
+                    ng-bind-html="spot.detail | aplUnsafe"></div>
+              </span>
+            </div>
+
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="form-section__tray al--center">
+    <a href="" class="btn is-small is-round form-section__continue-btn"
+        ng-click="continue()"
+        apl-scroll-next-section>
+      <span>Continue to Questions</span>
+    </a>
+  </div>
+</div>

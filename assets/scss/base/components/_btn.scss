@@ -71,6 +71,9 @@
     background-color: transparent;
     border: 3px solid transparent;
   }
+  &.is-round {
+    border-radius: 999px;
+  }
 }
 
 .btn--primary {

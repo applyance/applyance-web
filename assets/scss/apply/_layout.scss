@@ -1,0 +1,18 @@
+.apply-container {
+  width: 100%;
+  max-width: $apply-form-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+
+  font-size: 0;
+}
+
+.apply-form-container {
+  margin: 48px 0;
+}
+
+.is-header-shrunk .apply-form-container {
+  margin-top: 48px + 96px + 48px;
+}

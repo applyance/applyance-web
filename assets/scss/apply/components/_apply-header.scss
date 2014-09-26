@@ -1,0 +1,26 @@
+.apply-header {
+  margin: 72px 0;
+  font-size: 0;
+  text-align: center;
+}
+
+.is-header-shrunk .apply-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 12px 0;
+  z-index: 10;
+  text-align: left;
+  background-color: $color-apply-theme-light-main-beta;
+  border-bottom: 1px solid darken($color-apply-theme-light-main-beta, 5%);
+}
+.is-header-shrunk.is-dark .apply-header {
+  background-color: $color-apply-theme-dark-main-beta;
+  border-bottom-color: darken($color-apply-theme-dark-main-beta, 5%);
+}
+
+.apply-begin {
+  margin-top: 48px;
+}

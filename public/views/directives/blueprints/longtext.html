@@ -1,0 +1,7 @@
+<ng-include src="'/views/directives/blueprints/_standard-label.html'"></ng-include>
+<textarea
+    class="blueprint__input" id="definition[{{ blueprint.definition.id }}]"
+    msd-elastic="\n"
+    ng-model="blueprint.datum.detail.value"
+    rows="2"
+    ng-attr-placeholder="{{ blueprint.definition.placeholder ? blueprint.definition.placeholder : null }}">{{ blueprint.datum.detail.value }}</textarea>

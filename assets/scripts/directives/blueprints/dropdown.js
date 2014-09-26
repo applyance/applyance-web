@@ -1,10 +1,10 @@
 'use strict';
 
 module.exports = angular.module('Apply')
-  .directive('aplBlueprintChoice', function () {
+  .directive('aplBlueprintDropdown', function () {
     return {
       restrict: 'E',
-      templateUrl: '/views/directives/blueprints/choice.html',
+      templateUrl: '/views/directives/blueprints/dropdown.html',
       scope: {
         aplBlueprint: "="
       },

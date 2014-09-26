@@ -1,7 +1,10 @@
 <ng-include src="'/views/directives/blueprints/_standard-label.html'"></ng-include>
-<div class="blueprint--fileupload__field">
-  <button type="button" class="btn" ng-click="clickChoose()">Choose a file...</button>
-  <input type="file" class="hidden-file-input" apl-files-upload="fileFactory" apl-files-upload-on-change="onFilesChange()">
+<div class="blueprint--fileupload__field blueprint__input">
+  <button type="button" class="btn is-small"
+      ng-click="clickChoose()">Choose a file...</button>
+  <input type="file" class="hidden-file-input"
+      apl-files-upload="fileFactory"
+      apl-files-upload-on-change="onFilesChange()">
 </div>
 <ul ng-if="fileFactory.files.length > 0" class="blueprint--fileupload__list">
   <li class="blueprint--fileupload__list__item" ng-repeat="file in fileFactory.files">

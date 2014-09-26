@@ -1,0 +1,52 @@
+<div class="form-section text-trim"
+    ng-controller="LocationsCtrl"
+    ng-class="{ 'is-disabled':isDisabled() }">
+  <div class="form-section__header">
+    <div class="form-section__headline">
+      Select Locations
+    </div>
+    <div class="form-section__subline">
+      Select all locations that you are interested in applying.
+    </div>
+  </div>
+  <div class="form-section__content">
+    <div class="apply-locations">
+      <ul class="selection-list">
+        <li class="selection-list__item"
+            ng-repeat="location in locations"
+            ng-class="{ 'is-selected':location.is_selected }">
+
+          <div class="apply-location selection-list__item__container"
+              ng-click="toggleLocation(location)">
+            <span class="selection-list__check">
+              <span class="icon-wrap">
+                <svg class="icon">
+                  <use xlink:href="#checkmark-naked" />
+                </svg>
+              </span>
+            </span>
+            <span class="apply-location__content">
+              <div class="apply-location__name">
+                {{ location.name }}
+              </div>
+              <div class="apply-location__address"
+                  ng-if="false"
+                  ng-bind-html="location.address">
+              </div>
+            </span>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="form-section__tray al--center">
+    <a href="" class="btn is-small is-round form-section__continue-btn"
+        ng-click="continue()"
+        apl-scroll-next-section>
+      <span>Continue</span>
+      <span ng-if="counts.spots > 0">to Spots</span>
+      <span ng-if="counts.spots == 0">to Questions</span>
+    </a>
+  </div>
+</div>

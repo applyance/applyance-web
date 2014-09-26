@@ -9,9 +9,13 @@ module.exports = angular.module('Applyance')
       return input.substring(0,1).toUpperCase()+input.substring(1);
     }
   })
-  .filter('blueprint', function() {
-    return function(input, entity) {
-      return input.replace("{{ entity.name }}", entity.name);
+  .filter('blueprintText', function() {
+    return function(input, blueprint) {
+      if (blueprint.spot) {
+        return input.replace("{{ blueprint.spot.entity.name }}", blueprint.spot.entity.name);
+      } else {
+        return input.replace("{{ blueprint.entity.name }}", blueprint.entity.name);
+      }
     }
   })
   .filter('nl2p', function () {
@@ -48,5 +52,10 @@ module.exports = angular.module('Applyance')
 
       return value + (tail || '...');
     };
-  });
+  })
+  .filter('aplUnsafe', function($sce) {
+    return function(val) {
+      return $sce.trustAsHtml(val);
+    };
+  })
 ;

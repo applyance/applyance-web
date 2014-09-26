@@ -1,0 +1,18 @@
+<div class="apply-container">
+  <div class="apply-entity">
+    <img class="apply-entity__logo" ng-if="entity.logo.url" ng-src="{{ entity.logo ? entity.logo.url : null }}" />
+    <div class="apply-entity__name">
+      <div class="apply-entity__name__entity">{{ entity.name }}</div>
+      <div class="apply-entity__name__preface">Application Form</div>
+    </div>
+  </div>
+  <div class="apply-submit">
+    <div class="apply-submit__progress">
+      30% Done
+    </div>
+    <a href="" class="btn is-round is-mini apply-submit__btn"
+        ng-click="submit()">
+      Submit
+    </a>
+  </div>
+</div>

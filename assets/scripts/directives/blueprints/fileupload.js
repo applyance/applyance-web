@@ -10,7 +10,8 @@ module.exports = angular.module('Apply')
       },
       link: function (scope, elm, attr) {
         scope.blueprint = scope.aplBlueprint;
-        scope.blueprint.attachments = [];
+        scope.blueprint.datum = scope.blueprint.datum || {};
+        scope.blueprint.datum.attachments = [];
         scope.fileFactory = {};
 
         scope.onFilesChange = function() {
@@ -25,13 +26,13 @@ module.exports = angular.module('Apply')
               name: file.name,
               token: attachment.data.token
             };
-            scope.blueprint.attachments.push(file.attachment);
+            scope.blueprint.datum.attachments.push(file.attachment);
           };
         };
 
         scope.remove = function(file) {
-          var blueprintIndex = scope.blueprint.attachments.indexOf(file.attachment);
-          scope.blueprint.attachments.splice(blueprintIndex, 1);
+          var blueprintIndex = scope.blueprint.datum.attachments.indexOf(file.attachment);
+          scope.blueprint.datum.attachments.splice(blueprintIndex, 1);
 
           var factoryIndex = scope.fileFactory.files.indexOf(file);
           scope.fileFactory.files.splice(factoryIndex, 1);

@@ -1,0 +1,81 @@
+.selection-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.selection-list__item {
+  font-size: 0;
+  border-style: solid;
+  border-color: $color-gray;
+  border-width: 0;
+  border-bottom-width: 1px;
+  &:first-child { border-top-width: 1px; }
+}
+html.is-dark .selection-list__item {
+  border-color: $color-apply-theme-dark-main-beta;
+}
+
+.selection-list__check {
+  display: inline-block;
+  margin-right: 24px;
+  .icon-wrap {
+    position: relative;
+    display: inline-block;
+    width: $selection-check-size;
+    height: $selection-check-size;
+    border: 2px solid $color-gray-rgba;
+    background-color: transparent;
+    border-radius: 100%;
+    @include transition-property(border-color, background-color);
+  }
+  .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $selection-check-size - 12px;
+    height: $selection-check-size - 12px;
+    fill: transparent;
+    @include transform(translate(-50%, -50%));
+    @include transition-property(opacity, fill);
+  }
+}
+html.is-dark .selection-list__check .icon-wrap {
+  border-color: lighten($color-apply-theme-dark-main-beta, 5%);
+}
+
+.selection-list__check .icon-wrap,
+.selection-list__check .icon {
+  @include transition-duration(100ms);
+  @include transition-timing-function(ease-in-out);
+}
+
+.selection-list__item__container {
+  font-size: 0;
+  cursor: pointer;
+  padding: 18px 24px;
+  background-color: transparent;
+  @include transition(background-color 200ms ease-in-out);
+
+  > * {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.selection-list__item.is-selected .selection-list__check .icon-wrap,
+.selection-list__item__container:hover .selection-list__check .icon-wrap {
+  border-color: transparent;
+}
+
+.selection-list__item__container:hover .selection-list__check {
+  .icon-wrap { background-color: rgba($color-success, .35); }
+  .icon { fill: white; }
+}
+
+.selection-list__item.is-selected .selection-list__check {
+  .icon-wrap { background-color: $color-success; }
+  .icon { fill: white; }
+}
+html.is-dark .selection-list__item.is-selected .selection-list__check {
+  .icon { fill: $color-apply-theme-dark-main-alpha; }
+}

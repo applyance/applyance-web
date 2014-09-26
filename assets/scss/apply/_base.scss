@@ -1,0 +1,6 @@
+html {
+  background-color: $color-apply-theme-light-main-beta;
+  &.is-dark {
+    background-color: $color-apply-theme-dark-main-beta;
+  }
+}

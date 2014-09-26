@@ -1,10 +1,10 @@
 'use strict';
 
 module.exports = angular.module('Apply')
-  .directive('aplBlueprintText', function () {
+  .directive('aplBlueprintLongtext', function () {
     return {
       restrict: 'E',
-      templateUrl: '/views/directives/blueprints/text.html',
+      templateUrl: '/views/directives/blueprints/longtext.html',
       scope: {
         aplBlueprint: "="
       },

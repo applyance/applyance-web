@@ -1,37 +1,51 @@
 'use strict';
 
 module.exports = angular.module('Apply')
-  .directive('ngDebounce', function ($timeout) {
-    return {
-        restrict: 'A',
-        require: 'ngModel',
-        priority: 99,
-        link: function (scope, elm, attr, ngModelCtrl) {
-            if (attr.type === 'radio' || attr.type === 'checkbox') {
-                return;
-            }
+  .directive('aplShrinkHeaderOnReach', ['$document', '$timeout', function($document, $timeout) {
+    return function(scope, elem, attr) {
+      var $html = angular.element('html'),
+          $header = angular.element('.apply-header'),
+          $headerImg = $header.find('.apply-entity__logo'),
+          $container = angular.element('.apply-form-container'),
+          classRemoved = true,
+          headerHeight = 0;
 
-            var delay = parseInt(attr.ngDebounce, 10);
-            if (isNaN(delay)) {
-                delay = 1000;
-            }
+      $timeout(function() {
+        headerHeight = $header.outerHeight(true);
+      }, 100);
 
-            elm.unbind('input');
+      $headerImg.on('load', function() {
+        headerHeight = $header.outerHeight(true);
+      });
 
-            var debounce;
-            elm.bind('input', function () {
-                $timeout.cancel(debounce);
-                debounce = $timeout(function () {
-                    scope.$apply(function () {
-                        ngModelCtrl.$setViewValue(elm.val());
-                    });
-                }, delay);
-            });
-            elm.bind('blur', function () {
-                scope.$apply(function () {
-                    ngModelCtrl.$setViewValue(elm.val());
-                });
-            });
+      $document.on('scroll', function() {
+        if ($document.scrollTop() >= elem.offset().top) {
+          if (classRemoved) {
+            $html.addClass('is-header-shrunk');
+            $container.css('margin-top', headerHeight);
+            classRemoved = false;
+          }
+        } else if (!classRemoved) {
+          $html.removeClass('is-header-shrunk');
+          $container.removeAttr('style');
+          classRemoved = true;
         }
+      });
     };
-  });
+  }])
+  .directive('aplScrollNextSection', ['$document', '$timeout', function($document, $timeout) {
+    return function(scope, elem, attr) {
+      var $header = angular.element('.apply-header'),
+          $formSection = elem.closest('.form-section');
+      if (!$formSection.length) {
+        $formSection = elem.closest(attr.aplScrollNextSection);
+      }
+      elem.on('click', function(e) {
+        $timeout(function() {
+          var scrollToHere = $formSection.offset().top + $formSection.outerHeight() + 24 - 65;
+          $document.scrollTop(scrollToHere, 400);
+        }, 80);
+      });
+    };
+  }])
+;
