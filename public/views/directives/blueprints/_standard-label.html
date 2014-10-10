@@ -1,12 +1,12 @@
 <div class="blueprint__header">
   <span class="blueprint__header__number">{{ (blueprint._index + 1) }}.</span>
   <div class="blueprint__header__question">
-    <label class="blueprint__label" for="definition[{{ blueprint.definition.id }}]">
+    <label class="blueprint__label" for="blueprint[{{ blueprint.id }}]">
       {{ blueprint.definition.label | blueprintText:blueprint }}
     </label>
-    <div class="blueprint__description"
-        ng-if="blueprint.definition.description">
-      {{ blueprint.definition.description | blueprintText:blueprint }}
-    </div>
+    <div class="blueprint__description text-trim"
+        ng-if="blueprint.definition.description"
+        ng-class="{ 'is-small is-detached':blueprint.definition.type == 'legal' }"
+        ng-bind-html="blueprint.definition.description | blueprintText:blueprint | nl2p | aplUnsafe"></div>
   </div>
 </div>

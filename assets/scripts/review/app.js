@@ -7,6 +7,7 @@ window.moment       = require("moment");
 window.MediumEditor = require("medium-editor");
 window.Tether       = require("tether");
 window.randomColor  = require("randomColor");
+
 require("jspdf");
 require("card");
 
@@ -19,7 +20,12 @@ require("angular-medium-editor");
 require('./../ext/angular-payments/lib/angular-payments.js');
 
 // Define Review Module
-angular.module('Review', [require("../services/api").name, 'ngRoute', 'angular-medium-editor', 'angularPayments'])
+angular.module('Review', [require("../services/api").name, 'ngRoute', 'angular-medium-editor', 'angularPayments']);
+
+require("../templates");
+require("./templates");
+
+angular.module('Review')
   .run(['$rootScope', function($rootScope) {
     $rootScope.menuStates = { 'main': false, 'account': false, 'context': false, 'settings': false };
     $rootScope.closeResponsiveMenus = function() {

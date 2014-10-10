@@ -1,4 +1,88 @@
+.blueprint__entries {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.blueprint__entry {
+  position: relative;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 2px dotted $color-apply-theme-light-line;
+  &:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+}
+.is-dark .blueprint__entry {
+  border-bottom-color: $color-apply-theme-dark-line;
+}
+
+.blueprint__entry__remove {
+  $_icon-size: 20px;
+
+  display: inline-block;
+  position: absolute;
+  right: $_icon-size / -2;
+  top: $_icon-size / -2;
+
+  .icon {
+    display: block;
+    width: $_icon-size;
+    height: $_icon-size;
+    background-color: $color-apply-theme-light-main-alpha;
+    border-radius: 100%;
+    box-shadow:
+      0 3px 0 $color-apply-theme-light-main-alpha,
+      -3px 0 0 $color-apply-theme-light-main-alpha;
+    fill: $color-red;
+  }
+}
+.is-dark .blueprint__entry__remove .icon {
+  background-color: $color-apply-theme-dark-main-alpha;
+  box-shadow:
+    0 3px 0 $color-apply-theme-dark-main-alpha,
+    -3px 0 0 $color-apply-theme-dark-main-alpha;
+}
+
+.blueprint__entry__tray {
+  margin-top: 18px + 4px;
+  .btn {
+    position: relative;
+    width: 100%;
+    padding: 8px;
+    color: $color-success;
+    background-color: transparent;
+    border: 1px solid rgba($color-success, .35);
+
+    @include transition(border-color 200ms ease-in-out);
+
+    &:hover {
+      border-color: $color-success;
+      &:before { border-bottom-color: $color-success; }
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: -8px;
+      margin-left: -4px;
+      width: 0;
+      height: 0;
+
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid rgba($color-success, .35);
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+
+      @include transition(border-color 200ms ease-in-out);
+    }
+  }
+}
+
 .blueprint__header {
+  position: relative;
   margin-bottom: 24px;
 }
 
@@ -38,12 +122,55 @@
 .blueprint__label {
   display: block;
   font-weight: 500;
+  &:after {
+    content: '';
+    position: absolute;
+    top: -21px;
+    left: 30px;
+    font-size: 10px;
+    line-height: 21px;
+    text-transform: uppercase;
+    text-rendering: optimizeLegibility;
+    letter-spacing: 1px;
+    color: $color-apply-theme-light-text-alpha;
+    opacity: 1;
+    @include transition(opacity 350ms ease-in-out);
+  }
+  @media only screen and (min-width : $apply-mobile-breakpoint) {
+    padding-right: 90px;
+    &:after {
+      top: 0;
+      left: auto;
+      right: 0;
+    }
+  }
+}
+.is-dark .blueprint__label:after {
+  color: $color-apply-theme-dark-text-alpha;
+}
+.is-required:not(.is-valid) .blueprint__label:after {
+  content: 'Required';
+  color: rgba($color-red, .5);
+}
+.is-valid:not(.is-empty) .blueprint__label:after {
+  opacity: 0;
+}
+.apply-questions__item:not(.is-valid):not(.is-empty) .blueprint__label:after {
+  content: 'Incomplete';
+  color: orange;
 }
 
 .blueprint__description {
   margin-top: 6px;
   font-weight: 300;
   color: #999;
+  &.is-small {
+    font-size: 12px;
+  }
+  &.is-detached {
+    margin-top: 24px;
+    margin-left: -30px;
+  }
 }
 .is-dark .blueprint__description {
   color: $color-apply-theme-dark-text-beta;
@@ -118,4 +245,89 @@
 
 textarea.blueprint__input {
   line-height: 1.5;
+}
+
+.blueprint__footer {
+  margin-top: 18px;
+  font-size: 14px;
+  color: $color-apply-theme-light-text-beta;
+}
+.is-dark .blueprint__footer {
+  color: $color-apply-theme-dark-text-beta;
+}
+
+.blueprint__field-cols,
+.blueprint__field-rows {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.blueprint__field-row {
+  margin-bottom: 12px;
+  &:last-child { margin-bottom: 0; }
+}
+
+.blueprint__field-col {
+  margin-top: 12px;
+  @media only screen and (min-width : 768px) {
+    margin-top: 0;
+    padding: 0 6px;
+    &:first-child { padding-left: 0; }
+    &:last-child { padding-right: 0; }
+  }
+}
+
+.blueprint__question-suffix {
+  padding: 12px;
+  font-size: 0;
+}
+
+.blueprint__question-suffix__q,
+.blueprint__question-suffix__a {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.blueprint__question-suffix__q {
+  width: calc(100% - 104px);
+  text-align: left;
+  font-size: 14px;
+}
+
+.blueprint__question-suffix__a {
+  padding-left: 0;
+  width: auto;
+  text-align: right;
+}
+
+.blueprint__question-suffix__a__item {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 8px;
+  &:first-child { margin-left: 0; }
+  a {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 999px;
+    background-color: $color-apply-theme-light-main-beta;
+    color: $color-apply-theme-light-text-alpha;
+    @include transition(
+      background-color 200ms ease-in-out,
+      color 200ms ease-in-out);
+    &.is-selected {
+      background-color: $color-apply-theme-light-text-alpha;
+      color: $color-apply-theme-light-main-beta;
+    }
+  }
+}
+.is-dark .blueprint__question-suffix__a__item a {
+  background-color: $color-apply-theme-dark-main-beta;
+  color: $color-apply-theme-dark-text-alpha;
+  &.is-selected {
+    background-color: $color-apply-theme-dark-text-alpha;
+    color: $color-apply-theme-dark-main-beta;
+  }
 }

@@ -1,3 +1,29 @@
+.blueprint--fileupload__field {
+
+}
+
+.blueprint--fileupload__choose-btn {
+  width: 100%;
+  padding: 12px 0;
+  background-color: transparent;
+  border: 2px dashed darken($color-apply-theme-light-line, 5%);
+  color: $color-apply-theme-light-text-beta;
+  @include transition(border-color 200ms ease-in-out);
+  &.is-draggedover {
+    border-color: darken($color-apply-theme-light-line, 15%);
+  }
+  &.is-uploading {
+    border-style: solid;
+  }
+}
+.is-dark .blueprint--fileupload__choose-btn {
+  border-color: lighten($color-apply-theme-dark-line, 5%);
+  color: $color-apply-theme-dark-text-beta;
+  &.is-draggedover {
+    border-color: lighten($color-apply-theme-dark-line, 15%);
+  }
+}
+
 .blueprint--fileupload__list {
   list-style-type: none;
   padding: 0;
@@ -19,9 +45,12 @@
 }
 
 .blueprint--fileupload__list__img {
-  width: 60px;
-  height: 60px;
-  border: 2px solid $color-gray;
+  width: 48px;
+  height: 48px;
+  border: 2px solid $color-apply-theme-light-line;
+}
+.is-dark .blueprint--fileupload__list__img {
+  border-color: $color-apply-theme-dark-line;
 }
 
 .blueprint--fileupload__list__img--image {
@@ -30,34 +59,43 @@
 
 .blueprint--fileupload__list__img--document {
   @extend .blueprint--fileupload__list__img;
-  padding: 12px;
+  padding: 10px;
 }
 .blueprint--fileupload__list__img--document__svg {
-  fill: #999;
+  fill: $color-apply-theme-light-text-beta;
   width: 100%;
   height: 100%;
+}
+.is-dark .blueprint--fileupload__list__img--document__svg {
+  fill: $color-apply-theme-dark-text-beta;
 }
 
 .blueprint--fileupload__list__name {
   margin-left: 12px;
   font-size: 14px;
-
-  @media only screen and (max-width : 480px) {
-    width: 100%;
-    max-width: 180px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  color: $color-apply-theme-light-text-beta;
+  width: 100%;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.is-dark .blueprint--fileupload__list__name {
+  color: $color-apply-theme-dark-text-beta;
 }
 
 .blueprint--fileupload__list__remove {
   position: absolute;
   top: 50%;
-  margin-top: -10px;
+  margin-top: -9px;
   right: 0;
+  opacity: .75;
+  @include transition(opacity 200ms ease-in-out);
   .icon {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     fill: $color-red;
+  }
+  &:hover {
+    opacity: 1;
   }
 }

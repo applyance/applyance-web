@@ -4,12 +4,15 @@ $selection-check-size: 20px;
 
 $color-success: rgba(167, 192, 41, 1);
 
+$apply-mobile-breakpoint: 768px;
+
 /* Apply Theme (Light) */
 
 $color-apply-theme-light-main-alpha: white;
 $color-apply-theme-light-main-beta: #f5f5f5;
 $color-apply-theme-light-text-alpha: #333;
 $color-apply-theme-light-text-beta: #999;
+$color-apply-theme-light-line: $color-gray;
 $color-apply-theme-light-continue-btn-bg: $color-apply-theme-light-main-beta;
 $color-apply-theme-light-continue-btn-text: $color-apply-theme-light-text-alpha;
 
@@ -19,5 +22,6 @@ $color-apply-theme-dark-main-alpha: #2c2c2c;
 $color-apply-theme-dark-main-beta: #363636;
 $color-apply-theme-dark-text-alpha: #ddd;
 $color-apply-theme-dark-text-beta: #777;
+$color-apply-theme-dark-line: #444;
 $color-apply-theme-dark-continue-btn-bg: $color-apply-theme-dark-main-beta;
 $color-apply-theme-dark-continue-btn-text: $color-apply-theme-dark-text-alpha;

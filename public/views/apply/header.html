@@ -8,9 +8,17 @@
   </div>
   <div class="apply-submit">
     <div class="apply-submit__progress">
-      30% Done
+      <ul class="apply-submit__progress__list">
+        <li class="apply-submit__progress__list__item"
+            ng-repeat="blueprint in blueprints"
+            ng-class="{ 'is-complete':(blueprint._valid && !blueprint._empty), 'is-required':blueprint.is_required }">
+          <span class="dot"></span>
+        </li>
+      </ul>
     </div>
     <a href="" class="btn is-round is-mini apply-submit__btn"
+        ng-class="{ 'is-disabled':(!form.valid || form.submitting) }"
+        ng-disabled="!form.valid || form.submitting"
         ng-click="submit()">
       Submit
     </a>

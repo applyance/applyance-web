@@ -1,6 +1,16 @@
+html,
+body {
+  min-height: 100%;
+  height: auto;
+}
+
 html {
   background-color: $color-apply-theme-light-main-beta;
   &.is-dark {
     background-color: $color-apply-theme-dark-main-beta;
   }
+}
+
+[tabindex] {
+  outline: none;
 }

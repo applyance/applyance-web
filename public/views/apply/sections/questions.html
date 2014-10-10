@@ -11,25 +11,69 @@
   </div>
   <div class="form-section__content text-trim">
 
-    <ul class="apply-questions">
+    <ul class="apply-questions" apl-apply-focus>
       <li class="apply-questions__item"
           ng-repeat="blueprint in blueprints"
-          ng-class="{ 'is-valid':blueprint._valid, 'is-required':blueprint.is_required }">
+          ng-class="{
+            'is-valid':blueprint._valid,
+            'is-required':blueprint.is_required,
+            'is-empty':blueprint._empty
+          }">
 
         <div class="apply-questions__item__container"
             ng-switch="blueprint.definition.type">
           <apl-blueprint-shorttext
-              ng-switch-when="shorttext"
-              apl-blueprint="blueprint"></apl-blueprint-shorttext>
+              ng-switch-when="shorttext" apl-blueprint="blueprint"></apl-blueprint-shorttext>
           <apl-blueprint-dropdown
-              ng-switch-when="dropdown"
-              apl-blueprint="blueprint"></apl-blueprint-dropdown>
+              ng-switch-when="dropdown" apl-blueprint="blueprint"></apl-blueprint-dropdown>
           <apl-blueprint-fileupload
-              ng-switch-when="fileupload"
-              apl-blueprint="blueprint"></apl-blueprint-fileupload>
+              class="blueprint--fileupload"
+              ng-switch-when="fileupload" apl-blueprint="blueprint"></apl-blueprint-fileupload>
+          <apl-blueprint-multiplechoice
+              ng-switch-when="multiplechoice" apl-blueprint="blueprint"></apl-blueprint-multiplechoice>
+          <apl-blueprint-yesno
+              ng-switch-when="yesno" apl-blueprint="blueprint"></apl-blueprint-yesno>
+          <apl-blueprint-rating
+              class="blueprint--rating"
+              ng-switch-when="rating" apl-blueprint="blueprint"></apl-blueprint-rating>
+          <apl-blueprint-name
+              class="blueprint--name"
+              ng-switch-when="name" apl-blueprint="blueprint"></apl-blueprint-name>
+          <apl-blueprint-address
+              class="blueprint--address"
+              ng-switch-when="address" apl-blueprint="blueprint"></apl-blueprint-address>
+          <apl-blueprint-legal
+              class="blueprint--legal"
+              ng-switch-when="legal" apl-blueprint="blueprint"></apl-blueprint-legal>
+          <apl-blueprint-education
+              class="blueprint--education"
+              ng-switch-when="education" apl-blueprint="blueprint"></apl-blueprint-education>
+          <apl-blueprint-workexperience
+              class="blueprint--workexperience"
+              ng-switch-when="workexperience" apl-blueprint="blueprint"></apl-blueprint-workexperience>
+          <apl-blueprint-reference
+              class="blueprint--reference"
+              ng-switch-when="reference" apl-blueprint="blueprint"></apl-blueprint-reference>
+          <apl-blueprint-email
+              class="blueprint--email"
+              ng-switch-when="email" apl-blueprint="blueprint"></apl-blueprint-email>
+          <apl-blueprint-phonenumber
+              class="blueprint--phonenumber"
+              ng-switch-when="phonenumber" apl-blueprint="blueprint"></apl-blueprint-phonenumber>
+          <apl-blueprint-socialsecuritynumber
+              class="blueprint--socialsecuritynumber"
+              ng-switch-when="socialsecuritynumber" apl-blueprint="blueprint"></apl-blueprint-socialsecuritynumber>
+          <apl-blueprint-website
+              class="blueprint--website"
+              ng-switch-when="website" apl-blueprint="blueprint"></apl-blueprint-website>
+          <apl-blueprint-date
+              class="blueprint--date"
+              ng-switch-when="date" apl-blueprint="blueprint"></apl-blueprint-date>
+          <apl-blueprint-hourlyavailability
+              class="blueprint--hourlyavailability"
+              ng-switch-when="hourlyavailability" apl-blueprint="blueprint"></apl-blueprint-hourlyavailability>
           <apl-blueprint-longtext
-              ng-switch-default
-              apl-blueprint="blueprint"></apl-blueprint-longtext>
+              ng-switch-default apl-blueprint="blueprint"></apl-blueprint-longtext>
         </div>
 
       </li>

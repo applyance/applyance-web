@@ -1,0 +1,148 @@
+$_hourlyavailability-legend-width: 90px;
+
+.blueprint--hourlyavailability {
+  font-size: 0;
+}
+
+.blueprint--hourlyavailability__container {
+  position: relative;
+  &:hover .blueprint--hourlyavailability__hour {
+    .icon,
+    .label {
+      opacity: 0;
+    }
+  }
+}
+
+.blueprint--hourlyavailability__day-hour-legend {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  .blueprint--hourlyavailability__hours {
+    position: absolute;
+    top: 36px;
+    left: 0;
+    right: 0;
+  }
+  .blueprint--hourlyavailability__hour {
+    cursor: default;
+    border: 0;
+    text-align: center;
+    background-color: transparent;
+    > * {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .icon,
+    .label {
+      @include transition(opacity 200ms ease-in-out);
+    }
+    .icon {
+      width: 12px;
+      height: 24px;
+      opacity: .25;
+    }
+    .icon--left {
+      @include transform(rotate(-180deg));
+    }
+    .label {
+      position: relative;
+      top: 1px;
+      padding-left: 8px;
+      padding-right: 8px - 8px; // Account for letter spacing
+
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 8px;
+
+      color: rgba(black, .5);
+    }
+  }
+}
+.is-dark .blueprint--hourlyavailability__day-hour-legend {
+  .blueprint--hourlyavailability__hour {
+    background-color: transparent;
+    .icon {
+      fill: white;
+    }
+    .label {
+      color: rgba(white, .4);
+    }
+  }
+}
+
+.blueprint--hourlyavailability__hours,
+.blueprint--hourlyavailability__days {
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 0;
+}
+
+.blueprint--hourlyavailability__days {
+  display: block;
+  margin: -2px;
+}
+
+.blueprint--hourlyavailability__day {
+  display: inline-block;
+  padding: 2px;
+  width: percentage(1 / 7);
+  .day-label,
+  .day-hours {
+    display: block;
+  }
+  .day-label {
+    font-size: 14px;
+    font-weight: 500;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+  }
+}
+
+.blueprint--hourlyavailability__hour {
+  display: block;
+  margin-top: 4px;
+  height: 36px;
+  line-height: 36px;
+
+  font-size: 14px;
+  text-align: center;
+  text-transform: uppercase;
+
+  background-color: $color-apply-theme-light-main-beta;
+  border-radius: 3px;
+  cursor: pointer;
+
+  @include transition(
+    border-color 200ms ease-in-out,
+    background-color 200ms ease-in-out);
+
+  &:hover {
+    background-color: darken($color-apply-theme-light-main-beta, 5%);
+  }
+}
+.is-dark .blueprint--hourlyavailability__hour {
+  background-color: $color-apply-theme-dark-main-beta;
+  &:hover { background-color: lighten($color-apply-theme-dark-main-beta, 5%); }
+}
+.blueprint--hourlyavailability__hour.is-selected,
+.is-dark .blueprint--hourlyavailability__hour.is-selected {
+  background-color: $color-success;
+}
+
+.blueprint--hourlyavailability__instructions {
+  margin-top: 18px;
+  font-size: 14px;
+  text-align: center;
+  color: $color-apply-theme-light-text-beta;
+}
+.is-dark .blueprint--hourlyavailability__instructions {
+  color: $color-apply-theme-dark-text-beta;
+}

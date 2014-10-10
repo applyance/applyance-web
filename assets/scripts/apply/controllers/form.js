@@ -1,17 +1,21 @@
 'use strict';
 
 module.exports = angular.module('Apply')
-  .controller('FormCtrl', ['$scope', '$http', 'entity', 'ApplyanceAPI', '$timeout',
-    function ($scope, $http, entity, ApplyanceAPI, $timeout) {
+  .controller('FormCtrl', ['$scope', 'entity', 'ApplyanceAPI', '$timeout',
+    function ($scope, entity, ApplyanceAPI, $timeout) {
 
       $scope.entity = entity;
       $scope.counts = {
-        locations: 0,
-        spots: 0
+        locations: -1,
+        spots: -1
       };
       $scope.form = {
         state: "begin",
-        sequence: 0
+        sequence: 0,
+        valid: false,
+        progress: 0,
+        submitting: false,
+        submitted: false
       };
 
       $scope.selectedLocations = [];
@@ -41,30 +45,57 @@ module.exports = angular.module('Apply')
       };
       $scope.begin();
 
-      $scope.submit = function() {
-        alert('submitting');
-      };
+      //
+      // Handle if the form is valid
+      //
 
-      $scope.onSubmit = function() {
-        var fields = [];
-        _.each($scope.blueprints, function(blueprint) {
-          if (!blueprint.detail && !blueprint.attachments) {
-            return;
-          }
-          var field = {
-            datum: {
-              definition_id: blueprint.definition.id,
-              detail: blueprint.detail
-            }
-          };
-          if (blueprint.attachments && (blueprint.attachments.length > 0)) {
-            field.datum.attachments = blueprint.attachments;
-          }
-          fields.push(field);
+      $scope.$watch('blueprints', function() {
+        var validBlueprints = _.filter($scope.blueprints, function(blueprint) {
+          return blueprint._valid;
         });
+        $scope.form.progress = Math.round((validBlueprints.length / $scope.blueprints.length) * 100);
+        $scope.form.valid = validBlueprints.length == $scope.blueprints.length;
+      }, true);
+
+      //
+      // Application Submission
+      //
+
+      $scope.submit = function() {
+        if (!$scope.form.valid) {
+          return;
+        }
+
+        var accountMappings = {
+          name: _.find($scope.blueprints, function(blueprint) {
+            return blueprint.definition.helper.account_mapping == "name";
+          }),
+          email: _.find($scope.blueprints, function(blueprint) {
+            return blueprint.definition.helper.account_mapping == "email";
+          })
+        };
+
+        //
+        // Fields
+        // Remove the account fields and get the raw datum values from the blueprints.
+        //
+
+        var fields = _.compact(
+          _.map(
+            _.reject($scope.blueprints, function(blueprint) {
+              return _.contains([accountMappings.name.id, accountMappings.email.id], blueprint.id);
+            }),
+            function(blueprint) {
+              return blueprint.field();
+            }
+          )
+        );
 
         var application = {
-          applicant: $scope.applicant,
+          account: {
+            name: accountMappings.name.datum.detail.entries[0].first + " " + accountMappings.name.datum.detail.entries[0].last,
+            email: accountMappings.email.datum.detail.entries[0].value
+          },
           fields: fields
         };
 
@@ -79,13 +110,12 @@ module.exports = angular.module('Apply')
           application.spot_ids = _.pluck($scope.selectedSpots, 'id');
         }
 
-        $scope.submitting = true;
+        $scope.form.submitting = true;
         ApplyanceAPI.postApplication(application).then(function(application) {
-          $scope.submitting = false;
-          $scope.submitted = true;
+          $scope.form.submitting = false;
+          $scope.form.submitted = true;
         });
-
-      }
+      };
 
     }
   ]);

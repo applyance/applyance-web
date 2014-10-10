@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = angular.module('Apply')
-  .directive('aplBlueprintShorttext', function () {
+  .directive('aplBlueprintShorttext', ['BlueprintFactory', function (BlueprintFactory) {
     return {
       restrict: 'E',
       templateUrl: '/views/directives/blueprints/shorttext.html',
@@ -10,6 +10,10 @@ module.exports = angular.module('Apply')
       },
       link: function (scope, elm, attr) {
         scope.blueprint = scope.aplBlueprint;
+        scope.BF = new BlueprintFactory(scope.blueprint);
+
+        scope.BF.validate();
+        scope.$watch('blueprint.datum', _.bind(scope.BF.validate, scope.BF), true);
       }
     };
-  });
+  }]);

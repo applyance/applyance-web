@@ -1,0 +1,72 @@
+.apply-submitted {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+
+  font-size: 0;
+  text-align: center;
+
+  opacity: 0;
+  background-color: $color-apply-theme-light-main-beta;
+  @include transition(opacity 500ms ease-in-out);
+}
+.is-dark .apply-submitted {
+  background-color: $color-apply-theme-dark-main-beta;
+}
+.is-submitting .apply-submitted,
+.is-submitted .apply-submitted {
+  opacity: 1;
+  z-index: 20;
+}
+
+.apply-submitted__content {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  @include transform(translate(-50%, -50%));
+}
+
+.apply-submitted__logo {
+  margin-bottom: 48px;
+  img {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    max-width: 200px;
+    max-height: 180px;
+  }
+}
+
+.apply-submitted__icon--loading {
+  display: none;
+  svg {
+    width: 72px;
+    height: 72px;
+    fill: $color-success;
+  }
+}
+.is-submitting .apply-submitted__icon--loading {
+  display: inline-block;
+}
+
+.apply-submitted__title {
+  margin-top: 36px;
+  font-size: 22px;
+  font-weight: 500;
+  color: $color-success;
+}
+
+.apply-submitted__message {
+  margin-top: 12px;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 300;
+  color: $color-apply-theme-light-text-beta;
+}
+.is-dark .apply-submitted__message {
+  color: $color-apply-theme-dark-text-beta;
+}

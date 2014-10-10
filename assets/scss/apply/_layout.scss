@@ -1,3 +1,11 @@
+.app-form.is-submitted {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+
 .apply-container {
   width: 100%;
   max-width: $apply-form-width;
@@ -15,4 +23,13 @@
 
 .is-header-shrunk .apply-form-container {
   margin-top: 48px + 96px + 48px;
+}
+
+.apply-form-container .apply-container {
+  padding-left: 0;
+  padding-right: 0;
+  @media only screen and (min-width : $apply-mobile-breakpoint) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
 }

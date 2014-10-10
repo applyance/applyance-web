@@ -11,12 +11,13 @@
   border-bottom-width: 1px;
   &:first-child { border-top-width: 1px; }
 }
-html.is-dark .selection-list__item {
+.is-dark .selection-list__item {
   border-color: $color-apply-theme-dark-main-beta;
 }
 
 .selection-list__check {
   display: inline-block;
+  vertical-align: middle;
   margin-right: 24px;
   .icon-wrap {
     position: relative;
@@ -39,7 +40,7 @@ html.is-dark .selection-list__item {
     @include transition-property(opacity, fill);
   }
 }
-html.is-dark .selection-list__check .icon-wrap {
+.is-dark .selection-list__check .icon-wrap {
   border-color: lighten($color-apply-theme-dark-main-beta, 5%);
 }
 
@@ -50,6 +51,7 @@ html.is-dark .selection-list__check .icon-wrap {
 }
 
 .selection-list__item__container {
+  display: inline-block;
   font-size: 0;
   cursor: pointer;
   padding: 18px 24px;
@@ -76,6 +78,69 @@ html.is-dark .selection-list__check .icon-wrap {
   .icon-wrap { background-color: $color-success; }
   .icon { fill: white; }
 }
-html.is-dark .selection-list__item.is-selected .selection-list__check {
+.is-dark .selection-list__item.is-selected .selection-list__check {
   .icon { fill: $color-apply-theme-dark-main-alpha; }
+}
+
+.selection-list__content {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.selection-list__box {
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid darken($color-apply-theme-light-main-beta, 7%);
+  border-radius: 3px;
+  @include transition(border-color 200ms ease-in-out);
+  &:hover {
+    border-color: darken($color-apply-theme-light-main-beta, 17%);
+  }
+}
+.is-dark .selection-list__box {
+  border-color: lighten($color-apply-theme-dark-main-beta, 7%);
+  &:hover {
+    border-color: lighten($color-apply-theme-dark-main-beta, 17%);
+  }
+}
+
+/* Compact */
+
+.selection-list.is-compact {
+  .selection-list__item {
+    border-bottom-width: 0;
+    &:first-child { border-top-width: 0; }
+  }
+  .selection-list__item__container {
+    padding: 6px 0;
+  }
+  .selection-list__item {
+    &:first-child .selection-list__item__container {
+      padding-top: 0;
+    }
+    &:last-child .selection-list__item__container {
+      padding-bottom: 0;
+    }
+  }
+}
+
+/* Boxed */
+
+.selection-list.is-box .selection-list__check {
+  margin-right: 12px;
+}
+
+/* Horizontal */
+
+.selection-list.is-horizontal {
+  margin: -6px;
+  .selection-list__item {
+    display: inline-block;
+    vertical-align: top;
+    padding: 6px;
+  }
+  .selection-list__item__container {
+    padding: 0;
+  }
 }

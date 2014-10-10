@@ -17,7 +17,14 @@ module.exports = angular.module('Applyance')
       link: function (scope, element, attributes) {
 
         element.bind("change", function(changeEvent) {
-          scope.aplFilesUpload.files = [];
+
+          // Reset the files if it is not multiple
+          if (!element.is('[multiple]')) {
+            scope.aplFilesUpload.files = [];
+          } else {
+            scope.aplFilesUpload.files = scope.aplFilesUpload.files || [];
+          }
+
           for (var i = 0; i < changeEvent.target.files.length; i++) {
             scope.aplFilesUpload.files.push(changeEvent.target.files[i]);
           }
@@ -102,36 +109,45 @@ module.exports = angular.module('Applyance')
   }])
   .directive('aplDebounce', function ($timeout) {
     return {
-        restrict: 'A',
-        require: 'ngModel',
-        priority: 99,
-        link: function (scope, elm, attr, ngModelCtrl) {
-            if (attr.type === 'radio' || attr.type === 'checkbox') {
-                return;
-            }
-
-            var delay = parseInt(attr.ngDebounce, 10);
-            if (isNaN(delay)) {
-                delay = 1000;
-            }
-
-            elm.unbind('input');
-
-            var debounce;
-            elm.bind('input', function () {
-                $timeout.cancel(debounce);
-                debounce = $timeout(function () {
-                    scope.$apply(function () {
-                        ngModelCtrl.$setViewValue(elm.val());
-                    });
-                }, delay);
-            });
-            elm.bind('blur', function () {
-                scope.$apply(function () {
-                    ngModelCtrl.$setViewValue(elm.val());
-                });
-            });
+      restrict: 'A',
+      require: 'ngModel',
+      priority: 99,
+      link: function (scope, elm, attr, ngModelCtrl) {
+        if (attr.type === 'radio' || attr.type === 'checkbox') {
+          return;
         }
+
+        var delay = parseInt(attr.ngDebounce, 10);
+        if (isNaN(delay)) {
+          delay = 1000;
+        }
+
+        elm.unbind('input');
+
+        var debounce;
+        elm.bind('input', function () {
+          $timeout.cancel(debounce);
+          debounce = $timeout(function () {
+            scope.$apply(function () {
+              ngModelCtrl.$setViewValue(elm.val());
+            });
+          }, delay);
+        });
+        elm.bind('blur', function () {
+          scope.$apply(function () {
+              ngModelCtrl.$setViewValue(elm.val());
+          });
+        });
+      }
     };
-  });
+  })
+  .directive('aplAttrMultiple', ['$parse', function($parse) {
+    return {
+      link: function (scope, elm, attr) {
+        attr.$observe('aplAttrMultiple', function(isMultiple) {
+          isMultiple ? elm.attr('multiple', '') : elm.removeAttr('multiple');
+        });
+      }
+    };
+  }])
 ;

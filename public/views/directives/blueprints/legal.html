@@ -1,0 +1,32 @@
+<ng-include src="'/views/directives/blueprints/_standard-label.html'"></ng-include>
+<div class="selector blueprint__selector" tabindex="0">
+
+  <ul class="selection-list is-compact is-box">
+    <li class="selection-list__item"
+        ng-repeat="choice in ['I accept', 'I don\'t accept']"
+        ng-class="{ 'is-selected':isSelected(choice) }">
+
+      <div class="selection-list__item__wrap">
+        <div class="selection-list__item__container"
+            ng-click="toggle(choice)">
+          <div class="selection-list__box">
+            <span class="selection-list__check">
+              <span class="icon-wrap">
+                <svg class="icon">
+                  <use xlink:href="#checkmark-naked" />
+                </svg>
+              </span>
+            </span>
+            <span class="selection-list__content">
+              <div>
+                <strong>{{ choice }}</strong>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </li>
+  </ul>
+
+</div>

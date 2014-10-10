@@ -1,0 +1,19 @@
+<div class="apply-submitted__content">
+  <div class="apply-submitted__logo"
+      ng-if="form.submitted">
+    <img ng-if="entity.logo.url" ng-src="{{ entity.logo ? entity.logo.url : null }}" />
+  </div>
+  <span class="apply-submitted__icon--loading">
+    <svg>
+      <use xlink:href="#loader" />
+    </svg>
+  </span>
+  <div ng-if="form.submitted">
+    <div class="apply-submitted__title">
+      Success!
+    </div>
+    <div class="apply-submitted__message">
+      Your application has been sent to {{ entity.name }}.
+    </div>
+  </div>
+</div>

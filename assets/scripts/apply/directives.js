@@ -48,4 +48,28 @@ module.exports = angular.module('Apply')
       });
     };
   }])
+  .directive('aplAttachInputmask', [function() {
+    return {
+      scope: {
+        aplAttachInputmask: "="
+      },
+      link: function(scope, elm, attr) {
+        scope.aplAttachInputmask[attr.aplAttachInputmaskAs || "_$mask"] = _.bind(elm.inputmask, elm);
+      }
+    }
+  }])
+  .directive('aplApplyFocus', [function() {
+    return {
+      link: function(scope, elm, attr) {
+        elm.on('focus', '*', function(e) {
+          elm.addClass('is-focused');
+          jQuery(this).closest('.apply-questions__item').addClass('is-focused');
+        });
+        elm.on('blur', '*', function(e) {
+          elm.removeClass('is-focused');
+          jQuery(this).closest('.apply-questions__item').removeClass('is-focused');
+        });
+      }
+    }
+  }])
 ;

@@ -1,0 +1,66 @@
+$_step-size: 44px;
+
+.blueprint--rating__list {
+  display: inline-block;
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 0;
+  margin: -1px;
+}
+
+.blueprint--rating__list__item {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 1px;
+}
+
+.blueprint--rating__step {
+  position: relative;
+  width: $_step-size;
+  height: $_step-size;
+  text-align: center;
+  cursor: pointer;
+
+  border: 2px solid $color-apply-theme-light-line;
+  border-radius: 3px;
+}
+.is-dark .blueprint--rating__step {
+  border-color: $color-apply-theme-dark-line;
+}
+
+.blueprint--rating__type-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  @include transform(translate(-50%, -50%));
+  .actual {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 16px;
+    font-weight: 900;
+    color: $color-apply-theme-light-text-alpha;
+    fill: $color-apply-theme-light-text-alpha;
+    opacity: .4;
+    @include transition-property(transform, opacity);
+    @include transition-duration(100ms);
+    @include transition-timing-function(ease-in-out);
+  }
+}
+.is-dark .blueprint--rating__type-content .actual {
+  color: $color-apply-theme-dark-text-alpha;
+  fill: $color-apply-theme-dark-text-alpha;
+}
+
+.blueprint--rating__list__item.is-hovering .blueprint--rating__step .actual {
+  opacity: .75;
+  @include transform(scale(1.15));
+}
+.blueprint--rating__list__item.is-selected .blueprint--rating__step .actual,
+.blueprint--rating__list__item.is-set .blueprint--rating__step .actual {
+  opacity: 1;
+}
+.blueprint--rating__list__item.is-selected .blueprint--rating__type-content .actual {
+  @include transform(scale(1.3));
+}

@@ -6,7 +6,12 @@ require("angular-scroll");
 
 var ApplyanceApi = require("../services/api");
 
-angular.module('Register', [ApplyanceApi.name, 'ngRoute', 'duScroll'])
+angular.module('Register', [ApplyanceApi.name, 'ngRoute', 'duScroll']);
+
+require("../templates");
+require("./templates");
+
+angular.module('Register')
   .config(function($routeProvider, $locationProvider) {
 
     $routeProvider

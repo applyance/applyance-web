@@ -1,0 +1,38 @@
+<ng-include src="'/views/directives/blueprints/_standard-label.html'"></ng-include>
+
+<div class="blueprint--hourlyavailability__container" tabindex="0">
+  <div class="blueprint--hourlyavailability__day-hour-legend">
+    <ul class="blueprint--hourlyavailability__hours">
+      <li class="blueprint--hourlyavailability__hour is-{{ period.toLowerCase() }}"
+          ng-repeat="period in periods">
+        <svg class="icon icon--left">
+          <use xlink:href="#right-arrow-w-line" />
+        </svg>
+        <span class="label">{{ period }}</span>
+        <svg class="icon icon--right">
+          <use xlink:href="#right-arrow-w-line" />
+        </svg>
+      </li>
+    </ul>
+  </div>
+  <ul class="blueprint--hourlyavailability__days">
+    <li class="blueprint--hourlyavailability__day"
+        ng-repeat="day in days">
+      <div class="day-label">
+        {{ day }}
+      </div>
+      <div class="day-hours">
+        <ul class="blueprint--hourlyavailability__hours">
+          <li class="blueprint--hourlyavailability__hour"
+              ng-repeat="period in periods"
+              ng-class="{ 'is-selected':isSelected(day, period.toLowerCase()) }"
+              ng-click="toggle(day, period.toLowerCase())"></li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="blueprint--hourlyavailability__instructions">
+  Click or tap all blocks that you are available.
+</div>

@@ -16,15 +16,53 @@
 }
 
 .apply-submit__progress {
-  display: inline-block;
+  display: none;
   vertical-align: middle;
+  width: 100%;
+  width: calc(100% - 118px);
 
   margin-right: 18px;
   font-size: 12px;
   font-weight: 500;
 
   color: $color-apply-theme-light-text-beta;
+
+  @media only screen and (min-width : $apply-mobile-breakpoint) {
+    display: inline-block;
+  }
 }
 .is-dark .apply-submit__progress {
   color: $color-apply-theme-dark-text-beta;
+}
+
+.apply-submit__progress__list {
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 0;
+  margin: -1px;
+}
+
+.apply-submit__progress__list__item {
+  display: inline-block;
+  padding: 1px;
+  .dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: rgba(black, .125);
+    border-radius: 100%;
+    @include transition(background-color 200ms ease-in-out);
+  }
+}
+.is-dark .apply-submit__progress__list__item .dot {
+  background-color: rgba(white, .125);
+}
+.apply-submit__progress__list__item,
+.is-dark .apply-submit__progress__list__item {
+  &.is-required .dot {
+    background-color: rgba($color-red, .4);
+  }
+  &.is-complete .dot {
+    background-color: $color-success;
+  }
 }

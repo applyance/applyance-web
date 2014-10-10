@@ -1,0 +1,57 @@
+<ng-include src="'/views/directives/blueprints/_standard-label.html'"></ng-include>
+<div class="al--center" tabindex="0">
+
+  <ul class="blueprint--rating__list">
+    <li class="blueprint--rating__list__item"
+        ng-repeat="step in stepArr"
+        ng-mouseover="setHovering(step)"
+        ng-mouseleave="unsetHovering()"
+        ng-class="{
+          'is-selected':isSelected(step),
+          'is-set':isSet(step),
+          'is-hovering':step._hovering
+        }">
+
+      <div class="blueprint--rating__step"
+          ng-switch="rating_type"
+          ng-click="toggle(step)">
+
+        <span class="blueprint--rating__type-content"
+            ng-switch-when="stars">
+          <svg class="actual">
+            <use xlink:href="#star.filled" />
+          </svg>
+        </span>
+
+        <span class="blueprint--rating__type-content"
+            ng-switch-when="users">
+          <svg class="actual">
+            <use xlink:href="#user.filled" />
+          </svg>
+        </span>
+
+        <span class="blueprint--rating__type-content"
+            ng-switch-when="thumbs">
+          <svg class="actual">
+            <use xlink:href="#thumbs-up.filled" />
+          </svg>
+        </span>
+
+        <span class="blueprint--rating__type-content"
+            ng-switch-when="hearts">
+          <svg class="actual">
+            <use xlink:href="#heart.filled" />
+          </svg>
+        </span>
+
+        <span class="blueprint--rating__type-content"
+            ng-switch-when="numbers">
+          <span class="actual">{{ step.num }}</span>
+        </span>
+
+      </div>
+
+    </li>
+  </ul>
+
+</div>

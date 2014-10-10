@@ -1,0 +1,45 @@
+<ng-include src="'/views/directives/blueprints/_standard-label.html'"></ng-include>
+
+<ul class="blueprint__entries">
+  <li class="blueprint__entry"
+      ng-repeat="entry in blueprint.datum.detail.entries track by $index"
+      ng-class="{ 'is-valid':entry._valid }">
+
+    <ul class="blueprint__field-rows">
+      <li class="blueprint__field-row">
+        <ul class="blueprint__field-cols">
+          <li class="blueprint__field-col unit--1of2">
+            <input
+                type="text" id="blueprint[{{ blueprint.id }}]"
+                class="blueprint__input"
+                value="{{ entry.first }}"
+                ng-model="entry.first"
+                placeholder="First name">
+          </li>
+          <li class="blueprint__field-col unit--1of2">
+            <input
+                type="text"
+                class="blueprint__input"
+                value="{{ entry.last }}"
+                ng-model="entry.last"
+                placeholder="Last name">
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <a href="" class="blueprint__entry__remove" tabindex="-1"
+        ng-if="BF.repeatable && blueprint.datum.detail.entries.length > 1"
+        ng-click="BF.removeEntry(entry)">
+      <svg class="icon">
+        <use xlink:href="#remove-item" />
+      </svg>
+    </a>
+  </li>
+</ul>
+
+<div class="blueprint__entry__tray"
+    ng-if="BF.repeatable">
+  <a href="" class="btn is-mini is-round" tabindex="-1"
+    ng-click="BF.addEntry()">+ Add Name</a>
+</div>

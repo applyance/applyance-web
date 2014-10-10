@@ -1,7 +1,27 @@
 <ng-include src="'/views/directives/blueprints/_standard-label.html'"></ng-include>
-<textarea
-    class="blueprint__input" id="definition[{{ blueprint.definition.id }}]"
-    msd-elastic="\n"
-    ng-model="blueprint.datum.detail.value"
-    rows="2"
-    ng-attr-placeholder="{{ blueprint.definition.placeholder ? blueprint.definition.placeholder : null }}">{{ blueprint.datum.detail.value }}</textarea>
+
+<ul class="blueprint__entries">
+  <li class="blueprint__entry"
+      ng-repeat="entry in blueprint.datum.detail.entries track by $index"
+      ng-class="{ 'is-valid':entry._valid }">
+    <textarea
+        class="blueprint__input" id="blueprint[{{ blueprint.id }}]"
+        msd-elastic="\n"
+        ng-model="entry.value"
+        rows="2"
+        ng-attr-placeholder="{{ blueprint.definition.placeholder ? blueprint.definition.placeholder : null }}">{{ entry.value }}</textarea>
+    <a href="" class="blueprint__entry__remove" tabindex="-1"
+        ng-if="BF.repeatable && blueprint.datum.detail.entries.length > 1"
+        ng-click="BF.removeEntry(entry)">
+      <svg class="icon">
+        <use xlink:href="#remove-item" />
+      </svg>
+    </a>
+  </li>
+</ul>
+
+<div class="blueprint__entry__tray"
+    ng-if="BF.repeatable">
+  <a href="" class="btn is-mini is-round" tabindex="-1"
+    ng-click="BF.addEntry()">+ Add Entry</a>
+</div>

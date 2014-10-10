@@ -1,0 +1,127 @@
+<ng-include src="'/views/directives/blueprints/_standard-label.html'"></ng-include>
+
+<ul class="blueprint__entries">
+  <li class="blueprint__entry"
+      ng-repeat="entry in blueprint.datum.detail.entries track by $index"
+      ng-class="{ 'is-valid':entry._valid }">
+
+    <ul class="blueprint__field-rows">
+      <li class="blueprint__field-row">
+        <ul class="blueprint__field-cols">
+          <li class="blueprint__field-col unit--1of2">
+            <input
+                type="text" id="blueprint[{{ blueprint.id }}]"
+                class="blueprint__input"
+                value="{{ entry.company_name }}"
+                ng-model="entry.company_name"
+                placeholder="Company Name">
+          </li>
+          <li class="blueprint__field-col unit--1of2">
+            <input
+                type="text"
+                class="blueprint__input"
+                value="{{ entry.location }}"
+                ng-model="entry.location"
+                placeholder="Company Location">
+          </li>
+        </ul>
+      </li>
+      <li class="blueprint__field-row">
+        <ul class="blueprint__field-cols">
+          <li class="blueprint__field-col unit--1of2">
+            <input
+                type="text"
+                class="blueprint__input"
+                value="{{ entry.position_title }}"
+                ng-model="entry.position_title"
+                placeholder="Position Title">
+          </li>
+          <li class="blueprint__field-col unit--1of2">
+            <ul class="blueprint__field-cols">
+              <li class="blueprint__field-col unit--1of2">
+                <input
+                    type="text"
+                    class="blueprint__input"
+                    value="{{ entry.start }}"
+                    ng-model="entry.start"
+                    apl-blueprint-mask-month
+                    apl-attach-inputmask="entry" apl-attach-inputmask-as="_$mask_start"
+                    placeholder="Start">
+              </li>
+              <li class="blueprint__field-col unit--1of2">
+                <input
+                    type="text"
+                    class="blueprint__input"
+                    value="{{ entry.end }}"
+                    ng-model="entry.end"
+                    apl-blueprint-mask-month
+                    apl-attach-inputmask="entry" apl-attach-inputmask-as="_$mask_end"
+                    placeholder="End">
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="blueprint__field-row">
+        <ul class="blueprint__field-cols">
+          <li class="blueprint__field-col">
+            <div class="blueprint__question-suffix">
+              <div class="blueprint__question-suffix__q">
+                May we contact your supervisor here?
+              </div>
+              <ul class="blueprint__question-suffix__a">
+                <li class="blueprint__question-suffix__a__item">
+                  <a href=""
+                      ng-click="entry.contact_supervisor = true"
+                      ng-class="{ 'is-selected':entry.contact_supervisor }">Yes</a>
+                </li>
+                <li class="blueprint__question-suffix__a__item">
+                  <a href=""
+                      ng-click="entry.contact_supervisor = false"
+                      ng-class="{ 'is-selected':!entry.contact_supervisor }">No</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li class="blueprint__field-row"
+          ng-show="entry.contact_supervisor">
+        <ul class="blueprint__field-cols">
+          <li class="blueprint__field-col unit--1of2">
+            <input
+                type="text"
+                class="blueprint__input"
+                value="{{ entry.supervisor_name }}"
+                ng-model="entry.supervisor_name"
+                placeholder="Supervisor Name">
+          </li>
+          <li class="blueprint__field-col unit--1of2">
+            <input
+                type="text"
+                class="blueprint__input"
+                value="{{ entry.supervisor_phone_number }}"
+                ng-model="entry.supervisor_phone_number"
+                apl-blueprint-mask-phonenumber
+                apl-attach-inputmask="entry" apl-attach-inputmask-as="_$mask_supervisor_phone"
+                placeholder="Supervisor Phone">
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <a href="" class="blueprint__entry__remove" tabindex="-1"
+        ng-if="BF.repeatable && blueprint.datum.detail.entries.length > 1"
+        ng-click="BF.removeEntry(entry)">
+      <svg class="icon">
+        <use xlink:href="#remove-item" />
+      </svg>
+    </a>
+  </li>
+</ul>
+
+<div class="blueprint__entry__tray"
+    ng-if="BF.repeatable">
+  <a href="" class="btn is-mini is-round" tabindex="-1"
+    ng-click="BF.addEntry()">+ Add Work Experience</a>
+</div>

@@ -38,8 +38,11 @@
 }
 .is-header-shrunk .apply-entity__name {
   margin-top: 0;
-  display: inline-block;
+  display: none;
   text-align: left;
+  @media only screen and (min-width : $apply-mobile-breakpoint) {
+    display: inline-block;
+  }
 }
 
 .apply-entity__name__preface {

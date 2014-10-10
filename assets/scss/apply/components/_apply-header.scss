@@ -15,10 +15,12 @@
   text-align: left;
   background-color: $color-apply-theme-light-main-beta;
   border-bottom: 1px solid darken($color-apply-theme-light-main-beta, 5%);
+  box-shadow: 0 1px 4px rgba(black, .05);
 }
 .is-header-shrunk.is-dark .apply-header {
   background-color: $color-apply-theme-dark-main-beta;
   border-bottom-color: darken($color-apply-theme-dark-main-beta, 5%);
+  box-shadow: 0 1px 4px rgba(white, .05);
 }
 
 .apply-begin {
