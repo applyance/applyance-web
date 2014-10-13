@@ -100,7 +100,7 @@ module.exports = angular.module('Review')
       };
       this.getActiveRootEntity = function() {
         var entity = this.getActiveEntity();
-        return entity.parent ? entity.parent : entity;
+        return entity.parent ? this.getEntity(entity.parent.id) : entity;
       };
 
       //
@@ -108,7 +108,8 @@ module.exports = angular.module('Review')
       //
 
       this.getActiveFeature = function(targetFeature) {
-        return _.find(this.getActiveRootEntity().customer.plan.features, function(feature) {
+        var rootEntity = this.getActiveRootEntity();
+        return _.find(rootEntity.customer.plan.features, function(feature) {
           return feature.name == targetFeature;
         });
       };

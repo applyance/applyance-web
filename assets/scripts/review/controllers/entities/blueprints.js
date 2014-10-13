@@ -113,7 +113,7 @@ module.exports = angular.module('Review')
 
       $scope.isDisabled = function(definition) {
         var blueprint = $scope.getBlueprintFromDefinition(definition);
-        return blueprint && blueprint.is_parent;
+        return blueprint && (blueprint.is_parent || definition.is_core);
       }
 
       $scope.isSet = function(definition) {

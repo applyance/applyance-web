@@ -7,14 +7,6 @@
       {{ citizen.account.name }}
     </h2>
     <ul class="application__applicant__contact">
-      <li ng-if="profile.location" class="application__applicant__contact__item">
-        <svg class="icon">
-          <use xlink:href="#location-pin" />
-        </svg>
-        <span class="label">
-          {{ profile.location.address.city }}, {{ profile.location.address.state }}
-        </span>
-      </li>
       <li class="application__applicant__contact__item">
         <svg class="icon">
           <use xlink:href="#envelope" />
@@ -23,12 +15,13 @@
           {{ citizen.account.email }}
         </span>
       </li>
-      <li ng-if="profile.phone_number" class="application__applicant__contact__item">
+      <li class="application__applicant__contact__item"
+          ng-if="citizen.account.phone_number">
         <svg class="icon">
           <use xlink:href="#smartphone" />
         </svg>
         <span class="label">
-          {{ profile.phone_number }}
+          {{ citizen.account.phone_number }}
         </span>
       </li>
     </ul>
@@ -86,9 +79,8 @@
         <i class="icon-star-5"></i>
       </li>
     </ul>
-    <a href="" class="application__actions__btn--save-as-pdf"
-        ng-click="saveAsPDF()"
-        apl-tooltip="View as PDF">
+    <a href="{{ apiHost }}/applications/{{ application.id }}.pdf?api_key={{ apiKey }}" class="application__actions__btn--save-as-pdf" target="_blank"
+        apl-tooltip="Export to PDF">
       <svg class="icon--download">
         <use xlink:href="#download-document" />
       </svg>
@@ -97,37 +89,44 @@
 </ul>
 
 <ol class="application__fields">
+  <li class="application__fields__item"
+      ng-repeat="field in fields">
 
-  <li ng-if="profile.location" class="application__fields__item">
-    <div class="application__fields__label">
-      Address
+    <div class="application__fields__item__container"
+        ng-switch="field.datum.definition.type">
+      <apl-field-address
+          class="field--address"
+          ng-switch-when="address" apl-field="field"></apl-field-address>
+      <apl-field-fileupload
+          class="field--fileupload"
+          ng-switch-when="fileupload" apl-field="field"></apl-field-fileupload>
+      <apl-field-rating
+          class="field--rating"
+          ng-switch-when="rating" apl-field="field"></apl-field-rating>
+      <apl-field-name
+          class="field--name"
+          ng-switch-when="name" apl-field="field"></apl-field-name>
+      <apl-field-education
+          class="field--education"
+          ng-switch-when="education" apl-field="field"></apl-field-education>
+      <apl-field-workexperience
+          class="field--workexperience"
+          ng-switch-when="workexperience" apl-field="field"></apl-field-workexperience>
+      <apl-field-reference
+          class="field--reference"
+          ng-switch-when="reference" apl-field="field"></apl-field-reference>
+      <apl-field-hourlyavailability
+          class="field--hourlyavailability"
+          ng-switch-when="hourlyavailability" apl-field="field"></apl-field-hourlyavailability>
+      <apl-field-textentries
+          class="field--textentries"
+          ng-if="['socialsecuritynumber', 'shorttext', 'longtext', 'website', 'email', 'date', 'phonenumber'].indexOf(field.datum.definition.type) !== -1"
+          apl-field="field"></apl-field-textentries>
+      <apl-field-choices
+          class="field--choices"
+          ng-if="['multiplechoice', 'yesno', 'legal', 'dropdown'].indexOf(field.datum.definition.type) !== -1"
+          apl-field="field"></apl-field-choices>
     </div>
-    <div class="application__fields__detail text-trim" ng-bind-html="renderAddress(profile.location.address)"></div>
+
   </li>
-
-  <li class="application__fields__item" ng-repeat="field in application.fields" ng-if="field.datum.definition">
-    <div class="application__fields__label">
-      {{ field.datum.definition.label | blueprint:activeEntity }}
-    </div>
-    <div class="application__fields__detail text-trim"
-        ng-bind-html="renderDetail(field.datum.detail.value)"
-        ng-if="field.datum.definition.type != 'fileupload'">
-    </div>
-    <ul class="application__fields__detail is-fileupload text-trim"
-        ng-if="field.datum.definition.type == 'fileupload'">
-      <li class="item" ng-repeat="attachment in field.datum.attachments">
-        <img ng-if="isAttachmentImage(attachment)" class="img" ng-src="{{ attachment.url }}">
-        <svg ng-if="!isAttachmentImage(attachment)" class="img doc">
-          <use xlink:href="#document" />
-        </svg>
-        <a href="{{ attachment.url }}" class="label" target="_blank">
-          {{ attachment.name }}
-          <svg class="icon">
-            <use xlink:href="#new-window" />
-          </svg>
-        </a>
-      </li>
-    </ul>
-  </li>
-
 </ol>

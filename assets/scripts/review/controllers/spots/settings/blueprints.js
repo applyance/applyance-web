@@ -114,7 +114,7 @@ module.exports = angular.module('Review')
 
       $scope.isDisabled = function(definition) {
         var blueprint = $scope.getBlueprintFromDefinition(definition);
-        return blueprint && blueprint.is_parent;
+        return blueprint && (blueprint.is_parent || definition.is_core);
       }
 
       $scope.isSet = function(definition) {
@@ -134,8 +134,8 @@ module.exports = angular.module('Review')
         } else {
           ApplyanceAPI.postSpotBlueprint($scope.spot.id, {
             definition_id: definition.id,
-            position: 1,
-            is_required: true
+            position: definition.default_position,
+            is_required: definition.default_is_required
           }).then(function(blueprint) {
             $scope.blueprints.push(blueprint);
           });

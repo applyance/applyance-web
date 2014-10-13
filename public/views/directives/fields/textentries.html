@@ -1,0 +1,13 @@
+<div class="field__label">
+  {{ field.datum.definition.label }}
+</div>
+<div class="field__detail text-trim">
+
+  <ul class="field__entries">
+    <li class="field__entries__item text-trim"
+        ng-repeat="entry in field.datum.detail.entries"
+        ng-bind-html="entry.value | nl2p | aplUnsafe">
+    </li>
+  </ul>
+
+</div>

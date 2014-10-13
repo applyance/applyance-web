@@ -1,0 +1,59 @@
+<div class="field__label">
+  {{ field.datum.definition.label }}
+</div>
+<div class="field__detail">
+
+  <div class="blueprint--rating is-type-{{ field.datum.definition.helper.rating_type }}">
+
+    <ul class="blueprint--rating__list">
+      <li class="blueprint--rating__list__item"
+          ng-repeat="step in stepArr"
+          ng-class="{
+            'is-selected':isSelected(step),
+            'is-set':isSet(step)
+          }">
+
+        <div class="blueprint--rating__step"
+            ng-switch="field.datum.definition.helper.rating_type">
+
+          <span class="blueprint--rating__type-content"
+              ng-switch-when="stars">
+            <svg class="actual">
+              <use xlink:href="#star.filled" />
+            </svg>
+          </span>
+
+          <span class="blueprint--rating__type-content"
+              ng-switch-when="users">
+            <svg class="actual">
+              <use xlink:href="#user.filled" />
+            </svg>
+          </span>
+
+          <span class="blueprint--rating__type-content"
+              ng-switch-when="thumbs">
+            <svg class="actual">
+              <use xlink:href="#thumbs-up.filled" />
+            </svg>
+          </span>
+
+          <span class="blueprint--rating__type-content"
+              ng-switch-when="hearts">
+            <svg class="actual">
+              <use xlink:href="#heart.filled" />
+            </svg>
+          </span>
+
+          <span class="blueprint--rating__type-content"
+              ng-switch-when="numbers">
+            <span class="actual">{{ step.num }}</span>
+          </span>
+
+        </div>
+
+      </li>
+    </ul>
+
+  </div>
+
+</div>

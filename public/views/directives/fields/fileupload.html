@@ -1,0 +1,25 @@
+<div class="field__label">
+  {{ field.datum.definition.label }}
+</div>
+<div class="field__detail">
+
+  <ul class="field--fileupload__entries">
+    <li class="field--fileupload__entries__item"
+        ng-repeat="attachment in field.datum.attachments">
+      <img class="img"
+          ng-if="isAttachmentImage(attachment)"
+          ng-src="{{ attachment.url }}">
+      <svg class="img doc"
+          ng-if="!isAttachmentImage(attachment)">
+        <use xlink:href="#document" />
+      </svg>
+      <a href="{{ attachment.url }}" class="label" target="_blank">
+        {{ attachment.name }}
+        <svg class="icon">
+          <use xlink:href="#new-window" />
+        </svg>
+      </a>
+    </li>
+  </ul>
+
+</div>

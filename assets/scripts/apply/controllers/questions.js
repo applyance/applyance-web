@@ -5,12 +5,26 @@ module.exports = angular.module('Apply')
     function ($scope, ApplyanceAPI) {
 
       $scope.onBlueprintsGet = function(blueprints) {
-        blueprints = _.sortBy(blueprints.plain(), 'position');
         _.each(blueprints, function(blueprint, index) {
-          blueprint._index = index;
           blueprint._valid = false;
           $scope.blueprints.push(blueprint);
         });
+        $scope.blueprints.sort(function(b1, b2) {
+          if (b1.position < b2.position) { return -1; }
+          if (b1.position > b2.position) { return 1; }
+          return 0;
+        });
+        _.each($scope.blueprints, function(blueprint, index) {
+          blueprint._index = index;
+        });
+      };
+
+      $scope.removeBlueprints = function(cb) {
+        var blueprintToRemove = _.find($scope.blueprints, cb);
+        var index = _.indexOf($scope.blueprints, blueprintToRemove);
+        if (index > -1) {
+          $scope.blueprints.splice(index, 1);
+        }
       };
 
       //
@@ -31,16 +45,12 @@ module.exports = angular.module('Apply')
       });
 
       $scope.$on('location.removed', function(evt, location) {
-        var blueprintToRemove = _.find($scope.blueprints, function(blueprint) {
+        $scope.removeBlueprints(function(blueprint) {
           if (!blueprint.entity) {
             return false;
           }
           return blueprint.entity.id == location.id;
         });
-        var index = _.indexOf($scope.blueprints, blueprintToRemove);
-        if (index > -1) {
-          $scope.blueprints.splice(index, 1);
-        }
       });
 
       //
@@ -52,16 +62,12 @@ module.exports = angular.module('Apply')
       });
 
       $scope.$on('spot.removed', function(evt, spot) {
-        var blueprintToRemove = _.find($scope.blueprints, function(blueprint) {
+        $scope.removeBlueprints(function(blueprint) {
           if (!blueprint.spot) {
             return false;
           }
           return blueprint.spot.id == spot.id;
         });
-        var index = _.indexOf($scope.blueprints, blueprintToRemove);
-        if (index > -1) {
-          $scope.blueprints.splice(index, 1);
-        }
       });
 
       $scope.isDisabled = function() {

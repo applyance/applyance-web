@@ -1,0 +1,17 @@
+<div class="field__label">
+  {{ field.datum.definition.label }}
+</div>
+<div class="field__detail text-trim">
+
+  <ul class="field__entries">
+    <li class="field__entries__item"
+        ng-repeat="entry in field.datum.detail.entries">
+
+      <span>{{ entry.name }}</span>
+      <br />
+      <span>{{ entry.relation }}</span>, <span>{{ entry.phone_number }}</span>
+
+    </li>
+  </ul>
+
+</div>

@@ -57,6 +57,15 @@ module.exports = angular.module('Apply')
         $scope.form.valid = validBlueprints.length == $scope.blueprints.length;
       }, true);
 
+      $scope.pluckAccountBlueprint = function(name) {
+        var blueprint = _.find($scope.blueprints, function(blueprint) {
+          return blueprint.definition.helper.account_mapping == name;
+        });
+        var index = _.indexOf($scope.blueprints, blueprint);
+        $scope.blueprints.splice(index, 1);
+        return blueprint;
+      };
+
       //
       // Application Submission
       //
@@ -67,12 +76,9 @@ module.exports = angular.module('Apply')
         }
 
         var accountMappings = {
-          name: _.find($scope.blueprints, function(blueprint) {
-            return blueprint.definition.helper.account_mapping == "name";
-          }),
-          email: _.find($scope.blueprints, function(blueprint) {
-            return blueprint.definition.helper.account_mapping == "email";
-          })
+          name: $scope.pluckAccountBlueprint("name"),
+          email: $scope.pluckAccountBlueprint("email"),
+          phone_number: $scope.pluckAccountBlueprint("phone_number")
         };
 
         //
@@ -81,20 +87,16 @@ module.exports = angular.module('Apply')
         //
 
         var fields = _.compact(
-          _.map(
-            _.reject($scope.blueprints, function(blueprint) {
-              return _.contains([accountMappings.name.id, accountMappings.email.id], blueprint.id);
-            }),
-            function(blueprint) {
-              return blueprint.field();
-            }
-          )
+          _.map($scope.blueprints, function(blueprint) {
+            return blueprint.field();
+          })
         );
 
         var application = {
           account: {
             name: accountMappings.name.datum.detail.entries[0].first + " " + accountMappings.name.datum.detail.entries[0].last,
-            email: accountMappings.email.datum.detail.entries[0].value
+            email: accountMappings.email.datum.detail.entries[0].value,
+            phone_number: accountMappings.phone_number.datum.detail.entries[0].value
           },
           fields: fields
         };

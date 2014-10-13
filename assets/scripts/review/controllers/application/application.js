@@ -8,11 +8,17 @@ module.exports = angular.module('Review')
         $location.path($scope.getRootPath());
       }
 
+      $scope.apiHost = ApplyanceAPI.getApiHost();
+      $scope.apiKey = ApplyanceAPI.getApiKey();
+
       $scope.activeEntity = Store.getActiveEntity();
       $scope.citizen = citizen_data.citizen;
       $scope.ratings = $scope.citizen.ratings;
       $scope.profile = citizen_data.profile;
       $scope.application = citizen_data.application;
+      $scope.fields = _.sortBy($scope.application.fields, function(field) {
+        return field.datum.definition.default_position;
+      });
       $scope.sidebar = {
         collapsed: false
       };
@@ -40,6 +46,13 @@ module.exports = angular.module('Review')
         _.each($scope.citizen.applications, function(application) {
           spots = spots.concat(application.spots);
           entities = entities.concat(application.entities);
+        });
+
+        spots = _.uniq(spots, function(spot) {
+          return spot.id;
+        });
+        entities = _.uniq(entities, function(entity) {
+          return entity.id;
         });
 
         var spotEntityIds = [];
@@ -126,7 +139,19 @@ module.exports = angular.module('Review')
       };
 
       $scope.renderDetail = function(detail) {
-        return $sce.trustAsHtml($filter('nl2p')(detail));
+        if (detail.entries) {
+          detail.value = _.map(detail.entries, function(entry) {
+            return entry.value;
+          });
+          detail.value = detail.value.join(", ");
+        } else {
+          if (detail.value == true) {
+            detail.value = "Yes";
+          } else if (detail.value == false) {
+            detail.value = "No";
+          }
+        }
+        return $sce.trustAsHtml($filter('nl2p')(detail.value));
       };
 
       $scope.renderAddress = function(address) {

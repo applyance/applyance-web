@@ -1,0 +1,42 @@
+<div class="field__label">
+  {{ field.datum.definition.label }}
+</div>
+<div class="field__detail text-trim">
+
+  <div class="blueprint--hourlyavailability">
+
+    <div class="blueprint--hourlyavailability__container">
+      <div class="blueprint--hourlyavailability__day-hour-legend">
+        <ul class="blueprint--hourlyavailability__hours">
+          <li class="blueprint--hourlyavailability__hour is-{{ period.toLowerCase() }}"
+              ng-repeat="period in periods">
+            <svg class="icon icon--left">
+              <use xlink:href="#right-arrow-w-line" />
+            </svg>
+            <span class="label">{{ period }}</span>
+            <svg class="icon icon--right">
+              <use xlink:href="#right-arrow-w-line" />
+            </svg>
+          </li>
+        </ul>
+      </div>
+      <ul class="blueprint--hourlyavailability__days">
+        <li class="blueprint--hourlyavailability__day"
+            ng-repeat="day in days">
+          <div class="day-label">
+            {{ day }}
+          </div>
+          <div class="day-hours">
+            <ul class="blueprint--hourlyavailability__hours">
+              <li class="blueprint--hourlyavailability__hour"
+                  ng-repeat="period in periods"
+                  ng-class="{ 'is-selected':isSelected(day, period.toLowerCase()) }"></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>

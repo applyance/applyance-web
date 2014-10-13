@@ -10,15 +10,17 @@ module.exports = angular.module('Applyance')
     }
   })
   .filter('blueprintText', function() {
-    return function(input, blueprint) {
-      if (blueprint.spot) {
-        return input.replace("{{ blueprint.spot.entity.name }}", blueprint.spot.entity.name);
+    return function(input, blueprintOrEntity) {
+      if (blueprintOrEntity.spot) {
+        return input.replace("{{ blueprintOrEntity.spot.entity.name }}", blueprintOrEntity.spot.entity.name);
+      } else if (blueprintOrEntity.entity) {
+        return input.replace("{{ blueprintOrEntity.entity.name }}", blueprintOrEntity.entity.name);
       } else {
-        return input.replace("{{ blueprint.entity.name }}", blueprint.entity.name);
+        return input.replace("{{ blueprintOrEntity.name }}", blueprintOrEntity.name);
       }
     }
   })
-  .filter('nl2p', function () {
+  .filter('nl2p', function() {
     return function(text){
       text = String(text).trim();
       return (text.length > 0 ? '<p>' + text.replace(/[\r\n]+/g, '</p><p>') + '</p>' : null);

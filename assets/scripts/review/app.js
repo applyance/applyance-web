@@ -68,7 +68,6 @@ require("./controllers/account");
 
 require("./controllers/application/application");
 require("./controllers/application/profile");
-require("./controllers/application/sidebar");
 
 require("./controllers/entities/blueprints");
 require("./controllers/entities/entities");
@@ -85,3 +84,14 @@ require("./controllers/spots/applications");
 require("./controllers/spots/settings");
 require("./controllers/spots/settings/settings");
 require("./controllers/spots/settings/blueprints");
+
+require("../directives/fields/address");
+require("../directives/fields/workexperience");
+require("../directives/fields/textentries");
+require("../directives/fields/choices");
+require("../directives/fields/fileupload");
+require("../directives/fields/hourlyavailability");
+require("../directives/fields/rating");
+require("../directives/fields/name");
+require("../directives/fields/reference");
+require("../directives/fields/education");

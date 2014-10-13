@@ -1,0 +1,14 @@
+.field--hourlyavailability {
+  .blueprint--hourlyavailability__hour {
+    cursor: default;
+    &:not(.is-selected):hover {
+      background-color: whitesmoke;
+    }
+  }
+  .blueprint--hourlyavailability__container {
+    &:hover .blueprint--hourlyavailability__hour {
+      .icon { opacity: .25; }
+      .label { opacity: 1; }
+    }
+  }
+}

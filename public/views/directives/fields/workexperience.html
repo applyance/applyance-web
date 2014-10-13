@@ -1,0 +1,26 @@
+<div class="field__label">
+  {{ field.datum.definition.label }}
+</div>
+<div class="field__detail text-trim">
+
+  <ul class="field__entries">
+    <li class="field__entries__item"
+        ng-repeat="entry in field.datum.detail.entries">
+
+      <span>{{ entry.position_title }}</span>
+      <br />
+      <span>{{ entry.company_name }}</span>, <span>{{ entry.location }}</span>
+      <br />
+      <span>{{ entry.start }} - {{ entry.end }}</span>
+
+      <div ng-if="entry.contact_supervisor">
+        <br />
+        <em>You may contact my supervisor here:</em>
+        <br />
+        <span>{{ entry.supervisor_name }}</span>, <span>{{ entry.supervisor_phone_number }}</span>
+      </div>
+
+    </li>
+  </ul>
+
+</div>

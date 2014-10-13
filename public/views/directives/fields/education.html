@@ -1,0 +1,19 @@
+<div class="field__label">
+  {{ field.datum.definition.label }}
+</div>
+<div class="field__detail text-trim">
+
+  <ul class="field__entries">
+    <li class="field__entries__item"
+        ng-repeat="entry in field.datum.detail.entries">
+
+      <span>{{ entry.institution }}</span>
+      <br />
+      <span>{{ entry.degree }}</span>
+      <br />
+      <span>{{ entry.start_year }}</span> - <span>{{ entry.end_year }}</span>
+
+    </li>
+  </ul>
+
+</div>

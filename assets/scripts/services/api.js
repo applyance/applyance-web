@@ -19,6 +19,9 @@ module.exports = angular.module('Applyance', ['restangular'])
       this.getApiHost = function() {
         return apiHost;
       };
+      this.getApiKey = function() {
+        return apiKey;
+      };
       this.setApiKey = function(apiKey) {
         Restangular.setDefaultHeaders({ 'Authorization': "ApplyanceLogin auth=" + apiKey });
         $http.defaults.headers.common['Authorization'] = "ApplyanceLogin auth=" + apiKey;
