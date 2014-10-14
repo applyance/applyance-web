@@ -93,39 +93,48 @@
       ng-repeat="field in fields">
 
     <div class="application__fields__item__container"
-        ng-switch="field.datum.definition.type">
-      <apl-field-address
-          class="field--address"
-          ng-switch-when="address" apl-field="field"></apl-field-address>
-      <apl-field-fileupload
-          class="field--fileupload"
-          ng-switch-when="fileupload" apl-field="field"></apl-field-fileupload>
-      <apl-field-rating
-          class="field--rating"
-          ng-switch-when="rating" apl-field="field"></apl-field-rating>
-      <apl-field-name
-          class="field--name"
-          ng-switch-when="name" apl-field="field"></apl-field-name>
-      <apl-field-education
-          class="field--education"
-          ng-switch-when="education" apl-field="field"></apl-field-education>
-      <apl-field-workexperience
-          class="field--workexperience"
-          ng-switch-when="workexperience" apl-field="field"></apl-field-workexperience>
-      <apl-field-reference
-          class="field--reference"
-          ng-switch-when="reference" apl-field="field"></apl-field-reference>
-      <apl-field-hourlyavailability
-          class="field--hourlyavailability"
-          ng-switch-when="hourlyavailability" apl-field="field"></apl-field-hourlyavailability>
-      <apl-field-textentries
-          class="field--textentries"
-          ng-if="['socialsecuritynumber', 'shorttext', 'longtext', 'website', 'email', 'date', 'phonenumber'].indexOf(field.datum.definition.type) !== -1"
-          apl-field="field"></apl-field-textentries>
-      <apl-field-choices
-          class="field--choices"
-          ng-if="['multiplechoice', 'yesno', 'legal', 'dropdown'].indexOf(field.datum.definition.type) !== -1"
-          apl-field="field"></apl-field-choices>
+      ng-if="isLegacyField(field)">
+      <apl-field-textentries class="field--textentries" apl-field="field"></apl-field-textentries>
+    </div>
+
+    <div ng-if="!isLegacyField(field)">
+
+      <div class="application__fields__item__container"
+          ng-switch="field.datum.definition.type">
+        <apl-field-address
+            class="field--address"
+            ng-switch-when="address" apl-field="field"></apl-field-address>
+        <apl-field-fileupload
+            class="field--fileupload"
+            ng-switch-when="fileupload" apl-field="field"></apl-field-fileupload>
+        <apl-field-rating
+            class="field--rating"
+            ng-switch-when="rating" apl-field="field"></apl-field-rating>
+        <apl-field-name
+            class="field--name"
+            ng-switch-when="name" apl-field="field"></apl-field-name>
+        <apl-field-education
+            class="field--education"
+            ng-switch-when="education" apl-field="field"></apl-field-education>
+        <apl-field-workexperience
+            class="field--workexperience"
+            ng-switch-when="workexperience" apl-field="field"></apl-field-workexperience>
+        <apl-field-reference
+            class="field--reference"
+            ng-switch-when="reference" apl-field="field"></apl-field-reference>
+        <apl-field-hourlyavailability
+            class="field--hourlyavailability"
+            ng-switch-when="hourlyavailability" apl-field="field"></apl-field-hourlyavailability>
+        <apl-field-textentries
+            class="field--textentries"
+            ng-if="['socialsecuritynumber', 'shorttext', 'longtext', 'website', 'email', 'date', 'phonenumber'].indexOf(field.datum.definition.type) !== -1"
+            apl-field="field"></apl-field-textentries>
+        <apl-field-choices
+            class="field--choices"
+            ng-if="['multiplechoice', 'yesno', 'legal', 'dropdown'].indexOf(field.datum.definition.type) !== -1"
+            apl-field="field"></apl-field-choices>
+      </div>
+
     </div>
 
   </li>
